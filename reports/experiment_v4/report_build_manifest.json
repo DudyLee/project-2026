@@ -1,0 +1,10 @@
+{
+  "report_script_sha256": "cc84cf947d552deb73af986f445771ae516d9f67e9a9f2de8b44bb55d53d9349",
+  "artifacts": {
+    "report.html": "bbd58a83978818f28f48fee8319d4dfeb6b5e1151212d015ff7f8086f169586a",
+    "PV-increment-threshold.canvas.tsx": "54e038f0b9db511e922b42f3a121b2b678381b174298b90664680cac9923bed0",
+    "report_data.json": "6efcf3c600184d15757102e57eb31905be0c1f2b736f48b855f9f0e6218081c0",
+    "candidate_decision.json": "3f226b7a89980ce856e80a336027c608209b05dde86fce21ccf049b5781087ff"
+  },
+  "canvas_native_compilation_performed": false
+}

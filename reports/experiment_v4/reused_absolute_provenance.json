@@ -1,0 +1,156 @@
+[
+  {
+    "outer_fold": 1,
+    "held_room": "BM223",
+    "source_bundle": "models\\experiment_v3\\XGBoost\\fold_01_BM223.joblib",
+    "sha256": "246f55c08ccde04a4a1711552ae641c256a943400926fa7f2772becc70e2f9ae",
+    "candidate": "depth3",
+    "parameters": {
+      "objective": "reg:squarederror",
+      "tree_method": "hist",
+      "device": "cpu",
+      "n_estimators": 150,
+      "learning_rate": 0.07,
+      "min_child_weight": 100,
+      "reg_lambda": 10.0,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "n_jobs": 4,
+      "random_state": 2026,
+      "verbosity": 0,
+      "max_depth": 3
+    }
+  },
+  {
+    "outer_fold": 2,
+    "held_room": "BM432",
+    "source_bundle": "models\\experiment_v3\\XGBoost\\fold_02_BM432.joblib",
+    "sha256": "f93afa2275e39629bc9e6faa688cb0502d50487519419a51543c4b193bd99486",
+    "candidate": "depth3",
+    "parameters": {
+      "objective": "reg:squarederror",
+      "tree_method": "hist",
+      "device": "cpu",
+      "n_estimators": 150,
+      "learning_rate": 0.07,
+      "min_child_weight": 100,
+      "reg_lambda": 10.0,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "n_jobs": 4,
+      "random_state": 2026,
+      "verbosity": 0,
+      "max_depth": 3
+    }
+  },
+  {
+    "outer_fold": 3,
+    "held_room": "BM441",
+    "source_bundle": "models\\experiment_v3\\XGBoost\\fold_03_BM441.joblib",
+    "sha256": "c950b0c830acf8a2172e8cfccf453d37e465e301730c735b317eb19ceb4b9900",
+    "candidate": "depth3",
+    "parameters": {
+      "objective": "reg:squarederror",
+      "tree_method": "hist",
+      "device": "cpu",
+      "n_estimators": 150,
+      "learning_rate": 0.07,
+      "min_child_weight": 100,
+      "reg_lambda": 10.0,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "n_jobs": 4,
+      "random_state": 2026,
+      "verbosity": 0,
+      "max_depth": 3
+    }
+  },
+  {
+    "outer_fold": 4,
+    "held_room": "BM522",
+    "source_bundle": "models\\experiment_v3\\XGBoost\\fold_04_BM522.joblib",
+    "sha256": "fff1f2e09d645c6c6dfe90a7ad012239b559122632f18616f5ad2123bcc64732",
+    "candidate": "depth3",
+    "parameters": {
+      "objective": "reg:squarederror",
+      "tree_method": "hist",
+      "device": "cpu",
+      "n_estimators": 150,
+      "learning_rate": 0.07,
+      "min_child_weight": 100,
+      "reg_lambda": 10.0,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "n_jobs": 4,
+      "random_state": 2026,
+      "verbosity": 0,
+      "max_depth": 3
+    }
+  },
+  {
+    "outer_fold": 5,
+    "held_room": "BM608",
+    "source_bundle": "models\\experiment_v3\\XGBoost\\fold_05_BM608.joblib",
+    "sha256": "ae2692cfdad10e88aebf2ce2e0e68a0f7aa48c3ac82ca0e727bc30d4875fae0f",
+    "candidate": "depth5",
+    "parameters": {
+      "objective": "reg:squarederror",
+      "tree_method": "hist",
+      "device": "cpu",
+      "n_estimators": 150,
+      "learning_rate": 0.07,
+      "min_child_weight": 100,
+      "reg_lambda": 10.0,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "n_jobs": 4,
+      "random_state": 2026,
+      "verbosity": 0,
+      "max_depth": 5
+    }
+  },
+  {
+    "outer_fold": 6,
+    "held_room": "LM608",
+    "source_bundle": "models\\experiment_v3\\XGBoost\\fold_06_LM608.joblib",
+    "sha256": "a3c6b6a8bae4fd797d3b2b8eb5e9f16d3832be93c5c77c427e1fc5da732c1ae0",
+    "candidate": "depth3",
+    "parameters": {
+      "objective": "reg:squarederror",
+      "tree_method": "hist",
+      "device": "cpu",
+      "n_estimators": 150,
+      "learning_rate": 0.07,
+      "min_child_weight": 100,
+      "reg_lambda": 10.0,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "n_jobs": 4,
+      "random_state": 2026,
+      "verbosity": 0,
+      "max_depth": 3
+    }
+  },
+  {
+    "outer_fold": 7,
+    "held_room": "LM703",
+    "source_bundle": "models\\experiment_v3\\XGBoost\\fold_07_LM703.joblib",
+    "sha256": "949105787e9c5803f71c2dfceab58e11b0b5b9805bd479bebef00b183e1aa2b1",
+    "candidate": "depth3",
+    "parameters": {
+      "objective": "reg:squarederror",
+      "tree_method": "hist",
+      "device": "cpu",
+      "n_estimators": 150,
+      "learning_rate": 0.07,
+      "min_child_weight": 100,
+      "reg_lambda": 10.0,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "n_jobs": 4,
+      "random_state": 2026,
+      "verbosity": 0,
+      "max_depth": 3
+    }
+  }
+]

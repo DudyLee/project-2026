@@ -1,0 +1,27 @@
+[
+  {
+    "target": "E_mean_lux",
+    "v3_method": "XGBoost",
+    "max_abs_difference": 0.0
+  },
+  {
+    "target": "E_P10_lux",
+    "v3_method": "RandomForest",
+    "max_abs_difference": 2.5579538487363607e-13
+  },
+  {
+    "target": "F_300_fraction",
+    "v3_method": "XGBoost",
+    "max_abs_difference": 0.0
+  },
+  {
+    "target": "F_UDI_fraction",
+    "v3_method": "RandomForest",
+    "max_abs_difference": 2.220446049250313e-16
+  },
+  {
+    "target": "PV_AC_kWh",
+    "v3_method": "HistGB",
+    "max_abs_difference": 0.0
+  }
+]

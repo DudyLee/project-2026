@@ -1,0 +1,19 @@
+{
+  "passes_development_gate": false,
+  "macro_MAE_reduction_fraction": -0.1007025629327023,
+  "rooms_improved": 2,
+  "rooms_tied": 1,
+  "rooms_worse": 4,
+  "rooms_nonworse": 3,
+  "worst_room_MAE_increase_lux": 15.08573256420587,
+  "recommended_status": "retain_A_baseline_stop_expanding_weights_without_new_information",
+  "automatic_replacement": false,
+  "final_refit": false,
+  "TEST_unsealed": false,
+  "rule": {
+    "macro_MAE_reduction_fraction_at_least": 0.1,
+    "rooms_nonworse_at_least": 5,
+    "worst_room_MAE_increase_lux_at_most": 0.0,
+    "numerical_tolerance_lux": 1e-09
+  }
+}

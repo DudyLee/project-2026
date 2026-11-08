@@ -1,0 +1,638 @@
+{
+  "E_mean_lux": [
+    {
+      "prefix": "XGB_log_L2",
+      "family": "XGBoost",
+      "transform": "log1p",
+      "loss": "original",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": true,
+      "id": "XGB_log_L2__depth3",
+      "params": {
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 3
+      },
+      "target": "E_mean_lux",
+      "order": 0
+    },
+    {
+      "prefix": "XGB_log_L2",
+      "family": "XGBoost",
+      "transform": "log1p",
+      "loss": "original",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": true,
+      "id": "XGB_log_L2__depth5",
+      "params": {
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 5
+      },
+      "target": "E_mean_lux",
+      "order": 1
+    },
+    {
+      "prefix": "XGB_log_L1",
+      "family": "XGBoost",
+      "transform": "log1p",
+      "loss": "absolute",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": false,
+      "id": "XGB_log_L1__depth3",
+      "params": {
+        "objective": "reg:absoluteerror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 3
+      },
+      "target": "E_mean_lux",
+      "order": 2
+    },
+    {
+      "prefix": "XGB_log_L1",
+      "family": "XGBoost",
+      "transform": "log1p",
+      "loss": "absolute",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": false,
+      "id": "XGB_log_L1__depth5",
+      "params": {
+        "objective": "reg:absoluteerror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 5
+      },
+      "target": "E_mean_lux",
+      "order": 3
+    },
+    {
+      "prefix": "XGB_raw_L1",
+      "family": "XGBoost",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": false,
+      "id": "XGB_raw_L1__depth3",
+      "params": {
+        "objective": "reg:absoluteerror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 3
+      },
+      "target": "E_mean_lux",
+      "order": 4
+    },
+    {
+      "prefix": "XGB_raw_L1",
+      "family": "XGBoost",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": false,
+      "id": "XGB_raw_L1__depth5",
+      "params": {
+        "objective": "reg:absoluteerror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 5
+      },
+      "target": "E_mean_lux",
+      "order": 5
+    }
+  ],
+  "E_P10_lux": [
+    {
+      "prefix": "RF_relative",
+      "family": "RandomForest",
+      "transform": "relative",
+      "loss": "original",
+      "parameters": [
+        "depth12",
+        "depth8"
+      ],
+      "baseline": true,
+      "id": "RF_relative__depth12",
+      "params": {
+        "n_estimators": 64,
+        "max_features": 1.0,
+        "bootstrap": true,
+        "max_samples": 0.7,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "max_depth": 12,
+        "min_samples_leaf": 100
+      },
+      "target": "E_P10_lux",
+      "order": 0
+    },
+    {
+      "prefix": "RF_relative",
+      "family": "RandomForest",
+      "transform": "relative",
+      "loss": "original",
+      "parameters": [
+        "depth12",
+        "depth8"
+      ],
+      "baseline": true,
+      "id": "RF_relative__depth8",
+      "params": {
+        "n_estimators": 64,
+        "max_features": 1.0,
+        "bootstrap": true,
+        "max_samples": 0.7,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "max_depth": 8,
+        "min_samples_leaf": 300
+      },
+      "target": "E_P10_lux",
+      "order": 1
+    },
+    {
+      "prefix": "RF_asinh",
+      "family": "RandomForest",
+      "transform": "asinh",
+      "loss": "original",
+      "parameters": [
+        "depth12",
+        "depth8"
+      ],
+      "baseline": false,
+      "id": "RF_asinh__depth12",
+      "params": {
+        "n_estimators": 64,
+        "max_features": 1.0,
+        "bootstrap": true,
+        "max_samples": 0.7,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "max_depth": 12,
+        "min_samples_leaf": 100
+      },
+      "target": "E_P10_lux",
+      "order": 2
+    },
+    {
+      "prefix": "RF_asinh",
+      "family": "RandomForest",
+      "transform": "asinh",
+      "loss": "original",
+      "parameters": [
+        "depth12",
+        "depth8"
+      ],
+      "baseline": false,
+      "id": "RF_asinh__depth8",
+      "params": {
+        "n_estimators": 64,
+        "max_features": 1.0,
+        "bootstrap": true,
+        "max_samples": 0.7,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "max_depth": 8,
+        "min_samples_leaf": 300
+      },
+      "target": "E_P10_lux",
+      "order": 3
+    },
+    {
+      "prefix": "HGB_raw_L1",
+      "family": "HistGB",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "baseline",
+        "smaller"
+      ],
+      "baseline": false,
+      "id": "HGB_raw_L1__baseline",
+      "params": {
+        "loss": "absolute_error",
+        "learning_rate": 0.07,
+        "max_iter": 150,
+        "l2_regularization": 10.0,
+        "early_stopping": false,
+        "random_state": 2026,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 100
+      },
+      "target": "E_P10_lux",
+      "order": 4
+    },
+    {
+      "prefix": "HGB_raw_L1",
+      "family": "HistGB",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "baseline",
+        "smaller"
+      ],
+      "baseline": false,
+      "id": "HGB_raw_L1__smaller",
+      "params": {
+        "loss": "absolute_error",
+        "learning_rate": 0.07,
+        "max_iter": 150,
+        "l2_regularization": 10.0,
+        "early_stopping": false,
+        "random_state": 2026,
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 200
+      },
+      "target": "E_P10_lux",
+      "order": 5
+    }
+  ],
+  "F_300_fraction": [
+    {
+      "prefix": "XGB_raw_L2",
+      "family": "XGBoost",
+      "transform": "identity",
+      "loss": "original",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": true,
+      "id": "XGB_raw_L2__depth3",
+      "params": {
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 3
+      },
+      "target": "F_300_fraction",
+      "order": 0
+    },
+    {
+      "prefix": "XGB_raw_L2",
+      "family": "XGBoost",
+      "transform": "identity",
+      "loss": "original",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": true,
+      "id": "XGB_raw_L2__depth5",
+      "params": {
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 5
+      },
+      "target": "F_300_fraction",
+      "order": 1
+    },
+    {
+      "prefix": "XGB_raw_L1",
+      "family": "XGBoost",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": false,
+      "id": "XGB_raw_L1__depth3",
+      "params": {
+        "objective": "reg:absoluteerror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 3
+      },
+      "target": "F_300_fraction",
+      "order": 2
+    },
+    {
+      "prefix": "XGB_raw_L1",
+      "family": "XGBoost",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "depth3",
+        "depth5"
+      ],
+      "baseline": false,
+      "id": "XGB_raw_L1__depth5",
+      "params": {
+        "objective": "reg:absoluteerror",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_estimators": 150,
+        "learning_rate": 0.07,
+        "min_child_weight": 100,
+        "reg_lambda": 10.0,
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "verbosity": 0,
+        "max_depth": 5
+      },
+      "target": "F_300_fraction",
+      "order": 3
+    }
+  ],
+  "F_UDI_fraction": [
+    {
+      "prefix": "RF_raw_L2",
+      "family": "RandomForest",
+      "transform": "identity",
+      "loss": "original",
+      "parameters": [
+        "depth12",
+        "depth8"
+      ],
+      "baseline": true,
+      "id": "RF_raw_L2__depth12",
+      "params": {
+        "n_estimators": 64,
+        "max_features": 1.0,
+        "bootstrap": true,
+        "max_samples": 0.7,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "max_depth": 12,
+        "min_samples_leaf": 100
+      },
+      "target": "F_UDI_fraction",
+      "order": 0
+    },
+    {
+      "prefix": "RF_raw_L2",
+      "family": "RandomForest",
+      "transform": "identity",
+      "loss": "original",
+      "parameters": [
+        "depth12",
+        "depth8"
+      ],
+      "baseline": true,
+      "id": "RF_raw_L2__depth8",
+      "params": {
+        "n_estimators": 64,
+        "max_features": 1.0,
+        "bootstrap": true,
+        "max_samples": 0.7,
+        "n_jobs": 4,
+        "random_state": 2026,
+        "max_depth": 8,
+        "min_samples_leaf": 300
+      },
+      "target": "F_UDI_fraction",
+      "order": 1
+    },
+    {
+      "prefix": "HGB_raw_L1",
+      "family": "HistGB",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "baseline",
+        "smaller"
+      ],
+      "baseline": false,
+      "id": "HGB_raw_L1__baseline",
+      "params": {
+        "loss": "absolute_error",
+        "learning_rate": 0.07,
+        "max_iter": 150,
+        "l2_regularization": 10.0,
+        "early_stopping": false,
+        "random_state": 2026,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 100
+      },
+      "target": "F_UDI_fraction",
+      "order": 2
+    },
+    {
+      "prefix": "HGB_raw_L1",
+      "family": "HistGB",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "baseline",
+        "smaller"
+      ],
+      "baseline": false,
+      "id": "HGB_raw_L1__smaller",
+      "params": {
+        "loss": "absolute_error",
+        "learning_rate": 0.07,
+        "max_iter": 150,
+        "l2_regularization": 10.0,
+        "early_stopping": false,
+        "random_state": 2026,
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 200
+      },
+      "target": "F_UDI_fraction",
+      "order": 3
+    }
+  ],
+  "PV_AC_kWh": [
+    {
+      "prefix": "HGB_raw_L2",
+      "family": "HistGB",
+      "transform": "identity",
+      "loss": "original",
+      "parameters": [
+        "baseline",
+        "smaller"
+      ],
+      "baseline": true,
+      "id": "HGB_raw_L2__baseline",
+      "params": {
+        "loss": "squared_error",
+        "learning_rate": 0.07,
+        "max_iter": 150,
+        "l2_regularization": 10.0,
+        "early_stopping": false,
+        "random_state": 2026,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 100
+      },
+      "target": "PV_AC_kWh",
+      "order": 0
+    },
+    {
+      "prefix": "HGB_raw_L2",
+      "family": "HistGB",
+      "transform": "identity",
+      "loss": "original",
+      "parameters": [
+        "baseline",
+        "smaller"
+      ],
+      "baseline": true,
+      "id": "HGB_raw_L2__smaller",
+      "params": {
+        "loss": "squared_error",
+        "learning_rate": 0.07,
+        "max_iter": 150,
+        "l2_regularization": 10.0,
+        "early_stopping": false,
+        "random_state": 2026,
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 200
+      },
+      "target": "PV_AC_kWh",
+      "order": 1
+    },
+    {
+      "prefix": "HGB_raw_L1",
+      "family": "HistGB",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "baseline",
+        "smaller"
+      ],
+      "baseline": false,
+      "id": "HGB_raw_L1__baseline",
+      "params": {
+        "loss": "absolute_error",
+        "learning_rate": 0.07,
+        "max_iter": 150,
+        "l2_regularization": 10.0,
+        "early_stopping": false,
+        "random_state": 2026,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 100
+      },
+      "target": "PV_AC_kWh",
+      "order": 2
+    },
+    {
+      "prefix": "HGB_raw_L1",
+      "family": "HistGB",
+      "transform": "identity",
+      "loss": "absolute",
+      "parameters": [
+        "baseline",
+        "smaller"
+      ],
+      "baseline": false,
+      "id": "HGB_raw_L1__smaller",
+      "params": {
+        "loss": "absolute_error",
+        "learning_rate": 0.07,
+        "max_iter": 150,
+        "l2_regularization": 10.0,
+        "early_stopping": false,
+        "random_state": 2026,
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 200
+      },
+      "target": "PV_AC_kWh",
+      "order": 3
+    }
+  ]
+}

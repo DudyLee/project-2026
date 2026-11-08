@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "started_utc": "2026-11-01T14:49:44.694900+00:00",
+  "source_sha256": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8",
+  "config_sha256": "02dd5656c5fc8669433ec0e16bf66fcf1108d9485f16644541190fb02c7b24aa",
+  "script_sha256": "7a451bc2a637384e78d90edaa3590b57f5327d4a9aebe592b0474a71e694b253",
+  "train_rows": 122640,
+  "train_rooms": [
+    "BM223",
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "test_rows_skipped": 52560,
+  "test_predictions": 0,
+  "test_scores": 0,
+  "variants": {
+    "HistGB_log1p": "Keep B's 13 input fields and HistGB parameters; fit log1p(target), invert with expm1. Diagnostic of cross-room target scale and large-error weighting; not an unbiased original-scale mean estimator.",
+    "HistGB_absolute": "Keep B inputs and parameters except loss=absolute_error. Diagnostic of squared-error sensitivity and mean-vs-median objectives.",
+    "HistGB_add_floor_WFR": "Keep B inputs and squared-error HistGB; add Floor_0based and WFR_window_to_floor. Diagnostic of available but previously omitted BIM representations.",
+    "HistGB_without_obstruction": "Keep B inputs except Solar_Obstruction_Ratio; diagnostic of reliance on an annual scalar obstruction proxy.",
+    "ExtraTrees_B": "Same B inputs, ExtraTreesRegressor(n_estimators=100,max_depth=12,min_samples_leaf=100,max_features=1.0,n_jobs=4,random_state=2026). Algorithm sensitivity comparison, not hyperparameter search."
+  },
+  "scope": "Exploratory diagnostics on development folds observed to fail; not independent final evaluation",
+  "finished_utc": "2026-11-01T14:50:58.047320+00:00",
+  "cv_fits": 70,
+  "known_room_fits": 2,
+  "model_files": 72,
+  "elapsed_seconds": 76.51568459998816,
+  "source_unchanged": true
+}

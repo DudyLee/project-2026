@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "inner_room_scores_recomputed": 1008,
+  "inner_candidate_scores_recomputed": 168,
+  "selection_tasks_recomputed": 105,
+  "outer_model_bundles_reloaded": 7,
+  "outer_prediction_values_recomputed": 1839600,
+  "model_reload_max_abs_difference": 3.979039320256561e-13,
+  "fit_subset_and_label_hash_entries_checked": 575,
+  "outer_metrics_recomputed": 140,
+  "summary_metrics_checked": 20,
+  "gate_comparisons_recomputed": 20,
+  "baseline_reproduction": "passed for all five outputs",
+  "bounded_reproducibility_estimator_refits": 7,
+  "bounded_reproducibility_max_abs_difference": 2.8421709430404007e-13,
+  "reruns": [
+    {
+      "target": "E_mean_lux",
+      "candidate": "XGB_log_L1__depth3",
+      "outer_fold": 1,
+      "inner_fold": 1,
+      "max_abs_prediction_difference": 0.0
+    },
+    {
+      "target": "E_P10_lux",
+      "candidate": "HGB_raw_L1__baseline",
+      "outer_fold": 1,
+      "inner_fold": 1,
+      "max_abs_prediction_difference": 0.0
+    },
+    {
+      "target": "F_300_fraction",
+      "candidate": "XGB_raw_L1__depth3",
+      "outer_fold": 1,
+      "inner_fold": 1,
+      "max_abs_prediction_difference": 0.0
+    },
+    {
+      "target": "F_UDI_fraction",
+      "candidate": "HGB_raw_L1__baseline",
+      "outer_fold": 1,
+      "inner_fold": 1,
+      "max_abs_prediction_difference": 0.0
+    },
+    {
+      "target": "PV_AC_kWh",
+      "candidate": "HGB_raw_L1__baseline",
+      "outer_fold": 1,
+      "inner_fold": 1,
+      "max_abs_prediction_difference": 0.0
+    },
+    {
+      "target": "E_P10_lux",
+      "candidate": "RF_relative__depth12",
+      "outer_fold": 1,
+      "inner_fold": 1,
+      "max_abs_prediction_difference": 2.8421709430404007e-13
+    }
+  ],
+  "inference_received_only_13_features_no_room_ID_or_targets": true,
+  "TEST_rows_discarded_before_numeric_conversion": 52560,
+  "TEST_predictions": 0,
+  "TEST_scores": 0,
+  "frozen_inputs_unchanged": true,
+  "script_sha256": "3b0f8c5b1015b68ecc9cc2043c37c46c2a6238ce04da357accd3ed6af8291987",
+  "finished_utc": "2026-11-08T05:10:12.345474+00:00",
+  "scope": "All numerical scores and selection/inference evidence checked; bounded 7-estimator repeat, not an independent repetition of the entire experiment."
+}

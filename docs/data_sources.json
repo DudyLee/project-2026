@@ -1,0 +1,34 @@
+{
+  "source_folder_url": "https://drive.google.com/drive/folders/1a-UNnr5YUS_LGlnAXHKHjuUENUWCpXMo",
+  "archive_date_local": "2026-11-01",
+  "timezone": "Asia/Hong_Kong",
+  "files": [
+    {
+      "path": "data/raw/SEND_BIM_476Rooms.csv",
+      "bytes": 65744,
+      "sha256": "9c7fb713a6282bc219a76598e77f578545da4e69b5107f7a43064f3ebd55bfc2"
+    },
+    {
+      "path": "data/raw/SEND_ML_BIM_EPW_07-18.csv",
+      "bytes": 45093245,
+      "sha256": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8"
+    },
+    {
+      "path": "data/raw/SEND_README.txt",
+      "bytes": 2505,
+      "sha256": "c1a89faaf1090411056cc120d3033db132cbb5654b28da8d147cac99b266465f"
+    }
+  ],
+  "verified": "CSV internal consistency, original BIM join, completeness, numeric ranges and hashes",
+  "unconfirmed": {
+    "epw_file_identity": "User cannot currently confirm whether the EPW matches the original simulations",
+    "hour_interval": "User cannot currently confirm the interval represented by Hour",
+    "model_north_rotation": "User cannot currently confirm the rotation between model axes and geographic north",
+    "solar_position_method": "Calculation parameters are not documented in the current files",
+    "pv_system_definition": "Array area/capacity and per-room assumptions require source documentation"
+  },
+  "original_proposal_archive": {
+    "archived": false,
+    "reason": "The previously supplied WeChat temporary source path is no longer available."
+  }
+}

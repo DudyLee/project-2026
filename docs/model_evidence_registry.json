@@ -1,0 +1,371 @@
+{
+  "updated_local_date": "2026-11-08",
+  "status": "development_evidence_only_not_a_deployed_multioutput_model",
+  "evaluation": "Seven development rooms; outer leave-one-room-out. Repeated development use is not final independent testing.",
+  "protected_test_rooms": [
+    "BM532",
+    "BM702",
+    "BMG26"
+  ],
+  "current_comparison_references": [
+    {
+      "target": "E_mean_lux",
+      "method": "A_XGBoost",
+      "note": "log1p mean; retained comparison reference, not a newly selected final estimator",
+      "unit": "lux",
+      "room_count": 7,
+      "macro_room_MAE": 82.43315663979065,
+      "worst_room_MAE": 231.64228101918548,
+      "source": "reports/experiment_v5/summary_metrics.csv",
+      "source_sha256": "fa7fcb504d4f141e19418e03ce3e6e4a54916b2ec26aa46603668484602a562f",
+      "promotion_status": "comparison_reference_only"
+    },
+    {
+      "target": "E_P10_lux",
+      "method": "A_RandomForest",
+      "note": "relative P10 paired with its own candidate mean model",
+      "unit": "lux",
+      "room_count": 7,
+      "macro_room_MAE": 9.747747147796902,
+      "worst_room_MAE": 29.275425754537196,
+      "source": "reports/experiment_v5/summary_metrics.csv",
+      "source_sha256": "fa7fcb504d4f141e19418e03ce3e6e4a54916b2ec26aa46603668484602a562f",
+      "promotion_status": "comparison_reference_only"
+    },
+    {
+      "target": "F_300_fraction",
+      "method": "Frozen_HistGB",
+      "note": "unchanged frozen baseline; other v3 candidates remain available",
+      "unit": "fraction",
+      "room_count": 7,
+      "macro_room_MAE": 0.07117969292271759,
+      "worst_room_MAE": 0.15685774064531216,
+      "source": "reports/experiment_v3/summary_metrics.csv",
+      "source_sha256": "6b74b4983733bf5fb7b3534e648d9c9046bd605064a7c7a74fe57e77621080ed",
+      "promotion_status": "comparison_reference_only"
+    },
+    {
+      "target": "F_UDI_fraction",
+      "method": "Frozen_HistGB",
+      "note": "unchanged frozen baseline; other v3 candidates remain available",
+      "unit": "fraction",
+      "room_count": 7,
+      "macro_room_MAE": 0.11035937187412673,
+      "worst_room_MAE": 0.25471013973949974,
+      "source": "reports/experiment_v3/summary_metrics.csv",
+      "source_sha256": "6b74b4983733bf5fb7b3534e648d9c9046bd605064a7c7a74fe57e77621080ed",
+      "promotion_status": "comparison_reference_only"
+    },
+    {
+      "target": "PV_AC_kWh",
+      "method": "Frozen_HistGB",
+      "note": "unchanged absolute-performance baseline; angle decisions evaluated separately",
+      "unit": "kWh",
+      "room_count": 7,
+      "macro_room_MAE": 0.012613340541612002,
+      "worst_room_MAE": 0.023809344804337742,
+      "source": "reports/experiment_v3/summary_metrics.csv",
+      "source_sha256": "6b74b4983733bf5fb7b3534e648d9c9046bd605064a7c7a74fe57e77621080ed",
+      "promotion_status": "comparison_reference_only"
+    }
+  ],
+  "completed_work": [
+    {
+      "label": "v1",
+      "description": "8/13项特征与Ridge、HistGB基线",
+      "report": "reports/experiment_v1/report.html"
+    },
+    {
+      "label": "v1诊断",
+      "description": "误差归因、log1p与同房间时间验证；与跨房间分数分开解释",
+      "report": "reports/diagnosis_v1/report.html"
+    },
+    {
+      "label": "v2",
+      "description": "平均照度log1p与相对P10处理",
+      "report": "reports/experiment_v2/report.html"
+    },
+    {
+      "label": "v3",
+      "description": "HistGB、Random Forest、XGBoost的按房间嵌套验证与角度评价",
+      "report": "reports/experiment_v3/report.html"
+    },
+    {
+      "label": "v3决策诊断",
+      "description": "固定0°的优势、可改进空间和切换损失",
+      "report": "reports/decision_diagnosis_v3/report.html"
+    },
+    {
+      "label": "v4",
+      "description": "PV增量与内层选择切换门槛；收益局限于个别房间",
+      "report": "reports/experiment_v4/report.html"
+    },
+    {
+      "label": "v5",
+      "description": "房间特征增强与直接asinh P10；均未通过替换条件",
+      "report": "reports/experiment_v5/report.html"
+    },
+    {
+      "label": "v5误差诊断",
+      "description": "两阶段误差、环境响应与现有几何资料核对",
+      "report": "reports/cross_room_diagnosis_v5/report.html"
+    },
+    {
+      "label": "v6",
+      "description": "相对/直接P10融合；未通过条件，保留原参考",
+      "report": "reports/experiment_v6/report.html"
+    },
+    {
+      "label": "v7",
+      "description": "逐目标损失与最差房间优先选择；完整报告平均/最差及逐房间表现",
+      "report": "reports/experiment_v7/report.html"
+    }
+  ],
+  "latest_decision": {
+    "primary_candidate": "Worst_guarded",
+    "rule": {
+      "primary_candidate": "Worst_guarded",
+      "against": [
+        "Target_baseline",
+        "Retained_reference"
+      ],
+      "minimum_worst_room_MAE_reduction_fraction": 0.1,
+      "maximum_macro_MAE_increase_fraction": 0.0,
+      "minimum_rooms_nonworse": 5,
+      "numerical_tolerance": 1e-09,
+      "scope": "Per-target development screening only; both comparisons must pass. No independent TEST acceptance or automated final deployment."
+    },
+    "targets": {
+      "E_mean_lux": {
+        "passes_both_references": false,
+        "comparisons": [
+          {
+            "method": "Worst_guarded",
+            "reference": "Target_baseline",
+            "target": "E_mean_lux",
+            "worst_MAE_reduction_fraction": 0.0,
+            "macro_MAE_change_fraction": 0.009788494515155177,
+            "rooms_improved": 1,
+            "rooms_nonworse": 5,
+            "rooms_tied": 4,
+            "passes_gate": false
+          },
+          {
+            "method": "Worst_guarded",
+            "reference": "Retained_reference",
+            "target": "E_mean_lux",
+            "worst_MAE_reduction_fraction": 0.0,
+            "macro_MAE_change_fraction": 0.009788494515155177,
+            "rooms_improved": 1,
+            "rooms_nonworse": 5,
+            "rooms_tied": 4,
+            "passes_gate": false
+          }
+        ],
+        "status": "retain_existing_reference"
+      },
+      "E_P10_lux": {
+        "passes_both_references": false,
+        "comparisons": [
+          {
+            "method": "Worst_guarded",
+            "reference": "Target_baseline",
+            "target": "E_P10_lux",
+            "worst_MAE_reduction_fraction": -0.6722710783225678,
+            "macro_MAE_change_fraction": 0.5853268588567451,
+            "rooms_improved": 0,
+            "rooms_nonworse": 3,
+            "rooms_tied": 3,
+            "passes_gate": false
+          },
+          {
+            "method": "Worst_guarded",
+            "reference": "Retained_reference",
+            "target": "E_P10_lux",
+            "worst_MAE_reduction_fraction": -0.6722710783225678,
+            "macro_MAE_change_fraction": 0.5853268588567448,
+            "rooms_improved": 0,
+            "rooms_nonworse": 3,
+            "rooms_tied": 3,
+            "passes_gate": false
+          }
+        ],
+        "status": "retain_existing_reference"
+      },
+      "F_300_fraction": {
+        "passes_both_references": false,
+        "comparisons": [
+          {
+            "method": "Worst_guarded",
+            "reference": "Target_baseline",
+            "target": "F_300_fraction",
+            "worst_MAE_reduction_fraction": -0.09616813346332531,
+            "macro_MAE_change_fraction": 0.03921464796653851,
+            "rooms_improved": 5,
+            "rooms_nonworse": 5,
+            "rooms_tied": 0,
+            "passes_gate": false
+          },
+          {
+            "method": "Worst_guarded",
+            "reference": "Retained_reference",
+            "target": "F_300_fraction",
+            "worst_MAE_reduction_fraction": 0.05411556575458076,
+            "macro_MAE_change_fraction": 0.012077067145736642,
+            "rooms_improved": 5,
+            "rooms_nonworse": 5,
+            "rooms_tied": 0,
+            "passes_gate": false
+          }
+        ],
+        "status": "retain_existing_reference"
+      },
+      "F_UDI_fraction": {
+        "passes_both_references": false,
+        "comparisons": [
+          {
+            "method": "Worst_guarded",
+            "reference": "Target_baseline",
+            "target": "F_UDI_fraction",
+            "worst_MAE_reduction_fraction": -0.40426174758884703,
+            "macro_MAE_change_fraction": 0.09159546282519071,
+            "rooms_improved": 3,
+            "rooms_nonworse": 6,
+            "rooms_tied": 3,
+            "passes_gate": false
+          },
+          {
+            "method": "Worst_guarded",
+            "reference": "Retained_reference",
+            "target": "F_UDI_fraction",
+            "worst_MAE_reduction_fraction": -0.02544298677219925,
+            "macro_MAE_change_fraction": -0.13317411319504513,
+            "rooms_improved": 3,
+            "rooms_nonworse": 3,
+            "rooms_tied": 0,
+            "passes_gate": false
+          }
+        ],
+        "status": "retain_existing_reference"
+      },
+      "PV_AC_kWh": {
+        "passes_both_references": false,
+        "comparisons": [
+          {
+            "method": "Worst_guarded",
+            "reference": "Target_baseline",
+            "target": "PV_AC_kWh",
+            "worst_MAE_reduction_fraction": 0.0,
+            "macro_MAE_change_fraction": 0.004890263145113538,
+            "rooms_improved": 1,
+            "rooms_nonworse": 6,
+            "rooms_tied": 5,
+            "passes_gate": false
+          },
+          {
+            "method": "Worst_guarded",
+            "reference": "Retained_reference",
+            "target": "PV_AC_kWh",
+            "worst_MAE_reduction_fraction": 0.0,
+            "macro_MAE_change_fraction": 0.026302115648640934,
+            "rooms_improved": 0,
+            "rooms_nonworse": 4,
+            "rooms_tied": 4,
+            "passes_gate": false
+          }
+        ],
+        "status": "retain_existing_reference"
+      }
+    },
+    "TEST_unsealed": false,
+    "final_refit": false,
+    "scope": "Development screening after repeated use of seven rooms. Passing does not establish independent generalization."
+  },
+  "limitations": [
+    "Only seven independently varying development rooms; hourly rows are not independent room samples.",
+    "A full-seven-room final estimator has not been fitted or evaluated on sealed TEST.",
+    "Existing input provenance and geographic/temporal conventions remain unconfirmed.",
+    "No demonstrated robust gain from dynamic angle recommendation across rooms."
+  ],
+  "v7_development_candidates": [],
+  "v7_all_output_results": [
+    {
+      "target": "E_mean_lux",
+      "reference_macro_MAE": 82.43315663979065,
+      "candidate_macro_MAE": 83.24005314142616,
+      "reference_worst_MAE": 231.64228101918548,
+      "candidate_worst_MAE": 231.64228101918548,
+      "reference_worst_room": "BM432",
+      "candidate_worst_room": "BM432",
+      "macro_MAE_change_pct": 0.9788494515155177,
+      "worst_MAE_change_pct": -0.0,
+      "rooms_improved": 1,
+      "rooms_tied": 4,
+      "rooms_nonworse": 5,
+      "passes_both_references": false
+    },
+    {
+      "target": "E_P10_lux",
+      "reference_macro_MAE": 9.747747147796902,
+      "candidate_macro_MAE": 15.453365366746656,
+      "reference_worst_MAE": 29.275425754537196,
+      "candidate_worst_MAE": 48.95644779489219,
+      "reference_worst_room": "BM432",
+      "candidate_worst_room": "BM223",
+      "macro_MAE_change_pct": 58.53268588567448,
+      "worst_MAE_change_pct": 67.22710783225678,
+      "rooms_improved": 0,
+      "rooms_tied": 3,
+      "rooms_nonworse": 3,
+      "passes_both_references": false
+    },
+    {
+      "target": "F_300_fraction",
+      "reference_macro_MAE": 0.07117969292271759,
+      "candidate_macro_MAE": 0.07203933485355818,
+      "reference_worst_MAE": 0.15685774064531216,
+      "candidate_worst_MAE": 0.1483692952673058,
+      "reference_worst_room": "BM432",
+      "candidate_worst_room": "BM432",
+      "macro_MAE_change_pct": 1.2077067145736642,
+      "worst_MAE_change_pct": -5.411556575458077,
+      "rooms_improved": 5,
+      "rooms_tied": 0,
+      "rooms_nonworse": 5,
+      "passes_both_references": false
+    },
+    {
+      "target": "F_UDI_fraction",
+      "reference_macro_MAE": 0.11035937187412673,
+      "candidate_macro_MAE": 0.0956623603920277,
+      "reference_worst_MAE": 0.25471013973949974,
+      "candidate_worst_MAE": 0.26119072645563685,
+      "reference_worst_room": "BM432",
+      "candidate_worst_room": "BM432",
+      "macro_MAE_change_pct": -13.317411319504513,
+      "worst_MAE_change_pct": 2.544298677219925,
+      "rooms_improved": 3,
+      "rooms_tied": 0,
+      "rooms_nonworse": 3,
+      "passes_both_references": false
+    },
+    {
+      "target": "PV_AC_kWh",
+      "reference_macro_MAE": 0.012613340541612002,
+      "candidate_macro_MAE": 0.01294509808325317,
+      "reference_worst_MAE": 0.023809344804337742,
+      "candidate_worst_MAE": 0.023809344804337742,
+      "reference_worst_room": "LM608",
+      "candidate_worst_room": "LM608",
+      "macro_MAE_change_pct": 2.6302115648640934,
+      "worst_MAE_change_pct": -0.0,
+      "rooms_improved": 0,
+      "rooms_tied": 4,
+      "rooms_nonworse": 4,
+      "passes_both_references": false
+    }
+  ],
+  "v7_result_source": "reports/experiment_v7/scoreboard.csv",
+  "v7_result_source_sha256": "8e81a154f0cc3a3ddfd58c88f782ad519d5bc31b57f88a23cc79f51722648fae",
+  "current_comparison_reference_note": "Original comparison references remain listed for traceability. v7 development candidates are recorded separately; no final deployment model selected."
+}

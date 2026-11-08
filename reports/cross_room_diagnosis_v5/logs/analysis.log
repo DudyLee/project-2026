@@ -1,0 +1,10 @@
+Room, environment and angle diagnostics complete: A_RandomForest
+Room, environment and angle diagnostics complete: B_RandomForest
+Room, environment and angle diagnostics complete: C_RandomForest
+Room, environment and angle diagnostics complete: D_RandomForest
+Room, environment and angle diagnostics complete: A_XGBoost
+Room, environment and angle diagnostics complete: B_XGBoost
+Room, environment and angle diagnostics complete: C_XGBoost
+Room, environment and angle diagnostics complete: D_XGBoost
+Room, environment and angle diagnostics complete: Frozen_HistGB
+Completed: 126 room summaries; 5040 stratified groups; 28 P10 decompositions; zero fits/TEST operations.

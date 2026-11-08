@@ -1,0 +1,50 @@
+{
+  "coverage": "11/11 checked",
+  "checks": [
+    {
+      "type": "Aggregation",
+      "assessment": "Equal-room macro MAE, median, worst room and all seven paired room outcomes are reported; no inference from pooled rows alone."
+    },
+    {
+      "type": "Ecological inference",
+      "assessment": "Seven selected development rooms do not establish accuracy across 476 rooms; no accuracy percentage inferred from R-squared."
+    },
+    {
+      "type": "Selection/Berkson",
+      "assessment": "Representative-room selection and previously examined development data limit external validity; TEST remains sealed."
+    },
+    {
+      "type": "Collider",
+      "assessment": "No outcome-dependent feature filtering or held-room target calibration; inputs are the original 13 predictors."
+    },
+    {
+      "type": "Base rate",
+      "assessment": "All seven rooms and 122640 outer rows remain; two improved, one tied, four worsened. Small low-light errors remain visible."
+    },
+    {
+      "type": "Regression to mean",
+      "assessment": "Improvement in an extreme room is not treated as evidence of overall or causal improvement."
+    },
+    {
+      "type": "Survivorship",
+      "assessment": "All weights and rooms are reported, including BM432 deterioration and the failed development gate."
+    },
+    {
+      "type": "Look elsewhere",
+      "assessment": "Five declared weights only; no significance tests, post-hoc finer grid or room-specific routing."
+    },
+    {
+      "type": "Forking paths",
+      "assessment": "Original-unit macro MAE and the prespecified gate determine the decision. Improved secondary asinh MAE does not override failure."
+    },
+    {
+      "type": "Causation",
+      "assessment": "Weight-selection transfer failure is observed; missing geometry remains a hypothesis, not a proven physical cause."
+    },
+    {
+      "type": "Reverse causality",
+      "assessment": "Held-room labels are used only for scoring. Weight selection uses inner OOF on the other six rooms; diagnostic true-label substitutions are not inference inputs."
+    }
+  ],
+  "selection_score_limit": "The same inner OOF supports formulation-candidate and blend-weight selection; these inner scores are selection evidence, not independent performance estimates."
+}

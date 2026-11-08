@@ -1,0 +1,268 @@
+[
+  {
+    "outer_fold": 1,
+    "outer_held_room": "BM223",
+    "variant": "absolute",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 1,
+    "outer_held_room": "BM223",
+    "variant": "delta",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 2,
+    "outer_held_room": "BM432",
+    "variant": "absolute",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 2,
+    "outer_held_room": "BM432",
+    "variant": "delta",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 3,
+    "outer_held_room": "BM441",
+    "variant": "absolute",
+    "threshold_label": "5Wh",
+    "threshold_kWh": 0.005,
+    "mean_room_gain_kWh": 0.017651662340276996,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": -0.005621917353197,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 3,
+    "outer_held_room": "BM441",
+    "variant": "delta",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 4,
+    "outer_held_room": "BM522",
+    "variant": "absolute",
+    "threshold_label": "5Wh",
+    "threshold_kWh": 0.005,
+    "mean_room_gain_kWh": 0.1683534545685351,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": -0.5560728653669855,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 4,
+    "outer_held_room": "BM522",
+    "variant": "delta",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 5,
+    "outer_held_room": "BM608",
+    "variant": "absolute",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth5",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 5,
+    "outer_held_room": "BM608",
+    "variant": "delta",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth5",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 6,
+    "outer_held_room": "LM608",
+    "variant": "absolute",
+    "threshold_label": "5Wh",
+    "threshold_kWh": 0.005,
+    "mean_room_gain_kWh": 0.08441323048679966,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": -0.037192946543902,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 6,
+    "outer_held_room": "LM608",
+    "variant": "delta",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  {
+    "outer_fold": 7,
+    "outer_held_room": "LM703",
+    "variant": "absolute",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ]
+  },
+  {
+    "outer_fold": 7,
+    "outer_held_room": "LM703",
+    "variant": "delta",
+    "threshold_label": "always_zero",
+    "threshold_kWh": null,
+    "mean_room_gain_kWh": 0.0,
+    "median_room_gain_kWh": 0.0,
+    "min_room_gain_kWh": 0.0,
+    "candidate": "depth3",
+    "selection_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ]
+  }
+]

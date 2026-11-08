@@ -1,0 +1,254 @@
+[
+  {
+    "path": "models\\experiment_v5\\base__RandomForest__fold_01_BM223.joblib",
+    "sha256": "dccf0c2ed3a9c5e8dd82910e30d2a2bdd7010841b7d49173b173d4cba95c0036",
+    "fold": 1,
+    "room": "BM223",
+    "family": "RandomForest",
+    "feature_set": "base",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\base__XGBoost__fold_01_BM223.joblib",
+    "sha256": "c680c16667348373944e0b7792a095f9adfe5c0d7fa945ecceb40385fd62f84c",
+    "fold": 1,
+    "room": "BM223",
+    "family": "XGBoost",
+    "feature_set": "base",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__RandomForest__fold_01_BM223.joblib",
+    "sha256": "4a1474b101ceea014b90db0f94d3c63ec13338a0e64e36f148d88c5078eaf531",
+    "fold": 1,
+    "room": "BM223",
+    "family": "RandomForest",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__XGBoost__fold_01_BM223.joblib",
+    "sha256": "62fe874247119b7d722d572efb2f4340f4e26ba9bddb1691614fe18f4a018a87",
+    "fold": 1,
+    "room": "BM223",
+    "family": "XGBoost",
+    "feature_set": "enhanced",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\base__RandomForest__fold_02_BM432.joblib",
+    "sha256": "893149530d24fa079e7e48890f45ba4da856c400a5c0d718db18b5a9b584d2e8",
+    "fold": 2,
+    "room": "BM432",
+    "family": "RandomForest",
+    "feature_set": "base",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\base__XGBoost__fold_02_BM432.joblib",
+    "sha256": "0c8bb2931ec819c0f7e48dc9a47fc27b008b0a0b101e2709919729a7164d867c",
+    "fold": 2,
+    "room": "BM432",
+    "family": "XGBoost",
+    "feature_set": "base",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__RandomForest__fold_02_BM432.joblib",
+    "sha256": "b5ec6d1ab39a5d59fdbd5d7298ec1fb77ff2fe0234914a39a66bc2f697118de2",
+    "fold": 2,
+    "room": "BM432",
+    "family": "RandomForest",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__XGBoost__fold_02_BM432.joblib",
+    "sha256": "75e096108d6781bd52a3e3ca096e7aaa40e0bab690444b5c0c5d67180d63b2fb",
+    "fold": 2,
+    "room": "BM432",
+    "family": "XGBoost",
+    "feature_set": "enhanced",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\base__RandomForest__fold_03_BM441.joblib",
+    "sha256": "4921fe4c53a12811a05c0d366c1cc3a2d07f385873dd310abd903b558a7d0beb",
+    "fold": 3,
+    "room": "BM441",
+    "family": "RandomForest",
+    "feature_set": "base",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\base__XGBoost__fold_03_BM441.joblib",
+    "sha256": "297677e9213d8d8b96bbf4e9ae59683563fc2d1858de8214ebef7d76a029ec16",
+    "fold": 3,
+    "room": "BM441",
+    "family": "XGBoost",
+    "feature_set": "base",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__RandomForest__fold_03_BM441.joblib",
+    "sha256": "fd998a9a957bdaa02f1ee659bb1d6ae19a5fe6c80c13d5d79b2104bf2912ebce",
+    "fold": 3,
+    "room": "BM441",
+    "family": "RandomForest",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__XGBoost__fold_03_BM441.joblib",
+    "sha256": "24f9d9c8bc17b89837b2fc4609d52ab1cc264996370f799778e76e823be8952a",
+    "fold": 3,
+    "room": "BM441",
+    "family": "XGBoost",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\base__RandomForest__fold_04_BM522.joblib",
+    "sha256": "69d45a1aee602c585d9a28601177c48652f2eb61635736c78c2ae5e9c8d917ac",
+    "fold": 4,
+    "room": "BM522",
+    "family": "RandomForest",
+    "feature_set": "base",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\base__XGBoost__fold_04_BM522.joblib",
+    "sha256": "a26b7e51c0effbdd1698d7fe7e502961cb9a8ab78f54933f134feb30f04d6501",
+    "fold": 4,
+    "room": "BM522",
+    "family": "XGBoost",
+    "feature_set": "base",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__RandomForest__fold_04_BM522.joblib",
+    "sha256": "1b663bbd1a790591c15666d19ed63060254128a28b5590e008572d9df42da070",
+    "fold": 4,
+    "room": "BM522",
+    "family": "RandomForest",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__XGBoost__fold_04_BM522.joblib",
+    "sha256": "e05aa0be96bd5dfa5a8562c39a70f246dd9a3b6ea68442419923260eb91112f9",
+    "fold": 4,
+    "room": "BM522",
+    "family": "XGBoost",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\base__RandomForest__fold_05_BM608.joblib",
+    "sha256": "a6633ab7047df671a1ec33afc3028250e9d6c3c12869e8b27ec3aeee34f555c7",
+    "fold": 5,
+    "room": "BM608",
+    "family": "RandomForest",
+    "feature_set": "base",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\base__XGBoost__fold_05_BM608.joblib",
+    "sha256": "24022f01bd1593a49cd2aab81dea5cf6abbe4fa0bdb54422e02c56a28fbc7887",
+    "fold": 5,
+    "room": "BM608",
+    "family": "XGBoost",
+    "feature_set": "base",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__RandomForest__fold_05_BM608.joblib",
+    "sha256": "0f28f5af41e67f2312f6d2e6ff9e85cdd38d6ab356852f62d1ff28d16dad6f6f",
+    "fold": 5,
+    "room": "BM608",
+    "family": "RandomForest",
+    "feature_set": "enhanced",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__XGBoost__fold_05_BM608.joblib",
+    "sha256": "7040f5c6e0d7f0b91e0d337f79f1007924da13362cb0ee2ab9fe5b8d4181c46a",
+    "fold": 5,
+    "room": "BM608",
+    "family": "XGBoost",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\base__RandomForest__fold_06_LM608.joblib",
+    "sha256": "99c8db521ff930b449cf55e6c576063606b6422d46cc546b59ef1e39e5a745df",
+    "fold": 6,
+    "room": "LM608",
+    "family": "RandomForest",
+    "feature_set": "base",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\base__XGBoost__fold_06_LM608.joblib",
+    "sha256": "d7f01f33344380f792004f4a554c2d6a8ae6482a2e6b0cc573b652316034bff6",
+    "fold": 6,
+    "room": "LM608",
+    "family": "XGBoost",
+    "feature_set": "base",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__RandomForest__fold_06_LM608.joblib",
+    "sha256": "e2ae736086b5ad5725e5896b662c27fc1b5e22b18c9e09eb6f6c69886f013ed0",
+    "fold": 6,
+    "room": "LM608",
+    "family": "RandomForest",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__XGBoost__fold_06_LM608.joblib",
+    "sha256": "18aa0bce2e4355d0d3c602d630ef260ce9ec69eaa0a6acc40f387f85e59f1f1e",
+    "fold": 6,
+    "room": "LM608",
+    "family": "XGBoost",
+    "feature_set": "enhanced",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\base__RandomForest__fold_07_LM703.joblib",
+    "sha256": "e0ac9e71a7e1c2a5bbe8e7ef5f9d36079a3570ac68a8c0dcfb72df4a9076724c",
+    "fold": 7,
+    "room": "LM703",
+    "family": "RandomForest",
+    "feature_set": "base",
+    "estimators": 3
+  },
+  {
+    "path": "models\\experiment_v5\\base__XGBoost__fold_07_LM703.joblib",
+    "sha256": "533ac8bd7b798626410e4077022c8cd03793a82970bf8acb0dbf26aba92de906",
+    "fold": 7,
+    "room": "LM703",
+    "family": "XGBoost",
+    "feature_set": "base",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__RandomForest__fold_07_LM703.joblib",
+    "sha256": "11bb81525e5c0363dc1485276d3c3fbcad11dab36de4de91c8b981e6b0d53fb6",
+    "fold": 7,
+    "room": "LM703",
+    "family": "RandomForest",
+    "feature_set": "enhanced",
+    "estimators": 4
+  },
+  {
+    "path": "models\\experiment_v5\\enhanced__XGBoost__fold_07_LM703.joblib",
+    "sha256": "0aef2c81beb523193c0d0b303719afea17bbf38a213f19e9a782bba92a02367e",
+    "fold": 7,
+    "room": "LM703",
+    "family": "XGBoost",
+    "feature_set": "enhanced",
+    "estimators": 4
+  }
+]

@@ -1,0 +1,20 @@
+Fold 1: held BM223; selected A weight 0.0; inner MAE 9.709650
+Fold 2: held BM432; selected A weight 0.0; inner MAE 12.118524
+Fold 3: held BM441; selected A weight 0.5; inner MAE 14.502452
+Fold 4: held BM522; selected A weight 0.0; inner MAE 9.772051
+Fold 5: held BM608; selected A weight 0.0; inner MAE 12.176285
+Fold 6: held LM608; selected A weight 0.75; inner MAE 12.698071
+Fold 7: held LM703; selected A weight 1.0; inner MAE 14.742339
+      method  room_count  mae_mean  mae_median   mae_max  rmse_mean  bias_mean  r2_median      r2_min  asinh_mae_mean
+  A_relative           7  9.747747    0.176519 29.275426  15.546441  -4.970404   0.151752 -496.716646        0.503797
+     C_asinh           7 10.743254    0.275526 44.361158  16.027906  -8.457545  -0.624763   -9.047782        0.483260
+Nested_blend           7 10.729370    0.275526 44.361158  16.013192  -8.426026  -0.484436   -7.167181        0.467783
+ room  A_MAE_lux  blend_MAE_lux  MAE_change_lux  A_bias_lux  blend_bias_lux  weight_on_A
+BM223   9.757115       1.478659       -8.278456    9.757115        1.473578         0.00
+BM432  29.275426      44.361158       15.085733  -28.215878      -44.327462         0.00
+BM441   0.092800       0.104814        0.012014    0.092792        0.104814         0.50
+BM522  28.740900      28.690819       -0.050082  -16.515137      -16.578719         0.00
+BM608   0.176519       0.275526        0.099007    0.020014        0.275479         0.00
+LM608   0.051009       0.054154        0.003145    0.018739        0.020604         0.75
+LM703   0.140461       0.140461        0.000000    0.049526        0.049526         1.00
+{'passes_development_gate': False, 'macro_MAE_reduction_fraction': -0.1007025629327023, 'rooms_improved': 2, 'rooms_tied': 1, 'rooms_worse': 4, 'rooms_nonworse': 3, 'worst_room_MAE_increase_lux': 15.08573256420587, 'recommended_status': 'retain_A_baseline_stop_expanding_weights_without_new_information', 'automatic_replacement': False, 'final_refit': False, 'TEST_unsealed': False, 'rule': {'macro_MAE_reduction_fraction_at_least': 0.1, 'rooms_nonworse_at_least': 5, 'worst_room_MAE_increase_lux_at_most': 0.0, 'numerical_tolerance_lux': 1e-09}}

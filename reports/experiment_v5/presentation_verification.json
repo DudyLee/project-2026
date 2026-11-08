@@ -1,0 +1,9 @@
+{
+  "HTML_links_checked": 13,
+  "HTML_duplicate_ids": 0,
+  "inline_JavaScript_syntax": "passed",
+  "browser_interaction_validation": "not performed; local browser use previously disabled",
+  "canvas_native_compilation_performed": false,
+  "figure_visual_inspection": "passed: both scientific figures visually inspected",
+  "report_script_sha256": "d722ac6e89536e4987e848db2c040538d682c3bb4bcf266e7c757cbcc7e18f08"
+}

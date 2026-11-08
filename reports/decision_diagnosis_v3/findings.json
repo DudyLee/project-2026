@@ -1,0 +1,27 @@
+{
+  "stats": {
+    "joint_F300_FUDI_PV_weak_dominance_fraction": 0.6146444879321592,
+    "F300_zero_best_fraction": 0.945368558382257,
+    "FUDI_zero_best_fraction": 0.9467384213959557,
+    "balanced_zero_unique_best_fraction": 0.8811480756686236,
+    "balanced_zero_near_optimal_fraction": 0.9445857795172863,
+    "balanced_material_opportunity_fraction": 0.055414220482713626,
+    "balanced_all_four_equal_fraction": 0.034735812133072405,
+    "PV_fixed_zero_mean_kWh": 246.6101733858732,
+    "PV_oracle_mean_gain_over_zero_kWh": 11.378393825114928,
+    "PV_oracle_aggregate_gain_fraction": 0.04613919072718485,
+    "PV_material_opportunity_fraction": 0.3095890410958904,
+    "constraint_true_no_feasible_fraction": 0.9253424657534247,
+    "zero_covers_available_pooled_fraction": 0.9925731760594148,
+    "daylight_headroom_share_BM223": 0.9875678400035441,
+    "balanced_headroom_share_BM223_LM608": 0.9221216609128867
+  },
+  "interpretation": [
+    "Data: fixed 0 is a strong baseline in the supplied simulation labels; numerical consistency alone cannot establish whether geometry angle definitions and simulation exports are physically correct.",
+    "Objective: F300 and FUDI overlap and often move together in these rooms; the exploratory average D and training-quantile PV normalization do not encode confirmed user preferences. This does not mean daylight is always the dominant term.",
+    "Model: net decision harm arises when losses from wrong departures exceed gains from useful departures; absolute regression MAE and decision ranking can disagree.",
+    "Evaluation: compare room-level net gains and report tie/opportunity base rates. Near-optimal rates are easier when fixed 0 is usually strong. Constrained_PV saved primary regret omits the secondary PV objective.",
+    "Causality: no numerical percentage attribution to data vs objective vs model is identified by this descriptive diagnosis; no alternate weights or threshold experiments have been run."
+  ],
+  "next_round_status": "PROPOSED_NOT_APPROVED_NOT_EXECUTED"
+}

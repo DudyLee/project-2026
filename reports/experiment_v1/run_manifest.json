@@ -1,0 +1,269 @@
+{
+  "experiment_id": "baseline_logo_v1",
+  "status": "completed",
+  "started_utc": "2026-11-01T02:42:04.473423+00:00",
+  "pid": 58440,
+  "python": "3.11.18 | packaged by conda-forge | (main, Oct 26 2026, 11:29:07) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": "C:\\NewDisk\\UST\\Year 2\\5220\\Project_2026\\.conda\\envs\\pvsd-ml-v1\\python.exe",
+  "conda_prefix": "C:\\NewDisk\\UST\\Year 2\\5220\\Project_2026\\.conda\\envs\\pvsd-ml-v1",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cpu_count": 32,
+  "thread_limit": 4,
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.0",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.11.2",
+    "joblib": "1.6.0",
+    "pyarrow": "25.0.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "hashes": {
+    "source_sha256": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8",
+    "config_sha256": "4f61c7dde6f2d98d3777e1a044f8b36a822178d345a9b0b43070e2054a0e14c5",
+    "feature_plan_sha256": "0b1da5aa08b62e5ed5c541acd5ecbc35a1f2d5b96d535fd194d6b134c2dfb472",
+    "script_sha256": "cdc1b4ae4823a914d24c44215cf44c4a3e8caceafa7d606f7574882d93b401db"
+  },
+  "config": {
+    "experiment_id": "baseline_logo_v1",
+    "source": "data/raw/SEND_ML_BIM_EPW_07-18.csv",
+    "feature_plan": "configs/model_plan.json",
+    "output": "reports/experiment_v1",
+    "model_output": "models/experiment_v1",
+    "random_state": 2026,
+    "thread_limit": 4,
+    "ridge": {
+      "alpha": 10.0,
+      "solver": "svd"
+    },
+    "hist_gradient_boosting": {
+      "loss": "squared_error",
+      "learning_rate": 0.07,
+      "max_iter": 150,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 10.0,
+      "early_stopping": false,
+      "random_state": 2026
+    },
+    "feature_encoding": {
+      "DOY_1based": "Replace with sin(2*pi*(DOY-1)/365) and cos(2*pi*(DOY-1)/365)",
+      "Solar_Azimuth_mid_deg": "Replace with sin(deg) and cos(deg); no geographic-north transformation",
+      "other_inputs": "Keep numeric values as supplied, including Hour and PVSD_Angle_deg",
+      "ridge": "StandardScaler fitted only to the six training rooms in each fold, followed by additive Ridge; no interaction terms in this first baseline",
+      "tree": "Same encoded inputs; no learned scaling",
+      "encoded_counts": {
+        "A_bim_time_angle": 9,
+        "B_add_solar_weather": 15
+      }
+    },
+    "target_transform": "None",
+    "primary_prediction": "Clip fractions to [0,1] and other outputs to >=0; retain raw predictions and report raw metrics and violation rate",
+    "model_selection": "None during this fixed-parameter first experiment; compare both feature sets and both models",
+    "validation": "Seven-fold leave-one-room-out using TRAIN rooms only; 140 independent target-model fits",
+    "holdout_policy": "Skip TEST rows before numeric conversion and dataframe construction; never predict or score TEST rooms",
+    "limits": [
+      "EPW provenance and hourly alignment unconfirmed",
+      "Single building and weather sequence",
+      "Seven dependent room groups; 122640 hourly rows are not independent room replicates",
+      "No hyperparameter tuning or final seven-room refit"
+    ]
+  },
+  "train_rows": 122640,
+  "train_rooms": [
+    "BM223",
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "test_rows_skipped": 52560,
+  "test_predictions": 0,
+  "test_scores": 0,
+  "raw_input_columns": {
+    "A_bim_time_angle": [
+      "Room_Area_m2",
+      "Glass_Area_m2",
+      "Orientation_X_model",
+      "Orientation_Y_model",
+      "Solar_Obstruction_Ratio",
+      "DOY_1based",
+      "Hour",
+      "PVSD_Angle_deg"
+    ],
+    "B_add_solar_weather": [
+      "Room_Area_m2",
+      "Glass_Area_m2",
+      "Orientation_X_model",
+      "Orientation_Y_model",
+      "Solar_Obstruction_Ratio",
+      "DOY_1based",
+      "Hour",
+      "PVSD_Angle_deg",
+      "EPW_GHI_Wh_m2",
+      "EPW_DNI_Wh_m2",
+      "EPW_DHI_Wh_m2",
+      "Solar_Altitude_mid_deg",
+      "Solar_Azimuth_mid_deg"
+    ]
+  },
+  "targets": [
+    "E_mean_lux",
+    "E_P10_lux",
+    "F_300_fraction",
+    "F_UDI_fraction",
+    "PV_AC_kWh"
+  ],
+  "configuration_selected_using_results": false,
+  "scope": "Fixed-parameter development cross-validation only; no final test or full-seven-room deployment refit",
+  "completed_fits": 140,
+  "folds": [
+    {
+      "fold": 1,
+      "training_rooms": [
+        "BM432",
+        "BM441",
+        "BM522",
+        "BM608",
+        "LM608",
+        "LM703"
+      ],
+      "validation_room": "BM223",
+      "training_rows": 105120,
+      "validation_rows": 17520
+    },
+    {
+      "fold": 2,
+      "training_rooms": [
+        "BM223",
+        "BM441",
+        "BM522",
+        "BM608",
+        "LM608",
+        "LM703"
+      ],
+      "validation_room": "BM432",
+      "training_rows": 105120,
+      "validation_rows": 17520
+    },
+    {
+      "fold": 3,
+      "training_rooms": [
+        "BM223",
+        "BM432",
+        "BM522",
+        "BM608",
+        "LM608",
+        "LM703"
+      ],
+      "validation_room": "BM441",
+      "training_rows": 105120,
+      "validation_rows": 17520
+    },
+    {
+      "fold": 4,
+      "training_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "BM608",
+        "LM608",
+        "LM703"
+      ],
+      "validation_room": "BM522",
+      "training_rows": 105120,
+      "validation_rows": 17520
+    },
+    {
+      "fold": 5,
+      "training_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "BM522",
+        "LM608",
+        "LM703"
+      ],
+      "validation_room": "BM608",
+      "training_rows": 105120,
+      "validation_rows": 17520
+    },
+    {
+      "fold": 6,
+      "training_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "BM522",
+        "BM608",
+        "LM703"
+      ],
+      "validation_room": "LM608",
+      "training_rows": 105120,
+      "validation_rows": 17520
+    },
+    {
+      "fold": 7,
+      "training_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "BM522",
+        "BM608",
+        "LM608"
+      ],
+      "validation_room": "LM703",
+      "training_rows": 105120,
+      "validation_rows": 17520
+    }
+  ],
+  "encoded_input_columns": {
+    "A_bim_time_angle": [
+      "Room_Area_m2",
+      "Glass_Area_m2",
+      "Orientation_X_model",
+      "Orientation_Y_model",
+      "Solar_Obstruction_Ratio",
+      "DOY_sin",
+      "DOY_cos",
+      "Hour",
+      "PVSD_Angle_deg"
+    ],
+    "B_add_solar_weather": [
+      "Room_Area_m2",
+      "Glass_Area_m2",
+      "Orientation_X_model",
+      "Orientation_Y_model",
+      "Solar_Obstruction_Ratio",
+      "DOY_sin",
+      "DOY_cos",
+      "Hour",
+      "PVSD_Angle_deg",
+      "EPW_GHI_Wh_m2",
+      "EPW_DNI_Wh_m2",
+      "EPW_DHI_Wh_m2",
+      "Solar_Altitude_mid_deg",
+      "Solar_Azimuth_sin",
+      "Solar_Azimuth_cos"
+    ]
+  },
+  "prediction_files": [
+    "reports/experiment_v1/predictions/A_bim_time_angle__Ridge.parquet",
+    "reports/experiment_v1/predictions/A_bim_time_angle__HistGB.parquet",
+    "reports/experiment_v1/predictions/B_add_solar_weather__Ridge.parquet",
+    "reports/experiment_v1/predictions/B_add_solar_weather__HistGB.parquet"
+  ],
+  "finished_utc": "2026-11-01T02:42:36.237477+00:00",
+  "elapsed_seconds": 33.76061899997876,
+  "raw_source_unchanged": true,
+  "model_file_count": 140,
+  "feature_plan_snapshot": "reports/experiment_v1/feature_plan_snapshot.json",
+  "reporting_script_sha256": "17deeade8e5b52d35fe34fb47034a64c2d91ddb7060c0dd671adeea3340272a2",
+  "environment_declaration": "environment.yml",
+  "environment_lock": "configs/conda-explicit-win64.txt",
+  "offline_report": "reports/experiment_v1/report.html",
+  "verification": "reports/experiment_v1/verification.json"
+}

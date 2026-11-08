@@ -1,0 +1,107 @@
+{
+  "experiment_id": "p10_target_handling_v2",
+  "status": "completed",
+  "pid": 89868,
+  "started_utc": "2026-11-01T15:11:23.811008+00:00",
+  "source_sha256": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8",
+  "config_sha256": "a5ff02871f088029fb1330825af3c18835ae71f47f4c3be8816c89a2fa78d098",
+  "script_sha256": "aa46136905c60c5054410c75af43ea0d5319a455f40235032aa0fbe9d482a7df",
+  "train_rows": 122640,
+  "train_rooms": [
+    "BM223",
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "test_rows_skipped": 52560,
+  "test_predictions": 0,
+  "test_scores": 0,
+  "config": {
+    "experiment_id": "p10_target_handling_v2",
+    "source": "data/raw/SEND_ML_BIM_EPW_07-18.csv",
+    "output": "reports/experiment_v2",
+    "model_output": "models/experiment_v2",
+    "feature_set": "B_add_solar_weather",
+    "raw_feature_count": 13,
+    "encoded_feature_count": 15,
+    "thread_limit": 4,
+    "random_state": 2026,
+    "epsilon_lux": 1.0,
+    "mean_stage": {
+      "method": "HistGB on log1p(E_mean_lux), inverted with expm1 and clipped at zero",
+      "reuse_frozen_source": "models/diagnosis_v1/HistGB_log1p/E_mean_lux",
+      "same_folds_required": true,
+      "reason": "Inputs, hyperparameters and folds are unchanged; reuse and archive the seven previously fitted models instead of refitting them. Reproduce their held-out predictions from X only."
+    },
+    "p10_methods": {
+      "Weighted_log1p_P10": {
+        "target": "log1p(E_P10_lux)",
+        "training_weight": "w_r_raw = 1/sqrt(1 + mean(P10 for training room r)); normalize over training rows to mean weight 1",
+        "prediction": "max(expm1(model.predict(X)), 0)",
+        "constraint": "Compute means and weights using the six fitting rooms only; do not use the held-out room target scale."
+      },
+      "Relative_P10": {
+        "target": "E_P10_lux / (E_mean_lux + 1 lux), computed only for training labels",
+        "training_weight": "None",
+        "prediction": "max(ratio_model.predict(X), 0) * (predicted_mean_stage(X) + 1 lux)",
+        "constraint": "Both component models use only the same 13 raw inputs. No true held-out E_mean is passed to either model or to the primary reconstructed prediction. The ratio is not an F_UDI/F_300 spatial fraction and is not forcibly clipped to 1."
+      }
+    },
+    "hist_gradient_boosting": {
+      "loss": "squared_error",
+      "learning_rate": 0.07,
+      "max_iter": 150,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 10.0,
+      "early_stopping": false,
+      "random_state": 2026
+    },
+    "references": [
+      "Original_HistGB_B P10",
+      "Unweighted_log1p_P10 from diagnosis_v1"
+    ],
+    "validation": "Same seven TRAIN-only leave-one-room-out folds; 14 newly fitted P10 models and seven frozen mean-stage models",
+    "metrics": [
+      "Room-wise original-lux MAE, RMSE, R2 and bias",
+      "Unweighted macro mean and median MAE over seven rooms",
+      "Change versus both references for every room",
+      "Worst-room MAE",
+      "Error by month, hour and angle"
+    ],
+    "secondary_error_decomposition": "After inference and scoring only, decompose relative-method error as (r_hat - r_true)*(E_mean_true+1) + r_hat*(E_mean_hat-E_mean_true). These terms use held-out labels only for retrospective diagnosis, not for prediction, fitting or weight calculation. Absolute term magnitudes may cancel and do not add to MAE.",
+    "protected_test_rooms": [
+      "BM532",
+      "BM702",
+      "BMG26"
+    ],
+    "holdout_policy": "Skip TEST rows before numeric conversion. No TEST predictions, scores, tuning, calibration or target distributions.",
+    "scope": "Exploratory development follow-up after inspecting CV failures; no hyperparameter search, no new simulations, no source edits and no full-seven-room deployment refit. Existing EPW and geometry provenance limitations remain."
+  },
+  "conda_prefix": "C:\\NewDisk\\UST\\Year 2\\5220\\Project_2026\\.conda\\envs\\pvsd-ml-v1",
+  "python_executable": "C:\\NewDisk\\UST\\Year 2\\5220\\Project_2026\\.conda\\envs\\pvsd-ml-v1\\python.exe",
+  "library_versions": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.0",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.11.2",
+    "joblib": "1.6.0",
+    "pyarrow": "25.0.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "finished_utc": "2026-11-01T15:11:33.238026+00:00",
+  "elapsed_seconds": 11.992679700022563,
+  "new_P10_fits": 14,
+  "reused_mean_model_count": 7,
+  "saved_model_count": 21,
+  "source_unchanged": true,
+  "feature_plan_snapshot": "reports/experiment_v2/feature_plan_snapshot.json",
+  "report": "reports/experiment_v2/report.html",
+  "verification": "reports/experiment_v2/verification.json",
+  "candidate_decision": "reports/experiment_v2/candidate_decision.json",
+  "environment_lock": "configs/conda-explicit-win64.txt"
+}

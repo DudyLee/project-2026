@@ -1,0 +1,8 @@
+﻿Room_ID,Room_Depth_PrimaryFacade_m,Room_Width_PrimaryFacade_m,Ceiling_Height_m,Workplane_Height_m,Window_Head_AboveWorkplane_m,Window_Sill_Height_m,Glazing_Visible_Transmittance,Grid_Size_m,Grid_Wall_Offset_m,Grid_Outside_Points_Removed,Internal_Obstruction_Description,Source_File,Source_Object_ID,Geometry_Units,Geometry_Version,Verified_By,Status
+BM223,,,,,,,,,,,,,,,,,MISSING_NOT_FOR_TRAINING
+BM432,,,,,,,,,,,,,,,,,MISSING_NOT_FOR_TRAINING
+BM441,,,,,,,,,,,,,,,,,MISSING_NOT_FOR_TRAINING
+BM522,,,,,,,,,,,,,,,,,MISSING_NOT_FOR_TRAINING
+BM608,,,,,,,,,,,,,,,,,MISSING_NOT_FOR_TRAINING
+LM608,,,,,,,,,,,,,,,,,MISSING_NOT_FOR_TRAINING
+LM703,,,,,,,,,,,,,,,,,MISSING_NOT_FOR_TRAINING

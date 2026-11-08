@@ -1,0 +1,12 @@
+{
+  "static_links_checked": 17,
+  "duplicate_ids": 0,
+  "inline_JavaScript_syntax": "passed",
+  "browser_interaction": "not performed; local browser use previously disabled",
+  "canvas_native_compilation": false,
+  "figures": "passed: both scientific plots visually inspected; logarithmic MAE axis and selected-weight markers labeled",
+  "visual_reviewed_files": [
+    "figures/room_MAE.png",
+    "figures/inner_weight_selection.png"
+  ]
+}

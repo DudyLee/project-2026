@@ -1,0 +1,21 @@
+{
+  "status": "approved_and_completed",
+  "approval_user_message": "批准 先按照你的思路修订一下",
+  "approved_scope": "Four controlled groups A/B/C/D for current features versus three input-derived room features and relative P10 versus direct fixed-scale asinh P10; mean remains log1p. Random Forest and XGBoost with existing small candidate pools and grouped nested validation. Historical HistGB retained.",
+  "execution_config": "configs/experiment_v5.json",
+  "entry_point": "scripts/run_cross_room_v5.ps1",
+  "evaluation_entry_point": "scripts/report_cross_room_v5.ps1",
+  "protected_test_rooms": [
+    "BM532",
+    "BM702",
+    "BMG26"
+  ],
+  "new_simulations": false,
+  "deployment_refit": false,
+  "previous_experiments_overwritten": false,
+  "future_authorization": "Does not authorize further experiments, TEST unsealing, new simulation or deployment.",
+  "completed_utc": "2026-11-07T09:01:57.202971+00:00",
+  "config_sha256": "6718e1a180593eff4bfbba0c12df9bc00fb377b3f3bee240fbf4f00ad17f5df0",
+  "completed_run": "reports/experiment_v5/run_manifest.json",
+  "verification": "reports/experiment_v5/verification.json"
+}

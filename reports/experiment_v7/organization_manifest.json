@@ -1,0 +1,11 @@
+{
+  "completed_utc": "2026-11-08T05:11:49.024558+00:00",
+  "files": {
+    "README.md": "8321027431f3b5c3622129efc533e2e1a68b1998697b758ecb754a3bd004580c",
+    "docs/project_status.json": "9c19dfdd346f1713bd0b4b9e9fa8df95dacf1812078abd1d2c4b6843a714822f",
+    "docs/model_evidence_registry.json": "9f32c9ff4f5fe413a4b8d99fec0a04923ae150a3e4617960d5fb7d0d439481e9",
+    "docs/experiment_index.md": "bd386bee3835340574bfcf4d88fb48ce7715d2ad558d3c6def3593520650f95e",
+    "docs/approvals/target_specific_v7_approval.json": "ac8ef6a1e58a26018f2fe67b4d3fb456b4358811bfe8d33a6d57322b522b6380"
+  },
+  "scope": "Index and development candidate registry only. Earlier manifests document earlier file states; no final model deployment."
+}

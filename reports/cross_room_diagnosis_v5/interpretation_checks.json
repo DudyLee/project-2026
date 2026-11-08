@@ -1,0 +1,49 @@
+{
+  "coverage": "11/11 checked",
+  "checks": [
+    {
+      "type": "Aggregation",
+      "assessment": "All seven rooms retained with monthly/hourly/angle/weather strata; macro and room results kept distinct."
+    },
+    {
+      "type": "Ecological inference",
+      "assessment": "No all-476-room conclusion from seven-room summaries; angle ranking is not general prediction accuracy."
+    },
+    {
+      "type": "Selection/Berkson",
+      "assessment": "Representative rooms form a selected development sample; no population prevalence claim."
+    },
+    {
+      "type": "Collider",
+      "assessment": "No causal regression or target-dependent input feature selection; true-label substitutions expressly diagnostic."
+    },
+    {
+      "type": "Base rate",
+      "assessment": "Eligible angle-pair denominator and coverage reported; near-ties omitted only under declared gap thresholds."
+    },
+    {
+      "type": "Regression to mean",
+      "assessment": "No intervention or newly improved model claim from extreme-room diagnosis."
+    },
+    {
+      "type": "Survivorship",
+      "assessment": "All seven rooms and all nine saved methods analyzed; no difficult room removed."
+    },
+    {
+      "type": "Look elsewhere",
+      "assessment": "Predeclared weather bins and focal rooms; no significance testing or optimized cutoff search."
+    },
+    {
+      "type": "Forking paths",
+      "assessment": "No new parameter, weight or routing selection; v6 remains an unexecuted draft."
+    },
+    {
+      "type": "Causation",
+      "assessment": "Algebraic decomposition is an identity, not a physical causal estimate; weather-bin associations do not validate provenance."
+    },
+    {
+      "type": "Reverse causality",
+      "assessment": "Held-room true mean/ratio substitutions and pointwise best model use answers; never presented as deployable inference."
+    }
+  ]
+}

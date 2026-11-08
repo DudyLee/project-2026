@@ -1,0 +1,27 @@
+{
+  "outer_metric_rows_recomputed": 175,
+  "inner_candidate_scores_recomputed": 210,
+  "selection_rows_recomputed": 140,
+  "outer_bundles_reloaded": 21,
+  "reload_samples_per_bundle": 17,
+  "grouped_inner_and_outer_disjointness": true,
+  "P10_prediction_api_accepts_X_only": true,
+  "tolerance_room_rows": 525,
+  "selected_metric_relookup_checks": 336,
+  "oracle_zero_regret_checks": 28,
+  "decision_hourly_rows": 1471680,
+  "room_policy_strategy_groups": 336,
+  "status": "passed",
+  "source_unchanged": true,
+  "reference_files_unchanged": true,
+  "TEST_predictions": 0,
+  "TEST_scores": 0,
+  "TEST_rows_discarded": 52560,
+  "analysis_script_sha256": {
+    "evaluate_nested_v3.py": "b881465cee5b74961f312d3af327a00f2bfd7fd25e5e1d7bea15cb3c485fd6c3",
+    "report_nested_v3.py": "7bbda689c6740b92a6e252fa5a72e6de2718f479fefebefa313f8ff3cc5e4821"
+  },
+  "scope": "Pipeline and saved-model consistency verification; development evaluation, not independent field validation or a full training rerun",
+  "completed_utc": "2026-11-02T03:41:11.791197+00:00",
+  "evaluation_seconds": 6.697433500000443
+}

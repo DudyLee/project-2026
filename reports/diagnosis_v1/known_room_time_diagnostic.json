@@ -1,0 +1,54 @@
+[
+  {
+    "room": "BM223",
+    "target": "E_P10_lux",
+    "training_months": [
+      1,
+      2,
+      4,
+      5,
+      7,
+      8,
+      10,
+      11
+    ],
+    "validation_months": [
+      3,
+      6,
+      9,
+      12
+    ],
+    "n_train": 11664,
+    "n_validation": 5856,
+    "known_room_mae": 0.041633624402305384,
+    "unseen_room_baseline_mae_same_times": 53.26408359667726,
+    "known_room_r2": 0.9824121720981093,
+    "scope": "Temporal prediction for a room with calibration data; not a new-room validation score"
+  },
+  {
+    "room": "BM522",
+    "target": "E_mean_lux",
+    "training_months": [
+      1,
+      2,
+      4,
+      5,
+      7,
+      8,
+      10,
+      11
+    ],
+    "validation_months": [
+      3,
+      6,
+      9,
+      12
+    ],
+    "n_train": 11664,
+    "n_validation": 5856,
+    "known_room_mae": 8.526073488585185,
+    "unseen_room_baseline_mae_same_times": 257.3534140683476,
+    "known_room_r2": 0.9853643727712815,
+    "scope": "Temporal prediction for a room with calibration data; not a new-room validation score"
+  }
+]

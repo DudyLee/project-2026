@@ -1,0 +1,51 @@
+{
+  "experiment_id": "nested_P10_blend_v6",
+  "status": "approved_for_execution",
+  "approval_user_message": "请你继续执行后续的实验和整理 提升我们的模型效果",
+  "source_proposal": "configs/proposals/P10_blend_v6_draft.json",
+  "output": "reports/experiment_v6",
+  "model_output": "models/experiment_v6",
+  "frozen_source_run": "reports/experiment_v5",
+  "models": [
+    "A_RandomForest",
+    "C_RandomForest"
+  ],
+  "target": "E_P10_lux",
+  "feature_set": "B_add_solar_weather",
+  "prediction": "w*A_relative_P10 + (1-w)*C_direct_asinh_P10",
+  "candidate_weights_on_A": [
+    1.0,
+    0.75,
+    0.5,
+    0.25,
+    0.0
+  ],
+  "outer_validation": "Same seven v5 LeaveOneGroupOut folds, six fitting rooms and one scoring room",
+  "inner_selection": "Use only saved v5 3-fold grouped inner OOF predictions on six outer-fitting rooms, with the already inner-selected per-formulation RF candidates. Choose weight minimizing equal-room original-unit MAE. Exact ties prefer larger w.",
+  "scope_of_inner_scores": "Selection scores reuse the same inner data for candidate and weight selection; they are not an unbiased performance estimate. Outer room is used for scoring only.",
+  "no_room_routing": "One scalar w per training fold, constant for all hours and angles of the held-out room; no room-specific post-hoc rules",
+  "promotion_rule": {
+    "macro_MAE_reduction_fraction_at_least": 0.1,
+    "rooms_nonworse_at_least": 5,
+    "worst_room_MAE_increase_lux_at_most": 0.0,
+    "numerical_tolerance_lux": 1e-09
+  },
+  "stopping_rule": "If the gate fails, retain A and stop expanding weights/routing models without new independently available input information. No finer or room-specific search after observing outer results.",
+  "protected_test_rooms": [
+    "BM532",
+    "BM702",
+    "BMG26"
+  ],
+  "unchanged_targets": [
+    "E_mean_lux",
+    "F_300_fraction",
+    "F_UDI_fraction",
+    "PV_AC_kWh"
+  ],
+  "new_regression_estimator_fits": 0,
+  "weight_selection_tasks": 7,
+  "thread_limit": 4,
+  "new_simulations": 0,
+  "final_refit": false,
+  "scope": "Approved bounded fusion development experiment. Seven rooms previously used for model development; no independent final TEST evidence, no deployment refit, no new simulations. Preserve all previous experiments."
+}

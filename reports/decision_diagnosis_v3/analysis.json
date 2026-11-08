@@ -1,0 +1,55 @@
+{
+  "status": "ANALYZED",
+  "scope": "Retrospective diagnosis using only frozen TRAIN OOF predictions and existing rules. No alternative policy, threshold or weight was evaluated.",
+  "models_fitted": 0,
+  "model_predictions_generated": 0,
+  "hyperparameters_tuned": 0,
+  "TEST_rows_read": 0,
+  "TEST_predictions": 0,
+  "TEST_scores": 0,
+  "raw_source_reopened": false,
+  "rooms": [
+    "BM223",
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "input_hashes": {
+    "reports\\experiment_v3\\predictions\\Frozen_HistGB.parquet": "c6f53156bdb022d9a820397411d2aa7f199fe656d9d668000d256bb2ed934b0c",
+    "reports\\experiment_v3\\predictions\\HistGB.parquet": "24bf74b2095a8be951dc30a08759cb11a43a1ce749c2c36ab0278cc08087ad9a",
+    "reports\\experiment_v3\\predictions\\RandomForest.parquet": "b23940edfcb7cfcb4e9f301f10ea9724994749afa3d98c56e848b12a5fd70972",
+    "reports\\experiment_v3\\predictions\\XGBoost.parquet": "448bda58844ae173f82a7f44ae285e633fad1e651a7a8e22c6d0287ddbd746fe",
+    "reports\\experiment_v3\\predictions\\Nested_select.parquet": "1d845c1766aba6132fcd659addef4ecd619a1690ee36864a6c4951596ccb06be",
+    "configs\\experiment_v3.json": "95ca7434917b780f38a57ea763292b3f0ecd5b503047fac6532ca9761c9e19fc",
+    "reports\\experiment_v3\\decision_by_room.csv": "9c53a63ee6630d8ee09994b5fba7140482a668b4a8e6a459866b3d38154398c3",
+    "reports\\experiment_v3\\decision_training_scales.json": "26608af99abc5072c1388daa834b1afb64a5750863ec7cca9458058d37775f58"
+  },
+  "inputs_unchanged": true,
+  "existing_decision_rows_reproduced": 105,
+  "switch_regret_identity_checks": 105,
+  "elapsed_seconds": 0.8507331999999224,
+  "analysis_script_sha256": "04f6efa500411e6c177b23c81c132aa2a06b96d00a1159d1640893499ecd2994",
+  "interpretation_limits": [
+    "Seven development rooms previously examined; descriptive evidence, not a causal attribution percentage",
+    "Four fixed angle simulations, one building and weather year",
+    "Numerical ties use 1e-12; material-score thresholds reuse v3 predeclared near-optimal tolerances",
+    "Constrained_PV primary saved loss measures daylight deficit only; separate feasibility and conditional PV are required"
+  ],
+  "statistical_fallacy_scan": {
+    "coverage": "11/11 reviewed",
+    "Simpson_aggregation": "Report room-level and macro results; kWh and mean relative percentages can rank strategies differently",
+    "Ecological_inference": "No claim for all 476 rooms or real-world operation",
+    "Selection_Berkson": "Only seven selected representative development rooms; population representativeness unverified",
+    "Collider_control": "No new covariate controls or causal model used",
+    "Base_rate": "Report optimal-angle frequency, ties and no-feasible base rates",
+    "Regression_to_mean": "Frozen references retained; no causal before-after claim",
+    "Survivorship": "All seven TRAIN rooms and all retained hours included; omitted hours remain out of scope",
+    "Look_elsewhere": "All five saved methods and all existing policies reported, no significance tests",
+    "Forking_paths": "Post-hoc descriptive diagnosis explicitly labeled; no alternate objectives evaluated",
+    "Correlation_causation": "Mechanistic score decomposition distinguished from unverified simulation physics",
+    "Reverse_causality": "No causal inference from predictive correlations"
+  }
+}

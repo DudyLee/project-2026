@@ -1,0 +1,50 @@
+{
+  "coverage": "11/11 checked",
+  "checks": [
+    {
+      "type": "Aggregation",
+      "assessment": "All seven rooms reported; average, median, maximum and per-room MAE kept distinct. Targets with different units never averaged together."
+    },
+    {
+      "type": "Ecological inference",
+      "assessment": "No claim of accuracy for all 476 rooms or other buildings from this selected seven-room sample."
+    },
+    {
+      "type": "Selection/Berkson",
+      "assessment": "Candidate families and hypotheses informed by previous development results; this is not an independent confirmatory study."
+    },
+    {
+      "type": "Collider",
+      "assessment": "No target-dependent row filtering, room-name routing or adjustment using held-room outputs. Original 13 input columns retained."
+    },
+    {
+      "type": "Base rate",
+      "assessment": "All room-hour-angle rows remain. Descriptive tolerance rates and worst-room rates accompany MAE; tolerances are not engineering standards."
+    },
+    {
+      "type": "Regression to mean",
+      "assessment": "The worst-room identity may change. Compare maxima across the same complete room set, not just previously difficult rooms."
+    },
+    {
+      "type": "Survivorship",
+      "assessment": "Every planned output, selection policy and room is reported, including failed comparisons and tradeoffs."
+    },
+    {
+      "type": "Look elsewhere",
+      "assessment": "24 declared candidates, no search expansion after outer scores, no significance tests or unsupported confidence intervals."
+    },
+    {
+      "type": "Forking paths",
+      "assessment": "Protocol/config frozen before training; Mean_select is a declared control and is not promoted to the primary hypothesis after observing results."
+    },
+    {
+      "type": "Causation",
+      "assessment": "This compares predictive procedures on simulated labels; it does not establish causal reasons for geometry-related errors or field performance."
+    },
+    {
+      "type": "Reverse causality",
+      "assessment": "Outer targets used only for scoring; the relative P10 inference uses its own predicted mean, never held-room true mean."
+    }
+  ],
+  "additional_limit": "Minimizing inner worst-room error does not guarantee lower outer worst-room error. Repeated model development remains a limitation."
+}

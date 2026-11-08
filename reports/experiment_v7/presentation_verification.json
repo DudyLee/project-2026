@@ -1,0 +1,12 @@
+{
+  "static_links_checked": 10,
+  "duplicate_ids": 0,
+  "inline_JavaScript_syntax": "passed",
+  "browser_interaction": "not performed; browser previously disabled",
+  "canvas_native_compilation": false,
+  "figures": "passed: both figures visually inspected",
+  "visual_reviewed_files": [
+    "figures/mean_and_worst_changes.png",
+    "figures/room_errors.png"
+  ]
+}

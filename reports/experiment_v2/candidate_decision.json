@@ -1,0 +1,21 @@
+{
+  "status": "development_candidate_only",
+  "mean_candidate": "HistGB_log1p_E_mean_lux",
+  "P10_candidate": "Relative_P10",
+  "weighted_log1p_selected": false,
+  "reason": "Relative P10 has the lowest mean and median room MAE among the four frozen/predeclared methods; additional scale weighting yields little gain over ordinary log1p.",
+  "relative_mean_room_MAE_lux": 14.59107066849395,
+  "relative_MAE_reduction_vs_original_pct": 25.74895414772475,
+  "relative_rooms_improved_vs_original": 6,
+  "weighted_additional_MAE_reduction_vs_log1p_pct": 0.34986005378160495,
+  "BM223_share_of_total_MAE_reduction": 0.8781899165601713,
+  "unresolved": [
+    "BM223 remains far from its small true P10 scale",
+    "BM432 P10 remains severely underestimated",
+    "Relative reconstruction propagates mean-stage errors; BM522 shows partial error cancellation"
+  ],
+  "test_rooms_used": false,
+  "deployment_ready": false,
+  "final_seven_room_refit_performed": false,
+  "scope": "Selected using development CV after previous failures; no independent final-test performance claim."
+}

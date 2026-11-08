@@ -1,0 +1,11 @@
+{
+  "report_script_sha256": "d722ac6e89536e4987e848db2c040538d682c3bb4bcf266e7c757cbcc7e18f08",
+  "artifacts": {
+    "report.html": "b64907b76fd8d771b907c8172a022241e509b5088086c432c7af847aad7efeff",
+    "report_data.json": "7ea8807b5d9370896754420e102d0848139560429aa78f5eab6f45d479fc73b4",
+    "summary.md": "49aeda22b9c792b79ab9603f997a173f453dcd48a5003f26765e373e944f467a",
+    "Cross-room-features-P10.canvas.tsx": "9f96b7e4026a4ee38ea2ecd94456b1d0960b7914dfc14c93804e3f213773723f",
+    "figures/macro_MAE.png": "0bee1fb95a607ffa6773e1031dd3bc73b525b5f5218fb08eec4d97405e987a00",
+    "figures/room_MAE_changes.png": "68d997487acb24cfe20f6151992d96585024d916b2730d2d94ac12f34b86d773"
+  }
+}

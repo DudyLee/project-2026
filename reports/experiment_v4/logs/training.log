@@ -1,0 +1,43 @@
+OUTER 1/7 BM223: frozen depth3; fitting and threshold calibration use ['BM432', 'BM441', 'BM522', 'BM608', 'LM608', 'LM703']
+  inner 1/3 complete; fits=2
+  inner 2/3 complete; fits=4
+  inner 3/3 complete; fits=6
+  absolute selected always_zero; inner mean gain 0.000000 kWh
+  delta selected always_zero; inner mean gain 0.000000 kWh
+OUTER 2/7 BM432: frozen depth3; fitting and threshold calibration use ['BM223', 'BM441', 'BM522', 'BM608', 'LM608', 'LM703']
+  inner 1/3 complete; fits=9
+  inner 2/3 complete; fits=11
+  inner 3/3 complete; fits=13
+  absolute selected always_zero; inner mean gain 0.000000 kWh
+  delta selected always_zero; inner mean gain 0.000000 kWh
+OUTER 3/7 BM441: frozen depth3; fitting and threshold calibration use ['BM223', 'BM432', 'BM522', 'BM608', 'LM608', 'LM703']
+  inner 1/3 complete; fits=16
+  inner 2/3 complete; fits=18
+  inner 3/3 complete; fits=20
+  absolute selected 5Wh; inner mean gain 0.017652 kWh
+  delta selected always_zero; inner mean gain 0.000000 kWh
+OUTER 4/7 BM522: frozen depth3; fitting and threshold calibration use ['BM223', 'BM432', 'BM441', 'BM608', 'LM608', 'LM703']
+  inner 1/3 complete; fits=23
+  inner 2/3 complete; fits=25
+  inner 3/3 complete; fits=27
+  absolute selected 5Wh; inner mean gain 0.168353 kWh
+  delta selected always_zero; inner mean gain 0.000000 kWh
+OUTER 5/7 BM608: frozen depth5; fitting and threshold calibration use ['BM223', 'BM432', 'BM441', 'BM522', 'LM608', 'LM703']
+  inner 1/3 complete; fits=30
+  inner 2/3 complete; fits=32
+  inner 3/3 complete; fits=34
+  absolute selected always_zero; inner mean gain 0.000000 kWh
+  delta selected always_zero; inner mean gain 0.000000 kWh
+OUTER 6/7 LM608: frozen depth3; fitting and threshold calibration use ['BM223', 'BM432', 'BM441', 'BM522', 'BM608', 'LM703']
+  inner 1/3 complete; fits=37
+  inner 2/3 complete; fits=39
+  inner 3/3 complete; fits=41
+  absolute selected 5Wh; inner mean gain 0.084413 kWh
+  delta selected always_zero; inner mean gain 0.000000 kWh
+OUTER 7/7 LM703: frozen depth3; fitting and threshold calibration use ['BM223', 'BM432', 'BM441', 'BM522', 'BM608', 'LM608']
+  inner 1/3 complete; fits=44
+  inner 2/3 complete; fits=46
+  inner 3/3 complete; fits=48
+  absolute selected always_zero; inner mean gain 0.000000 kWh
+  delta selected always_zero; inner mean gain 0.000000 kWh
+COMPLETED: 49 fits; 14 inner-selected thresholds; TEST predictions/scores=0; elapsed 13.9s.

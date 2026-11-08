@@ -1,0 +1,34 @@
+{
+  "raw": [
+    "Room_Area_m2",
+    "Glass_Area_m2",
+    "Orientation_X_model",
+    "Orientation_Y_model",
+    "Solar_Obstruction_Ratio",
+    "DOY_1based",
+    "Hour",
+    "PVSD_Angle_deg",
+    "EPW_GHI_Wh_m2",
+    "EPW_DNI_Wh_m2",
+    "EPW_DHI_Wh_m2",
+    "Solar_Altitude_mid_deg",
+    "Solar_Azimuth_mid_deg"
+  ],
+  "encoded": [
+    "Room_Area_m2",
+    "Glass_Area_m2",
+    "Orientation_X_model",
+    "Orientation_Y_model",
+    "Solar_Obstruction_Ratio",
+    "DOY_sin",
+    "DOY_cos",
+    "Hour",
+    "PVSD_Angle_deg",
+    "EPW_GHI_Wh_m2",
+    "EPW_DNI_Wh_m2",
+    "EPW_DHI_Wh_m2",
+    "Solar_Altitude_mid_deg",
+    "Solar_Azimuth_sin",
+    "Solar_Azimuth_cos"
+  ]
+}

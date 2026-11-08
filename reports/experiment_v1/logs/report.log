@@ -1,0 +1,5 @@
+Report: verifying saved metrics, folds and models.
+Report: verification passed; creating figures.
+Report: MAE overview saved.
+Report: room-level MAE figure saved.
+Verification passed: all 140 fold results recomputed, all 140 model files reload checked, TEST exclusion verified. Figures and report_data.json saved.

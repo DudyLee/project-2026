@@ -1,0 +1,64 @@
+{
+  "status": "PROPOSED_NOT_APPROVED_NOT_EXECUTED",
+  "question": "Can a model identify positive incremental PV generation relative to fixed 0 degrees in an unseen development room?",
+  "scope": "Small PV-only diagnosis experiment; daylight metrics reported descriptively for chosen angles. Final comfort/balanced objective remains to be confirmed.",
+  "data": "Existing TRAIN only, no new simulations, same 13 raw / 15 encoded features, no new physical direction features",
+  "protected_TEST": [
+    "BM532",
+    "BM702",
+    "BMG26"
+  ],
+  "comparators": [
+    "Fixed_0",
+    "Frozen_HistGB absolute PV reference",
+    "Existing XGBoost absolute PV reference",
+    "Absolute_XGBoost with inner-selected gain threshold",
+    "Delta_XGBoost without a positive margin (threshold 0)",
+    "Delta_XGBoost with inner-selected gain threshold"
+  ],
+  "delta_target": "PV(room,time,angle)-PV(room,time,0 degrees), paired strictly within the same fitting room and hour; only angles 30/60/90 are fitted. Delta at 0 is fixed at zero.",
+  "inference": "Use X only. True PV at 0 is never an inference input. Choose the largest predicted gain; switch only when it exceeds the selected threshold; otherwise keep 0.",
+  "model_family": "XGBoost only, to isolate the response/decision change; freeze the per-outer-fold XGBoost parameters already selected from that fold's six fitting rooms in v3; no additional family or hyperparameter search",
+  "threshold_grid_kWh_per_hour": [
+    0,
+    0.001,
+    0.002,
+    0.005,
+    "infinity_keep_zero"
+  ],
+  "threshold_selection": "Within each outer set of six rooms generate three-fold grouped OOF predictions. Choose each variant's threshold by maximum mean room PV gain over fixed 0; numerical ties choose the larger threshold. Never use current seven-room OOF predictions as cross-fold calibration data.",
+  "validation": "Seven outer leave-one-room-out folds; inner three group folds, four fit and two validate; outer room only scores; same folds as v3.",
+  "expected_new_primitive_fits": 49,
+  "fit_count_explanation": "7 outer folds x (3 inner absolute-PV fits + 3 inner delta-PV fits + 1 outer delta-PV fit); reuse saved outer absolute-XGBoost predictions",
+  "primary_metrics": [
+    "Per-room net retained-hours PV gain over fixed 0 in kWh",
+    "Seven-room mean and median gain",
+    "Worst-room loss and count of rooms improved/tied/worse",
+    "Regret vs four-angle simulated oracle"
+  ],
+  "secondary_metrics": [
+    "Beneficial/harmful/neutral switch rates",
+    "Missed positive-gain opportunities",
+    "PV MAE and angle-difference errors",
+    "F300/FUDI of selected angles",
+    "Within-day switch counts"
+  ],
+  "guard_interpretation": "An empirically selected margin, not a guaranteed confidence bound or engineering switching cost",
+  "decision_after_run": "Review whether positive gain is consistent across rooms; no automatic deployment, further experiment or TEST unsealing.",
+  "parallel_nonexperimental_checks": [
+    "Request/inspect existing angle-definition diagrams or geometry export code when available",
+    "Confirm daylight priority, minimum acceptable spatial fractions and meaning of balanced weights before a combined-control follow-up"
+  ],
+  "literature_support": [
+    {
+      "title": "Smart Predict, then Optimize",
+      "url": "https://arxiv.org/abs/1710.08005",
+      "use": "Supports distinguishing prediction loss and induced decision loss; the proposed simple delta/threshold pilot is our hypothesis, not a reproduced SPO implementation"
+    },
+    {
+      "title": "scikit-learn nested CV",
+      "url": "https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html",
+      "use": "Selection inside inner folds; assessment in outer folds"
+    }
+  ]
+}

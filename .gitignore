@@ -1,0 +1,31 @@
+# Reproducible local dependencies and caches
+/.conda/
+/.cache/
+/.venv/
+/venv/
+__pycache__/
+*.py[cod]
+/.pytest_cache/
+/.mypy_cache/
+/node_modules/
+
+# Local credentials and machine-only settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+/.aws/
+/.codex/
+/.agents/
+/.idea/
+/.vscode/
+Thumbs.db
+.DS_Store
+
+# Scientific source data, model bundles, OOF predictions and reports are
+# deliberately versioned in this private initial research snapshot.

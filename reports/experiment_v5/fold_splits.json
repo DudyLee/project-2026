@@ -1,0 +1,429 @@
+[
+  {
+    "fold": 1,
+    "held_room": "BM223",
+    "training_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "training_rows": 105120,
+    "scoring_rows": 17520,
+    "inner": [
+      {
+        "inner": 1,
+        "fitting_rooms": [
+          "BM432",
+          "BM441",
+          "BM608",
+          "LM608"
+        ],
+        "validation_rooms": [
+          "BM522",
+          "LM703"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 2,
+        "fitting_rooms": [
+          "BM432",
+          "BM522",
+          "BM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM441",
+          "LM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 3,
+        "fitting_rooms": [
+          "BM441",
+          "BM522",
+          "LM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM432",
+          "BM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      }
+    ]
+  },
+  {
+    "fold": 2,
+    "held_room": "BM432",
+    "training_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "training_rows": 105120,
+    "scoring_rows": 17520,
+    "inner": [
+      {
+        "inner": 1,
+        "fitting_rooms": [
+          "BM223",
+          "BM441",
+          "BM608",
+          "LM608"
+        ],
+        "validation_rooms": [
+          "BM522",
+          "LM703"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 2,
+        "fitting_rooms": [
+          "BM223",
+          "BM522",
+          "BM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM441",
+          "LM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 3,
+        "fitting_rooms": [
+          "BM441",
+          "BM522",
+          "LM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM223",
+          "BM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      }
+    ]
+  },
+  {
+    "fold": 3,
+    "held_room": "BM441",
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "training_rows": 105120,
+    "scoring_rows": 17520,
+    "inner": [
+      {
+        "inner": 1,
+        "fitting_rooms": [
+          "BM223",
+          "BM432",
+          "BM608",
+          "LM608"
+        ],
+        "validation_rooms": [
+          "BM522",
+          "LM703"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 2,
+        "fitting_rooms": [
+          "BM223",
+          "BM522",
+          "BM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM432",
+          "LM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 3,
+        "fitting_rooms": [
+          "BM432",
+          "BM522",
+          "LM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM223",
+          "BM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      }
+    ]
+  },
+  {
+    "fold": 4,
+    "held_room": "BM522",
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "training_rows": 105120,
+    "scoring_rows": 17520,
+    "inner": [
+      {
+        "inner": 1,
+        "fitting_rooms": [
+          "BM223",
+          "BM432",
+          "BM608",
+          "LM608"
+        ],
+        "validation_rooms": [
+          "BM441",
+          "LM703"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 2,
+        "fitting_rooms": [
+          "BM223",
+          "BM441",
+          "BM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM432",
+          "LM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 3,
+        "fitting_rooms": [
+          "BM432",
+          "BM441",
+          "LM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM223",
+          "BM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      }
+    ]
+  },
+  {
+    "fold": 5,
+    "held_room": "BM608",
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "training_rows": 105120,
+    "scoring_rows": 17520,
+    "inner": [
+      {
+        "inner": 1,
+        "fitting_rooms": [
+          "BM223",
+          "BM432",
+          "BM522",
+          "LM608"
+        ],
+        "validation_rooms": [
+          "BM441",
+          "LM703"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 2,
+        "fitting_rooms": [
+          "BM223",
+          "BM441",
+          "BM522",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM432",
+          "LM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 3,
+        "fitting_rooms": [
+          "BM432",
+          "BM441",
+          "LM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM223",
+          "BM522"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      }
+    ]
+  },
+  {
+    "fold": 6,
+    "held_room": "LM608",
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "training_rows": 105120,
+    "scoring_rows": 17520,
+    "inner": [
+      {
+        "inner": 1,
+        "fitting_rooms": [
+          "BM223",
+          "BM432",
+          "BM522",
+          "BM608"
+        ],
+        "validation_rooms": [
+          "BM441",
+          "LM703"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 2,
+        "fitting_rooms": [
+          "BM223",
+          "BM441",
+          "BM522",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM432",
+          "BM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 3,
+        "fitting_rooms": [
+          "BM432",
+          "BM441",
+          "BM608",
+          "LM703"
+        ],
+        "validation_rooms": [
+          "BM223",
+          "BM522"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      }
+    ]
+  },
+  {
+    "fold": 7,
+    "held_room": "LM703",
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "training_rows": 105120,
+    "scoring_rows": 17520,
+    "inner": [
+      {
+        "inner": 1,
+        "fitting_rooms": [
+          "BM223",
+          "BM432",
+          "BM522",
+          "BM608"
+        ],
+        "validation_rooms": [
+          "BM441",
+          "LM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 2,
+        "fitting_rooms": [
+          "BM223",
+          "BM441",
+          "BM522",
+          "LM608"
+        ],
+        "validation_rooms": [
+          "BM432",
+          "BM608"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      },
+      {
+        "inner": 3,
+        "fitting_rooms": [
+          "BM432",
+          "BM441",
+          "BM608",
+          "LM608"
+        ],
+        "validation_rooms": [
+          "BM223",
+          "BM522"
+        ],
+        "fitting_rows": 70080,
+        "validation_rows": 35040
+      }
+    ]
+  }
+]

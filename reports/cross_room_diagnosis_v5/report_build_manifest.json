@@ -1,0 +1,12 @@
+{
+  "script_sha256": "d24c7b717daf768714268f5451b7317a2da1ab5503487a7a259a180ec8c7da3f",
+  "artifacts": {
+    "report.html": "97322fa2a85cec9b64481b0a76d18237a0aff097756195137e44bac27398dc41",
+    "summary.md": "28afa05e1f4d6504573281fef417ad0d34cb370c0c48e0c7ca2cdf270a408304",
+    "report_data.json": "5a5f17b92a0112702f383249ecbbe6b5e66338241212db01e88a365262d22794",
+    "cross-room-error-diagnosis.canvas.tsx": "68064438e75248b68a2e2e0f7fd0179648ffc5f4150539ebff981703bb361f42",
+    "figures/monthly_profiles.png": "cd6c155ecdf73a09da25418342c2c26d9ed072a5842c8003ad3db74128886635",
+    "figures/angle_profiles.png": "c806daef427764de3d7e664ecf7324b0dc15d4901224bf5b73e2c37c1b835013",
+    "figures/P10_diagnostic_substitutions.png": "5db194a7cb43d3d1623806a8b6950696805cc7eed78bbe84daf8acb6c3f741a8"
+  }
+}

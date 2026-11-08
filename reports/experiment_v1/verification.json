@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "metric_rows_recomputed": 140,
+  "saved_models_reload_checked": 140,
+  "test_rows_skipped": 52560,
+  "test_predictions": 0,
+  "checks": [
+    "Seven disjoint room folds",
+    "TRAIN-only out-of-fold files, 122640 rows per model/feature set",
+    "Recomputed MAE, RMSE, R2 for all 140 fold-target results",
+    "Reloaded all 140 models and reproduced three saved raw predictions each",
+    "Ridge scaler means match only the six training rooms in every fold",
+    "Raw data SHA-256 unchanged"
+  ],
+  "scope": "Pipeline reproducibility and split integrity; not evidence that predictive accuracy is sufficient"
+}

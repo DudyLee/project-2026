@@ -1,0 +1,7 @@
+{
+  "path": "exports/geometry_source_handoff_v1.zip",
+  "sha256": "61d7389cb54eeaf82f381806fedded72113a94cd2cf66e44868241a221bffdc0",
+  "file_count": 7,
+  "contains": "TRAIN room source identifiers, field dictionary, blank templates and existing-case request list; no performance targets or TEST room data",
+  "externally_sent": false
+}

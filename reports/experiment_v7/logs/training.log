@@ -1,0 +1,204 @@
+OUTER 1/7 held BM223
+  E_mean_lux/XGB_log_L2__depth3: 3 inner folds completed; fits {'inner': 3, 'outer': 0}
+  E_mean_lux/XGB_log_L2__depth5: 3 inner folds completed; fits {'inner': 6, 'outer': 0}
+  E_mean_lux/XGB_log_L1__depth3: 3 inner folds completed; fits {'inner': 9, 'outer': 0}
+  E_mean_lux/XGB_log_L1__depth5: 3 inner folds completed; fits {'inner': 12, 'outer': 0}
+  E_mean_lux/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 15, 'outer': 0}
+  E_mean_lux/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 18, 'outer': 0}
+  E_P10_lux/RF_relative__depth12: 3 inner folds completed; fits {'inner': 24, 'outer': 1}
+  E_P10_lux/RF_relative__depth8: 3 inner folds completed; fits {'inner': 30, 'outer': 1}
+  E_P10_lux/RF_asinh__depth12: 3 inner folds completed; fits {'inner': 33, 'outer': 1}
+  E_P10_lux/RF_asinh__depth8: 3 inner folds completed; fits {'inner': 36, 'outer': 1}
+  E_P10_lux/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 39, 'outer': 1}
+  E_P10_lux/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 42, 'outer': 1}
+  F_300_fraction/XGB_raw_L2__depth3: 3 inner folds completed; fits {'inner': 45, 'outer': 4}
+  F_300_fraction/XGB_raw_L2__depth5: 3 inner folds completed; fits {'inner': 48, 'outer': 4}
+  F_300_fraction/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 51, 'outer': 4}
+  F_300_fraction/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 54, 'outer': 4}
+  F_UDI_fraction/RF_raw_L2__depth12: 3 inner folds completed; fits {'inner': 57, 'outer': 6}
+  F_UDI_fraction/RF_raw_L2__depth8: 3 inner folds completed; fits {'inner': 60, 'outer': 6}
+  F_UDI_fraction/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 63, 'outer': 6}
+  F_UDI_fraction/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 66, 'outer': 6}
+  PV_AC_kWh/HGB_raw_L2__baseline: 3 inner folds completed; fits {'inner': 69, 'outer': 7}
+  PV_AC_kWh/HGB_raw_L2__smaller: 3 inner folds completed; fits {'inner': 72, 'outer': 7}
+  PV_AC_kWh/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 75, 'outer': 7}
+  PV_AC_kWh/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 78, 'outer': 7}
+OUTER 1 complete; elapsed 81.2s
+OUTER 2/7 held BM432
+  E_mean_lux/XGB_log_L2__depth3: 3 inner folds completed; fits {'inner': 81, 'outer': 9}
+  E_mean_lux/XGB_log_L2__depth5: 3 inner folds completed; fits {'inner': 84, 'outer': 9}
+  E_mean_lux/XGB_log_L1__depth3: 3 inner folds completed; fits {'inner': 87, 'outer': 9}
+  E_mean_lux/XGB_log_L1__depth5: 3 inner folds completed; fits {'inner': 90, 'outer': 9}
+  E_mean_lux/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 93, 'outer': 9}
+  E_mean_lux/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 96, 'outer': 9}
+  E_P10_lux/RF_relative__depth12: 3 inner folds completed; fits {'inner': 102, 'outer': 10}
+  E_P10_lux/RF_relative__depth8: 3 inner folds completed; fits {'inner': 108, 'outer': 10}
+  E_P10_lux/RF_asinh__depth12: 3 inner folds completed; fits {'inner': 111, 'outer': 10}
+  E_P10_lux/RF_asinh__depth8: 3 inner folds completed; fits {'inner': 114, 'outer': 10}
+  E_P10_lux/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 117, 'outer': 10}
+  E_P10_lux/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 120, 'outer': 10}
+  F_300_fraction/XGB_raw_L2__depth3: 3 inner folds completed; fits {'inner': 123, 'outer': 15}
+  F_300_fraction/XGB_raw_L2__depth5: 3 inner folds completed; fits {'inner': 126, 'outer': 15}
+  F_300_fraction/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 129, 'outer': 15}
+  F_300_fraction/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 132, 'outer': 15}
+  F_UDI_fraction/RF_raw_L2__depth12: 3 inner folds completed; fits {'inner': 135, 'outer': 17}
+  F_UDI_fraction/RF_raw_L2__depth8: 3 inner folds completed; fits {'inner': 138, 'outer': 17}
+  F_UDI_fraction/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 141, 'outer': 17}
+  F_UDI_fraction/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 144, 'outer': 17}
+  PV_AC_kWh/HGB_raw_L2__baseline: 3 inner folds completed; fits {'inner': 147, 'outer': 19}
+  PV_AC_kWh/HGB_raw_L2__smaller: 3 inner folds completed; fits {'inner': 150, 'outer': 19}
+  PV_AC_kWh/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 153, 'outer': 19}
+  PV_AC_kWh/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 156, 'outer': 19}
+OUTER 2 complete; elapsed 167.5s
+OUTER 3/7 held BM441
+  E_mean_lux/XGB_log_L2__depth3: 3 inner folds completed; fits {'inner': 159, 'outer': 22}
+  E_mean_lux/XGB_log_L2__depth5: 3 inner folds completed; fits {'inner': 162, 'outer': 22}
+  E_mean_lux/XGB_log_L1__depth3: 3 inner folds completed; fits {'inner': 165, 'outer': 22}
+  E_mean_lux/XGB_log_L1__depth5: 3 inner folds completed; fits {'inner': 168, 'outer': 22}
+  E_mean_lux/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 171, 'outer': 22}
+  E_mean_lux/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 174, 'outer': 22}
+  E_P10_lux/RF_relative__depth12: 3 inner folds completed; fits {'inner': 180, 'outer': 23}
+  E_P10_lux/RF_relative__depth8: 3 inner folds completed; fits {'inner': 186, 'outer': 23}
+  E_P10_lux/RF_asinh__depth12: 3 inner folds completed; fits {'inner': 189, 'outer': 23}
+  E_P10_lux/RF_asinh__depth8: 3 inner folds completed; fits {'inner': 192, 'outer': 23}
+  E_P10_lux/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 195, 'outer': 23}
+  E_P10_lux/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 198, 'outer': 23}
+  F_300_fraction/XGB_raw_L2__depth3: 3 inner folds completed; fits {'inner': 201, 'outer': 28}
+  F_300_fraction/XGB_raw_L2__depth5: 3 inner folds completed; fits {'inner': 204, 'outer': 28}
+  F_300_fraction/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 207, 'outer': 28}
+  F_300_fraction/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 210, 'outer': 28}
+  F_UDI_fraction/RF_raw_L2__depth12: 3 inner folds completed; fits {'inner': 213, 'outer': 30}
+  F_UDI_fraction/RF_raw_L2__depth8: 3 inner folds completed; fits {'inner': 216, 'outer': 30}
+  F_UDI_fraction/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 219, 'outer': 30}
+  F_UDI_fraction/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 222, 'outer': 30}
+  PV_AC_kWh/HGB_raw_L2__baseline: 3 inner folds completed; fits {'inner': 225, 'outer': 32}
+  PV_AC_kWh/HGB_raw_L2__smaller: 3 inner folds completed; fits {'inner': 228, 'outer': 32}
+  PV_AC_kWh/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 231, 'outer': 32}
+  PV_AC_kWh/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 234, 'outer': 32}
+OUTER 3 complete; elapsed 257.0s
+OUTER 4/7 held BM522
+  E_mean_lux/XGB_log_L2__depth3: 3 inner folds completed; fits {'inner': 237, 'outer': 33}
+  E_mean_lux/XGB_log_L2__depth5: 3 inner folds completed; fits {'inner': 240, 'outer': 33}
+  E_mean_lux/XGB_log_L1__depth3: 3 inner folds completed; fits {'inner': 243, 'outer': 33}
+  E_mean_lux/XGB_log_L1__depth5: 3 inner folds completed; fits {'inner': 246, 'outer': 33}
+  E_mean_lux/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 249, 'outer': 33}
+  E_mean_lux/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 252, 'outer': 33}
+  E_P10_lux/RF_relative__depth12: 3 inner folds completed; fits {'inner': 258, 'outer': 35}
+  E_P10_lux/RF_relative__depth8: 3 inner folds completed; fits {'inner': 264, 'outer': 35}
+  E_P10_lux/RF_asinh__depth12: 3 inner folds completed; fits {'inner': 267, 'outer': 35}
+  E_P10_lux/RF_asinh__depth8: 3 inner folds completed; fits {'inner': 270, 'outer': 35}
+  E_P10_lux/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 273, 'outer': 35}
+  E_P10_lux/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 276, 'outer': 35}
+  F_300_fraction/XGB_raw_L2__depth3: 3 inner folds completed; fits {'inner': 279, 'outer': 38}
+  F_300_fraction/XGB_raw_L2__depth5: 3 inner folds completed; fits {'inner': 282, 'outer': 38}
+  F_300_fraction/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 285, 'outer': 38}
+  F_300_fraction/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 288, 'outer': 38}
+  F_UDI_fraction/RF_raw_L2__depth12: 3 inner folds completed; fits {'inner': 291, 'outer': 40}
+  F_UDI_fraction/RF_raw_L2__depth8: 3 inner folds completed; fits {'inner': 294, 'outer': 40}
+  F_UDI_fraction/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 297, 'outer': 40}
+  F_UDI_fraction/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 300, 'outer': 40}
+  PV_AC_kWh/HGB_raw_L2__baseline: 3 inner folds completed; fits {'inner': 303, 'outer': 41}
+  PV_AC_kWh/HGB_raw_L2__smaller: 3 inner folds completed; fits {'inner': 306, 'outer': 41}
+  PV_AC_kWh/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 309, 'outer': 41}
+  PV_AC_kWh/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 312, 'outer': 41}
+OUTER 4 complete; elapsed 337.9s
+OUTER 5/7 held BM608
+  E_mean_lux/XGB_log_L2__depth3: 3 inner folds completed; fits {'inner': 315, 'outer': 43}
+  E_mean_lux/XGB_log_L2__depth5: 3 inner folds completed; fits {'inner': 318, 'outer': 43}
+  E_mean_lux/XGB_log_L1__depth3: 3 inner folds completed; fits {'inner': 321, 'outer': 43}
+  E_mean_lux/XGB_log_L1__depth5: 3 inner folds completed; fits {'inner': 324, 'outer': 43}
+  E_mean_lux/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 327, 'outer': 43}
+  E_mean_lux/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 330, 'outer': 43}
+  E_P10_lux/RF_relative__depth12: 3 inner folds completed; fits {'inner': 336, 'outer': 46}
+  E_P10_lux/RF_relative__depth8: 3 inner folds completed; fits {'inner': 342, 'outer': 46}
+  E_P10_lux/RF_asinh__depth12: 3 inner folds completed; fits {'inner': 345, 'outer': 46}
+  E_P10_lux/RF_asinh__depth8: 3 inner folds completed; fits {'inner': 348, 'outer': 46}
+  E_P10_lux/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 351, 'outer': 46}
+  E_P10_lux/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 354, 'outer': 46}
+  F_300_fraction/XGB_raw_L2__depth3: 3 inner folds completed; fits {'inner': 357, 'outer': 49}
+  F_300_fraction/XGB_raw_L2__depth5: 3 inner folds completed; fits {'inner': 360, 'outer': 49}
+  F_300_fraction/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 363, 'outer': 49}
+  F_300_fraction/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 366, 'outer': 49}
+  F_UDI_fraction/RF_raw_L2__depth12: 3 inner folds completed; fits {'inner': 369, 'outer': 52}
+  F_UDI_fraction/RF_raw_L2__depth8: 3 inner folds completed; fits {'inner': 372, 'outer': 52}
+  F_UDI_fraction/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 375, 'outer': 52}
+  F_UDI_fraction/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 378, 'outer': 52}
+  PV_AC_kWh/HGB_raw_L2__baseline: 3 inner folds completed; fits {'inner': 381, 'outer': 53}
+  PV_AC_kWh/HGB_raw_L2__smaller: 3 inner folds completed; fits {'inner': 384, 'outer': 53}
+  PV_AC_kWh/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 387, 'outer': 53}
+  PV_AC_kWh/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 390, 'outer': 53}
+OUTER 5 complete; elapsed 422.5s
+OUTER 6/7 held LM608
+  E_mean_lux/XGB_log_L2__depth3: 3 inner folds completed; fits {'inner': 393, 'outer': 56}
+  E_mean_lux/XGB_log_L2__depth5: 3 inner folds completed; fits {'inner': 396, 'outer': 56}
+  E_mean_lux/XGB_log_L1__depth3: 3 inner folds completed; fits {'inner': 399, 'outer': 56}
+  E_mean_lux/XGB_log_L1__depth5: 3 inner folds completed; fits {'inner': 402, 'outer': 56}
+  E_mean_lux/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 405, 'outer': 56}
+  E_mean_lux/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 408, 'outer': 56}
+  E_P10_lux/RF_relative__depth12: 3 inner folds completed; fits {'inner': 414, 'outer': 59}
+  E_P10_lux/RF_relative__depth8: 3 inner folds completed; fits {'inner': 420, 'outer': 59}
+  E_P10_lux/RF_asinh__depth12: 3 inner folds completed; fits {'inner': 423, 'outer': 59}
+  E_P10_lux/RF_asinh__depth8: 3 inner folds completed; fits {'inner': 426, 'outer': 59}
+  E_P10_lux/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 429, 'outer': 59}
+  E_P10_lux/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 432, 'outer': 59}
+  F_300_fraction/XGB_raw_L2__depth3: 3 inner folds completed; fits {'inner': 435, 'outer': 63}
+  F_300_fraction/XGB_raw_L2__depth5: 3 inner folds completed; fits {'inner': 438, 'outer': 63}
+  F_300_fraction/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 441, 'outer': 63}
+  F_300_fraction/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 444, 'outer': 63}
+  F_UDI_fraction/RF_raw_L2__depth12: 3 inner folds completed; fits {'inner': 447, 'outer': 66}
+  F_UDI_fraction/RF_raw_L2__depth8: 3 inner folds completed; fits {'inner': 450, 'outer': 66}
+  F_UDI_fraction/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 453, 'outer': 66}
+  F_UDI_fraction/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 456, 'outer': 66}
+  PV_AC_kWh/HGB_raw_L2__baseline: 3 inner folds completed; fits {'inner': 459, 'outer': 68}
+  PV_AC_kWh/HGB_raw_L2__smaller: 3 inner folds completed; fits {'inner': 462, 'outer': 68}
+  PV_AC_kWh/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 465, 'outer': 68}
+  PV_AC_kWh/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 468, 'outer': 68}
+OUTER 6 complete; elapsed 510.6s
+OUTER 7/7 held LM703
+  E_mean_lux/XGB_log_L2__depth3: 3 inner folds completed; fits {'inner': 471, 'outer': 70}
+  E_mean_lux/XGB_log_L2__depth5: 3 inner folds completed; fits {'inner': 474, 'outer': 70}
+  E_mean_lux/XGB_log_L1__depth3: 3 inner folds completed; fits {'inner': 477, 'outer': 70}
+  E_mean_lux/XGB_log_L1__depth5: 3 inner folds completed; fits {'inner': 480, 'outer': 70}
+  E_mean_lux/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 483, 'outer': 70}
+  E_mean_lux/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 486, 'outer': 70}
+  E_P10_lux/RF_relative__depth12: 3 inner folds completed; fits {'inner': 492, 'outer': 72}
+  E_P10_lux/RF_relative__depth8: 3 inner folds completed; fits {'inner': 498, 'outer': 72}
+  E_P10_lux/RF_asinh__depth12: 3 inner folds completed; fits {'inner': 501, 'outer': 72}
+  E_P10_lux/RF_asinh__depth8: 3 inner folds completed; fits {'inner': 504, 'outer': 72}
+  E_P10_lux/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 507, 'outer': 72}
+  E_P10_lux/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 510, 'outer': 72}
+  F_300_fraction/XGB_raw_L2__depth3: 3 inner folds completed; fits {'inner': 513, 'outer': 74}
+  F_300_fraction/XGB_raw_L2__depth5: 3 inner folds completed; fits {'inner': 516, 'outer': 74}
+  F_300_fraction/XGB_raw_L1__depth3: 3 inner folds completed; fits {'inner': 519, 'outer': 74}
+  F_300_fraction/XGB_raw_L1__depth5: 3 inner folds completed; fits {'inner': 522, 'outer': 74}
+  F_UDI_fraction/RF_raw_L2__depth12: 3 inner folds completed; fits {'inner': 525, 'outer': 77}
+  F_UDI_fraction/RF_raw_L2__depth8: 3 inner folds completed; fits {'inner': 528, 'outer': 77}
+  F_UDI_fraction/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 531, 'outer': 77}
+  F_UDI_fraction/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 534, 'outer': 77}
+  PV_AC_kWh/HGB_raw_L2__baseline: 3 inner folds completed; fits {'inner': 537, 'outer': 79}
+  PV_AC_kWh/HGB_raw_L2__smaller: 3 inner folds completed; fits {'inner': 540, 'outer': 79}
+  PV_AC_kWh/HGB_raw_L1__baseline: 3 inner folds completed; fits {'inner': 543, 'outer': 79}
+  PV_AC_kWh/HGB_raw_L1__smaller: 3 inner folds completed; fits {'inner': 546, 'outer': 79}
+OUTER 7 complete; elapsed 593.2s
+COMPLETED {'inner': 546, 'outer': 81}; 7 bundles; TEST predictions/scores 0.
+            method         target  room_count  mae_mean  mae_median    mae_max  rmse_mean  bias_mean  r2_median        r2_min  within_tolerance_mean  within_tolerance_min worst_room
+   Target_baseline     E_mean_lux           7 82.433157   48.053225 231.642281 148.080020 -21.849812   0.241887     -1.622508               0.680863              0.420491      BM432
+   Target_baseline      E_P10_lux           7  9.747747    0.176519  29.275426  15.546441  -4.970404   0.151752   -496.716646               0.699421              0.170205      BM432
+   Target_baseline F_300_fraction           7  0.069321    0.038933   0.135353   0.094930   0.013925   0.025189     -0.256483               0.594627              0.306564      BM522
+   Target_baseline F_UDI_fraction           7  0.087635    0.047419   0.185999   0.121683  -0.049814   0.488595     -0.331188               0.533684              0.170719      BM432
+   Target_baseline      PV_AC_kWh           7  0.012882    0.009697   0.023809   0.023602   0.000117   0.600226     -0.012731               0.706442              0.586872      LM608
+       Mean_select     E_mean_lux           7 92.373765   51.503953 231.642281 168.575882 -14.178720   0.241887     -7.662436               0.686978              0.420491      BM432
+       Mean_select      E_P10_lux           7 17.513180    0.275526  48.956448  24.932930  -1.641328  -0.484436 -10788.016155               0.645271              0.139041      BM223
+       Mean_select F_300_fraction           7  0.077384    0.089738   0.148369   0.109227   0.012882  -0.069351     -2.354700               0.531678              0.317352      BM432
+       Mean_select F_UDI_fraction           7  0.095798    0.047419   0.261191   0.130446  -0.062142   0.488595     -0.331188               0.553156              0.154737      BM432
+       Mean_select      PV_AC_kWh           7  0.012300    0.010848   0.026420   0.021423  -0.001262   0.698053      0.164778               0.690819              0.556050      LM608
+     Worst_guarded     E_mean_lux           7 83.240053   59.030001 231.642281 147.961032 -18.421711   0.159939     -1.622508               0.668526              0.420491      BM432
+     Worst_guarded      E_P10_lux           7 15.453365    0.176519  48.956448  22.849139   0.528668   0.123316 -10788.016155               0.662109              0.139041      BM223
+     Worst_guarded F_300_fraction           7  0.072039    0.062622   0.148369   0.101910   0.009279  -0.015336     -0.624523               0.562851              0.317352      BM432
+     Worst_guarded F_UDI_fraction           7  0.095662    0.046472   0.261191   0.130276  -0.062212   0.488595     -0.331188               0.555952              0.154737      BM432
+     Worst_guarded      PV_AC_kWh           7  0.012945    0.010212   0.023809   0.023822  -0.000027   0.600226     -0.031339               0.706491              0.586872      LM608
+Retained_reference     E_mean_lux           7 82.433157   48.053225 231.642281 148.080020 -21.849812   0.241887     -1.622508               0.680863              0.420491      BM432
+Retained_reference      E_P10_lux           7  9.747747    0.176519  29.275426  15.546441  -4.970404   0.151752   -496.716646               0.699421              0.170205      BM432
+Retained_reference F_300_fraction           7  0.071180    0.031079   0.156858   0.100355   0.003612  -0.013639     -0.297557               0.610429              0.326142      BM432
+Retained_reference F_UDI_fraction           7  0.110359    0.042728   0.254710   0.144718  -0.005281   0.584130     -2.608577               0.520629              0.153653      BM432
+Retained_reference      PV_AC_kWh           7  0.012613    0.010212   0.023809   0.023331  -0.000478   0.626593     -0.031339               0.708619              0.606336      LM608

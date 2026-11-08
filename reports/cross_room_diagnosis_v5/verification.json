@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "room_summaries_checked": 126,
+  "stratified_group_reaggregation_checks": 756,
+  "angle_delta_metrics_recomputed": 378,
+  "angle_pair_metrics_recomputed": 252,
+  "P10_component_rows_checked": 490560,
+  "P10_error_identity_max_abs_lux": 1.8474111129762605e-13,
+  "counterfactual_rows_checked": 981120,
+  "complementarity_room_rows_checked": 14,
+  "all_source_models_predictions_unchanged": true,
+  "new_model_fits": 0,
+  "TEST_predictions": 0,
+  "TEST_scores": 0,
+  "counterfactuals_are_explanatory_only_not_deployable_scores": true,
+  "script_sha256": "95497389a112591a71cc772d270eb3197751c368ae7b2aeced759740510aa19e",
+  "finished_utc": "2026-11-07T09:26:19.624488+00:00",
+  "scope": "Numerical diagnostic reconstruction and artifact checks; not new predictive validation or source simulation verification."
+}

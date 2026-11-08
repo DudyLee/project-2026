@@ -1,0 +1,26 @@
+{
+  "duplicate_keys": 0,
+  "missing_cells": 0,
+  "fraction_count_integrality_failures": {
+    "F_300_fraction": 0,
+    "F_UDI_fraction": 0
+  },
+  "mean_below_300_times_F300": 0,
+  "mean_below_100_times_FUDI": 0,
+  "mean_below_nonnegative_grid_P10_bound": 0,
+  "P10_ge300_but_F300_too_small": 0,
+  "within_room_static_variation": {
+    "Room_Area_m2": 1,
+    "Glass_Area_m2": 1,
+    "Orientation_X_model": 1,
+    "Orientation_Y_model": 1,
+    "Solar_Obstruction_Ratio": 1,
+    "Floor_0based": 1,
+    "WFR_window_to_floor": 1,
+    "Sensor_Count": 1,
+    "Window_Count": 1,
+    "Window_Area_Nominal_m2": 1
+  },
+  "raw_sensor_grid_available": false,
+  "interpretation": "These check internal consistency only; sensor mapping, percentile computation and geometry cannot be independently certified without original simulation grids and export code."
+}

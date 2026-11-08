@@ -1,0 +1,24 @@
+{
+  "experiment_id": "nested_P10_blend_v6",
+  "fold": 1,
+  "held_room": "BM223",
+  "training_rooms": [
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "weight_on_A": 0.0,
+  "relative_candidate": "depth8",
+  "asinh_candidate": "depth8",
+  "source_bundle": "models\\experiment_v5\\base__RandomForest__fold_01_BM223.joblib",
+  "source_bundle_sha256": "dccf0c2ed3a9c5e8dd82910e30d2a2bdd7010841b7d49173b173d4cba95c0036",
+  "feature_set": "B_add_solar_weather",
+  "target": "E_P10_lux",
+  "formula": "w*A_relative_P10 + (1-w)*C_direct_asinh_P10",
+  "selection_source": "six fitting rooms inner OOF only",
+  "deployment_ready": false,
+  "note": "Cross-validation fold recipe, not final all-seven-room model"
+}

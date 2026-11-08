@@ -1,0 +1,8 @@
+room,ratio_estimation_term_mean_abs_lux,mean_propagation_term_mean_abs_lux,ratio_term_bias_lux,mean_term_bias_lux,actual_mae_lux,note
+BM223,18.02020277109141,17.406455753532587,18.02020277109141,4.467085475673247,22.487288246764653,"Retrospective label-based attribution; terms can cancel, so their absolute magnitudes do not add to MAE."
+BM432,51.5898711679615,1.4982252008680872,-51.58975394501977,-1.4970655003149995,53.0869376128378,"Retrospective label-based attribution; terms can cancel, so their absolute magnitudes do not add to MAE."
+BM441,0.23348863090850802,0.16990229974622445,0.2334837647938992,-0.06785313948578085,0.16563598617619069,"Retrospective label-based attribution; terms can cancel, so their absolute magnitudes do not add to MAE."
+BM522,39.628658790155605,18.973011532393542,-38.8353032042334,17.011297032696223,25.92277302530809,"Retrospective label-based attribution; terms can cancel, so their absolute magnitudes do not add to MAE."
+BM608,0.07115370403658687,0.07829453933680272,-0.05001525420731622,0.018291823794341563,0.10654754737302248,"Retrospective label-based attribution; terms can cancel, so their absolute magnitudes do not add to MAE."
+LM608,0.3053948957806135,0.152695858092725,0.30048182884961416,-0.12270225014642332,0.18827822707624248,"Retrospective label-based attribution; terms can cancel, so their absolute magnitudes do not add to MAE."
+LM703,0.20805187501130104,0.048168214875775536,-0.20696288362330698,0.029206494655201882,0.18003403392164777,"Retrospective label-based attribution; terms can cancel, so their absolute magnitudes do not add to MAE."

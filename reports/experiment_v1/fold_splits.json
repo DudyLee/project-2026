@@ -1,0 +1,100 @@
+[
+  {
+    "fold": 1,
+    "training_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM223",
+    "training_rows": 105120,
+    "validation_rows": 17520
+  },
+  {
+    "fold": 2,
+    "training_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM432",
+    "training_rows": 105120,
+    "validation_rows": 17520
+  },
+  {
+    "fold": 3,
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM441",
+    "training_rows": 105120,
+    "validation_rows": 17520
+  },
+  {
+    "fold": 4,
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM522",
+    "training_rows": 105120,
+    "validation_rows": 17520
+  },
+  {
+    "fold": 5,
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM608",
+    "training_rows": 105120,
+    "validation_rows": 17520
+  },
+  {
+    "fold": 6,
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "validation_room": "LM608",
+    "training_rows": 105120,
+    "validation_rows": 17520
+  },
+  {
+    "fold": 7,
+    "training_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "validation_room": "LM703",
+    "training_rows": 105120,
+    "validation_rows": 17520
+  }
+]

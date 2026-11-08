@@ -1,0 +1,167 @@
+[1/70] HistGB_log1p BM223 E_P10_lux: MAE=51.3673
+[2/70] HistGB_log1p BM432 E_P10_lux: MAE=53.3838
+[3/70] HistGB_log1p BM441 E_P10_lux: MAE=0.116061
+[4/70] HistGB_log1p BM522 E_P10_lux: MAE=29.4704
+[5/70] HistGB_log1p BM608 E_P10_lux: MAE=0.109219
+[6/70] HistGB_log1p LM608 E_P10_lux: MAE=0.109955
+[7/70] HistGB_log1p LM703 E_P10_lux: MAE=0.19727
+[8/70] HistGB_log1p BM223 E_mean_lux: MAE=118.603
+[9/70] HistGB_log1p BM432 E_mean_lux: MAE=276.375
+[10/70] HistGB_log1p BM441 E_mean_lux: MAE=27.9375
+[11/70] HistGB_log1p BM522 E_mean_lux: MAE=149.983
+[12/70] HistGB_log1p BM608 E_mean_lux: MAE=17.6109
+[13/70] HistGB_log1p LM608 E_mean_lux: MAE=47.5963
+[14/70] HistGB_log1p LM703 E_mean_lux: MAE=33.3387
+[15/70] HistGB_absolute BM223 E_P10_lux: MAE=48.9564
+[16/70] HistGB_absolute BM432 E_P10_lux: MAE=53.1354
+[17/70] HistGB_absolute BM441 E_P10_lux: MAE=0.547084
+[18/70] HistGB_absolute BM522 E_P10_lux: MAE=24.593
+[19/70] HistGB_absolute BM608 E_P10_lux: MAE=0.11329
+[20/70] HistGB_absolute LM608 E_P10_lux: MAE=0.151007
+[21/70] HistGB_absolute LM703 E_P10_lux: MAE=0.195452
+[22/70] HistGB_absolute BM223 E_mean_lux: MAE=125.888
+[23/70] HistGB_absolute BM432 E_mean_lux: MAE=309.293
+[24/70] HistGB_absolute BM441 E_mean_lux: MAE=31.4108
+[25/70] HistGB_absolute BM522 E_mean_lux: MAE=181.261
+[26/70] HistGB_absolute BM608 E_mean_lux: MAE=16.7579
+[27/70] HistGB_absolute LM608 E_mean_lux: MAE=51.4789
+[28/70] HistGB_absolute LM703 E_mean_lux: MAE=46.3729
+[29/70] HistGB_add_floor_WFR BM223 E_P10_lux: MAE=53.5526
+[30/70] HistGB_add_floor_WFR BM432 E_P10_lux: MAE=53.173
+[31/70] HistGB_add_floor_WFR BM441 E_P10_lux: MAE=0.150794
+[32/70] HistGB_add_floor_WFR BM522 E_P10_lux: MAE=30.02
+[33/70] HistGB_add_floor_WFR BM608 E_P10_lux: MAE=0.15986
+[34/70] HistGB_add_floor_WFR LM608 E_P10_lux: MAE=0.222547
+[35/70] HistGB_add_floor_WFR LM703 E_P10_lux: MAE=0.18102
+[36/70] HistGB_add_floor_WFR BM223 E_mean_lux: MAE=100.553
+[37/70] HistGB_add_floor_WFR BM432 E_mean_lux: MAE=271.4
+[38/70] HistGB_add_floor_WFR BM441 E_mean_lux: MAE=37.7097
+[39/70] HistGB_add_floor_WFR BM522 E_mean_lux: MAE=244.904
+[40/70] HistGB_add_floor_WFR BM608 E_mean_lux: MAE=19.6073
+[41/70] HistGB_add_floor_WFR LM608 E_mean_lux: MAE=46.6991
+[42/70] HistGB_add_floor_WFR LM703 E_mean_lux: MAE=51.3673
+[43/70] HistGB_without_obstruction BM223 E_P10_lux: MAE=53.1845
+[44/70] HistGB_without_obstruction BM432 E_P10_lux: MAE=53.2515
+[45/70] HistGB_without_obstruction BM441 E_P10_lux: MAE=0.131493
+[46/70] HistGB_without_obstruction BM522 E_P10_lux: MAE=29.9826
+[47/70] HistGB_without_obstruction BM608 E_P10_lux: MAE=0.184021
+[48/70] HistGB_without_obstruction LM608 E_P10_lux: MAE=0.119136
+[49/70] HistGB_without_obstruction LM703 E_P10_lux: MAE=0.177027
+[50/70] HistGB_without_obstruction BM223 E_mean_lux: MAE=280.16
+[51/70] HistGB_without_obstruction BM432 E_mean_lux: MAE=274.002
+[52/70] HistGB_without_obstruction BM441 E_mean_lux: MAE=57.3852
+[53/70] HistGB_without_obstruction BM522 E_mean_lux: MAE=246.315
+[54/70] HistGB_without_obstruction BM608 E_mean_lux: MAE=17.6204
+[55/70] HistGB_without_obstruction LM608 E_mean_lux: MAE=42.4719
+[56/70] HistGB_without_obstruction LM703 E_mean_lux: MAE=47.7871
+[57/70] ExtraTrees_B BM223 E_P10_lux: MAE=18.7874
+[58/70] ExtraTrees_B BM432 E_P10_lux: MAE=25.7073
+[59/70] ExtraTrees_B BM441 E_P10_lux: MAE=1.25816
+[60/70] ExtraTrees_B BM522 E_P10_lux: MAE=33.5704
+[61/70] ExtraTrees_B BM608 E_P10_lux: MAE=6.77352
+[62/70] ExtraTrees_B LM608 E_P10_lux: MAE=12.919
+[63/70] ExtraTrees_B LM703 E_P10_lux: MAE=11.4414
+[64/70] ExtraTrees_B BM223 E_mean_lux: MAE=97.7518
+[65/70] ExtraTrees_B BM432 E_mean_lux: MAE=250.071
+[66/70] ExtraTrees_B BM441 E_mean_lux: MAE=110.067
+[67/70] ExtraTrees_B BM522 E_mean_lux: MAE=135.341
+[68/70] ExtraTrees_B BM608 E_mean_lux: MAE=29.439
+[69/70] ExtraTrees_B LM608 E_mean_lux: MAE=78.9214
+[70/70] ExtraTrees_B LM703 E_mean_lux: MAE=55.21
+                   variant     target   mae_mean  rmse_mean    r2_median        r2_min  rooms  mae_reduction_pct
+              ExtraTrees_B  E_P10_lux  15.779590  22.746755 -1114.584915 -26213.317122      7          19.700815
+              ExtraTrees_B E_mean_lux 108.114448 190.605164    -1.162525     -4.007036      7           1.256098
+           HistGB_absolute  E_P10_lux  18.241666  25.502015    -0.863553 -10788.016155      7           7.171801
+           HistGB_absolute E_mean_lux 108.923323 183.804994     0.095343     -8.476662      7           0.517330
+      HistGB_add_floor_WFR  E_P10_lux  19.637119  28.485738    -0.859453 -15362.317975      7           0.070619
+      HistGB_add_floor_WFR E_mean_lux 110.320037 201.359005     0.102562    -18.114683      7          -0.758327
+              HistGB_log1p  E_P10_lux  19.250562  27.539843    -0.871836 -13493.522406      7           2.037732
+              HistGB_log1p E_mean_lux  95.920564 168.184326    -0.007965     -4.193113      7          12.393108
+HistGB_without_obstruction  E_P10_lux  19.575767  28.528765    -0.864907 -15544.232297      7           0.382829
+HistGB_without_obstruction E_mean_lux 137.963002 240.119183    -0.421441    -18.171560      7         -26.005408
+         Original_HistGB_B  E_P10_lux  19.650997  28.505065    -0.865092 -15386.050292      7           0.000000
+         Original_HistGB_B E_mean_lux 109.489746 200.646631     0.092591    -18.098730      7           0.000000
+{
+  "training_error": [
+    {
+      "room": "BM223",
+      "target": "E_P10_lux",
+      "training_mae": 1.0733143085847447,
+      "validation_mae": 53.5923211968604,
+      "true_mean": 0.6157180890153271,
+      "predicted_mean": 54.20803928587573,
+      "true_std_population": 0.6159630839995044,
+      "bias": 53.5923211968604,
+      "overestimate_fraction": 1.0,
+      "zero_prediction_mae": 0.6157180890153271,
+      "r2": -15386.050291638117
+    },
+    {
+      "room": "BM522",
+      "target": "E_mean_lux",
+      "training_mae": 15.70862749887964,
+      "validation_mae": 246.26468097680134,
+      "true_mean": 152.81054827683147,
+      "predicted_mean": 389.71759585244826,
+      "true_std_population": 104.83360503738115,
+      "bias": 236.90704757561676,
+      "overestimate_fraction": 0.853824200913242,
+      "zero_prediction_mae": 152.81054827683147,
+      "r2": -18.098730088614257
+    }
+  ],
+  "known_room": [
+    {
+      "room": "BM223",
+      "target": "E_P10_lux",
+      "training_months": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "validation_months": [
+        3,
+        6,
+        9,
+        12
+      ],
+      "n_train": 11664,
+      "n_validation": 5856,
+      "known_room_mae": 0.041633624402305384,
+      "unseen_room_baseline_mae_same_times": 53.26408359667726,
+      "known_room_r2": 0.9824121720981093,
+      "scope": "Temporal prediction for a room with calibration data; not a new-room validation score"
+    },
+    {
+      "room": "BM522",
+      "target": "E_mean_lux",
+      "training_months": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "validation_months": [
+        3,
+        6,
+        9,
+        12
+      ],
+      "n_train": 11664,
+      "n_validation": 5856,
+      "known_room_mae": 8.526073488585185,
+      "unseen_room_baseline_mae_same_times": 257.3534140683476,
+      "known_room_r2": 0.9853643727712815,
+      "scope": "Temporal prediction for a room with calibration data; not a new-room validation score"
+    }
+  ]
+}

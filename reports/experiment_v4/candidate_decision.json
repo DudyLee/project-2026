@@ -1,0 +1,11 @@
+{
+  "status": "development_only_no_deployment",
+  "absolute_plus_threshold": "Keep as a limited candidate; all positive gain from one of seven rooms, median gain zero, FUDI cost in BM441",
+  "current_delta_model": "Do not promote this fitted formulation/parameter setting; unguarded large LM703 loss, guarded policy identical to fixed 0",
+  "interpretation": "绝对PV＋门槛平均每房间净增益0.471 kWh，总能量增益率0.191%，中位数为0；全部收益来自BM441，其余6房间持平。Δ模型无门槛平均净增益-10.318 kWh，最差LM703为-75.137 kWh；带门槛版本7折都选择保持0°。因此本轮支持用内层校准减少错误切换，但没有证明Δ目标本身改善泛化，也没有建立稳定的动态综合控制优势。",
+  "TEST_used": false,
+  "new_simulations": 0,
+  "final_seven_room_refit": false,
+  "further_experiments": "Require user confirmation after reviewing this completed round",
+  "scope": "Exploratory PV-only development pilot on seven previously examined rooms and retained Hour=7..18. No comfort optimization, new simulation, physical incidence feature, final TEST score or final seven-room deployment refit. Margins are empirical controls, not confidence bounds or actuator costs."
+}

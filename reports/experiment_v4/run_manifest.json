@@ -1,0 +1,139 @@
+{
+  "experiment_id": "PV_increment_threshold_v4",
+  "status": "completed",
+  "started_utc": "2026-11-07T03:56:20.272045+00:00",
+  "pid": 50872,
+  "config": {
+    "experiment_id": "PV_increment_threshold_v4",
+    "authorization": "User approved the saved decision_v4_draft.json plan in the current turn; execution date 2026-11-07",
+    "source_proposal": "configs/proposals/decision_v4_draft.json",
+    "source": "data/raw/SEND_ML_BIM_EPW_07-18.csv",
+    "output": "reports/experiment_v4",
+    "model_output": "models/experiment_v4",
+    "feature_set": "B_add_solar_weather",
+    "thread_limit": 4,
+    "random_state": 2026,
+    "expected_new_fits": 49,
+    "outer_frozen_XGBoost_candidates": {
+      "BM223": "depth3",
+      "BM432": "depth3",
+      "BM441": "depth3",
+      "BM522": "depth3",
+      "BM608": "depth5",
+      "LM608": "depth3",
+      "LM703": "depth3"
+    },
+    "parameters_source": "configs/experiment_v3.json and reports/experiment_v3/selections.csv; the current outer room was excluded from those choices",
+    "target": "PV_AC_kWh",
+    "delta_target": "PV(angle)-PV(0), paired within the same fitting room and HOY; fit angles 30,60,90 only; anchor delta(0)=0",
+    "delta_prediction": "Predict signed deltas from X at nonzero angles; do not clip negative deltas; true PV(0) is never an inference input",
+    "absolute_prediction": "Retain v3 nonnegative clipping; compute predicted gain as predicted PV(angle)-predicted PV(0)",
+    "thresholds": [
+      {
+        "label": "0Wh",
+        "kWh": 0.0
+      },
+      {
+        "label": "1Wh",
+        "kWh": 0.001
+      },
+      {
+        "label": "2Wh",
+        "kWh": 0.002
+      },
+      {
+        "label": "5Wh",
+        "kWh": 0.005
+      },
+      {
+        "label": "always_zero",
+        "kWh": null
+      }
+    ],
+    "selection": "Largest mean inner-validation room net retained-hours PV gain over fixed 0; ties within 1e-12 kWh choose the larger threshold in declared order",
+    "decision": "Enumerate four angles; choose lower angle on exact predicted-gain ties; switch only if maximum predicted gain strictly exceeds the selected threshold, else use 0",
+    "validation": "Same seven outer leave-one-room-out and inner three GroupKFold splits as v3. Each inner fit uses four rooms and holds out two. No reuse of the seven-room outer OOF predictions for threshold calibration.",
+    "models_saved": "21 inner absolute models, 21 inner delta models, 7 outer delta models. Reuse the frozen v3 outer absolute XGBoost predictions and verify their source bundles.",
+    "methods": [
+      "Fixed_0",
+      "Frozen_HistGB",
+      "Absolute_XGBoost",
+      "Absolute_XGBoost_guarded",
+      "Delta_XGBoost",
+      "Delta_XGBoost_guarded",
+      "Oracle"
+    ],
+    "primary_metrics": [
+      "Room-level net retained-hours PV gain kWh over fixed 0",
+      "Mean/median/minimum room gain and improved/tied/worse counts",
+      "Retained-hours regret relative to four-angle simulation Oracle"
+    ],
+    "secondary_metrics": [
+      "Beneficial/harmful/neutral switching",
+      "Opportunity recall using pre-existing 0.0001 kWh v3 tolerance",
+      "Angle-difference MAE on nonzero angles",
+      "Absolute PV MAE only where an absolute PV forecast exists",
+      "Selected-angle F300 and FUDI changes in percentage points",
+      "Within-day adjacent-hour switching only"
+    ],
+    "protected_test_rooms": [
+      "BM532",
+      "BM702",
+      "BMG26"
+    ],
+    "scope": "Exploratory PV-only development pilot on seven previously examined rooms and retained Hour=7..18. No comfort optimization, new simulation, physical incidence feature, final TEST score or final seven-room deployment refit. Margins are empirical controls, not confidence bounds or actuator costs."
+  },
+  "input_hashes": {
+    "data\\raw\\SEND_ML_BIM_EPW_07-18.csv": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8",
+    "configs\\experiment_v4.json": "891b71979d6202f76176acba8e143086d7bfd42a0f41b3279d38eac078618cca",
+    "configs\\proposals\\decision_v4_draft.json": "16e23f23ec16960e08389a3fd2b7b33dc204ab5f7628735f466de7769d760ce8",
+    "configs\\experiment_v3.json": "95ca7434917b780f38a57ea763292b3f0ecd5b503047fac6532ca9761c9e19fc",
+    "reports\\experiment_v3\\selections.csv": "ecf05cf4e1ae468f8d729db2b171abab7e5c95a2e2336b612f2c1e340302a2da",
+    "reports\\experiment_v3\\fold_splits.json": "1df126635b2bbaf5dff6f60f480865c08f10be9a8418be9757ef2e1fc7239dcb",
+    "reports\\experiment_v3\\predictions\\Frozen_HistGB.parquet": "c6f53156bdb022d9a820397411d2aa7f199fe656d9d668000d256bb2ed934b0c",
+    "reports\\experiment_v3\\predictions\\XGBoost.parquet": "448bda58844ae173f82a7f44ae285e633fad1e651a7a8e22c6d0287ddbd746fe",
+    "models\\experiment_v3\\XGBoost\\fold_01_BM223.joblib": "246f55c08ccde04a4a1711552ae641c256a943400926fa7f2772becc70e2f9ae",
+    "models\\experiment_v3\\XGBoost\\fold_02_BM432.joblib": "f93afa2275e39629bc9e6faa688cb0502d50487519419a51543c4b193bd99486",
+    "models\\experiment_v3\\XGBoost\\fold_03_BM441.joblib": "c950b0c830acf8a2172e8cfccf453d37e465e301730c735b317eb19ceb4b9900",
+    "models\\experiment_v3\\XGBoost\\fold_04_BM522.joblib": "fff1f2e09d645c6c6dfe90a7ad012239b559122632f18616f5ad2123bcc64732",
+    "models\\experiment_v3\\XGBoost\\fold_05_BM608.joblib": "ae2692cfdad10e88aebf2ce2e0e68a0f7aa48c3ac82ca0e727bc30d4875fae0f",
+    "models\\experiment_v3\\XGBoost\\fold_06_LM608.joblib": "a3c6b6a8bae4fd797d3b2b8eb5e9f16d3832be93c5c77c427e1fc5da732c1ae0",
+    "models\\experiment_v3\\XGBoost\\fold_07_LM703.joblib": "949105787e9c5803f71c2dfceab58e11b0b5b9805bd479bebef00b183e1aa2b1"
+  },
+  "script_sha256": "609a1e586990a55577efa1efb151588a1d4a9f671d93b79bb975d543d5d0a872",
+  "python_executable": "C:\\NewDisk\\UST\\Year 2\\5220\\Project_2026\\.conda\\envs\\pvsd-ml-v1\\python.exe",
+  "conda_prefix": "C:\\NewDisk\\UST\\Year 2\\5220\\Project_2026\\.conda\\envs\\pvsd-ml-v1",
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.7.2",
+    "xgboost": "3.1.3",
+    "joblib": "1.6.0",
+    "pyarrow": "25.0.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "train_rows": 122640,
+  "train_rooms": [
+    "BM223",
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "TEST_rows_discarded_before_numeric_conversion": 52560,
+  "TEST_predictions": 0,
+  "TEST_scores": 0,
+  "scope": "Exploratory PV-only development pilot on seven previously examined rooms and retained Hour=7..18. No comfort optimization, new simulation, physical incidence feature, final TEST score or final seven-room deployment refit. Margins are empirical controls, not confidence bounds or actuator costs.",
+  "parameter_history": "Per-outer v3 parameters were selected inside the same six fitting rooms; thresholds reuse that development set. No outer held-room labels enter either selection. This is not an independent calibration sample.",
+  "finished_utc": "2026-11-07T03:56:31.845894+00:00",
+  "fits": {
+    "inner_absolute": 21,
+    "inner_delta": 21,
+    "outer_delta": 7
+  },
+  "elapsed_seconds": 13.941997899994021,
+  "models_saved": 49,
+  "raw_and_frozen_inputs_unchanged": true
+}

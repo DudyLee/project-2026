@@ -1,0 +1,16 @@
+{
+  "status": "development_only",
+  "rule": {
+    "comparison": "B/C/D against A within the same family and target, using paired room errors",
+    "minimum_macro_MAE_reduction_fraction": 0.1,
+    "minimum_rooms_nonworse": 5,
+    "maximum_worst_room_MAE_increase_lux": 0.0,
+    "numerical_tolerance_lux": 1e-09,
+    "meaning": "Development screening per target, not an engineering acceptance threshold or independent final-test claim"
+  },
+  "passing_candidates": [],
+  "deployed": false,
+  "final_refit": false,
+  "test_unsealed": false,
+  "automatic_replacement_of_previous_models": false
+}

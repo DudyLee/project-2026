@@ -1,0 +1,12 @@
+﻿field,unit,definition,required_source,available_at_new_room_inference
+Room_Depth_PrimaryFacade_m,m,主要外窗立面法线方向的房间地板几何投影跨度；多采光面房间另记主立面选取规则,房间边界＋窗所在立面,是，几何可取得时
+Room_Width_PrimaryFacade_m,m,主要外窗立面平行方向的房间地板几何投影跨度,房间边界＋窗所在立面,是
+Ceiling_Height_m,m,房间净高；非均匀净高需另附几何而非猜测单值,房间几何,是
+Workplane_Height_m,m,原照度传感器相对房间地板的实际高度,原网格/模拟参数,需统一预测网格定义
+Window_Head_AboveWorkplane_m,m,窗顶相对实际工作面的高度；多窗逐窗填写或注明汇总规则,窗几何＋网格高度,是，规则一致时
+Window_Sill_Height_m,m,窗台相对房间地板的高度；多窗保留逐窗数据,窗几何,是
+Glazing_Visible_Transmittance,fraction,可见光透射率；注明与原Radiance材质参数的对应方式，不直接假定相等,材料原始定义,需已有材料参数
+Grid_Size_m,m,原传感器网格尺寸；非均匀网格须提供坐标与权重,原GH/HB网格参数,网格质量核对项
+Grid_Wall_Offset_m,m,原网格近墙点剔除距离,原GH/HB网格参数,网格质量核对项
+Grid_Outside_Points_Removed,boolean,是否剔除房间之外的传感器点，保留原设置,原GH/HB网格参数,网格质量核对项
+Internal_Obstruction_Description,text,原模拟纳入的内部隔墙、家具或其他遮挡，不把未建模物体视为已纳入,原模拟几何,先用于模型范围核对

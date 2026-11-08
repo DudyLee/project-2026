@@ -1,0 +1,7 @@
+# Evidence manifests bind exact bytes. Preserve line endings across platforms,
+# including on Windows machines configured with core.autocrlf=true.
+* -text
+*.joblib binary
+*.parquet binary
+*.png binary
+*.zip binary

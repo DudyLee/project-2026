@@ -1,0 +1,58 @@
+[
+  {
+    "fold": 1,
+    "room": "BM223",
+    "path": "models/experiment_v7/fold_01_BM223.joblib",
+    "sha256": "34423bdb06ddb33f57f70ea02bfe6309da29eb557af3eafc87c2bd6b54e39690",
+    "candidate_models": 8,
+    "estimators": 9
+  },
+  {
+    "fold": 2,
+    "room": "BM432",
+    "path": "models/experiment_v7/fold_02_BM432.joblib",
+    "sha256": "03bd4d82a67b4b28a7b7716a4b6b63c34c19f1d03b174a3df624a94625fa0420",
+    "candidate_models": 11,
+    "estimators": 13
+  },
+  {
+    "fold": 3,
+    "room": "BM441",
+    "path": "models/experiment_v7/fold_03_BM441.joblib",
+    "sha256": "6499ba2d031a0af2b6e8fb575bd6dde714cf67ab0239186d24d7bedb077df4fc",
+    "candidate_models": 9,
+    "estimators": 11
+  },
+  {
+    "fold": 4,
+    "room": "BM522",
+    "path": "models/experiment_v7/fold_04_BM522.joblib",
+    "sha256": "9d6d349dfc3d431c301f645d42a2dcf31bc91e27bc0a95fd6d05646b7397750e",
+    "candidate_models": 9,
+    "estimators": 10
+  },
+  {
+    "fold": 5,
+    "room": "BM608",
+    "path": "models/experiment_v7/fold_05_BM608.joblib",
+    "sha256": "3c757a50a62726735dc21dd3bedb5ae95cdb4021c23b69667b61f9ba40a0f1ec",
+    "candidate_models": 12,
+    "estimators": 13
+  },
+  {
+    "fold": 6,
+    "room": "LM608",
+    "path": "models/experiment_v7/fold_06_LM608.joblib",
+    "sha256": "fc8707e1b98a1b6b623eb3bb0336750e5ca72ce141489b2868f8fdbbe6419863",
+    "candidate_models": 12,
+    "estimators": 14
+  },
+  {
+    "fold": 7,
+    "room": "LM703",
+    "path": "models/experiment_v7/fold_07_LM703.joblib",
+    "sha256": "188b74c4ae35ffb15347d78f60dcba31472059fcb2b4930babaf0e35c7de4955",
+    "candidate_models": 10,
+    "estimators": 11
+  }
+]
