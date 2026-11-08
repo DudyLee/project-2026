@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "verification_status": "VERIFIED",
+  "completed_utc": "2026-11-08T06:56:12.113284+00:00",
+  "model_and_input_hashes_unchanged": true,
+  "predictions_frozen_before_target_load": true,
+  "rows": 52560,
+  "model_values": 262800,
+  "independently_recomputed_metric_rows": 280,
+  "max_prediction_reload_difference": {
+    "E_mean_lux": 0.0,
+    "E_P10_lux": 3.694822225952521e-13,
+    "F_300_fraction": 0.0,
+    "F_UDI_fraction": 0.0,
+    "PV_AC_kWh": 0.0
+  },
+  "new_estimator_fits": 0,
+  "note": "Reload reproduction of the same frozen predictions and independent score-formula checks; not another model selection or new evaluation claim."
+}

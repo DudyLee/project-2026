@@ -1,6 +1,6 @@
 {
   "updated_local_date": "2026-11-08",
-  "status": "development_evidence_with_verified_research_trial_not_independently_tested",
+  "status": "fixed_trial_evaluated_on_three_previously_reserved_rooms_uneven_performance",
   "evaluation": "Seven development rooms; outer leave-one-room-out. Repeated development use is not final independent testing.",
   "protected_test_rooms": [
     "BM532",
@@ -375,7 +375,100 @@
     "report": "reports/trial_v0_1/summary.md",
     "verification": "reports/trial_v0_1/verification.json",
     "full_seven_refit": true,
-    "TEST_evaluated": false,
-    "historical_score_warning": "Existing comparison-reference metrics are not final independent scores of this full-seven package."
+    "TEST_evaluated": true,
+    "historical_score_warning": "Existing comparison-reference metrics are not final independent scores of this full-seven package.",
+    "holdout_report": "reports/holdout_trial_v0_1/summary.md"
+  },
+  "holdout_evaluation": {
+    "evaluation_id": "holdout_trial_v0_1",
+    "status": "completed_verified",
+    "model_version": "0.1.0",
+    "model_sha256": "f090341652ecc1844a112dc3231bd8a62e34ecf2d0f2f7a6643047bc0d0b0332",
+    "test_rooms": [
+      "BM532",
+      "BM702",
+      "BMG26"
+    ],
+    "TEST_prediction_rows": 52560,
+    "TEST_scored_rows": 52560,
+    "estimator_fits": 0,
+    "still_excluded_from_training": true,
+    "untouched_for_future_result_informed_models": false,
+    "report": "reports/holdout_trial_v0_1/summary.md",
+    "verification": "reports/holdout_trial_v0_1/verification.json",
+    "conclusion": "Uneven cross-room performance; BM702 worst for all outputs. No broad new-room reliability or engineering acceptance claim.",
+    "summary_metrics": [
+      {
+        "method": "Frozen_trial_v0_1",
+        "target": "E_mean_lux",
+        "room_count": 3,
+        "macro_MAE": 111.07226320979542,
+        "worst_MAE": 236.97401572355503,
+        "macro_RMSE": 190.97996945128406,
+        "median_R2": 0.3236318017073424,
+        "min_R2": -0.35538386103831665,
+        "macro_bias": 10.129419079627441,
+        "macro_within_tolerance": 0.619044901065449,
+        "min_within_tolerance": 0.34600456621004566,
+        "worst_MAE_room": "BM702"
+      },
+      {
+        "method": "Frozen_trial_v0_1",
+        "target": "E_P10_lux",
+        "room_count": 3,
+        "macro_MAE": 18.67765279067122,
+        "worst_MAE": 43.25292413943903,
+        "macro_RMSE": 32.26765310730094,
+        "median_R2": 0.3321759734084858,
+        "min_R2": -0.2055510228751256,
+        "macro_bias": -17.83311910568806,
+        "macro_within_tolerance": 0.5617579908675799,
+        "min_within_tolerance": 0.18099315068493152,
+        "worst_MAE_room": "BM702"
+      },
+      {
+        "method": "Frozen_trial_v0_1",
+        "target": "F_300_fraction",
+        "room_count": 3,
+        "macro_MAE": 0.06533915231590748,
+        "worst_MAE": 0.15433158370675404,
+        "macro_RMSE": 0.10014982106430846,
+        "median_R2": 0.3343945954275994,
+        "min_R2": 0.0760197141941148,
+        "macro_bias": 0.0022274701448389608,
+        "macro_within_tolerance": 0.69558599695586,
+        "min_within_tolerance": 0.3607876712328767,
+        "worst_MAE_room": "BM702"
+      },
+      {
+        "method": "Frozen_trial_v0_1",
+        "target": "F_UDI_fraction",
+        "room_count": 3,
+        "macro_MAE": 0.12025621260487242,
+        "worst_MAE": 0.2703970516981387,
+        "macro_RMSE": 0.16793656258938428,
+        "median_R2": 0.2947949627658746,
+        "min_R2": -0.2839191474789393,
+        "macro_bias": -0.08830176845141906,
+        "macro_within_tolerance": 0.5245433789954338,
+        "min_within_tolerance": 0.2839041095890411,
+        "worst_MAE_room": "BM702"
+      },
+      {
+        "method": "Frozen_trial_v0_1",
+        "target": "PV_AC_kWh",
+        "room_count": 3,
+        "macro_MAE": 0.007674366741866297,
+        "worst_MAE": 0.014343360563488243,
+        "macro_RMSE": 0.011847309206705086,
+        "median_R2": 0.8633743812125677,
+        "min_R2": 0.5968142490034932,
+        "macro_bias": -0.0014646700452188943,
+        "macro_within_tolerance": 0.7721651445966514,
+        "min_within_tolerance": 0.5853881278538813,
+        "worst_MAE_room": "BM702"
+      }
+    ],
+    "prior_feature_only_audit_disclosed": true
   }
 }

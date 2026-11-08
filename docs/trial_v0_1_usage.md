@@ -114,3 +114,8 @@ conda run --prefix .\.conda\envs\pvsd-ml-v1 python -m pip install -r .\configs\t
 这份精确版本清单用于推断；整个科研项目环境仍见environment.yml和既有精确环境记录。接口启动会核对主要依赖版本及模型文件SHA-256。只加载本项目可信模型：joblib使用pickle，不能加载未知来源的模型文件。若更换模型或参数，应创建新版本目录，勿覆盖本版。
 
 如需重新训练以复现，使用 `scripts/train_trial_v0_1.py`；已有本版输出时脚本会拒绝覆盖。复现应在独立项目副本或新版本目录进行。不要为了运行预测而重新训练。
+
+
+## 后续评价记录（2026-11-08）
+
+用户已授权并完成固定0.1模型的首次三房间留出评分，见[数值结果](../reports/holdout_trial_v0_1/summary.md)。本文前述封存/未独立测试是接口创建时状态。原模型和接口源码保持不变，旧Usage_Status文字及封存ID拦截属于固定版本元数据；当前科学评价状态以[holdout_status.json](holdout_status.json)为准。测试由专用授权脚本完成，未通过修改Room_ID绕开标识，也未重训模型。

@@ -1,0 +1,26 @@
+{
+  "evaluation_id": "holdout_trial_v0_1",
+  "status": "completed_verified",
+  "started_utc": "2026-11-08T06:55:49.688810+00:00",
+  "pid": 98256,
+  "pretest_freeze_sha256": "09197c750da416d53bffa2fa1327232cb443227bddfe7ebeb6aadae7bb5468ab",
+  "test_rooms": [
+    "BM532",
+    "BM702",
+    "BMG26"
+  ],
+  "model_sha256": "f090341652ecc1844a112dc3231bd8a62e34ecf2d0f2f7a6643047bc0d0b0332",
+  "estimator_fits": 0,
+  "TEST_used_for_training_or_tuning": false,
+  "new_simulations": 0,
+  "new_visualizations": 0,
+  "completed_utc": "2026-11-08T06:55:52.991558+00:00",
+  "elapsed_seconds": 3.3017379000084475,
+  "TEST_prediction_rows": 52560,
+  "TEST_scored_rows": 52560,
+  "TEST_model_target_values": 262800,
+  "TEST_baseline_target_values": 262800,
+  "prediction_freeze_sha256": "9dc04c78eb8d9f4106afbb83d57e242d7c5e0130ebc7cbffb75f97e7bf7db2a8",
+  "holdout_state": "observed_for_frozen_trial_0.1.0; no longer untouched for future result-informed changes",
+  "verification": "reports/holdout_trial_v0_1/verification.json"
+}

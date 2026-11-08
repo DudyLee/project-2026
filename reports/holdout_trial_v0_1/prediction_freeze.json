@@ -1,0 +1,28 @@
+{
+  "frozen_utc": "2026-11-08T06:55:51.742702+00:00",
+  "rows": 52560,
+  "model_target_values": 262800,
+  "predictions_sha256": "b7fc4cf8ea7cdc513dc39394421668f4255ac1a81f7e580fb1d6dca5f3276856",
+  "pretest_freeze_sha256": "09197c750da416d53bffa2fa1327232cb443227bddfe7ebeb6aadae7bb5468ab",
+  "model_sha256": "f090341652ecc1844a112dc3231bd8a62e34ecf2d0f2f7a6643047bc0d0b0332",
+  "TEST_numeric_targets_loaded": false,
+  "columns": [
+    "Room_ID",
+    "Month",
+    "Day",
+    "DOY_1based",
+    "Hour",
+    "HOY_0based",
+    "PVSD_Angle_deg",
+    "pred__E_mean_lux",
+    "baseline__E_mean_lux",
+    "pred__E_P10_lux",
+    "baseline__E_P10_lux",
+    "pred__F_300_fraction",
+    "baseline__F_300_fraction",
+    "pred__F_UDI_fraction",
+    "baseline__F_UDI_fraction",
+    "pred__PV_AC_kWh",
+    "baseline__PV_AC_kWh"
+  ]
+}

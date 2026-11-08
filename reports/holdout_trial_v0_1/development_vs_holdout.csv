@@ -1,0 +1,6 @@
+target,development_macro_MAE,development_worst_MAE,test_macro_MAE,test_worst_MAE,note
+E_mean_lux,82.43315663979065,231.64228101918548,111.07226320979542,236.97401572355503,"Different room sets and training sizes; descriptive comparison, not improvement attribution"
+E_P10_lux,9.397582995271192,29.275425754537196,18.67765279067122,43.25292413943903,"Different room sets and training sizes; descriptive comparison, not improvement attribution"
+F_300_fraction,0.0711796929227176,0.15685774064531216,0.06533915231590748,0.15433158370675404,"Different room sets and training sizes; descriptive comparison, not improvement attribution"
+F_UDI_fraction,0.11035937187412674,0.25471013973949974,0.12025621260487242,0.2703970516981387,"Different room sets and training sizes; descriptive comparison, not improvement attribution"
+PV_AC_kWh,0.012613340541612002,0.023809344804337742,0.007674366741866297,0.014343360563488243,"Different room sets and training sizes; descriptive comparison, not improvement attribution"
