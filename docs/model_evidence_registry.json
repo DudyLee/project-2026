@@ -1,6 +1,6 @@
 {
   "updated_local_date": "2026-11-08",
-  "status": "v8_verified_no_candidate_passes_all_gates_trial_0_1_retained",
+  "status": "v9_verified_trial_0_1_unchanged",
   "evaluation": "Seven development rooms; outer leave-one-room-out. Repeated development use is not final independent testing.",
   "protected_test_rooms": [
     "BM532",
@@ -896,5 +896,177 @@
     "TEST_use_in_this_run": false,
     "independent_final_test": false,
     "deployed_trial_unchanged": true
+  },
+  "v9_mean_exposure": {
+    "report": "reports/experiment_v9/summary.md",
+    "verification": "reports/experiment_v9/verification.json",
+    "summary": [
+      {
+        "protocol": "LeaveOneRoomOut",
+        "method": "T0",
+        "macro_MAE": 82.43315663979065,
+        "worst_MAE": 231.64228101918548,
+        "worst_room": "BM432",
+        "BM432_MAE": 231.64228101918548,
+        "macro_RMSE": 148.0800200129038,
+        "macro_bias": -21.84981171886908,
+        "macro_within_50_lux": 0.6808626875407697,
+        "macro_room_P90_error": 248.04219337191617,
+        "min_R2": -1.6225076171432558
+      },
+      {
+        "protocol": "LeaveOneRoomOut",
+        "method": "T1",
+        "macro_MAE": 70.27445494138962,
+        "worst_MAE": 223.45683327347146,
+        "worst_room": "BM432",
+        "BM432_MAE": 223.45683327347146,
+        "macro_RMSE": 127.06524316816395,
+        "macro_bias": -26.65337434571856,
+        "macro_within_50_lux": 0.7134866275277235,
+        "macro_room_P90_error": 193.8108113058913,
+        "min_R2": 0.07144412876597561
+      },
+      {
+        "protocol": "LeaveOneRoomOut",
+        "method": "S1",
+        "macro_MAE": 64.37990664177401,
+        "worst_MAE": 222.83210810085117,
+        "worst_room": "BM432",
+        "BM432_MAE": 222.83210810085117,
+        "macro_RMSE": 117.25212186183093,
+        "macro_bias": -39.67679719559726,
+        "macro_within_50_lux": 0.7606409001956946,
+        "macro_room_P90_error": 187.58601687344716,
+        "min_R2": -0.04817309413932902
+      },
+      {
+        "protocol": "LeaveOneRoomOut",
+        "method": "A",
+        "macro_MAE": 84.66112280814919,
+        "worst_MAE": 230.8257083545592,
+        "worst_room": "BM432",
+        "BM432_MAE": 230.8257083545592,
+        "macro_RMSE": 146.47186081630278,
+        "macro_bias": 0.9855823774400488,
+        "macro_within_50_lux": 0.6513046314416178,
+        "macro_room_P90_error": 246.05959998847854,
+        "min_R2": -0.20694894915710904
+      },
+      {
+        "protocol": "LeaveOneRoomOut",
+        "method": "B",
+        "macro_MAE": 83.0369442272788,
+        "worst_MAE": 234.72295609209243,
+        "worst_room": "BM432",
+        "BM432_MAE": 234.72295609209243,
+        "macro_RMSE": 150.7541574926287,
+        "macro_bias": -12.744007643467958,
+        "macro_within_50_lux": 0.6610567514677104,
+        "macro_room_P90_error": 255.06088333867154,
+        "min_R2": -0.8533754432017235
+      },
+      {
+        "protocol": "LeaveOneRoomOut",
+        "method": "C",
+        "macro_MAE": 64.93508831096547,
+        "worst_MAE": 171.20336011562188,
+        "worst_room": "BM432",
+        "BM432_MAE": 171.20336011562188,
+        "macro_RMSE": 123.91912437711643,
+        "macro_bias": -17.208492199905294,
+        "macro_within_50_lux": 0.725,
+        "macro_room_P90_error": 189.96521668405265,
+        "min_R2": -0.27127735107582995
+      },
+      {
+        "protocol": "LeaveOneOrientationOut",
+        "method": "T0",
+        "macro_MAE": 110.60896550307373,
+        "worst_MAE": 252.25461633763717,
+        "worst_room": "BM432",
+        "BM432_MAE": 252.25461633763717,
+        "macro_RMSE": 210.0045543645563,
+        "macro_bias": -4.5555964464316805,
+        "macro_within_50_lux": 0.6591079582517939,
+        "macro_room_P90_error": 367.2792448932124,
+        "min_R2": -15.42266215470406
+      },
+      {
+        "protocol": "LeaveOneOrientationOut",
+        "method": "T1",
+        "macro_MAE": 84.03378070403242,
+        "worst_MAE": 224.6740604038891,
+        "worst_room": "BM432",
+        "BM432_MAE": 224.6740604038891,
+        "macro_RMSE": 162.46167464974138,
+        "macro_bias": -22.06782541625405,
+        "macro_within_50_lux": 0.6906800391389434,
+        "macro_room_P90_error": 273.4458415044238,
+        "min_R2": -3.03361415203387
+      },
+      {
+        "protocol": "LeaveOneOrientationOut",
+        "method": "S1",
+        "macro_MAE": 91.48540695321233,
+        "worst_MAE": 198.61638939688305,
+        "worst_room": "BM432",
+        "BM432_MAE": 198.61638939688305,
+        "macro_RMSE": 156.2159031386072,
+        "macro_bias": 9.213659824129964,
+        "macro_within_50_lux": 0.6066780821917809,
+        "macro_room_P90_error": 255.98968525102262,
+        "min_R2": -4.026801692041779
+      },
+      {
+        "protocol": "LeaveOneOrientationOut",
+        "method": "A",
+        "macro_MAE": 90.53938024362382,
+        "worst_MAE": 232.9730502971372,
+        "worst_room": "BM432",
+        "BM432_MAE": 232.9730502971372,
+        "macro_RMSE": 162.331319544683,
+        "macro_bias": -13.703342158548386,
+        "macro_within_50_lux": 0.6555772994129158,
+        "macro_room_P90_error": 275.5701455871186,
+        "min_R2": -2.623296549670525
+      },
+      {
+        "protocol": "LeaveOneOrientationOut",
+        "method": "B",
+        "macro_MAE": 82.5820889128956,
+        "worst_MAE": 239.44582197781446,
+        "worst_room": "BM432",
+        "BM432_MAE": 239.44582197781446,
+        "macro_RMSE": 147.9296695605737,
+        "macro_bias": -27.989940177710462,
+        "macro_within_50_lux": 0.6426696020874102,
+        "macro_room_P90_error": 239.20314994659225,
+        "min_R2": -0.4543058941545022
+      },
+      {
+        "protocol": "LeaveOneOrientationOut",
+        "method": "C",
+        "macro_MAE": 83.36925410651129,
+        "worst_MAE": 247.4532870314489,
+        "worst_room": "BM432",
+        "BM432_MAE": 247.4532870314489,
+        "macro_RMSE": 136.02146602582795,
+        "macro_bias": -8.935191344833664,
+        "macro_within_50_lux": 0.6115949119373777,
+        "macro_room_P90_error": 192.9822367441396,
+        "min_R2": -0.011557921983631259
+      }
+    ],
+    "metric_source_sha256": "a377cdd7f7f212f422cb2cf0c54ff13b23b8c22c0060e6de5fad5034b17dd91b",
+    "decision": {
+      "selected_candidate": null,
+      "passing_candidates": [],
+      "deployed_model_changed": false,
+      "full_seven_refit": false,
+      "scope": "Repeated development validation, not independent final testing."
+    },
+    "TEST_use": false,
+    "independent_final_test": false
   }
 }

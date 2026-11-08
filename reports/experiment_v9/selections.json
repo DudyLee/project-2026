@@ -1,0 +1,218 @@
+[
+  {
+    "job_id": "room_BM223",
+    "method": "A",
+    "depth": 5,
+    "macro_MAE": 86.54320489881985,
+    "worst_MAE": 228.1994441955666,
+    "selected_utc": "2026-11-08T09:16:45.792387+00:00"
+  },
+  {
+    "job_id": "room_BM223",
+    "method": "B",
+    "depth": 5,
+    "macro_MAE": 100.81246658485425,
+    "worst_MAE": 235.0990653120676,
+    "selected_utc": "2026-11-08T09:16:45.800388+00:00"
+  },
+  {
+    "job_id": "room_BM223",
+    "method": "C",
+    "depth": 3,
+    "macro_MAE": 70.46325644461372,
+    "worst_MAE": 179.90532876212654,
+    "selected_utc": "2026-11-08T09:16:45.807392+00:00"
+  },
+  {
+    "job_id": "room_BM432",
+    "method": "A",
+    "depth": 5,
+    "macro_MAE": 58.156124228909306,
+    "worst_MAE": 116.43277470315604,
+    "selected_utc": "2026-11-08T09:17:12.651651+00:00"
+  },
+  {
+    "job_id": "room_BM432",
+    "method": "B",
+    "depth": 3,
+    "macro_MAE": 54.01223717744491,
+    "worst_MAE": 96.13460428923018,
+    "selected_utc": "2026-11-08T09:17:12.657665+00:00"
+  },
+  {
+    "job_id": "room_BM432",
+    "method": "C",
+    "depth": 3,
+    "macro_MAE": 51.531924558879304,
+    "worst_MAE": 107.56259550261925,
+    "selected_utc": "2026-11-08T09:17:12.663665+00:00"
+  },
+  {
+    "job_id": "room_BM441",
+    "method": "A",
+    "depth": 3,
+    "macro_MAE": 104.69090930105791,
+    "worst_MAE": 239.29265005050183,
+    "selected_utc": "2026-11-08T09:17:40.213296+00:00"
+  },
+  {
+    "job_id": "room_BM441",
+    "method": "B",
+    "depth": 3,
+    "macro_MAE": 85.09083684339222,
+    "worst_MAE": 239.44582197781446,
+    "selected_utc": "2026-11-08T09:17:40.222520+00:00"
+  },
+  {
+    "job_id": "room_BM441",
+    "method": "C",
+    "depth": 5,
+    "macro_MAE": 87.80116294585842,
+    "worst_MAE": 243.0111662422698,
+    "selected_utc": "2026-11-08T09:17:40.237530+00:00"
+  },
+  {
+    "job_id": "room_BM522",
+    "method": "A",
+    "depth": 3,
+    "macro_MAE": 117.54980169476268,
+    "worst_MAE": 338.2146933419773,
+    "selected_utc": "2026-11-08T09:18:05.985545+00:00"
+  },
+  {
+    "job_id": "room_BM522",
+    "method": "B",
+    "depth": 5,
+    "macro_MAE": 88.90496379542425,
+    "worst_MAE": 309.3427349943517,
+    "selected_utc": "2026-11-08T09:18:05.991464+00:00"
+  },
+  {
+    "job_id": "room_BM522",
+    "method": "C",
+    "depth": 5,
+    "macro_MAE": 63.05504004361891,
+    "worst_MAE": 130.50736467010526,
+    "selected_utc": "2026-11-08T09:18:06.002475+00:00"
+  },
+  {
+    "job_id": "room_BM608",
+    "method": "A",
+    "depth": 3,
+    "macro_MAE": 111.71219486320706,
+    "worst_MAE": 242.3828921478402,
+    "selected_utc": "2026-11-08T09:18:36.214438+00:00"
+  },
+  {
+    "job_id": "room_BM608",
+    "method": "B",
+    "depth": 5,
+    "macro_MAE": 84.29241685366266,
+    "worst_MAE": 225.82501320723293,
+    "selected_utc": "2026-11-08T09:18:36.221956+00:00"
+  },
+  {
+    "job_id": "room_BM608",
+    "method": "C",
+    "depth": 5,
+    "macro_MAE": 89.60239067576269,
+    "worst_MAE": 242.74985999575765,
+    "selected_utc": "2026-11-08T09:18:36.234072+00:00"
+  },
+  {
+    "job_id": "room_LM608",
+    "method": "A",
+    "depth": 5,
+    "macro_MAE": 95.34790407117966,
+    "worst_MAE": 231.76995813735402,
+    "selected_utc": "2026-11-08T09:19:06.280241+00:00"
+  },
+  {
+    "job_id": "room_LM608",
+    "method": "B",
+    "depth": 5,
+    "macro_MAE": 79.29961031023042,
+    "worst_MAE": 225.82501320723293,
+    "selected_utc": "2026-11-08T09:19:06.290059+00:00"
+  },
+  {
+    "job_id": "room_LM608",
+    "method": "C",
+    "depth": 3,
+    "macro_MAE": 78.03159422878294,
+    "worst_MAE": 261.51242330877534,
+    "selected_utc": "2026-11-08T09:19:06.308093+00:00"
+  },
+  {
+    "job_id": "room_LM703",
+    "method": "A",
+    "depth": 3,
+    "macro_MAE": 104.0021740698203,
+    "worst_MAE": 243.20602460851842,
+    "selected_utc": "2026-11-08T09:19:35.788720+00:00"
+  },
+  {
+    "job_id": "room_LM703",
+    "method": "B",
+    "depth": 5,
+    "macro_MAE": 120.4294288096006,
+    "worst_MAE": 235.2130388699664,
+    "selected_utc": "2026-11-08T09:19:35.796726+00:00"
+  },
+  {
+    "job_id": "room_LM703",
+    "method": "C",
+    "depth": 3,
+    "macro_MAE": 82.82354292028278,
+    "worst_MAE": 180.90437858456272,
+    "selected_utc": "2026-11-08T09:19:35.804733+00:00"
+  },
+  {
+    "job_id": "orientation_negY",
+    "method": "A",
+    "depth": 5,
+    "macro_MAE": 72.03191034245921,
+    "worst_MAE": 121.13222007232747,
+    "selected_utc": "2026-11-08T09:19:57.174769+00:00"
+  },
+  {
+    "job_id": "orientation_negY",
+    "method": "B",
+    "depth": 3,
+    "macro_MAE": 63.58256432187132,
+    "worst_MAE": 104.6454979282757,
+    "selected_utc": "2026-11-08T09:19:57.181766+00:00"
+  },
+  {
+    "job_id": "orientation_negY",
+    "method": "C",
+    "depth": 3,
+    "macro_MAE": 51.27413016257765,
+    "worst_MAE": 96.79340278048544,
+    "selected_utc": "2026-11-08T09:19:57.187783+00:00"
+  },
+  {
+    "job_id": "orientation_posY",
+    "method": "A",
+    "depth": 3,
+    "macro_MAE": 175.3202889147896,
+    "worst_MAE": 307.14863735418373,
+    "selected_utc": "2026-11-08T09:20:17.032499+00:00"
+  },
+  {
+    "job_id": "orientation_posY",
+    "method": "B",
+    "depth": 3,
+    "macro_MAE": 147.00250513046387,
+    "worst_MAE": 284.72001376675576,
+    "selected_utc": "2026-11-08T09:20:17.038499+00:00"
+  },
+  {
+    "job_id": "orientation_posY",
+    "method": "C",
+    "depth": 5,
+    "macro_MAE": 101.13061880216938,
+    "worst_MAE": 178.26679982480647,
+    "selected_utc": "2026-11-08T09:20:17.044014+00:00"
+  }
+]

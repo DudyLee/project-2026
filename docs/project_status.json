@@ -1,14 +1,14 @@
 {
   "updated_local_date": "2026-11-08",
   "timezone": "Asia/Hong_Kong",
-  "latest_completed_experiment": "directional_transfer_v8",
+  "latest_completed_experiment": "mean_illumination_exposure_v9",
   "latest_analysis": "reports/diagnosis_BM702_v1/summary.md",
   "pending_proposal": null,
-  "pending_proposal_status": "Approved v8 completed and verified; no subsequent experiment authorized by this record.",
-  "latest_approval": "docs/approvals/directional_v8_approval.json",
-  "report": "reports/experiment_v8/summary.md",
-  "configuration": "configs/experiment_v8.json",
-  "verification": "reports/experiment_v8/verification.json",
+  "pending_proposal_status": "Approved A/B/C experiment completed and verified; no further expansion authorized by this record.",
+  "latest_approval": "docs/approvals/mean_exposure_v9_approval.json",
+  "report": "reports/experiment_v9/summary.md",
+  "configuration": "configs/experiment_v9.json",
+  "verification": "reports/experiment_v9/verification.json",
   "protected_test_rooms": [
     "BM532",
     "BM702",
@@ -19,7 +19,7 @@
   "new_simulations": 0,
   "final_deployment_refit": false,
   "model_status": "Uneven cross-room performance; BM702 worst for all outputs. No broad new-room reliability or engineering acceptance claim.",
-  "authorization_status": "Latest request authorized bounded TRAIN-only v8; completed without TEST fitting/scoring or new simulation/visualization.",
+  "authorization_status": "Bounded TRAIN-only mean exposure v9 completed; no TEST operations, simulation or visualization.",
   "remaining_provenance_limits": [
     "EPW identity and hourly alignment",
     "Model coordinates relative to geographic north",
@@ -29,7 +29,7 @@
   "latest_completed_analysis": "BM702_existing_data_diagnosis_v1",
   "source_handoff": "exports/geometry_source_handoff_v1.zip",
   "stopped_branch": "Finer blend weights or room-specific routing without new independent input information",
-  "next_priority": "Retain trial 0.1; directional mean candidates improve average but not worst-room gate, P10 and FUDI transfer remain unresolved.",
+  "next_priority": "Review v9 mean-illumination evidence and remaining room-specific errors; no automatic search expansion.",
   "experiment_index": "docs/experiment_index.md",
   "evidence_registry": "docs/model_evidence_registry.json",
   "v7_development_candidates": [],
@@ -94,6 +94,16 @@
       }
     },
     "full_seven_refit": false,
+    "deployed_trial_unchanged": true
+  },
+  "v9": {
+    "status": "completed_verified",
+    "estimator_fits": 189,
+    "targets_reached": [],
+    "passing_candidates": [],
+    "TEST_fit_rows": 0,
+    "TEST_predictions": 0,
+    "TEST_scores": 0,
     "deployed_trial_unchanged": true
   }
 }

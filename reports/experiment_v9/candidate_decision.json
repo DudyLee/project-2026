@@ -1,0 +1,7 @@
+{
+  "selected_candidate": null,
+  "passing_candidates": [],
+  "deployed_model_changed": false,
+  "full_seven_refit": false,
+  "scope": "Repeated development validation, not independent final testing."
+}

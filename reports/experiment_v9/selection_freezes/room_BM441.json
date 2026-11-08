@@ -1,0 +1,11 @@
+{
+  "job_id": "room_BM441",
+  "selected": {
+    "A": 3,
+    "B": 3,
+    "C": 5
+  },
+  "selected_utc": "2026-11-08T09:17:40.237530+00:00",
+  "outer_predictions_computed": false,
+  "outer_labels_used_for_selection": false
+}

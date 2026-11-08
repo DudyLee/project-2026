@@ -1,0 +1,4304 @@
+[
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b34178bc233d7a942fda9873b43f8a267e291fb0c1ec6df056612d2eca50f39c",
+    "label_sha256": "84acc052ee177f1877bc12c00df9341035277cf15842532ae380019067903039",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.4425498000055086
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b34178bc233d7a942fda9873b43f8a267e291fb0c1ec6df056612d2eca50f39c",
+    "label_sha256": "84acc052ee177f1877bc12c00df9341035277cf15842532ae380019067903039",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.241377199999988
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0413951ed6a2a68604858fdec5edd9a0d52c7a0c70d665bb1711ea37f487ae65",
+    "label_sha256": "84acc052ee177f1877bc12c00df9341035277cf15842532ae380019067903039",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2748393999936525
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0413951ed6a2a68604858fdec5edd9a0d52c7a0c70d665bb1711ea37f487ae65",
+    "label_sha256": "84acc052ee177f1877bc12c00df9341035277cf15842532ae380019067903039",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2851735999865923
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0413951ed6a2a68604858fdec5edd9a0d52c7a0c70d665bb1711ea37f487ae65",
+    "label_sha256": "b146677fd0fa674b6f8eea5c314631965d6ce07e2ab1d9e9169a068b214d6da3",
+    "weight_sha256": "832c3136479fbd0a71209252a0c1b809583a0fc1931fc669c6693dd370d548a2",
+    "q_fit_mean": 0.47888367902782103,
+    "seconds": 1.249460100021679
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0413951ed6a2a68604858fdec5edd9a0d52c7a0c70d665bb1711ea37f487ae65",
+    "label_sha256": "b146677fd0fa674b6f8eea5c314631965d6ce07e2ab1d9e9169a068b214d6da3",
+    "weight_sha256": "832c3136479fbd0a71209252a0c1b809583a0fc1931fc669c6693dd370d548a2",
+    "q_fit_mean": 0.47888367902782103,
+    "seconds": 1.2815386999864131
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f8db04fa2e231fd48e56713dbd5ed1c1124073e6be6363301acc5aa46a523fac",
+    "label_sha256": "5eb1a393f263ee7c4295b5a59eed36253a88f6afc19541f3fa44c89f58651998",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.229250400007004
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f8db04fa2e231fd48e56713dbd5ed1c1124073e6be6363301acc5aa46a523fac",
+    "label_sha256": "5eb1a393f263ee7c4295b5a59eed36253a88f6afc19541f3fa44c89f58651998",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2155144999851473
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "58d3bd8eaf0d9a0d4a7b5b8d8ca30d5b95a74241253355fc9639c0b4a626c5e0",
+    "label_sha256": "5eb1a393f263ee7c4295b5a59eed36253a88f6afc19541f3fa44c89f58651998",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.251680099987425
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "58d3bd8eaf0d9a0d4a7b5b8d8ca30d5b95a74241253355fc9639c0b4a626c5e0",
+    "label_sha256": "5eb1a393f263ee7c4295b5a59eed36253a88f6afc19541f3fa44c89f58651998",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2620008999947459
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "58d3bd8eaf0d9a0d4a7b5b8d8ca30d5b95a74241253355fc9639c0b4a626c5e0",
+    "label_sha256": "30923fd2c5047113e9644c74035a4c96e039d87c3d58d460c60ec6406c9205e3",
+    "weight_sha256": "37cab053d2a5a568123a45e9b18ebae212dd3f13fac0da56e9ebc39c8ab141ea",
+    "q_fit_mean": 0.49993000979393953,
+    "seconds": 1.302088600001298
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "58d3bd8eaf0d9a0d4a7b5b8d8ca30d5b95a74241253355fc9639c0b4a626c5e0",
+    "label_sha256": "30923fd2c5047113e9644c74035a4c96e039d87c3d58d460c60ec6406c9205e3",
+    "weight_sha256": "37cab053d2a5a568123a45e9b18ebae212dd3f13fac0da56e9ebc39c8ab141ea",
+    "q_fit_mean": 0.49993000979393953,
+    "seconds": 1.3178284000023268
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "d69e5d6d1288252758157aba7676849c73b824f8007088fca4ef4a1afea11cf9",
+    "label_sha256": "4b4a8970f6701e817165cdd105c091b71e795d7921365370797b8be36a158438",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2363724999886472
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "d69e5d6d1288252758157aba7676849c73b824f8007088fca4ef4a1afea11cf9",
+    "label_sha256": "4b4a8970f6701e817165cdd105c091b71e795d7921365370797b8be36a158438",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2392858999955934
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "630011ca1c36362735ecf2a2958d54727fc3b0318e7199cb7cb133556ea56c8e",
+    "label_sha256": "4b4a8970f6701e817165cdd105c091b71e795d7921365370797b8be36a158438",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2178359999961685
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "630011ca1c36362735ecf2a2958d54727fc3b0318e7199cb7cb133556ea56c8e",
+    "label_sha256": "4b4a8970f6701e817165cdd105c091b71e795d7921365370797b8be36a158438",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2760584000207018
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "630011ca1c36362735ecf2a2958d54727fc3b0318e7199cb7cb133556ea56c8e",
+    "label_sha256": "9f115a6aa752aac4e9ee282e94ed23cb46311f490ba5cc9a5a8c90bcfe84d079",
+    "weight_sha256": "b3ad889d3b759e3218858226e40c43cc252659487bfb929b668de0e70ca24da9",
+    "q_fit_mean": 0.4111179530792329,
+    "seconds": 1.2436971999995876
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "630011ca1c36362735ecf2a2958d54727fc3b0318e7199cb7cb133556ea56c8e",
+    "label_sha256": "9f115a6aa752aac4e9ee282e94ed23cb46311f490ba5cc9a5a8c90bcfe84d079",
+    "weight_sha256": "b3ad889d3b759e3218858226e40c43cc252659487bfb929b668de0e70ca24da9",
+    "q_fit_mean": 0.4111179530792329,
+    "seconds": 1.2906971999909729
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "653d73ded07d71de2367b937f52f793b74440f3c0b9255b92244013b1fc06742",
+    "label_sha256": "1cfbfb7b980445f87452adc3ee1381f98bb618e219ac6cdd92df4476edc11631",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.9011928999971133
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "6f4e60ea244f08d01feec033b01e7de695aa6fc096f57f96487d89e9f5658d58",
+    "label_sha256": "1cfbfb7b980445f87452adc3ee1381f98bb618e219ac6cdd92df4476edc11631",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.9573207999928854
+  },
+  {
+    "job_id": "room_BM223",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "6f4e60ea244f08d01feec033b01e7de695aa6fc096f57f96487d89e9f5658d58",
+    "label_sha256": "8dad412390cb4df359dcce1665e5b3304337eb8e4329255d9ee706323f23d6c5",
+    "weight_sha256": "05a57625c9302308cc9f9201fb72fe592e8aade13c8a1259dca161f5bf77b16a",
+    "q_fit_mean": 0.46331054730033117,
+    "seconds": 1.9436046999762766
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "d4e24535908c1feac5f32e584817c2b69fd3fecd82ac9fa495a125da1ef0dd41",
+    "label_sha256": "1fb65774d95e0cc23a977eb74c9d702f2cf8dc1ceea4cc857e557239a0063dce",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3076728000014555
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "d4e24535908c1feac5f32e584817c2b69fd3fecd82ac9fa495a125da1ef0dd41",
+    "label_sha256": "1fb65774d95e0cc23a977eb74c9d702f2cf8dc1ceea4cc857e557239a0063dce",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2887988000002224
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ebf7a08092dea471921b492a5506b60be1826861981606a9110979fa21260a83",
+    "label_sha256": "1fb65774d95e0cc23a977eb74c9d702f2cf8dc1ceea4cc857e557239a0063dce",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2171960000123363
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ebf7a08092dea471921b492a5506b60be1826861981606a9110979fa21260a83",
+    "label_sha256": "1fb65774d95e0cc23a977eb74c9d702f2cf8dc1ceea4cc857e557239a0063dce",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3434057999984361
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ebf7a08092dea471921b492a5506b60be1826861981606a9110979fa21260a83",
+    "label_sha256": "befe4163617a765d0220a384790a654263808bcfc580b5096e4b9c136a1c19ce",
+    "weight_sha256": "5e61a589b4e229ef22999acc6bd7cc77e5e2f9659726aa2a01c61d61dab44e5b",
+    "q_fit_mean": 0.30503227362777874,
+    "seconds": 1.314152600010857
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ebf7a08092dea471921b492a5506b60be1826861981606a9110979fa21260a83",
+    "label_sha256": "befe4163617a765d0220a384790a654263808bcfc580b5096e4b9c136a1c19ce",
+    "weight_sha256": "5e61a589b4e229ef22999acc6bd7cc77e5e2f9659726aa2a01c61d61dab44e5b",
+    "q_fit_mean": 0.30503227362777874,
+    "seconds": 1.1217980999790598
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ede53825b92b11df0012cce381741d31b34111458c592a3250adfd04ce255523",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1071597000118345
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ede53825b92b11df0012cce381741d31b34111458c592a3250adfd04ce255523",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0090154000208713
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3275481000018772
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3167361000087112
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "8e4c0f711cddf4df23b36dd28c4135e92ac119ed6cd471c221cd71c1b0c2b69d",
+    "weight_sha256": "0aa8e8b200a3852a224f5e942acf9e6ecbf4fa31b213f87b76225536c4abb648",
+    "q_fit_mean": 0.3260786043938973,
+    "seconds": 1.2539955000102054
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "8e4c0f711cddf4df23b36dd28c4135e92ac119ed6cd471c221cd71c1b0c2b69d",
+    "weight_sha256": "0aa8e8b200a3852a224f5e942acf9e6ecbf4fa31b213f87b76225536c4abb648",
+    "q_fit_mean": 0.3260786043938973,
+    "seconds": 1.0587774000014178
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "d69e5d6d1288252758157aba7676849c73b824f8007088fca4ef4a1afea11cf9",
+    "label_sha256": "4b4a8970f6701e817165cdd105c091b71e795d7921365370797b8be36a158438",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0428450000181329
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "d69e5d6d1288252758157aba7676849c73b824f8007088fca4ef4a1afea11cf9",
+    "label_sha256": "4b4a8970f6701e817165cdd105c091b71e795d7921365370797b8be36a158438",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0016484999796376
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "630011ca1c36362735ecf2a2958d54727fc3b0318e7199cb7cb133556ea56c8e",
+    "label_sha256": "4b4a8970f6701e817165cdd105c091b71e795d7921365370797b8be36a158438",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0020446999988053
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "630011ca1c36362735ecf2a2958d54727fc3b0318e7199cb7cb133556ea56c8e",
+    "label_sha256": "4b4a8970f6701e817165cdd105c091b71e795d7921365370797b8be36a158438",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0254926000197884
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "630011ca1c36362735ecf2a2958d54727fc3b0318e7199cb7cb133556ea56c8e",
+    "label_sha256": "9f115a6aa752aac4e9ee282e94ed23cb46311f490ba5cc9a5a8c90bcfe84d079",
+    "weight_sha256": "b3ad889d3b759e3218858226e40c43cc252659487bfb929b668de0e70ca24da9",
+    "q_fit_mean": 0.4111179530792329,
+    "seconds": 1.0013621000107378
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "630011ca1c36362735ecf2a2958d54727fc3b0318e7199cb7cb133556ea56c8e",
+    "label_sha256": "9f115a6aa752aac4e9ee282e94ed23cb46311f490ba5cc9a5a8c90bcfe84d079",
+    "weight_sha256": "b3ad889d3b759e3218858226e40c43cc252659487bfb929b668de0e70ca24da9",
+    "q_fit_mean": 0.4111179530792329,
+    "seconds": 1.0427002000214998
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "2844341c3307e283d07f5b9ab0e4cceef9f7050003eaf3f83c08a21cb79e6a5b",
+    "label_sha256": "75cd29ca6ed29c189d870a65e750ac49ec554c46c8652cec91ced0487eefadb4",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.5281032000202686
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "3accf639ba53d4aa9403153ce227660bc03e36782eb335b5c83f066b377818c2",
+    "label_sha256": "75cd29ca6ed29c189d870a65e750ac49ec554c46c8652cec91ced0487eefadb4",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.7698091000202112
+  },
+  {
+    "job_id": "room_BM432",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "3accf639ba53d4aa9403153ce227660bc03e36782eb335b5c83f066b377818c2",
+    "label_sha256": "534f2626d0cd0f501e194c8bff8904a9fdf6937f8b18473b6d9c21d820632e4d",
+    "weight_sha256": "ad4d8ec02b4ab029e551ebc3cf02ac70db37fbea2c7a04f9080a97319e03d057",
+    "q_fit_mean": 0.34740961036696966,
+    "seconds": 1.6738429999968503
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "bc299ebe45f3df8b367d7e14a41f73ba3b8969edee438eb2f928609024fdbbc1",
+    "label_sha256": "ba815a07f4a342287871d534f76c3767f6a3940e176f9532826d1ee787508694",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1447940999933053
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "bc299ebe45f3df8b367d7e14a41f73ba3b8969edee438eb2f928609024fdbbc1",
+    "label_sha256": "ba815a07f4a342287871d534f76c3767f6a3940e176f9532826d1ee787508694",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0923576000204775
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8540e3759bb7b9478a59ca70b623770d95b07d8640222de3b9578069193d0494",
+    "label_sha256": "ba815a07f4a342287871d534f76c3767f6a3940e176f9532826d1ee787508694",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1440327000163961
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8540e3759bb7b9478a59ca70b623770d95b07d8640222de3b9578069193d0494",
+    "label_sha256": "ba815a07f4a342287871d534f76c3767f6a3940e176f9532826d1ee787508694",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2126655000029132
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8540e3759bb7b9478a59ca70b623770d95b07d8640222de3b9578069193d0494",
+    "label_sha256": "7c64bc6fce3e5942fe6dd26a7815e06cef248089222dca7e6312f125e8884272",
+    "weight_sha256": "bf877dc5928c7918307624a2fd3f595dbdd6c9347cf6550ad83965ce83c00ec7",
+    "q_fit_mean": 0.5357072058490339,
+    "seconds": 1.3530731000064407
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8540e3759bb7b9478a59ca70b623770d95b07d8640222de3b9578069193d0494",
+    "label_sha256": "7c64bc6fce3e5942fe6dd26a7815e06cef248089222dca7e6312f125e8884272",
+    "weight_sha256": "bf877dc5928c7918307624a2fd3f595dbdd6c9347cf6550ad83965ce83c00ec7",
+    "q_fit_mean": 0.5357072058490339,
+    "seconds": 1.335314899974037
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ede53825b92b11df0012cce381741d31b34111458c592a3250adfd04ce255523",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2867212999844924
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ede53825b92b11df0012cce381741d31b34111458c592a3250adfd04ce255523",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2228461000195239
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2710697000147775
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.283908400015207
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "8e4c0f711cddf4df23b36dd28c4135e92ac119ed6cd471c221cd71c1b0c2b69d",
+    "weight_sha256": "0aa8e8b200a3852a224f5e942acf9e6ecbf4fa31b213f87b76225536c4abb648",
+    "q_fit_mean": 0.3260786043938973,
+    "seconds": 1.2948459000035655
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "8e4c0f711cddf4df23b36dd28c4135e92ac119ed6cd471c221cd71c1b0c2b69d",
+    "weight_sha256": "0aa8e8b200a3852a224f5e942acf9e6ecbf4fa31b213f87b76225536c4abb648",
+    "q_fit_mean": 0.3260786043938973,
+    "seconds": 1.3099025999836158
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "93d1b06a5a24fe1f85bb5bfc501c312545c21cadddb5293ff30f146709bcdd98",
+    "label_sha256": "2918787aaa205a0730954bd8d711f2803a99c6460accc6920881e6db5323dfc2",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.230694300000323
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "93d1b06a5a24fe1f85bb5bfc501c312545c21cadddb5293ff30f146709bcdd98",
+    "label_sha256": "2918787aaa205a0730954bd8d711f2803a99c6460accc6920881e6db5323dfc2",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2079136999964248
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f7674a0b9b0bea34ccd8ddaeb56cee170c0fbd619f078aa040bf4564d72a43df",
+    "label_sha256": "2918787aaa205a0730954bd8d711f2803a99c6460accc6920881e6db5323dfc2",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2183708999946248
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f7674a0b9b0bea34ccd8ddaeb56cee170c0fbd619f078aa040bf4564d72a43df",
+    "label_sha256": "2918787aaa205a0730954bd8d711f2803a99c6460accc6920881e6db5323dfc2",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.239249500009464
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f7674a0b9b0bea34ccd8ddaeb56cee170c0fbd619f078aa040bf4564d72a43df",
+    "label_sha256": "34ac6b44eaaa819e2605394088ea4d41fd871bbf184fbb297748672bc6765755",
+    "weight_sha256": "05945d63cf2769e51c41669653e105aa1855efa3df2f6f5589c5576022ff841f",
+    "q_fit_mean": 0.641792885300488,
+    "seconds": 1.2491916000144556
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f7674a0b9b0bea34ccd8ddaeb56cee170c0fbd619f078aa040bf4564d72a43df",
+    "label_sha256": "34ac6b44eaaa819e2605394088ea4d41fd871bbf184fbb297748672bc6765755",
+    "weight_sha256": "05945d63cf2769e51c41669653e105aa1855efa3df2f6f5589c5576022ff841f",
+    "q_fit_mean": 0.641792885300488,
+    "seconds": 1.2498025999811944
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "2b0b516936633900a0df53eff936892878465a4b1a61b0e67e99c7d7903fdee3",
+    "label_sha256": "e5cc312e18aa8e4efc6b9da5bbdec51362cbdd70a92f3717e964803d2a14e956",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.9838157999911346
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "18b13c859cace5033b297223e3d117fbce54a15c8b47a646858ab08fbdac3eef",
+    "label_sha256": "e5cc312e18aa8e4efc6b9da5bbdec51362cbdd70a92f3717e964803d2a14e956",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 2.0009783999994397
+  },
+  {
+    "job_id": "room_BM441",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "18b13c859cace5033b297223e3d117fbce54a15c8b47a646858ab08fbdac3eef",
+    "label_sha256": "a216358db0777fc050522276b591a90fdb1efc8ceddfc8c751fff1c7112b5a93",
+    "weight_sha256": "b7217eadf5de860ee95bd3a1493f26d41306a34210e433069ac829d9693f753b",
+    "q_fit_mean": 0.501192898514473,
+    "seconds": 1.6668188000039663
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "bc299ebe45f3df8b367d7e14a41f73ba3b8969edee438eb2f928609024fdbbc1",
+    "label_sha256": "ba815a07f4a342287871d534f76c3767f6a3940e176f9532826d1ee787508694",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1607214999967255
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "bc299ebe45f3df8b367d7e14a41f73ba3b8969edee438eb2f928609024fdbbc1",
+    "label_sha256": "ba815a07f4a342287871d534f76c3767f6a3940e176f9532826d1ee787508694",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1479132000240497
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8540e3759bb7b9478a59ca70b623770d95b07d8640222de3b9578069193d0494",
+    "label_sha256": "ba815a07f4a342287871d534f76c3767f6a3940e176f9532826d1ee787508694",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1275205000129063
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8540e3759bb7b9478a59ca70b623770d95b07d8640222de3b9578069193d0494",
+    "label_sha256": "ba815a07f4a342287871d534f76c3767f6a3940e176f9532826d1ee787508694",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1653605000174139
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8540e3759bb7b9478a59ca70b623770d95b07d8640222de3b9578069193d0494",
+    "label_sha256": "7c64bc6fce3e5942fe6dd26a7815e06cef248089222dca7e6312f125e8884272",
+    "weight_sha256": "bf877dc5928c7918307624a2fd3f595dbdd6c9347cf6550ad83965ce83c00ec7",
+    "q_fit_mean": 0.5357072058490339,
+    "seconds": 1.1279587000026368
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8540e3759bb7b9478a59ca70b623770d95b07d8640222de3b9578069193d0494",
+    "label_sha256": "7c64bc6fce3e5942fe6dd26a7815e06cef248089222dca7e6312f125e8884272",
+    "weight_sha256": "bf877dc5928c7918307624a2fd3f595dbdd6c9347cf6550ad83965ce83c00ec7",
+    "q_fit_mean": 0.5357072058490339,
+    "seconds": 1.1279870999860577
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "e2c47fb7b787e8c1dd0140827d9a386c853e003bd917813c53fe68e088509f78",
+    "label_sha256": "b283ea35919c06b404b343ff7e38b0e7e6338aa524cd9a69a6394ba572914507",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0883198000083212
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "e2c47fb7b787e8c1dd0140827d9a386c853e003bd917813c53fe68e088509f78",
+    "label_sha256": "b283ea35919c06b404b343ff7e38b0e7e6338aa524cd9a69a6394ba572914507",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0791023000201676
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "784b283c80a68d2adb606646af6fac28a325d0bd5808e49aa61fdcf66e4de2c7",
+    "label_sha256": "b283ea35919c06b404b343ff7e38b0e7e6338aa524cd9a69a6394ba572914507",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1270811000140384
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "784b283c80a68d2adb606646af6fac28a325d0bd5808e49aa61fdcf66e4de2c7",
+    "label_sha256": "b283ea35919c06b404b343ff7e38b0e7e6338aa524cd9a69a6394ba572914507",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0927019999944605
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "784b283c80a68d2adb606646af6fac28a325d0bd5808e49aa61fdcf66e4de2c7",
+    "label_sha256": "7927c3c55a2f08a7c38708fe22bcedacb56f5ca70989658ad9211c0b6cd96e07",
+    "weight_sha256": "b07fce93d721ff2b5293d1179df9a50dc2051ab9eed44ed03bbbabf7412d924d",
+    "q_fit_mean": 0.2251478991015442,
+    "seconds": 1.0830952000105754
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "784b283c80a68d2adb606646af6fac28a325d0bd5808e49aa61fdcf66e4de2c7",
+    "label_sha256": "7927c3c55a2f08a7c38708fe22bcedacb56f5ca70989658ad9211c0b6cd96e07",
+    "weight_sha256": "b07fce93d721ff2b5293d1179df9a50dc2051ab9eed44ed03bbbabf7412d924d",
+    "q_fit_mean": 0.2251478991015442,
+    "seconds": 1.1598183999885805
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "38cbed67e4458362d39d915d50aee1343f8ba246667446221fb2c5f69d33933b",
+    "label_sha256": "130175a068756e622e8e2c6b9fcb171bcc9ffbc8f433799fd0dd8fa01faf0eb7",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0663620000123046
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "38cbed67e4458362d39d915d50aee1343f8ba246667446221fb2c5f69d33933b",
+    "label_sha256": "130175a068756e622e8e2c6b9fcb171bcc9ffbc8f433799fd0dd8fa01faf0eb7",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0481398999982048
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "dff5c3c144fadde0711ce70a59ec9646896b40c0f5856e584f9b04a9fe18cd3a",
+    "label_sha256": "130175a068756e622e8e2c6b9fcb171bcc9ffbc8f433799fd0dd8fa01faf0eb7",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.079205699992599
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "dff5c3c144fadde0711ce70a59ec9646896b40c0f5856e584f9b04a9fe18cd3a",
+    "label_sha256": "130175a068756e622e8e2c6b9fcb171bcc9ffbc8f433799fd0dd8fa01faf0eb7",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0805841000110377
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "dff5c3c144fadde0711ce70a59ec9646896b40c0f5856e584f9b04a9fe18cd3a",
+    "label_sha256": "9e5715a44b4ed7392438604c7855b1ffef3948b62be31c2e5fa05b95c8718661",
+    "weight_sha256": "419668552621c3af0ac1dd7a41c367db0d426e4d173d6dc750a15cb393abd661",
+    "q_fit_mean": 0.5408621800081349,
+    "seconds": 1.0728105999878608
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "dff5c3c144fadde0711ce70a59ec9646896b40c0f5856e584f9b04a9fe18cd3a",
+    "label_sha256": "9e5715a44b4ed7392438604c7855b1ffef3948b62be31c2e5fa05b95c8718661",
+    "weight_sha256": "419668552621c3af0ac1dd7a41c367db0d426e4d173d6dc750a15cb393abd661",
+    "q_fit_mean": 0.5408621800081349,
+    "seconds": 1.0525553000043146
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "e1cd9e9faa966b9ab046fd3feb75ed7296df274f53125e93c34286187dabb8a0",
+    "label_sha256": "f9b1779382af1bbd4596ae995a0cd58d95c145204ebc4df7a524212180862854",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.8877405000093859
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "0546897c28f2375c7ab21a86f9f2336608b358d7a9491b9401480cbdb7e8d482",
+    "label_sha256": "f9b1779382af1bbd4596ae995a0cd58d95c145204ebc4df7a524212180862854",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 2.088827700004913
+  },
+  {
+    "job_id": "room_BM522",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "0546897c28f2375c7ab21a86f9f2336608b358d7a9491b9401480cbdb7e8d482",
+    "label_sha256": "c3f42da7519dc2dfe38c78333994a4ceb793b1a2f00006fc09944f1e34394376",
+    "weight_sha256": "6484143e1676582357bf2b55bde6eaba2375bebdf17796377f3407e83f91aa15",
+    "q_fit_mean": 0.43390576165290434,
+    "seconds": 2.15080790000502
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "e506caf707940fc45f92c6211aea7a7c92fe938f9eb1efbd0a18a3153341cb0a",
+    "label_sha256": "d7baeb43b68106fb7e640eb941aa82d8c95573aa29435284983c03e267e3c580",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3871668999781832
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "e506caf707940fc45f92c6211aea7a7c92fe938f9eb1efbd0a18a3153341cb0a",
+    "label_sha256": "d7baeb43b68106fb7e640eb941aa82d8c95573aa29435284983c03e267e3c580",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.387822699995013
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "597dea1b2d5eec1a798abd7d80e9c10280424ca8ebd124884b9de521b051098d",
+    "label_sha256": "d7baeb43b68106fb7e640eb941aa82d8c95573aa29435284983c03e267e3c580",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3015852000098675
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "597dea1b2d5eec1a798abd7d80e9c10280424ca8ebd124884b9de521b051098d",
+    "label_sha256": "d7baeb43b68106fb7e640eb941aa82d8c95573aa29435284983c03e267e3c580",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.330309799988754
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "597dea1b2d5eec1a798abd7d80e9c10280424ca8ebd124884b9de521b051098d",
+    "label_sha256": "760fba300578a409529454f52f0bce7466805ad38617708869e7dd5e63c509a4",
+    "weight_sha256": "d48083cefccd3e61c46b90318851bdf6c4c499ce03f24c76fb4bd8ecdea5b151",
+    "q_fit_mean": 0.6538611156482161,
+    "seconds": 1.3493907999945804
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "597dea1b2d5eec1a798abd7d80e9c10280424ca8ebd124884b9de521b051098d",
+    "label_sha256": "760fba300578a409529454f52f0bce7466805ad38617708869e7dd5e63c509a4",
+    "weight_sha256": "d48083cefccd3e61c46b90318851bdf6c4c499ce03f24c76fb4bd8ecdea5b151",
+    "q_fit_mean": 0.6538611156482161,
+    "seconds": 1.290982799982885
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0943f5a6dfa85e3be24b28974ba53f0b6acc3626b8f594206ed649aa49bca76a",
+    "label_sha256": "1fbad8d47d3ae8b08928cab6c0faf34732cc4baf3bdcc2e78a5c702d98a528d8",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3070803000009619
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0943f5a6dfa85e3be24b28974ba53f0b6acc3626b8f594206ed649aa49bca76a",
+    "label_sha256": "1fbad8d47d3ae8b08928cab6c0faf34732cc4baf3bdcc2e78a5c702d98a528d8",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3008074999961536
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "faf0d6a9eb19b549044595439d688ad30602cff495d27e92986021edeff4a323",
+    "label_sha256": "1fbad8d47d3ae8b08928cab6c0faf34732cc4baf3bdcc2e78a5c702d98a528d8",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2961467999848537
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "faf0d6a9eb19b549044595439d688ad30602cff495d27e92986021edeff4a323",
+    "label_sha256": "1fbad8d47d3ae8b08928cab6c0faf34732cc4baf3bdcc2e78a5c702d98a528d8",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3568677000002936
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "faf0d6a9eb19b549044595439d688ad30602cff495d27e92986021edeff4a323",
+    "label_sha256": "e73788a5873606aa499d7dd933310d4b92cbe586548a3b8f9ec61a83c3ef8374",
+    "weight_sha256": "0277709713449b2af9bbef28559e348e3ef640c44c6eda6a8954a7cfca7633bf",
+    "q_fit_mean": 0.3433018089007265,
+    "seconds": 1.3300946000090335
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "faf0d6a9eb19b549044595439d688ad30602cff495d27e92986021edeff4a323",
+    "label_sha256": "e73788a5873606aa499d7dd933310d4b92cbe586548a3b8f9ec61a83c3ef8374",
+    "weight_sha256": "0277709713449b2af9bbef28559e348e3ef640c44c6eda6a8954a7cfca7633bf",
+    "q_fit_mean": 0.3433018089007265,
+    "seconds": 1.2945978000061586
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "38cbed67e4458362d39d915d50aee1343f8ba246667446221fb2c5f69d33933b",
+    "label_sha256": "130175a068756e622e8e2c6b9fcb171bcc9ffbc8f433799fd0dd8fa01faf0eb7",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2590391999983694
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "38cbed67e4458362d39d915d50aee1343f8ba246667446221fb2c5f69d33933b",
+    "label_sha256": "130175a068756e622e8e2c6b9fcb171bcc9ffbc8f433799fd0dd8fa01faf0eb7",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3249977999948896
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "dff5c3c144fadde0711ce70a59ec9646896b40c0f5856e584f9b04a9fe18cd3a",
+    "label_sha256": "130175a068756e622e8e2c6b9fcb171bcc9ffbc8f433799fd0dd8fa01faf0eb7",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3592850999848451
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "dff5c3c144fadde0711ce70a59ec9646896b40c0f5856e584f9b04a9fe18cd3a",
+    "label_sha256": "130175a068756e622e8e2c6b9fcb171bcc9ffbc8f433799fd0dd8fa01faf0eb7",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3174577000027057
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "dff5c3c144fadde0711ce70a59ec9646896b40c0f5856e584f9b04a9fe18cd3a",
+    "label_sha256": "9e5715a44b4ed7392438604c7855b1ffef3948b62be31c2e5fa05b95c8718661",
+    "weight_sha256": "419668552621c3af0ac1dd7a41c367db0d426e4d173d6dc750a15cb393abd661",
+    "q_fit_mean": 0.5408621800081349,
+    "seconds": 1.292220500006806
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "dff5c3c144fadde0711ce70a59ec9646896b40c0f5856e584f9b04a9fe18cd3a",
+    "label_sha256": "9e5715a44b4ed7392438604c7855b1ffef3948b62be31c2e5fa05b95c8718661",
+    "weight_sha256": "419668552621c3af0ac1dd7a41c367db0d426e4d173d6dc750a15cb393abd661",
+    "q_fit_mean": 0.5408621800081349,
+    "seconds": 1.3192952999961562
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "991dce11ac75ca21b0389ab16d5c51d59aa36346f6dbc561b55e94b733f43cdb",
+    "label_sha256": "593235c9ab9eb389888acb5e76d9af849afd2c05df13e8a0b3c8a78c7fd6fcb5",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 2.030755700019654
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "bbc4cb3219b51d643bb0e071bd816af0a75c8c4585302ab09940a4b9d8e0b628",
+    "label_sha256": "593235c9ab9eb389888acb5e76d9af849afd2c05df13e8a0b3c8a78c7fd6fcb5",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 2.031922800000757
+  },
+  {
+    "job_id": "room_BM608",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "bbc4cb3219b51d643bb0e071bd816af0a75c8c4585302ab09940a4b9d8e0b628",
+    "label_sha256": "c365c30ca5623feae9b3bb54a9d051cad37689091465dfb7206a029cfb6e94c7",
+    "weight_sha256": "c92fbeed3dfe2005bceaa2f6b972ab3c45e6f234dc13f32fd08c448059429b18",
+    "q_fit_mean": 0.5126750348523592,
+    "seconds": 1.9879957000084687
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "6db7010866fbace1d6c39a6f1f90ebf9f2a598415ab56b8718b1d0a30cfdb191",
+    "label_sha256": "c26d08e692d6e70878c7ba4be0867b4270b31c6378889efef42683f702ba6e74",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3220020000007935
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "6db7010866fbace1d6c39a6f1f90ebf9f2a598415ab56b8718b1d0a30cfdb191",
+    "label_sha256": "c26d08e692d6e70878c7ba4be0867b4270b31c6378889efef42683f702ba6e74",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3280100999982096
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b9a08849c1e0c22d231313ff9089b5a1d73c1d140c55b68c022e15a086b53e29",
+    "label_sha256": "c26d08e692d6e70878c7ba4be0867b4270b31c6378889efef42683f702ba6e74",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3353016000182834
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b9a08849c1e0c22d231313ff9089b5a1d73c1d140c55b68c022e15a086b53e29",
+    "label_sha256": "c26d08e692d6e70878c7ba4be0867b4270b31c6378889efef42683f702ba6e74",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3796135000011418
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b9a08849c1e0c22d231313ff9089b5a1d73c1d140c55b68c022e15a086b53e29",
+    "label_sha256": "2da9ca36ee94fdd349d4b48665a329725f4a8057dba5aa9fd0260ed3d9b572c9",
+    "weight_sha256": "3f17e370b6cae2664e41509e1b0d6b5433ff1232577cf5c4ef97e40481320c96",
+    "q_fit_mean": 0.5119982401416677,
+    "seconds": 1.3697009999887086
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b9a08849c1e0c22d231313ff9089b5a1d73c1d140c55b68c022e15a086b53e29",
+    "label_sha256": "2da9ca36ee94fdd349d4b48665a329725f4a8057dba5aa9fd0260ed3d9b572c9",
+    "weight_sha256": "3f17e370b6cae2664e41509e1b0d6b5433ff1232577cf5c4ef97e40481320c96",
+    "q_fit_mean": 0.5119982401416677,
+    "seconds": 1.3411763999902178
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0943f5a6dfa85e3be24b28974ba53f0b6acc3626b8f594206ed649aa49bca76a",
+    "label_sha256": "1fbad8d47d3ae8b08928cab6c0faf34732cc4baf3bdcc2e78a5c702d98a528d8",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3255559999961406
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0943f5a6dfa85e3be24b28974ba53f0b6acc3626b8f594206ed649aa49bca76a",
+    "label_sha256": "1fbad8d47d3ae8b08928cab6c0faf34732cc4baf3bdcc2e78a5c702d98a528d8",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2769206000084523
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "faf0d6a9eb19b549044595439d688ad30602cff495d27e92986021edeff4a323",
+    "label_sha256": "1fbad8d47d3ae8b08928cab6c0faf34732cc4baf3bdcc2e78a5c702d98a528d8",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3128866000042763
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "faf0d6a9eb19b549044595439d688ad30602cff495d27e92986021edeff4a323",
+    "label_sha256": "1fbad8d47d3ae8b08928cab6c0faf34732cc4baf3bdcc2e78a5c702d98a528d8",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.355653100006748
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "faf0d6a9eb19b549044595439d688ad30602cff495d27e92986021edeff4a323",
+    "label_sha256": "e73788a5873606aa499d7dd933310d4b92cbe586548a3b8f9ec61a83c3ef8374",
+    "weight_sha256": "0277709713449b2af9bbef28559e348e3ef640c44c6eda6a8954a7cfca7633bf",
+    "q_fit_mean": 0.3433018089007265,
+    "seconds": 1.327788700000383
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "faf0d6a9eb19b549044595439d688ad30602cff495d27e92986021edeff4a323",
+    "label_sha256": "e73788a5873606aa499d7dd933310d4b92cbe586548a3b8f9ec61a83c3ef8374",
+    "weight_sha256": "0277709713449b2af9bbef28559e348e3ef640c44c6eda6a8954a7cfca7633bf",
+    "q_fit_mean": 0.3433018089007265,
+    "seconds": 1.302349499979755
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "3843070e69f6d0486a84e73a38ae26642f952ff2b2b58a90f63d28c77dccfb3c",
+    "label_sha256": "7e9c82b20f5b58affdc506cfcacdd3d734efa1d9cdf2f68054987a372480f77c",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2343590999953449
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "3843070e69f6d0486a84e73a38ae26642f952ff2b2b58a90f63d28c77dccfb3c",
+    "label_sha256": "7e9c82b20f5b58affdc506cfcacdd3d734efa1d9cdf2f68054987a372480f77c",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.240085099998396
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8dbadfa78dafee9c161f11550a9631bf1ad456af62e80969ecca2d34c67a0fce",
+    "label_sha256": "7e9c82b20f5b58affdc506cfcacdd3d734efa1d9cdf2f68054987a372480f77c",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2742132999992464
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8dbadfa78dafee9c161f11550a9631bf1ad456af62e80969ecca2d34c67a0fce",
+    "label_sha256": "7e9c82b20f5b58affdc506cfcacdd3d734efa1d9cdf2f68054987a372480f77c",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3320391000015661
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8dbadfa78dafee9c161f11550a9631bf1ad456af62e80969ecca2d34c67a0fce",
+    "label_sha256": "db9c22dcbb568518d6cb7bc724c768276c8725e5106e33048269855b4d070e2e",
+    "weight_sha256": "f2d0f399bb1f29fe242a91ec727da5217287010e32127a1d13fa87572725413d",
+    "q_fit_mean": 0.39899930450158644,
+    "seconds": 1.2886854000098538
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8dbadfa78dafee9c161f11550a9631bf1ad456af62e80969ecca2d34c67a0fce",
+    "label_sha256": "db9c22dcbb568518d6cb7bc724c768276c8725e5106e33048269855b4d070e2e",
+    "weight_sha256": "f2d0f399bb1f29fe242a91ec727da5217287010e32127a1d13fa87572725413d",
+    "q_fit_mean": 0.39899930450158644,
+    "seconds": 1.3798554000095464
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "LM608"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "23c0e93de21ca1250a19eab709b3d08d8b54bcf7a5e95793709609230fe9f50f",
+    "label_sha256": "1944d9f693131e091019aa790e8c6999e9610a506381beb27279e72d62c1d7c3",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.8686670000024606
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "LM608"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "749229198d82b4552c01d2991b5d2bb16800cb1f60593ecc7a5f67b682370e7c",
+    "label_sha256": "1944d9f693131e091019aa790e8c6999e9610a506381beb27279e72d62c1d7c3",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.9584425000066403
+  },
+  {
+    "job_id": "room_LM608",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "LM608"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "749229198d82b4552c01d2991b5d2bb16800cb1f60593ecc7a5f67b682370e7c",
+    "label_sha256": "1b6a638ba229d8644eb9a24540e4e3dce4c8e62c88379370cb0eeab57eaa4ed0",
+    "weight_sha256": "faf2139302889e9c4448bbe9c876174e0d34e1876dc579aa97d7f44257104410",
+    "q_fit_mean": 0.4180997845146603,
+    "seconds": 2.08442530001048
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "6db7010866fbace1d6c39a6f1f90ebf9f2a598415ab56b8718b1d0a30cfdb191",
+    "label_sha256": "c26d08e692d6e70878c7ba4be0867b4270b31c6378889efef42683f702ba6e74",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3420024000224657
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "6db7010866fbace1d6c39a6f1f90ebf9f2a598415ab56b8718b1d0a30cfdb191",
+    "label_sha256": "c26d08e692d6e70878c7ba4be0867b4270b31c6378889efef42683f702ba6e74",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2871310999908019
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b9a08849c1e0c22d231313ff9089b5a1d73c1d140c55b68c022e15a086b53e29",
+    "label_sha256": "c26d08e692d6e70878c7ba4be0867b4270b31c6378889efef42683f702ba6e74",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3302853000059258
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b9a08849c1e0c22d231313ff9089b5a1d73c1d140c55b68c022e15a086b53e29",
+    "label_sha256": "c26d08e692d6e70878c7ba4be0867b4270b31c6378889efef42683f702ba6e74",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3583457999920938
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b9a08849c1e0c22d231313ff9089b5a1d73c1d140c55b68c022e15a086b53e29",
+    "label_sha256": "2da9ca36ee94fdd349d4b48665a329725f4a8057dba5aa9fd0260ed3d9b572c9",
+    "weight_sha256": "3f17e370b6cae2664e41509e1b0d6b5433ff1232577cf5c4ef97e40481320c96",
+    "q_fit_mean": 0.5119982401416677,
+    "seconds": 1.3851025000039954
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b9a08849c1e0c22d231313ff9089b5a1d73c1d140c55b68c022e15a086b53e29",
+    "label_sha256": "2da9ca36ee94fdd349d4b48665a329725f4a8057dba5aa9fd0260ed3d9b572c9",
+    "weight_sha256": "3f17e370b6cae2664e41509e1b0d6b5433ff1232577cf5c4ef97e40481320c96",
+    "q_fit_mean": 0.5119982401416677,
+    "seconds": 1.3250298000057228
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "d1cc843ce1045f4ead575d1cffcaff930a2c9a6e95ae22fea3a2a9d8a625425d",
+    "label_sha256": "21fbc236e5cc4aac144d165f2542fd4251e97dc45d539d0755bbed894b01e970",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3479598999838345
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "d1cc843ce1045f4ead575d1cffcaff930a2c9a6e95ae22fea3a2a9d8a625425d",
+    "label_sha256": "21fbc236e5cc4aac144d165f2542fd4251e97dc45d539d0755bbed894b01e970",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2663145000115037
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f1972cc23a71a4f0b8b0ef80757ca722d07186858fe4afa2593b928f55671d82",
+    "label_sha256": "21fbc236e5cc4aac144d165f2542fd4251e97dc45d539d0755bbed894b01e970",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2846285999985412
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f1972cc23a71a4f0b8b0ef80757ca722d07186858fe4afa2593b928f55671d82",
+    "label_sha256": "21fbc236e5cc4aac144d165f2542fd4251e97dc45d539d0755bbed894b01e970",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.268589699990116
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f1972cc23a71a4f0b8b0ef80757ca722d07186858fe4afa2593b928f55671d82",
+    "label_sha256": "38b836ba289820c8c2d7c71c6a4684bd22764f20e93ca7087422fbcc06b1d2fa",
+    "weight_sha256": "38c898fc6c15853d02d42e774b716c4c8c47f1603235fb133468d8894a871598",
+    "q_fit_mean": 0.42318618342696107,
+    "seconds": 1.356849899981171
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "f1972cc23a71a4f0b8b0ef80757ca722d07186858fe4afa2593b928f55671d82",
+    "label_sha256": "38b836ba289820c8c2d7c71c6a4684bd22764f20e93ca7087422fbcc06b1d2fa",
+    "weight_sha256": "38c898fc6c15853d02d42e774b716c4c8c47f1603235fb133468d8894a871598",
+    "q_fit_mean": 0.42318618342696107,
+    "seconds": 1.306961299997056
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b34178bc233d7a942fda9873b43f8a267e291fb0c1ec6df056612d2eca50f39c",
+    "label_sha256": "84acc052ee177f1877bc12c00df9341035277cf15842532ae380019067903039",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2291124000039417
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "b34178bc233d7a942fda9873b43f8a267e291fb0c1ec6df056612d2eca50f39c",
+    "label_sha256": "84acc052ee177f1877bc12c00df9341035277cf15842532ae380019067903039",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2076002999965567
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0413951ed6a2a68604858fdec5edd9a0d52c7a0c70d665bb1711ea37f487ae65",
+    "label_sha256": "84acc052ee177f1877bc12c00df9341035277cf15842532ae380019067903039",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2687967999954708
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0413951ed6a2a68604858fdec5edd9a0d52c7a0c70d665bb1711ea37f487ae65",
+    "label_sha256": "84acc052ee177f1877bc12c00df9341035277cf15842532ae380019067903039",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.239820199989481
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0413951ed6a2a68604858fdec5edd9a0d52c7a0c70d665bb1711ea37f487ae65",
+    "label_sha256": "b146677fd0fa674b6f8eea5c314631965d6ce07e2ab1d9e9169a068b214d6da3",
+    "weight_sha256": "832c3136479fbd0a71209252a0c1b809583a0fc1931fc669c6693dd370d548a2",
+    "q_fit_mean": 0.47888367902782103,
+    "seconds": 1.2525819000147749
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "BM522"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "0413951ed6a2a68604858fdec5edd9a0d52c7a0c70d665bb1711ea37f487ae65",
+    "label_sha256": "b146677fd0fa674b6f8eea5c314631965d6ce07e2ab1d9e9169a068b214d6da3",
+    "weight_sha256": "832c3136479fbd0a71209252a0c1b809583a0fc1931fc669c6693dd370d548a2",
+    "q_fit_mean": 0.47888367902782103,
+    "seconds": 1.2621556000085548
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "LM703"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "8200ce7f62b3e1ba835490205073b0042f33bb50a4ee2ec859c1d553419634a3",
+    "label_sha256": "8c63b53e3e1636721b31cf64c91307b7f03931b82803ff74666002cefc4e7ea2",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.9616552999941632
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "LM703"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "198433170957deec9b73d76f718487fd424de26c565f2d0d95721ecce1df958b",
+    "label_sha256": "8c63b53e3e1636721b31cf64c91307b7f03931b82803ff74666002cefc4e7ea2",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 2.0048797999916133
+  },
+  {
+    "job_id": "room_LM703",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "LM703"
+    ],
+    "fit_rows": 105120,
+    "input_sha256": "198433170957deec9b73d76f718487fd424de26c565f2d0d95721ecce1df958b",
+    "label_sha256": "cee9915796b01d56c9b464e505aec49f1aa2726b85ec793b73814fcaf2638035",
+    "weight_sha256": "23ed72ee3a7659a67e7200d4f271661df0268ec070632a8b0c4044b5fd0ac102",
+    "q_fit_mean": 0.47135603419881666,
+    "seconds": 2.0565640999993775
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM703"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "34821b9d8c10f097983ca8dec475182e70a9a088b3597172b644a6315243ee55",
+    "label_sha256": "88c377bd286bfd6e1145684eb26d366e4c1b52a1cb1ebfd03913f89079954fa1",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.556299299991224
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM703"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "34821b9d8c10f097983ca8dec475182e70a9a088b3597172b644a6315243ee55",
+    "label_sha256": "88c377bd286bfd6e1145684eb26d366e4c1b52a1cb1ebfd03913f89079954fa1",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.6212245999777224
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM703"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "2347eefb547eda3b1e53986bcb5281eaa99b6ab0b940f2d77dfa5a3672c9d0e1",
+    "label_sha256": "88c377bd286bfd6e1145684eb26d366e4c1b52a1cb1ebfd03913f89079954fa1",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.6087024000007659
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM703"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "2347eefb547eda3b1e53986bcb5281eaa99b6ab0b940f2d77dfa5a3672c9d0e1",
+    "label_sha256": "88c377bd286bfd6e1145684eb26d366e4c1b52a1cb1ebfd03913f89079954fa1",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.6298386999987997
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM703"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "2347eefb547eda3b1e53986bcb5281eaa99b6ab0b940f2d77dfa5a3672c9d0e1",
+    "label_sha256": "8fb620f9311988a6daad8915318c2ffb857a6fcc8c647ea8b4287beb01533dd3",
+    "weight_sha256": "ad665bb3b3895ee4c02dee3ea71a8fcd0c84c02dc271e28826620113c55a26d2",
+    "q_fit_mean": 0.30820728188472374,
+    "seconds": 0.5996033000119496
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM522",
+      "BM608"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM703"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "2347eefb547eda3b1e53986bcb5281eaa99b6ab0b940f2d77dfa5a3672c9d0e1",
+    "label_sha256": "8fb620f9311988a6daad8915318c2ffb857a6fcc8c647ea8b4287beb01533dd3",
+    "weight_sha256": "ad665bb3b3895ee4c02dee3ea71a8fcd0c84c02dc271e28826620113c55a26d2",
+    "q_fit_mean": 0.30820728188472374,
+    "seconds": 0.6574619000020903
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "e4a093b20e98888283242760163944a707b1b08c0ae618bd70c65390568de927",
+    "label_sha256": "6e98f4ec78966d01ec3b7adbcb2db4c6e8ad2d1cf605f6b9888a59b5149412c6",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9386766999959946
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "e4a093b20e98888283242760163944a707b1b08c0ae618bd70c65390568de927",
+    "label_sha256": "6e98f4ec78966d01ec3b7adbcb2db4c6e8ad2d1cf605f6b9888a59b5149412c6",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.925064500013832
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "db5a13076a18816b19f9fe7434b3544716062ce5f682d6a0dd786bd7cd020285",
+    "label_sha256": "6e98f4ec78966d01ec3b7adbcb2db4c6e8ad2d1cf605f6b9888a59b5149412c6",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9674644999904558
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "db5a13076a18816b19f9fe7434b3544716062ce5f682d6a0dd786bd7cd020285",
+    "label_sha256": "6e98f4ec78966d01ec3b7adbcb2db4c6e8ad2d1cf605f6b9888a59b5149412c6",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9452419999870472
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "db5a13076a18816b19f9fe7434b3544716062ce5f682d6a0dd786bd7cd020285",
+    "label_sha256": "01e6e46ac98ab2937d764198dce44feec9c16b138493d354311d423d9d75c662",
+    "weight_sha256": "a3f9d45877d1a9d17421afacd520d49ea6fa94ba12ce2f3a982a649268a8bdb8",
+    "q_fit_mean": 0.41080498509641,
+    "seconds": 0.983737900009146
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "db5a13076a18816b19f9fe7434b3544716062ce5f682d6a0dd786bd7cd020285",
+    "label_sha256": "01e6e46ac98ab2937d764198dce44feec9c16b138493d354311d423d9d75c662",
+    "weight_sha256": "a3f9d45877d1a9d17421afacd520d49ea6fa94ba12ce2f3a982a649268a8bdb8",
+    "q_fit_mean": 0.41080498509641,
+    "seconds": 0.9741106000146829
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "c79e797561e557175576226dd83d413418e317fe5a858407746f891bc00e8ac9",
+    "label_sha256": "0d155d80120e34a0125c8d862822eac661da050044171283ca7910f836e39f19",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9295486999908462
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "c79e797561e557175576226dd83d413418e317fe5a858407746f891bc00e8ac9",
+    "label_sha256": "0d155d80120e34a0125c8d862822eac661da050044171283ca7910f836e39f19",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9204574000032153
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "293240eede07981e2551a636069800a499effbb13a29d1be2b9050ae46afc0cf",
+    "label_sha256": "0d155d80120e34a0125c8d862822eac661da050044171283ca7910f836e39f19",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.959589899983257
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "293240eede07981e2551a636069800a499effbb13a29d1be2b9050ae46afc0cf",
+    "label_sha256": "0d155d80120e34a0125c8d862822eac661da050044171283ca7910f836e39f19",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9549426000157837
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "293240eede07981e2551a636069800a499effbb13a29d1be2b9050ae46afc0cf",
+    "label_sha256": "99968cc9516a978bf2302046eb6b5ed270521ee2313d03e39215048640647517",
+    "weight_sha256": "4f7eece726f25ed43980d24fd777b7633a6228b47204412cae94675c451c5cc0",
+    "q_fit_mean": 0.2532664386975003,
+    "seconds": 0.9850702999974601
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "293240eede07981e2551a636069800a499effbb13a29d1be2b9050ae46afc0cf",
+    "label_sha256": "99968cc9516a978bf2302046eb6b5ed270521ee2313d03e39215048640647517",
+    "weight_sha256": "4f7eece726f25ed43980d24fd777b7633a6228b47204412cae94675c451c5cc0",
+    "q_fit_mean": 0.2532664386975003,
+    "seconds": 0.9751450999756344
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "ede53825b92b11df0012cce381741d31b34111458c592a3250adfd04ce255523",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.1713604999822564
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "55701c5b6aaffc51442a43f5f32a7d6327e03b19fced374540129f1daaa1050e",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.2826010000135284
+  },
+  {
+    "job_id": "orientation_negY",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "c7b2a70d758134152a185a09e875ca96a5d4e6c77e8bfdc0f0313d28660ca371",
+    "label_sha256": "8e4c0f711cddf4df23b36dd28c4135e92ac119ed6cd471c221cd71c1b0c2b69d",
+    "weight_sha256": "0aa8e8b200a3852a224f5e942acf9e6ecbf4fa31b213f87b76225536c4abb648",
+    "q_fit_mean": 0.3260786043938973,
+    "seconds": 1.2783378000021912
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM608"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "fd86e06a39c015d0178114b5445c60fec9ea7c1a52a97362e2f8f616f9f06261",
+    "label_sha256": "60a5b9bb19b03a70b3d23fa3d29de1d3f735e8f7d30ab5a4b27143132991ba4a",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.6332887999888044
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM608"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "fd86e06a39c015d0178114b5445c60fec9ea7c1a52a97362e2f8f616f9f06261",
+    "label_sha256": "60a5b9bb19b03a70b3d23fa3d29de1d3f735e8f7d30ab5a4b27143132991ba4a",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.5699591000156943
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM608"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "36eda98ca7a2ea2cd6a1d1d2d6172e3dbcbc41e9054fba9c6e2f4642c9916138",
+    "label_sha256": "60a5b9bb19b03a70b3d23fa3d29de1d3f735e8f7d30ab5a4b27143132991ba4a",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.6448803000093903
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM608"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "36eda98ca7a2ea2cd6a1d1d2d6172e3dbcbc41e9054fba9c6e2f4642c9916138",
+    "label_sha256": "60a5b9bb19b03a70b3d23fa3d29de1d3f735e8f7d30ab5a4b27143132991ba4a",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.6718179000017699
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM432",
+      "BM441"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM608"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "36eda98ca7a2ea2cd6a1d1d2d6172e3dbcbc41e9054fba9c6e2f4642c9916138",
+    "label_sha256": "89ea226e92b99926b27f882ebfc591d28595b430327bb147cf0b54dc434d7fe5",
+    "weight_sha256": "c00c69fb03609039d2994e9164a28c9c52eea28c3bafbb26a46355bc74bd3360",
+    "q_fit_mean": 0.602142144756186,
+    "seconds": 0.6450216999801341
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 1,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM432",
+      "BM441"
+    ],
+    "held_rooms": [
+      "BM223",
+      "LM608"
+    ],
+    "fit_rows": 35040,
+    "input_sha256": "36eda98ca7a2ea2cd6a1d1d2d6172e3dbcbc41e9054fba9c6e2f4642c9916138",
+    "label_sha256": "89ea226e92b99926b27f882ebfc591d28595b430327bb147cf0b54dc434d7fe5",
+    "weight_sha256": "c00c69fb03609039d2994e9164a28c9c52eea28c3bafbb26a46355bc74bd3360",
+    "q_fit_mean": 0.602142144756186,
+    "seconds": 0.6675908000033814
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "6f2a0b0efe5be6e0e312a32970ef9dc23fd4daaaec344ddef7a9cc5d94f66bbf",
+    "label_sha256": "1ea72747ffa1674638cf695d78119326d850640bf3fa2e1ea924d168b6428a38",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9939817000122275
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "6f2a0b0efe5be6e0e312a32970ef9dc23fd4daaaec344ddef7a9cc5d94f66bbf",
+    "label_sha256": "1ea72747ffa1674638cf695d78119326d850640bf3fa2e1ea924d168b6428a38",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0169330000062473
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "044599947525b319ce0f9ccbd221272c44cf8a7c6d03c227276ba87fb0ad04fe",
+    "label_sha256": "1ea72747ffa1674638cf695d78119326d850640bf3fa2e1ea924d168b6428a38",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.984119600005215
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "044599947525b319ce0f9ccbd221272c44cf8a7c6d03c227276ba87fb0ad04fe",
+    "label_sha256": "1ea72747ffa1674638cf695d78119326d850640bf3fa2e1ea924d168b6428a38",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9977443999960087
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "044599947525b319ce0f9ccbd221272c44cf8a7c6d03c227276ba87fb0ad04fe",
+    "label_sha256": "b93598255aefc33926d7a226567ce45bab3b80507758085c178d3b01f7e1ec4b",
+    "weight_sha256": "6a6740227cd4a0b6126b74a3acd95494556a03bcc1c568d876ca1e815a385d13",
+    "q_fit_mean": 0.6903097870365921,
+    "seconds": 0.8833420000155456
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 2,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM441"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "044599947525b319ce0f9ccbd221272c44cf8a7c6d03c227276ba87fb0ad04fe",
+    "label_sha256": "b93598255aefc33926d7a226567ce45bab3b80507758085c178d3b01f7e1ec4b",
+    "weight_sha256": "6a6740227cd4a0b6126b74a3acd95494556a03bcc1c568d876ca1e815a385d13",
+    "q_fit_mean": 0.6903097870365921,
+    "seconds": 0.9976440999889746
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "a1eebe439c0a911d1abe98cd669a45bd91f81f50380a7deb6c33ce7b57d29187",
+    "label_sha256": "208f39a28661770af0ec77399952dd5e71dc8b3f9faeef443b107a5fd338bd97",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.022556000010809
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "A",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "a1eebe439c0a911d1abe98cd669a45bd91f81f50380a7deb6c33ce7b57d29187",
+    "label_sha256": "208f39a28661770af0ec77399952dd5e71dc8b3f9faeef443b107a5fd338bd97",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 0.9829129999852739
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "26f5979d499a9e4f87f6170644a946b03a0bdbe588dcba559a35103719ff5b5d",
+    "label_sha256": "208f39a28661770af0ec77399952dd5e71dc8b3f9faeef443b107a5fd338bd97",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0020367999968585
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "B",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "26f5979d499a9e4f87f6170644a946b03a0bdbe588dcba559a35103719ff5b5d",
+    "label_sha256": "208f39a28661770af0ec77399952dd5e71dc8b3f9faeef443b107a5fd338bd97",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.0455376999743748
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "26f5979d499a9e4f87f6170644a946b03a0bdbe588dcba559a35103719ff5b5d",
+    "label_sha256": "6a4b672de09562613dba0f4dba45f84e94da88b482c76004d696f37bddfe8af5",
+    "weight_sha256": "05cf79df411d3e9fa32f773cafb46161acbcb096d2f902553d841951d00d5303",
+    "q_fit_mean": 0.3827432107415853,
+    "seconds": 0.9956050000037067
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "inner",
+    "inner_fold": 3,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM432"
+    ],
+    "fit_rows": 52560,
+    "input_sha256": "26f5979d499a9e4f87f6170644a946b03a0bdbe588dcba559a35103719ff5b5d",
+    "label_sha256": "6a4b672de09562613dba0f4dba45f84e94da88b482c76004d696f37bddfe8af5",
+    "weight_sha256": "05cf79df411d3e9fa32f773cafb46161acbcb096d2f902553d841951d00d5303",
+    "q_fit_mean": 0.3827432107415853,
+    "seconds": 1.037387900025351
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "A",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "8c9cb4f0259cded94e5637e034da195fae2e65338a7695488af9ab8060b711f7",
+    "label_sha256": "8629ecdcc27fa03265f38310a6e3e9fc9ae4d597c4fd3fa06ff599fbd99a7719",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3509688999911305
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "B",
+    "depth": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "bf7d9661273f7b93bb880eb854bb59d203a6db77163c30cd159ceaaa06b5711c",
+    "label_sha256": "8629ecdcc27fa03265f38310a6e3e9fc9ae4d597c4fd3fa06ff599fbd99a7719",
+    "weight_sha256": null,
+    "q_fit_mean": null,
+    "seconds": 1.3004755999718327
+  },
+  {
+    "job_id": "orientation_posY",
+    "phase": "outer",
+    "inner_fold": null,
+    "method": "C",
+    "depth": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "fit_rows": 70080,
+    "input_sha256": "bf7d9661273f7b93bb880eb854bb59d203a6db77163c30cd159ceaaa06b5711c",
+    "label_sha256": "12f598ddea145bc4c34173c98b32f50824ebf081cf24ac2f79eb57e4eec45e32",
+    "weight_sha256": "bc2dbcb984bf7b8ec8fc62dac24ef79292a2b504a20e7b283af2b9590344e54e",
+    "q_fit_mean": 0.552930410355863,
+    "seconds": 1.344312600005651
+  }
+]

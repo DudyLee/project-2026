@@ -1,0 +1,20 @@
+Input source gate passed: TRAIN=122640, TEST skipped=52560. Frozen 3 methods x 2 depths, 189 fits.
+OUTER 1/9 room_BM223
+FINISHED room_BM223: depths {'A': 5, 'B': 5, 'C': 3}, fits {'inner': 18, 'outer': 3}, elapsed 31.7s
+OUTER 2/9 room_BM432
+FINISHED room_BM432: depths {'A': 5, 'B': 3, 'C': 3}, fits {'inner': 36, 'outer': 6}, elapsed 57.7s
+OUTER 3/9 room_BM441
+FINISHED room_BM441: depths {'A': 3, 'B': 3, 'C': 5}, fits {'inner': 54, 'outer': 9}, elapsed 86.0s
+OUTER 4/9 room_BM522
+FINISHED room_BM522: depths {'A': 3, 'B': 5, 'C': 5}, fits {'inner': 72, 'outer': 12}, elapsed 112.3s
+OUTER 5/9 room_BM608
+FINISHED room_BM608: depths {'A': 3, 'B': 5, 'C': 5}, fits {'inner': 90, 'outer': 15}, elapsed 142.4s
+OUTER 6/9 room_LM608
+FINISHED room_LM608: depths {'A': 5, 'B': 5, 'C': 3}, fits {'inner': 108, 'outer': 18}, elapsed 172.3s
+OUTER 7/9 room_LM703
+FINISHED room_LM703: depths {'A': 3, 'B': 5, 'C': 3}, fits {'inner': 126, 'outer': 21}, elapsed 201.9s
+OUTER 8/9 orientation_negY
+FINISHED orientation_negY: depths {'A': 5, 'B': 3, 'C': 3}, fits {'inner': 144, 'outer': 24}, elapsed 221.1s
+OUTER 9/9 orientation_posY
+FINISHED orientation_posY: depths {'A': 3, 'B': 3, 'C': 5}, fits {'inner': 162, 'outer': 27}, elapsed 241.3s
+COMPLETE: 189 fits; no TEST operations. Verification pending.

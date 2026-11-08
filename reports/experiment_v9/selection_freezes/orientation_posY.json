@@ -1,0 +1,11 @@
+{
+  "job_id": "orientation_posY",
+  "selected": {
+    "A": 3,
+    "B": 3,
+    "C": 5
+  },
+  "selected_utc": "2026-11-08T09:20:17.044014+00:00",
+  "outer_predictions_computed": false,
+  "outer_labels_used_for_selection": false
+}

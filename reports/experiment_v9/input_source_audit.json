@@ -1,0 +1,14 @@
+{
+  "status": "passed_for_exploratory_use",
+  "TRAIN_rows": 122640,
+  "TEST_rows_skipped_before_numeric_conversion": 52560,
+  "BIM_numeric_rooms": 7,
+  "BIM_rows_skipped_before_numeric_conversion": 469,
+  "BIM_hourly_match": true,
+  "static_across_angles_and_hours": true,
+  "obstruction_identity_verified": true,
+  "positive_q": true,
+  "source_definition": "Author README identifies these as glass-area weighted prior annual solar radiation results, separately from hourly illumination outputs.",
+  "target_independence": "No illumination target used to derive q or any feature in this experiment; independence of original upstream computation relies on author handoff, not independent simulation-source inspection.",
+  "limits": "EPW/time/north and original annual-radiation computation remain unverified; q is an empirical scale, not a measured physical daylight coefficient."
+}
