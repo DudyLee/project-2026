@@ -1,0 +1,766 @@
+[
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth3",
+    "fold": 1,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM223",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "4817893ee16b42b9f2deab2565fa1ad0f60e7b66325709722f655cce09990fec"
+    },
+    "training_inputs_sha256": "c27967daeb0319df43aa21a1f117275d91d5b3ed540d8f1b8de8d5c6a1be9c37",
+    "seconds": 0.408006400015438
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth3",
+    "fold": 2,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM432",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "68bf9eac1626fdf04cce5566c645f9c5166efbbcd1b16646f486e068ac1e2647"
+    },
+    "training_inputs_sha256": "77b241666382bb0cb197a6ccd31c23abe8f7ac307ebe82b28b45932436b4ff7f",
+    "seconds": 0.2512407999893185
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth3",
+    "fold": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM441",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "6d8126460306ab91682e340e0963eb8dc82ebe59ab65551e237ac3a9b196de7f"
+    },
+    "training_inputs_sha256": "75aaa8592cbaee346a2160a945ca9bfb3dd3da65b4392d292a78bb1125e6ef18",
+    "seconds": 0.2468955999938771
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth3",
+    "fold": 4,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM522",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "6a3c4674051cdf67f86163c9500f5ab74d21a52c84264031ac5b237f205f39d0"
+    },
+    "training_inputs_sha256": "251490a269ba4cf1af52b608c35e1acf950c3e5eeaf1917b86bc494ec2b7e8c4",
+    "seconds": 0.2510160999954678
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth3",
+    "fold": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM608",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "acb5bc795c0f46785bb21ab856896c1b59580885d82503d2ecbf8a9d1df8d402"
+    },
+    "training_inputs_sha256": "d887bd01c8605e2f2b5ef5d38584a66d4f89fa29548388f83c6dc789997d86ac",
+    "seconds": 0.24431239999830723
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth3",
+    "fold": 6,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "validation_room": "LM608",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "d5b9b5a3996e60875c2d76af6085c2c83855f85cfd4c56ecefda9925607413e7"
+    },
+    "training_inputs_sha256": "a312c7ff900cce1d0c2701531defe29fc73ee6a3c9759224cd54dd2e81675b22",
+    "seconds": 0.2595043000183068
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth3",
+    "fold": 7,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "validation_room": "LM703",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "08888aab64bd475afb6f7db62d568bab20c84ce0b9d95e33e7131c36a0238502"
+    },
+    "training_inputs_sha256": "8b21b4184fee599002319a78a33ff8b7758cbdeb05b074c9f8e44eb66972a3e6",
+    "seconds": 0.24252739999792539
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth5",
+    "fold": 1,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM223",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "4817893ee16b42b9f2deab2565fa1ad0f60e7b66325709722f655cce09990fec"
+    },
+    "training_inputs_sha256": "c27967daeb0319df43aa21a1f117275d91d5b3ed540d8f1b8de8d5c6a1be9c37",
+    "seconds": 0.3454065999831073
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth5",
+    "fold": 2,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM432",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "68bf9eac1626fdf04cce5566c645f9c5166efbbcd1b16646f486e068ac1e2647"
+    },
+    "training_inputs_sha256": "77b241666382bb0cb197a6ccd31c23abe8f7ac307ebe82b28b45932436b4ff7f",
+    "seconds": 0.3347547000157647
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth5",
+    "fold": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM441",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "6d8126460306ab91682e340e0963eb8dc82ebe59ab65551e237ac3a9b196de7f"
+    },
+    "training_inputs_sha256": "75aaa8592cbaee346a2160a945ca9bfb3dd3da65b4392d292a78bb1125e6ef18",
+    "seconds": 0.35353319998830557
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth5",
+    "fold": 4,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM522",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "6a3c4674051cdf67f86163c9500f5ab74d21a52c84264031ac5b237f205f39d0"
+    },
+    "training_inputs_sha256": "251490a269ba4cf1af52b608c35e1acf950c3e5eeaf1917b86bc494ec2b7e8c4",
+    "seconds": 0.34455399998114444
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth5",
+    "fold": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM608",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "acb5bc795c0f46785bb21ab856896c1b59580885d82503d2ecbf8a9d1df8d402"
+    },
+    "training_inputs_sha256": "d887bd01c8605e2f2b5ef5d38584a66d4f89fa29548388f83c6dc789997d86ac",
+    "seconds": 0.3506905999965966
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth5",
+    "fold": 6,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "validation_room": "LM608",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "d5b9b5a3996e60875c2d76af6085c2c83855f85cfd4c56ecefda9925607413e7"
+    },
+    "training_inputs_sha256": "a312c7ff900cce1d0c2701531defe29fc73ee6a3c9759224cd54dd2e81675b22",
+    "seconds": 0.3439461999805644
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_mean_lux",
+    "candidate": "depth5",
+    "fold": 7,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "validation_room": "LM703",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "08888aab64bd475afb6f7db62d568bab20c84ce0b9d95e33e7131c36a0238502"
+    },
+    "training_inputs_sha256": "8b21b4184fee599002319a78a33ff8b7758cbdeb05b074c9f8e44eb66972a3e6",
+    "seconds": 0.3578114999982063
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth12",
+    "fold": 1,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM223",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "4817893ee16b42b9f2deab2565fa1ad0f60e7b66325709722f655cce09990fec",
+      "ratio": "d25ad919d7fb1511cba75f4b0cf86b0791091e3c3d10d1e81fe08ef64f52fe1c"
+    },
+    "training_inputs_sha256": "c27967daeb0319df43aa21a1f117275d91d5b3ed540d8f1b8de8d5c6a1be9c37",
+    "seconds": 7.201757500006352
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth12",
+    "fold": 2,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM432",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "68bf9eac1626fdf04cce5566c645f9c5166efbbcd1b16646f486e068ac1e2647",
+      "ratio": "24ce3b5d3e6a2c3709e5ef73bfa57253f26306a9190700fd93483cadb4bd8219"
+    },
+    "training_inputs_sha256": "77b241666382bb0cb197a6ccd31c23abe8f7ac307ebe82b28b45932436b4ff7f",
+    "seconds": 7.169589899975108
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth12",
+    "fold": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM441",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "6d8126460306ab91682e340e0963eb8dc82ebe59ab65551e237ac3a9b196de7f",
+      "ratio": "e478e0358f81debaeada2db99499e6af5689a912095885c7211cc2e9191489f0"
+    },
+    "training_inputs_sha256": "75aaa8592cbaee346a2160a945ca9bfb3dd3da65b4392d292a78bb1125e6ef18",
+    "seconds": 7.400649999995949
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth12",
+    "fold": 4,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM522",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "6a3c4674051cdf67f86163c9500f5ab74d21a52c84264031ac5b237f205f39d0",
+      "ratio": "b00c0020804919277aec36744bae151154d39ea933ed585fa4f3c6c130b1ff23"
+    },
+    "training_inputs_sha256": "251490a269ba4cf1af52b608c35e1acf950c3e5eeaf1917b86bc494ec2b7e8c4",
+    "seconds": 7.254218199988827
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth12",
+    "fold": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM608",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "acb5bc795c0f46785bb21ab856896c1b59580885d82503d2ecbf8a9d1df8d402",
+      "ratio": "f2fcec3c5946fe189167c77bb1c205164838dad440007e5359c12b83d20a376f"
+    },
+    "training_inputs_sha256": "d887bd01c8605e2f2b5ef5d38584a66d4f89fa29548388f83c6dc789997d86ac",
+    "seconds": 7.462618899997324
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth12",
+    "fold": 6,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "validation_room": "LM608",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "d5b9b5a3996e60875c2d76af6085c2c83855f85cfd4c56ecefda9925607413e7",
+      "ratio": "2b4422ba0090dd0bfc2df54068dba330c0010a8859808a8b66b6f7a8be84b30d"
+    },
+    "training_inputs_sha256": "a312c7ff900cce1d0c2701531defe29fc73ee6a3c9759224cd54dd2e81675b22",
+    "seconds": 7.279890100006014
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth12",
+    "fold": 7,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "validation_room": "LM703",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "08888aab64bd475afb6f7db62d568bab20c84ce0b9d95e33e7131c36a0238502",
+      "ratio": "479c2aa84845fc3867bfbfe50ce9196a90b7fc5328d5b0527d92be3996d3f70c"
+    },
+    "training_inputs_sha256": "8b21b4184fee599002319a78a33ff8b7758cbdeb05b074c9f8e44eb66972a3e6",
+    "seconds": 7.291511499992339
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth8",
+    "fold": 1,
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM223",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "4817893ee16b42b9f2deab2565fa1ad0f60e7b66325709722f655cce09990fec",
+      "ratio": "d25ad919d7fb1511cba75f4b0cf86b0791091e3c3d10d1e81fe08ef64f52fe1c"
+    },
+    "training_inputs_sha256": "c27967daeb0319df43aa21a1f117275d91d5b3ed540d8f1b8de8d5c6a1be9c37",
+    "seconds": 5.654532199987443
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth8",
+    "fold": 2,
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM432",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "68bf9eac1626fdf04cce5566c645f9c5166efbbcd1b16646f486e068ac1e2647",
+      "ratio": "24ce3b5d3e6a2c3709e5ef73bfa57253f26306a9190700fd93483cadb4bd8219"
+    },
+    "training_inputs_sha256": "77b241666382bb0cb197a6ccd31c23abe8f7ac307ebe82b28b45932436b4ff7f",
+    "seconds": 5.464854399993783
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth8",
+    "fold": 3,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM441",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "6d8126460306ab91682e340e0963eb8dc82ebe59ab65551e237ac3a9b196de7f",
+      "ratio": "e478e0358f81debaeada2db99499e6af5689a912095885c7211cc2e9191489f0"
+    },
+    "training_inputs_sha256": "75aaa8592cbaee346a2160a945ca9bfb3dd3da65b4392d292a78bb1125e6ef18",
+    "seconds": 5.661555300001055
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth8",
+    "fold": 4,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM522",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "6a3c4674051cdf67f86163c9500f5ab74d21a52c84264031ac5b237f205f39d0",
+      "ratio": "b00c0020804919277aec36744bae151154d39ea933ed585fa4f3c6c130b1ff23"
+    },
+    "training_inputs_sha256": "251490a269ba4cf1af52b608c35e1acf950c3e5eeaf1917b86bc494ec2b7e8c4",
+    "seconds": 5.638792299985653
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth8",
+    "fold": 5,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "validation_room": "BM608",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "acb5bc795c0f46785bb21ab856896c1b59580885d82503d2ecbf8a9d1df8d402",
+      "ratio": "f2fcec3c5946fe189167c77bb1c205164838dad440007e5359c12b83d20a376f"
+    },
+    "training_inputs_sha256": "d887bd01c8605e2f2b5ef5d38584a66d4f89fa29548388f83c6dc789997d86ac",
+    "seconds": 5.623785000003409
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth8",
+    "fold": 6,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "validation_room": "LM608",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "d5b9b5a3996e60875c2d76af6085c2c83855f85cfd4c56ecefda9925607413e7",
+      "ratio": "2b4422ba0090dd0bfc2df54068dba330c0010a8859808a8b66b6f7a8be84b30d"
+    },
+    "training_inputs_sha256": "a312c7ff900cce1d0c2701531defe29fc73ee6a3c9759224cd54dd2e81675b22",
+    "seconds": 5.579454699996859
+  },
+  {
+    "stage": "development_parameter_selection",
+    "target": "E_P10_lux",
+    "candidate": "depth8",
+    "fold": 7,
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "validation_room": "LM703",
+    "fit_rows": 105120,
+    "validation_rows": 17520,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "08888aab64bd475afb6f7db62d568bab20c84ce0b9d95e33e7131c36a0238502",
+      "ratio": "479c2aa84845fc3867bfbfe50ce9196a90b7fc5328d5b0527d92be3996d3f70c"
+    },
+    "training_inputs_sha256": "8b21b4184fee599002319a78a33ff8b7758cbdeb05b074c9f8e44eb66972a3e6",
+    "seconds": 5.487738800002262
+  },
+  {
+    "stage": "full_seven_refit",
+    "target": "E_mean_lux",
+    "candidate": "depth3",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "fit_rows": 122640,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "80fda9e0b1044e5b504f15a27a37588fbe5b95209683943f706c82597e3f9a03"
+    },
+    "training_inputs_sha256": "a154482802afa9cc8aeb73d87447126ad7c561db90e95940a5ffad0be1443430",
+    "seconds": 0.26106749998871237
+  },
+  {
+    "stage": "full_seven_refit",
+    "target": "E_P10_lux",
+    "candidate": "depth12",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "fit_rows": 122640,
+    "estimators": 2,
+    "training_label_hashes": {
+      "mean_log": "80fda9e0b1044e5b504f15a27a37588fbe5b95209683943f706c82597e3f9a03",
+      "ratio": "119a41606434d5b9934d444623ee78519a1c698b22a102425b6d5c3fca6cb3ea"
+    },
+    "training_inputs_sha256": "a154482802afa9cc8aeb73d87447126ad7c561db90e95940a5ffad0be1443430",
+    "seconds": 8.539612599997781
+  },
+  {
+    "stage": "full_seven_refit",
+    "target": "F_300_fraction",
+    "candidate": "v1_baseline",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "fit_rows": 122640,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "82b3b3ef64b9d14985995b3fadab2483f7d3ab2346369b5f42ff31db178c8547"
+    },
+    "training_inputs_sha256": "a154482802afa9cc8aeb73d87447126ad7c561db90e95940a5ffad0be1443430",
+    "seconds": 0.6046332000114489
+  },
+  {
+    "stage": "full_seven_refit",
+    "target": "F_UDI_fraction",
+    "candidate": "v1_baseline",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "fit_rows": 122640,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "e66134b9525c0716e0854a41429b41ea536875cef902dd32672c8077f036c303"
+    },
+    "training_inputs_sha256": "a154482802afa9cc8aeb73d87447126ad7c561db90e95940a5ffad0be1443430",
+    "seconds": 0.6179219000041485
+  },
+  {
+    "stage": "full_seven_refit",
+    "target": "PV_AC_kWh",
+    "candidate": "v1_baseline",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "fit_rows": 122640,
+    "estimators": 1,
+    "training_label_hashes": {
+      "value": "711bc62e0a71abc02bcd5d9ef5f367404c8784678a2611c38bf0bdaf018a984f"
+    },
+    "training_inputs_sha256": "a154482802afa9cc8aeb73d87447126ad7c561db90e95940a5ffad0be1443430",
+    "seconds": 0.5787547999934759
+  }
+]

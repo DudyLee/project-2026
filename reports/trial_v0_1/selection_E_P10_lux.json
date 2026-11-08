@@ -1,0 +1,48 @@
+{
+  "scope": "Development parameter selection; not independent test",
+  "candidates": [
+    {
+      "spec": {
+        "target": "E_P10_lux",
+        "family": "RandomForest",
+        "transform": "relative",
+        "id": "depth12",
+        "params": {
+          "n_estimators": 64,
+          "max_features": 1.0,
+          "bootstrap": true,
+          "max_samples": 0.7,
+          "n_jobs": 4,
+          "random_state": 2026,
+          "max_depth": 12,
+          "min_samples_leaf": 100
+        }
+      },
+      "order": 0,
+      "macro_MAE": 9.397582995271192,
+      "worst_MAE": 29.275425754537196
+    },
+    {
+      "spec": {
+        "target": "E_P10_lux",
+        "family": "RandomForest",
+        "transform": "relative",
+        "id": "depth8",
+        "params": {
+          "n_estimators": 64,
+          "max_features": 1.0,
+          "bootstrap": true,
+          "max_samples": 0.7,
+          "n_jobs": 4,
+          "random_state": 2026,
+          "max_depth": 8,
+          "min_samples_leaf": 300
+        }
+      },
+      "order": 1,
+      "macro_MAE": 9.854714865769086,
+      "worst_MAE": 30.006257147623888
+    }
+  ],
+  "selected": "depth12"
+}

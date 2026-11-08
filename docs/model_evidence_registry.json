@@ -1,6 +1,6 @@
 {
   "updated_local_date": "2026-11-08",
-  "status": "development_evidence_only_not_a_deployed_multioutput_model",
+  "status": "development_evidence_with_verified_research_trial_not_independently_tested",
   "evaluation": "Seven development rooms; outer leave-one-room-out. Repeated development use is not final independent testing.",
   "protected_test_rooms": [
     "BM532",
@@ -367,5 +367,15 @@
   ],
   "v7_result_source": "reports/experiment_v7/scoreboard.csv",
   "v7_result_source_sha256": "8e81a154f0cc3a3ddfd58c88f782ad519d5bc31b57f88a23cc79f51722648fae",
-  "current_comparison_reference_note": "Original comparison references remain listed for traceability. v7 development candidates are recorded separately; no final deployment model selected."
+  "current_comparison_reference_note": "Original comparison references remain listed for traceability. v7 development candidates are recorded separately; no final deployment model selected.",
+  "trial_release": {
+    "version": "0.1.0",
+    "model": "models/trial_v0_1",
+    "usage": "docs/trial_v0_1_usage.md",
+    "report": "reports/trial_v0_1/summary.md",
+    "verification": "reports/trial_v0_1/verification.json",
+    "full_seven_refit": true,
+    "TEST_evaluated": false,
+    "historical_score_warning": "Existing comparison-reference metrics are not final independent scores of this full-seven package."
+  }
 }

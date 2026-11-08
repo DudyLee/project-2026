@@ -66,3 +66,10 @@ P10照度：平均MAE 9.748 → 15.453 lux；最差MAE 29.275 → 48.956 lux（B
 正式候选为Worst_guarded。相对Target_baseline和Retained_reference均须达到：最大房间MAE下降至少10%、平均MAE不增加、至少5/7房间不恶化。内层5%保护不能保证外层结果也满足条件；Mean_select是预先声明的对照，不在看过结果后改成主要候选。
 
 原参考数值和v7候选分开保存；未执行全7房间部署训练、TEST评价或新的角度决策验证。详细误差与每折所选模型见[v7报告](../reports/experiment_v7/report.html)。
+
+
+## 试用版0.1（全7开发房间固定模型）
+
+2026-11-08按用户批准完成。沿用保留模型族，平均照度XGB深度3、相对P10 RF深度12、F300/FUDI/PV固定HistGB；42次开发参数选择拟合后，用7房间122,640行重训6个估计器。
+
+[训练与接口验证](../reports/trial_v0_1/summary.md) · [使用说明](trial_v0_1_usage.md)。CSV/JSON/Python入口已验证，三个TEST房间继续封存。本轮软件检查和参数选择分数不等于最终独立泛化成绩。

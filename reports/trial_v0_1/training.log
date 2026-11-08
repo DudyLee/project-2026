@@ -1,0 +1,36 @@
+TRAIN 122640 rows, 7 rooms; skipped TEST 52560. Selecting parameters.
+E_mean_lux depth3 held BM223 MAE=112.472316
+E_mean_lux depth3 held BM432 MAE=231.642281
+E_mean_lux depth3 held BM441 MAE=29.239115
+E_mean_lux depth3 held BM522 MAE=108.545375
+E_mean_lux depth3 held BM608 MAE=19.432277
+E_mean_lux depth3 held LM608 MAE=48.053225
+E_mean_lux depth3 held LM703 MAE=27.647507
+E_mean_lux depth5 held BM223 MAE=117.007138
+E_mean_lux depth5 held BM432 MAE=231.219432
+E_mean_lux depth5 held BM441 MAE=29.757556
+E_mean_lux depth5 held BM522 MAE=139.466329
+E_mean_lux depth5 held BM608 MAE=27.881855
+E_mean_lux depth5 held LM608 MAE=51.938646
+E_mean_lux depth5 held LM703 MAE=38.881340
+E_P10_lux depth12 held BM223 MAE=6.727144
+E_P10_lux depth12 held BM432 MAE=29.275426
+E_P10_lux depth12 held BM441 MAE=0.100985
+E_P10_lux depth12 held BM522 MAE=29.267930
+E_P10_lux depth12 held BM608 MAE=0.220125
+E_P10_lux depth12 held LM608 MAE=0.051009
+E_P10_lux depth12 held LM703 MAE=0.140461
+E_P10_lux depth8 held BM223 MAE=9.757115
+E_P10_lux depth8 held BM432 MAE=30.006257
+E_P10_lux depth8 held BM441 MAE=0.092800
+E_P10_lux depth8 held BM522 MAE=28.740900
+E_P10_lux depth8 held BM608 MAE=0.176519
+E_P10_lux depth8 held LM608 MAE=0.051987
+E_P10_lux depth8 held LM703 MAE=0.157426
+Parameters frozen. Fitting all seven development rooms.
+Refit E_mean_lux XGBoost depth3
+Refit E_P10_lux RandomForest depth12
+Refit F_300_fraction HistGB v1_baseline
+Refit F_UDI_fraction HistGB v1_baseline
+Refit PV_AC_kWh HistGB v1_baseline
+Training finished in 108.6s; TEST untouched.

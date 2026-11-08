@@ -4,8 +4,8 @@
   "latest_completed_experiment": "target_specific_worst_room_v7",
   "latest_analysis": "reports/experiment_v7/report.html",
   "pending_proposal": null,
-  "pending_proposal_status": "Authorized v7 plan and bounded grid completed; no pending execution.",
-  "latest_approval": "docs/approvals/target_specific_v7_approval.json",
+  "pending_proposal_status": "Authorized full-seven-room trial build completed and verified.",
+  "latest_approval": "docs/approvals/trial_v0_1_approval.json",
   "report": "reports/experiment_v7/report.html",
   "configuration": "configs/experiment_v7.json",
   "verification": "reports/experiment_v7/verification.json",
@@ -18,8 +18,8 @@
   "TEST_scores": 0,
   "new_simulations": 0,
   "final_deployment_refit": false,
-  "model_status": "V7 Worst_guarded passed both development references for 0/5 targets. Candidates retained for further validation; no final deployment model or TEST evaluation.",
-  "authorization_status": "User-authorized target-specific optimization completed and verified. TEST sealed.",
+  "model_status": "Trial 0.1.0: fixed five-output model fitted to all seven development rooms; offline CSV/JSON/Python inference verified. No final TEST evaluation or production reliability claim.",
+  "authorization_status": "User-authorized trial build complete; TEST sealed.",
   "remaining_provenance_limits": [
     "EPW identity and hourly alignment",
     "Model coordinates relative to geographic north",
@@ -29,8 +29,16 @@
   "latest_completed_analysis": "target_specific_worst_room_v7_evaluation",
   "source_handoff": "exports/geometry_source_handoff_v1.zip",
   "stopped_branch": "Finer blend weights or room-specific routing without new independent input information",
-  "next_priority": "Review per-target tradeoffs, resolve existing geometry/weather provenance, then freeze a final evaluation plan; no additional simulations authorized.",
+  "next_priority": "Use trial for supervised demonstrations/interface checks; resolve geometry/weather provenance and agree a final evaluation protocol before unsealing TEST.",
   "experiment_index": "docs/experiment_index.md",
   "evidence_registry": "docs/model_evidence_registry.json",
-  "v7_development_candidates": []
+  "v7_development_candidates": [],
+  "trial_full_seven_refit": true,
+  "trial_release": {
+    "version": "0.1.0",
+    "model": "models/trial_v0_1",
+    "usage": "docs/trial_v0_1_usage.md",
+    "report": "reports/trial_v0_1/summary.md",
+    "verification": "reports/trial_v0_1/verification.json"
+  }
 }

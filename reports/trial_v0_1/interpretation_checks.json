@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "check": "No training accuracy presented as generalization",
+      "passed": true
+    },
+    {
+      "check": "Selection scores identified as development-only",
+      "passed": true
+    },
+    {
+      "check": "Prior repeated room use acknowledged",
+      "passed": true
+    },
+    {
+      "check": "No TEST inputs used for prediction or target analysis",
+      "passed": true
+    },
+    {
+      "check": "No cross-procedure MAE improvement claim",
+      "passed": true
+    },
+    {
+      "check": "No p-values or independence claim for hourly rows",
+      "passed": true
+    },
+    {
+      "check": "Uncertainty flags not called confidence intervals",
+      "passed": true
+    },
+    {
+      "check": "Simulation surrogate distinguished from physical measurements",
+      "passed": true
+    },
+    {
+      "check": "No unsupported angle-control benefit claim",
+      "passed": true
+    },
+    {
+      "check": "Worst-room and provenance limitations retained",
+      "passed": true
+    },
+    {
+      "check": "Full-seven refit distinguished from final independent evaluation",
+      "passed": true
+    }
+  ]
+}
