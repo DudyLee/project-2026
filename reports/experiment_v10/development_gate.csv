@@ -1,5 +1,0 @@
-method,rooms_nonworse_than_S1,reaches_primary_targets,partial_progress,passes_all,macro_below_50,BM432_at_most_120,LM608_at_most_40,worst_nonworse_than_C,five_rooms_nonworse_than_S1,orientation_macro_nonworse_than_T1,orientation_worst_nonworse_than_T1,orientation_LM608_nonworse_than_S1
-v10_X0,4,False,False,False,False,False,False,False,False,True,False,True
-v10_Xq,4,False,False,False,False,False,False,True,False,True,True,False
-v10_S0,3,False,False,False,True,True,False,True,False,False,False,False
-v10_Sq,3,False,False,False,False,False,False,False,False,True,True,True

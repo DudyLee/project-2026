@@ -1,7 +1,0 @@
-{
-  "method": "Mean_log1p",
-  "mae_mean": 95.92056360222848,
-  "rmse_mean": 168.18432631923022,
-  "focus_BM522_mae": 149.98274990998658,
-  "scope": "Reused frozen six-room-fold models; not a full-seven-room deployment model"
-}

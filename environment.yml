@@ -8,8 +8,8 @@ dependencies:
   - pandas
   - scipy
   - scikit-learn=1.7.2
-  - matplotlib
   - joblib
+  - threadpoolctl
   - pyarrow
   - pip
   - pip:
