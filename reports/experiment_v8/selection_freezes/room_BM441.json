@@ -1,0 +1,15 @@
+{
+  "job_id": "room_BM441",
+  "selected": {
+    "S0::E_mean_lux": 0.1,
+    "S0::E_P10_lux": 0.1,
+    "S0::F_UDI_fraction": 0.1,
+    "S1::E_mean_lux": 0.1,
+    "S1::E_P10_lux": 0.1,
+    "S1::F_UDI_fraction": 0.1,
+    "S1_direct::E_P10_lux": 0.01
+  },
+  "selected_utc": "2026-11-08T07:47:50.192934+00:00",
+  "outer_predictions_computed": false,
+  "outer_labels_used_for_selection": false
+}

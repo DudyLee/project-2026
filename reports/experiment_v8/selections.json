@@ -1,0 +1,912 @@
+[
+  {
+    "job_id": "room_BM223",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 80.80387813844185,
+    "worst_MAE": 249.83666826909743,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:46:57.248957+00:00",
+    "outer_held_rooms": [
+      "BM223"
+    ]
+  },
+  {
+    "job_id": "room_BM223",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 9.614926885143447,
+    "worst_MAE": 30.671939740848433,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:46:57.248957+00:00",
+    "outer_held_rooms": [
+      "BM223"
+    ]
+  },
+  {
+    "job_id": "room_BM223",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.0878990609265886,
+    "worst_MAE": 0.2135606163371792,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:46:57.248957+00:00",
+    "outer_held_rooms": [
+      "BM223"
+    ]
+  },
+  {
+    "job_id": "room_BM223",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.01,
+    "mean_MAE": 65.16343199868372,
+    "worst_MAE": 176.54137693849796,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:46:57.248957+00:00",
+    "outer_held_rooms": [
+      "BM223"
+    ]
+  },
+  {
+    "job_id": "room_BM223",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 11.237022934344632,
+    "worst_MAE": 42.45237965254338,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:46:57.248957+00:00",
+    "outer_held_rooms": [
+      "BM223"
+    ]
+  },
+  {
+    "job_id": "room_BM223",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.08754120053992225,
+    "worst_MAE": 0.21578343797081903,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:46:57.248957+00:00",
+    "outer_held_rooms": [
+      "BM223"
+    ]
+  },
+  {
+    "job_id": "room_BM223",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 12.714065762326177,
+    "worst_MAE": 43.117531200826164,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:46:57.248957+00:00",
+    "outer_held_rooms": [
+      "BM223"
+    ]
+  },
+  {
+    "job_id": "room_BM432",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 59.21546841389201,
+    "worst_MAE": 97.65294841145034,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:23.851113+00:00",
+    "outer_held_rooms": [
+      "BM432"
+    ]
+  },
+  {
+    "job_id": "room_BM432",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 12.026364976486265,
+    "worst_MAE": 67.7664963610356,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:23.851113+00:00",
+    "outer_held_rooms": [
+      "BM432"
+    ]
+  },
+  {
+    "job_id": "room_BM432",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.12315513891270785,
+    "worst_MAE": 0.3674276281190146,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:23.851113+00:00",
+    "outer_held_rooms": [
+      "BM432"
+    ]
+  },
+  {
+    "job_id": "room_BM432",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 55.429048957166565,
+    "worst_MAE": 104.30233406659973,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:23.851113+00:00",
+    "outer_held_rooms": [
+      "BM432"
+    ]
+  },
+  {
+    "job_id": "room_BM432",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 12.021918077516693,
+    "worst_MAE": 67.79235882469315,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:23.851113+00:00",
+    "outer_held_rooms": [
+      "BM432"
+    ]
+  },
+  {
+    "job_id": "room_BM432",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.1222907253122028,
+    "worst_MAE": 0.3733738329610224,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:23.851113+00:00",
+    "outer_held_rooms": [
+      "BM432"
+    ]
+  },
+  {
+    "job_id": "room_BM432",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 11.557461081159273,
+    "worst_MAE": 67.87157819526827,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:23.851113+00:00",
+    "outer_held_rooms": [
+      "BM432"
+    ]
+  },
+  {
+    "job_id": "room_BM441",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 85.35343156993842,
+    "worst_MAE": 224.54052837932272,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:50.192934+00:00",
+    "outer_held_rooms": [
+      "BM441"
+    ]
+  },
+  {
+    "job_id": "room_BM441",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 18.887665973167966,
+    "worst_MAE": 59.59606398752935,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:50.192934+00:00",
+    "outer_held_rooms": [
+      "BM441"
+    ]
+  },
+  {
+    "job_id": "room_BM441",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.13188738945128234,
+    "worst_MAE": 0.24857993365840417,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:50.192934+00:00",
+    "outer_held_rooms": [
+      "BM441"
+    ]
+  },
+  {
+    "job_id": "room_BM441",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 82.21921114380031,
+    "worst_MAE": 198.61638939688305,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:50.192934+00:00",
+    "outer_held_rooms": [
+      "BM441"
+    ]
+  },
+  {
+    "job_id": "room_BM441",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 19.20405662435672,
+    "worst_MAE": 60.89273078045146,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:50.192934+00:00",
+    "outer_held_rooms": [
+      "BM441"
+    ]
+  },
+  {
+    "job_id": "room_BM441",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.13572956867416838,
+    "worst_MAE": 0.26296747947143595,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:50.192934+00:00",
+    "outer_held_rooms": [
+      "BM441"
+    ]
+  },
+  {
+    "job_id": "room_BM441",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 15.334193792090502,
+    "worst_MAE": 63.56195653571482,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:47:50.192934+00:00",
+    "outer_held_rooms": [
+      "BM441"
+    ]
+  },
+  {
+    "job_id": "room_BM522",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 99.24833665956726,
+    "worst_MAE": 337.4722027209497,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:16.410542+00:00",
+    "outer_held_rooms": [
+      "BM522"
+    ]
+  },
+  {
+    "job_id": "room_BM522",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 10.405859990588914,
+    "worst_MAE": 53.497523599272235,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:16.410542+00:00",
+    "outer_held_rooms": [
+      "BM522"
+    ]
+  },
+  {
+    "job_id": "room_BM522",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.13257150614809174,
+    "worst_MAE": 0.3259098407201014,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:16.410542+00:00",
+    "outer_held_rooms": [
+      "BM522"
+    ]
+  },
+  {
+    "job_id": "room_BM522",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 100.2364368299468,
+    "worst_MAE": 327.3176565874124,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:16.410542+00:00",
+    "outer_held_rooms": [
+      "BM522"
+    ]
+  },
+  {
+    "job_id": "room_BM522",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 10.496015938005389,
+    "worst_MAE": 53.48623222693392,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:16.410542+00:00",
+    "outer_held_rooms": [
+      "BM522"
+    ]
+  },
+  {
+    "job_id": "room_BM522",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.13566740460783824,
+    "worst_MAE": 0.325474652759238,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:16.410542+00:00",
+    "outer_held_rooms": [
+      "BM522"
+    ]
+  },
+  {
+    "job_id": "room_BM522",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 9.714695275873618,
+    "worst_MAE": 53.482980119999404,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:16.410542+00:00",
+    "outer_held_rooms": [
+      "BM522"
+    ]
+  },
+  {
+    "job_id": "room_BM608",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 121.31230220142925,
+    "worst_MAE": 321.27295613629656,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:42.711100+00:00",
+    "outer_held_rooms": [
+      "BM608"
+    ]
+  },
+  {
+    "job_id": "room_BM608",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 13.18894809415027,
+    "worst_MAE": 32.63709535332869,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:42.711100+00:00",
+    "outer_held_rooms": [
+      "BM608"
+    ]
+  },
+  {
+    "job_id": "room_BM608",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.14463388230938404,
+    "worst_MAE": 0.23682973301394344,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:42.711100+00:00",
+    "outer_held_rooms": [
+      "BM608"
+    ]
+  },
+  {
+    "job_id": "room_BM608",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 114.00769653950027,
+    "worst_MAE": 299.87770937995595,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:42.711100+00:00",
+    "outer_held_rooms": [
+      "BM608"
+    ]
+  },
+  {
+    "job_id": "room_BM608",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 11.948087094278087,
+    "worst_MAE": 28.43533156804679,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:42.711100+00:00",
+    "outer_held_rooms": [
+      "BM608"
+    ]
+  },
+  {
+    "job_id": "room_BM608",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.1449927453180773,
+    "worst_MAE": 0.24157983385795376,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:42.711100+00:00",
+    "outer_held_rooms": [
+      "BM608"
+    ]
+  },
+  {
+    "job_id": "room_BM608",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 14.322424977869064,
+    "worst_MAE": 45.168989468314464,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:48:42.711100+00:00",
+    "outer_held_rooms": [
+      "BM608"
+    ]
+  },
+  {
+    "job_id": "room_LM608",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 100.61255859390205,
+    "worst_MAE": 321.27295613629656,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:08.609828+00:00",
+    "outer_held_rooms": [
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "room_LM608",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 12.487630776551383,
+    "worst_MAE": 32.63709535332869,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:08.609828+00:00",
+    "outer_held_rooms": [
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "room_LM608",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.1421329156471193,
+    "worst_MAE": 0.21318867590035853,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:08.609828+00:00",
+    "outer_held_rooms": [
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "room_LM608",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 91.62566942088256,
+    "worst_MAE": 299.87770937995595,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:08.609828+00:00",
+    "outer_held_rooms": [
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "room_LM608",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 11.492071951875495,
+    "worst_MAE": 30.51681300812605,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:08.609828+00:00",
+    "outer_held_rooms": [
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "room_LM608",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.1404273493440603,
+    "worst_MAE": 0.21420130051115094,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:08.609828+00:00",
+    "outer_held_rooms": [
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "room_LM608",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 15.403901288346704,
+    "worst_MAE": 45.168989468314464,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:08.609828+00:00",
+    "outer_held_rooms": [
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "room_LM703",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 111.82936057138959,
+    "worst_MAE": 316.4521533336233,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:33.267275+00:00",
+    "outer_held_rooms": [
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "room_LM703",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 14.3533241103553,
+    "worst_MAE": 36.98885520989318,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:33.267275+00:00",
+    "outer_held_rooms": [
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "room_LM703",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.1562052950830963,
+    "worst_MAE": 0.2279065784095164,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:33.267275+00:00",
+    "outer_held_rooms": [
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "room_LM703",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 99.22362140336115,
+    "worst_MAE": 298.86522894336974,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:33.267275+00:00",
+    "outer_held_rooms": [
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "room_LM703",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 13.25889436324247,
+    "worst_MAE": 34.0554834334939,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:33.267275+00:00",
+    "outer_held_rooms": [
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "room_LM703",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.01,
+    "mean_MAE": 0.1568893911760331,
+    "worst_MAE": 0.2306400217229837,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:33.267275+00:00",
+    "outer_held_rooms": [
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "room_LM703",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.01,
+    "mean_MAE": 16.71928291974589,
+    "worst_MAE": 49.693626410044445,
+    "rooms": 6,
+    "selected_utc": "2026-11-08T07:49:33.267275+00:00",
+    "outer_held_rooms": [
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "orientation_negY",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 84.38222604639566,
+    "worst_MAE": 103.82761732688591,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:49:56.940784+00:00",
+    "outer_held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "orientation_negY",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 29.485971636060796,
+    "worst_MAE": 67.82650976477125,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:49:56.940784+00:00",
+    "outer_held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "orientation_negY",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.23839901825956747,
+    "worst_MAE": 0.36297964270768346,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:49:56.940784+00:00",
+    "outer_held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "orientation_negY",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 82.99816903353208,
+    "worst_MAE": 105.42832956186524,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:49:56.940784+00:00",
+    "outer_held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "orientation_negY",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 29.260287265103784,
+    "worst_MAE": 67.8284186739178,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:49:56.940784+00:00",
+    "outer_held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "orientation_negY",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.2392616663102702,
+    "worst_MAE": 0.36595978821141434,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:49:56.940784+00:00",
+    "outer_held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "orientation_negY",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 21.69644481121553,
+    "worst_MAE": 67.82414216040878,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:49:56.940784+00:00",
+    "outer_held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "orientation_posY",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 178.27547998521771,
+    "worst_MAE": 332.92485708073684,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:50:14.098137+00:00",
+    "outer_held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "orientation_posY",
+    "cell": "S0",
+    "method": "S0",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 22.509151543387834,
+    "worst_MAE": 53.54776563258041,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:50:14.098137+00:00",
+    "outer_held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "orientation_posY",
+    "cell": "S0",
+    "method": "S0",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.22704946924461308,
+    "worst_MAE": 0.33675678493964806,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:50:14.098137+00:00",
+    "outer_held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "orientation_posY",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_mean_lux",
+    "lambda": 0.1,
+    "mean_MAE": 182.3012021302021,
+    "worst_MAE": 327.8423811532889,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:50:14.098137+00:00",
+    "outer_held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "orientation_posY",
+    "cell": "S1",
+    "method": "S1",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 22.159689921781915,
+    "worst_MAE": 53.535558027702606,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:50:14.098137+00:00",
+    "outer_held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "orientation_posY",
+    "cell": "S1",
+    "method": "S1",
+    "target": "F_UDI_fraction",
+    "lambda": 0.1,
+    "mean_MAE": 0.22741800345111748,
+    "worst_MAE": 0.33742814375083824,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:50:14.098137+00:00",
+    "outer_held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "orientation_posY",
+    "cell": "S1",
+    "method": "S1_direct",
+    "target": "E_P10_lux",
+    "lambda": 0.1,
+    "mean_MAE": 17.38734786924762,
+    "worst_MAE": 53.55877049636996,
+    "rooms": 4,
+    "selected_utc": "2026-11-08T07:50:14.098137+00:00",
+    "outer_held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  }
+]

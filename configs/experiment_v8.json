@@ -1,0 +1,48 @@
+{
+  "experiment_id": "directional_transfer_v8",
+  "source": "data/raw/SEND_ML_BIM_EPW_07-18.csv",
+  "source_sha256": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8",
+  "parameter_source": "reports/trial_v0_1/parameter_freeze.json",
+  "output": "reports/experiment_v8",
+  "model_output": "models/experiment_v8",
+  "targets": ["E_mean_lux", "E_P10_lux", "F_UDI_fraction"],
+  "development_rooms": ["BM223", "BM432", "BM441", "BM522", "BM608", "LM608", "LM703"],
+  "excluded_test_rooms": ["BM532", "BM702", "BMG26"],
+  "orientation_groups": {"posX": ["BM223"], "negY": ["BM432", "BM441", "LM608"], "posY": ["BM522", "BM608", "LM703"]},
+  "features": {
+    "F0": "Existing deterministic 15-column encoding of 13 raw inputs",
+    "F1": "F0 plus u=DNI*cos(alt)*sin(az), v=DNI*cos(alt)*cos(az), X*u, X*v, Y*u, Y*v; angles converted to radians; 21 columns",
+    "interpretation": "Empirical interactions, not verified physical incidence. No north rotation, label-derived geometry or Room_ID features."
+  },
+  "methods": {
+    "T0": {"features": "F0", "family": "retained_trees", "targets": ["E_mean_lux", "E_P10_lux", "F_UDI_fraction"]},
+    "T1": {"features": "F1", "family": "retained_trees", "targets": ["E_mean_lux", "E_P10_lux", "F_UDI_fraction"]},
+    "S0": {"features": "F0", "family": "spline_ridge", "targets": ["E_mean_lux", "E_P10_lux", "F_UDI_fraction"]},
+    "S1": {"features": "F1", "family": "spline_ridge", "targets": ["E_mean_lux", "E_P10_lux", "F_UDI_fraction"]},
+    "S1_direct": {"features": "F1", "family": "spline_ridge", "targets": ["E_P10_lux"], "P10_transform": "asinh"}
+  },
+  "spline": {
+    "columns": ["Hour", "EPW_GHI_Wh_m2", "EPW_DNI_Wh_m2", "EPW_DHI_Wh_m2", "Solar_Altitude_mid_deg", "PVSD_Angle_deg"],
+    "n_knots": 4, "degree": 3, "knots": "uniform", "extrapolation": "linear", "include_bias": false
+  },
+  "ridge": {"lambdas": [0.01, 0.1], "alpha_rule": "lambda * n_fit_rows", "solver": "svd", "fit_intercept": true},
+  "selection": {
+    "inner": "GroupKFold(3) over outer-fitting Room_IDs; unweighted validation-room original-unit MAE",
+    "tie": "Minimum mean MAE, then larger lambda on an exact tie",
+    "preprocessing": "Spline knots and StandardScaler fit independently inside each fitting split; preprocessing can be shared across targets/lambdas in the same split",
+    "P10": "Paired mean_log and ratio use the same chosen lambda for P10; do not replace with separately selected mean-output lambda"
+  },
+  "outer": ["Seven LeaveOneRoomOut folds", "Three LeaveOneOrientationOut groups; posX reuses identical BM223 room fold"],
+  "target_handling": {"E_mean_lux": "log1p -> max(expm1,0)", "E_P10_lux": "max(ratio,0)*(max(expm1(paired_mean_log),0)+1)", "F_UDI_fraction": "identity -> clip [0,1]", "S1_direct_P10": "asinh(P10 / 1 lux) -> max(sinh,0)"},
+  "bounds_diagnostics": "Store unbounded native output and component-clipping fraction. For relative P10 raw=ratio*exp(mean_log); primary clips both components independently as before.",
+  "gate": {"primary_worst_MAE_reduction": 0.10, "primary_macro_MAE_increase_max": 0.0, "primary_rooms_nonworse_min": 5, "orientation_macro_MAE_increase_max": 0.0, "orientation_worst_MAE_increase_max": 0.0, "numerical_tolerance": 1e-9},
+  "promotion_order": "Among passing candidates: lowest primary worst-room MAE, then primary mean-room MAE, then method order T1/S0/S1/S1_direct. Otherwise retain T0.",
+  "DNI_edges": [-1, 0, 200, 500, 1000000],
+  "tolerances_descriptive": {"E_mean_lux": 50, "E_P10_lux": 5, "F_UDI_fraction": 0.05},
+  "thread_limit": 4,
+  "hard_timeout_seconds": 3600,
+  "reuse": "Nine unique outer fits; reuse posX split and identical spline mean primitives within a split. Refit T0 for a clean matched baseline and verify against archived exact-parameter room OOF.",
+  "maximum_new_estimator_fits": 531,
+  "scope": "Approved development experiment after observed-holdout diagnosis. No TEST numeric loading, fitting, prediction, tuning or selection in this run; no simulations or visualizations. F300/PV and trial 0.1 stay unchanged. Save fold models and decisions; no automatic full-seven deployment refit.",
+  "stopping_rule": "Only the declared cells and two lambdas. Report failures without expanding the grid. No row-wise split or test-informed post-hoc routing."
+}

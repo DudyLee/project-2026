@@ -1,0 +1,11 @@
+{
+  "date_local": "2026-11-08",
+  "status": "approved_for_execution",
+  "user_message": "批准，按这个方案开始下一轮实验。只用7个开发房间训练和调参，比较方向交互特征、树模型和样条＋Ridge，并加入P10直接预测对照。三个测试房间不参与训练或选模，不追加模拟、不做可视化，完成后汇报留一房间和留一朝向验证的平均误差及最差房间误差。",
+  "approved_plan": "docs/next_experiment_after_BM702.md",
+  "configuration": "configs/experiment_v8.json",
+  "protocol": "docs/experiment_v8_protocol.md",
+  "TEST_use_in_this_run": false,
+  "new_simulations": false,
+  "visualizations": false
+}

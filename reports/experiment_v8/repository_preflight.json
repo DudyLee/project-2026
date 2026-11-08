@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "files": 69,
+  "bytes": 225610343,
+  "findings": [],
+  "scan_scope": "Changed v8 artifacts and project indexes; no credential values logged."
+}

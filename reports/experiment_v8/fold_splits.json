@@ -1,0 +1,611 @@
+{
+  "jobs": [
+    {
+      "id": "room_BM223",
+      "fit_rooms": [
+        "BM432",
+        "BM441",
+        "BM522",
+        "BM608",
+        "LM608",
+        "LM703"
+      ],
+      "held_rooms": [
+        "BM223"
+      ],
+      "fit_rows": 105120,
+      "held_rows": 17520,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM432",
+            "BM441",
+            "BM608",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM522",
+            "LM703"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM432",
+            "BM522",
+            "BM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM441",
+            "LM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM441",
+            "BM522",
+            "LM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM432",
+            "BM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        }
+      ]
+    },
+    {
+      "id": "room_BM432",
+      "fit_rooms": [
+        "BM223",
+        "BM441",
+        "BM522",
+        "BM608",
+        "LM608",
+        "LM703"
+      ],
+      "held_rooms": [
+        "BM432"
+      ],
+      "fit_rows": 105120,
+      "held_rows": 17520,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM223",
+            "BM441",
+            "BM608",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM522",
+            "LM703"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM223",
+            "BM522",
+            "BM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM441",
+            "LM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM441",
+            "BM522",
+            "LM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM223",
+            "BM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        }
+      ]
+    },
+    {
+      "id": "room_BM441",
+      "fit_rooms": [
+        "BM223",
+        "BM432",
+        "BM522",
+        "BM608",
+        "LM608",
+        "LM703"
+      ],
+      "held_rooms": [
+        "BM441"
+      ],
+      "fit_rows": 105120,
+      "held_rows": 17520,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM223",
+            "BM432",
+            "BM608",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM522",
+            "LM703"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM223",
+            "BM522",
+            "BM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM432",
+            "LM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM432",
+            "BM522",
+            "LM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM223",
+            "BM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        }
+      ]
+    },
+    {
+      "id": "room_BM522",
+      "fit_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "BM608",
+        "LM608",
+        "LM703"
+      ],
+      "held_rooms": [
+        "BM522"
+      ],
+      "fit_rows": 105120,
+      "held_rows": 17520,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM223",
+            "BM432",
+            "BM608",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM441",
+            "LM703"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM223",
+            "BM441",
+            "BM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM432",
+            "LM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM432",
+            "BM441",
+            "LM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM223",
+            "BM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        }
+      ]
+    },
+    {
+      "id": "room_BM608",
+      "fit_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "BM522",
+        "LM608",
+        "LM703"
+      ],
+      "held_rooms": [
+        "BM608"
+      ],
+      "fit_rows": 105120,
+      "held_rows": 17520,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM223",
+            "BM432",
+            "BM522",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM441",
+            "LM703"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM223",
+            "BM441",
+            "BM522",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM432",
+            "LM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM432",
+            "BM441",
+            "LM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM223",
+            "BM522"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        }
+      ]
+    },
+    {
+      "id": "room_LM608",
+      "fit_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "BM522",
+        "BM608",
+        "LM703"
+      ],
+      "held_rooms": [
+        "LM608"
+      ],
+      "fit_rows": 105120,
+      "held_rows": 17520,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM223",
+            "BM432",
+            "BM522",
+            "BM608"
+          ],
+          "held_rooms": [
+            "BM441",
+            "LM703"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM223",
+            "BM441",
+            "BM522",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM432",
+            "BM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM432",
+            "BM441",
+            "BM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM223",
+            "BM522"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        }
+      ]
+    },
+    {
+      "id": "room_LM703",
+      "fit_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "BM522",
+        "BM608",
+        "LM608"
+      ],
+      "held_rooms": [
+        "LM703"
+      ],
+      "fit_rows": 105120,
+      "held_rows": 17520,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM223",
+            "BM432",
+            "BM522",
+            "BM608"
+          ],
+          "held_rooms": [
+            "BM441",
+            "LM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM223",
+            "BM441",
+            "BM522",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM432",
+            "BM608"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM432",
+            "BM441",
+            "BM608",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM223",
+            "BM522"
+          ],
+          "fit_rows": 70080,
+          "held_rows": 35040
+        }
+      ]
+    },
+    {
+      "id": "orientation_negY",
+      "fit_rooms": [
+        "BM223",
+        "BM522",
+        "BM608",
+        "LM703"
+      ],
+      "held_rooms": [
+        "BM432",
+        "BM441",
+        "LM608"
+      ],
+      "fit_rows": 70080,
+      "held_rows": 52560,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM522",
+            "BM608"
+          ],
+          "held_rooms": [
+            "BM223",
+            "LM703"
+          ],
+          "fit_rows": 35040,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM223",
+            "BM522",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM608"
+          ],
+          "fit_rows": 52560,
+          "held_rows": 17520
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM223",
+            "BM608",
+            "LM703"
+          ],
+          "held_rooms": [
+            "BM522"
+          ],
+          "fit_rows": 52560,
+          "held_rows": 17520
+        }
+      ]
+    },
+    {
+      "id": "orientation_posY",
+      "fit_rooms": [
+        "BM223",
+        "BM432",
+        "BM441",
+        "LM608"
+      ],
+      "held_rooms": [
+        "BM522",
+        "BM608",
+        "LM703"
+      ],
+      "fit_rows": 70080,
+      "held_rows": 52560,
+      "inner": [
+        {
+          "fold": 1,
+          "fit_rooms": [
+            "BM432",
+            "BM441"
+          ],
+          "held_rooms": [
+            "BM223",
+            "LM608"
+          ],
+          "fit_rows": 35040,
+          "held_rows": 35040
+        },
+        {
+          "fold": 2,
+          "fit_rooms": [
+            "BM223",
+            "BM432",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM441"
+          ],
+          "fit_rows": 52560,
+          "held_rows": 17520
+        },
+        {
+          "fold": 3,
+          "fit_rooms": [
+            "BM223",
+            "BM441",
+            "LM608"
+          ],
+          "held_rooms": [
+            "BM432"
+          ],
+          "fit_rows": 52560,
+          "held_rows": 17520
+        }
+      ]
+    }
+  ],
+  "protocols": [
+    {
+      "protocol": "LeaveOneRoomOut",
+      "fold": "BM223",
+      "job_id": "room_BM223"
+    },
+    {
+      "protocol": "LeaveOneRoomOut",
+      "fold": "BM432",
+      "job_id": "room_BM432"
+    },
+    {
+      "protocol": "LeaveOneRoomOut",
+      "fold": "BM441",
+      "job_id": "room_BM441"
+    },
+    {
+      "protocol": "LeaveOneRoomOut",
+      "fold": "BM522",
+      "job_id": "room_BM522"
+    },
+    {
+      "protocol": "LeaveOneRoomOut",
+      "fold": "BM608",
+      "job_id": "room_BM608"
+    },
+    {
+      "protocol": "LeaveOneRoomOut",
+      "fold": "LM608",
+      "job_id": "room_LM608"
+    },
+    {
+      "protocol": "LeaveOneRoomOut",
+      "fold": "LM703",
+      "job_id": "room_LM703"
+    },
+    {
+      "protocol": "LeaveOneOrientationOut",
+      "fold": "posX",
+      "job_id": "room_BM223"
+    },
+    {
+      "protocol": "LeaveOneOrientationOut",
+      "fold": "negY",
+      "job_id": "orientation_negY"
+    },
+    {
+      "protocol": "LeaveOneOrientationOut",
+      "fold": "posY",
+      "job_id": "orientation_posY"
+    }
+  ]
+}

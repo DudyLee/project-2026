@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "completed_utc": "2026-11-08T07:51:45.033225+00:00",
+  "seconds": 33.0484209000133,
+  "source_and_frozen_code_hashes_unchanged": true,
+  "protected_trial_model_unchanged": true,
+  "TEST_fit_rows": 0,
+  "TEST_predictions": 0,
+  "TEST_scores": 0,
+  "train_rows": 122640,
+  "test_rows_skipped": 52560,
+  "independent_inner_room_metrics": 700,
+  "independent_lambda_selections": 63,
+  "preprocessing_refits_for_verification_only": 72,
+  "new_estimator_fits_in_verifier": 0,
+  "fit_label_and_input_hash_checks": 523,
+  "saved_bundles_reloaded": 9,
+  "prediction_values_reproduced": 2960880,
+  "bounded_output_arrays": 117,
+  "independent_outer_room_metric_records": 182,
+  "summary_gate_and_decision_checks": "passed",
+  "baseline_reproduction": {
+    "E_mean_lux": {
+      "max_absolute_difference": 0.0,
+      "source": "reports/trial_v0_1/selection_oof_E_mean_lux_depth3.parquet",
+      "source_sha256": "53837df6630bcfa406b521539542786c06c1e9bb33d4ea8a5b0d442603af1a26",
+      "rows": 122640
+    },
+    "E_P10_lux": {
+      "max_absolute_difference": 6.252776074688882e-13,
+      "source": "reports/trial_v0_1/selection_oof_E_P10_lux_depth12.parquet",
+      "source_sha256": "a8998f62d5c19c36b2c5433b6059101b691634079e455a9e94c7d8afcd2f4953",
+      "rows": 122640
+    },
+    "F_UDI_fraction": {
+      "max_absolute_difference": 0.0,
+      "source": "reports/experiment_v1/predictions/B_add_solar_weather__HistGB.parquet",
+      "source_sha256": "11666173dccb4f15818bb84dd4fbaf510299bf3451a71c2a9446dbabc2c40d9a",
+      "rows": 122640
+    }
+  },
+  "posX_room_BM223_reuse_verified": true,
+  "limitations": "Code/data lineage checks verify the implemented procedure, not source EPW/north/grid provenance or independent generalization."
+}

@@ -1,0 +1,20 @@
+Loaded 122640 TRAIN rows; skipped 52560 TEST rows. 9 outer jobs, 378 inner Ridge fits.
+OUTER 1/9 room_BM223: fit ['BM432', 'BM441', 'BM522', 'BM608', 'LM608', 'LM703'], hold ['BM223']
+FINISHED room_BM223; fits {'inner_ridge': 42, 'outer_ridge': 9, 'outer_tree': 8}; elapsed 29.6s
+OUTER 2/9 room_BM432: fit ['BM223', 'BM441', 'BM522', 'BM608', 'LM608', 'LM703'], hold ['BM432']
+FINISHED room_BM432; fits {'inner_ridge': 84, 'outer_ridge': 18, 'outer_tree': 16}; elapsed 56.2s
+OUTER 3/9 room_BM441: fit ['BM223', 'BM432', 'BM522', 'BM608', 'LM608', 'LM703'], hold ['BM441']
+FINISHED room_BM441; fits {'inner_ridge': 126, 'outer_ridge': 25, 'outer_tree': 24}; elapsed 82.5s
+OUTER 4/9 room_BM522: fit ['BM223', 'BM432', 'BM441', 'BM608', 'LM608', 'LM703'], hold ['BM522']
+FINISHED room_BM522; fits {'inner_ridge': 168, 'outer_ridge': 32, 'outer_tree': 32}; elapsed 108.4s
+OUTER 5/9 room_BM608: fit ['BM223', 'BM432', 'BM441', 'BM522', 'LM608', 'LM703'], hold ['BM608']
+FINISHED room_BM608; fits {'inner_ridge': 210, 'outer_ridge': 41, 'outer_tree': 40}; elapsed 134.8s
+OUTER 6/9 room_LM608: fit ['BM223', 'BM432', 'BM441', 'BM522', 'BM608', 'LM703'], hold ['LM608']
+FINISHED room_LM608; fits {'inner_ridge': 252, 'outer_ridge': 50, 'outer_tree': 48}; elapsed 159.6s
+OUTER 7/9 room_LM703: fit ['BM223', 'BM432', 'BM441', 'BM522', 'BM608', 'LM608'], hold ['LM703']
+FINISHED room_LM703; fits {'inner_ridge': 294, 'outer_ridge': 59, 'outer_tree': 56}; elapsed 184.4s
+OUTER 8/9 orientation_negY: fit ['BM223', 'BM522', 'BM608', 'LM703'], hold ['BM432', 'BM441', 'LM608']
+FINISHED orientation_negY; fits {'inner_ridge': 336, 'outer_ridge': 66, 'outer_tree': 64}; elapsed 201.6s
+OUTER 9/9 orientation_posY: fit ['BM223', 'BM432', 'BM441', 'LM608'], hold ['BM522', 'BM608', 'LM703']
+FINISHED orientation_posY; fits {'inner_ridge': 378, 'outer_ridge': 73, 'outer_tree': 72}; elapsed 217.7s
+COMPLETE 523 estimator fits in 220.2s; verification pending.
