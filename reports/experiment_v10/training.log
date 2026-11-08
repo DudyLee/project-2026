@@ -1,0 +1,20 @@
+Source gate passed. TRAIN 122640; TEST skipped 52560. Frozen 4 cells x 2 parameters; 252 fits.
+OUTER 1/9 room_BM223
+FINISHED room_BM223: selected {'v10_X0': 3, 'v10_Xq': 3, 'v10_S0': 0.01, 'v10_Sq': 0.1}; fits {'inner': 24, 'outer': 4}; elapsed 10.9s
+OUTER 2/9 room_BM432
+FINISHED room_BM432: selected {'v10_X0': 3, 'v10_Xq': 3, 'v10_S0': 0.1, 'v10_Sq': 0.1}; fits {'inner': 48, 'outer': 8}; elapsed 18.1s
+OUTER 3/9 room_BM441
+FINISHED room_BM441: selected {'v10_X0': 3, 'v10_Xq': 3, 'v10_S0': 0.1, 'v10_Sq': 0.1}; fits {'inner': 72, 'outer': 12}; elapsed 24.5s
+OUTER 4/9 room_BM522
+FINISHED room_BM522: selected {'v10_X0': 3, 'v10_Xq': 3, 'v10_S0': 0.1, 'v10_Sq': 0.1}; fits {'inner': 96, 'outer': 16}; elapsed 30.8s
+OUTER 5/9 room_BM608
+FINISHED room_BM608: selected {'v10_X0': 3, 'v10_Xq': 3, 'v10_S0': 0.1, 'v10_Sq': 0.1}; fits {'inner': 120, 'outer': 20}; elapsed 37.3s
+OUTER 6/9 room_LM608
+FINISHED room_LM608: selected {'v10_X0': 3, 'v10_Xq': 3, 'v10_S0': 0.1, 'v10_Sq': 0.1}; fits {'inner': 144, 'outer': 24}; elapsed 43.8s
+OUTER 7/9 room_LM703
+FINISHED room_LM703: selected {'v10_X0': 3, 'v10_Xq': 3, 'v10_S0': 0.01, 'v10_Sq': 0.1}; fits {'inner': 168, 'outer': 28}; elapsed 50.2s
+OUTER 8/9 orientation_negY
+FINISHED orientation_negY: selected {'v10_X0': 3, 'v10_Xq': 3, 'v10_S0': 0.01, 'v10_Sq': 0.01}; fits {'inner': 192, 'outer': 32}; elapsed 55.0s
+OUTER 9/9 orientation_posY
+FINISHED orientation_posY: selected {'v10_X0': 3, 'v10_Xq': 5, 'v10_S0': 0.1, 'v10_Sq': 0.1}; fits {'inner': 216, 'outer': 36}; elapsed 59.9s
+COMPLETE 252 fits; verification pending.

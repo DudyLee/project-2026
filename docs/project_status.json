@@ -1,14 +1,14 @@
 {
   "updated_local_date": "2026-11-08",
   "timezone": "Asia/Hong_Kong",
-  "latest_completed_experiment": "mean_illumination_exposure_v9",
+  "latest_completed_experiment": "pair_balance_log_normalization_v10",
   "latest_analysis": "reports/diagnosis_BM432_LM608_v9/summary.md",
-  "pending_proposal": "docs/next_experiment_pair_balance_v10.md",
-  "pending_proposal_status": "Proposed only; latest user authorized analysis and planning, explicitly no training.",
-  "latest_approval": "docs/approvals/mean_exposure_v9_approval.json",
-  "report": "reports/experiment_v9/summary.md",
-  "configuration": "configs/experiment_v9.json",
-  "verification": "reports/experiment_v9/verification.json",
+  "pending_proposal": null,
+  "pending_proposal_status": "Approved v10 completed; no further search authorized by this record.",
+  "latest_approval": "docs/approvals/pair_balance_v10_approval.json",
+  "report": "reports/experiment_v10/summary.md",
+  "configuration": "configs/experiment_v10.json",
+  "verification": "reports/experiment_v10/verification.json",
   "protected_test_rooms": [
     "BM532",
     "BM702",
@@ -19,7 +19,7 @@
   "new_simulations": 0,
   "final_deployment_refit": false,
   "model_status": "Uneven cross-room performance; BM702 worst for all outputs. No broad new-room reliability or engineering acceptance claim.",
-  "authorization_status": "Bounded TRAIN-only mean exposure v9 completed; no TEST operations, simulation or visualization.",
+  "authorization_status": "TRAIN-only four-cell experiment completed; no TEST, simulation or visualization.",
   "remaining_provenance_limits": [
     "EPW identity and hourly alignment",
     "Model coordinates relative to geographic north",
@@ -29,7 +29,7 @@
   "latest_completed_analysis": "BM432_LM608_existing_model_diagnosis_v9",
   "source_handoff": "exports/geometry_source_handoff_v1.zip",
   "stopped_branch": "Finer blend weights or room-specific routing without new independent input information",
-  "next_priority": "Review matched F2 input four-cell log-target and normalization proposal; jointly protect BM432 and LM608; no new training authorized.",
+  "next_priority": "Review S0 room-validation progress and severe orientation failure; no automatic extra searches or deployment.",
   "experiment_index": "docs/experiment_index.md",
   "evidence_registry": "docs/model_evidence_registry.json",
   "v7_development_candidates": [],
@@ -111,6 +111,17 @@
     "verification": "reports/diagnosis_BM432_LM608_v9/analysis.json",
     "estimator_fits": 0,
     "TEST_use": false,
-    "proposal_executed": false
+    "proposal_executed": true
+  },
+  "v10": {
+    "status": "completed_verified",
+    "estimator_fits": 252,
+    "targets_reached": [],
+    "partial_progress": [],
+    "passing_candidates": [],
+    "TEST_predictions": 0,
+    "TEST_scores": 0,
+    "TEST_fit_rows": 0,
+    "deployed_trial_unchanged": true
   }
 }

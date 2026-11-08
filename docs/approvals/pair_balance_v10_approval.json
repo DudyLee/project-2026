@@ -1,0 +1,11 @@
+{
+  "date_local": "2026-11-08",
+  "status": "approved_for_execution",
+  "user_message": "批准，按这四组方案开始实验，重点看能否同时把平均MAE降到50以内、BM432降到120以内、LM608降到40以内。只用7个开发房间训练和调参，三个测试房间继续排除，不追加模拟、不做可视化，完成后汇报两种验证结果和其他房间是否退步。",
+  "approved_plan": "docs/next_experiment_pair_balance_v10.md",
+  "configuration": "configs/experiment_v10.json",
+  "TEST_use": false,
+  "new_simulations": false,
+  "visualizations": false,
+  "deployment_refit": false
+}

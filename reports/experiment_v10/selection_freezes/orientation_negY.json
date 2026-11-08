@@ -1,0 +1,12 @@
+{
+  "job_id": "orientation_negY",
+  "selected": {
+    "v10_X0": 3,
+    "v10_Xq": 3,
+    "v10_S0": 0.01,
+    "v10_Sq": 0.01
+  },
+  "selected_utc": "2026-11-08T13:25:12.427453+00:00",
+  "outer_predictions_computed": false,
+  "outer_labels_used_for_selection": false
+}

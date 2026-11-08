@@ -1,0 +1,146 @@
+[
+  {
+    "job_id": "room_BM223",
+    "path": "models/experiment_v10/room_BM223.joblib",
+    "sha256": "a1717e257d60fb91c2049313ce56d012c39a4191638996319316ae926f2d25a4",
+    "fit_rooms": [
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM223"
+    ]
+  },
+  {
+    "job_id": "room_BM432",
+    "path": "models/experiment_v10/room_BM432.joblib",
+    "sha256": "28fd85d9edcff4c010d301514fdfa2ae4c7ce7865f99b6cadf7fc9759d9825e3",
+    "fit_rooms": [
+      "BM223",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432"
+    ]
+  },
+  {
+    "job_id": "room_BM441",
+    "path": "models/experiment_v10/room_BM441.joblib",
+    "sha256": "7528fa0082ca9f16bb2fb623667103c392390e281a651c3546ce1e8488a4c355",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM522",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM441"
+    ]
+  },
+  {
+    "job_id": "room_BM522",
+    "path": "models/experiment_v10/room_BM522.joblib",
+    "sha256": "34c5550ccd2016640a7a0bed63f7a6c24e77942f4457f8ab01207e43e2a0f434",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM608",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM522"
+    ]
+  },
+  {
+    "job_id": "room_BM608",
+    "path": "models/experiment_v10/room_BM608.joblib",
+    "sha256": "58b9bcaf9dd50558ce2329d3706a099ad8631f15511e1e7c32084e78ac0ada23",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "LM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM608"
+    ]
+  },
+  {
+    "job_id": "room_LM608",
+    "path": "models/experiment_v10/room_LM608.joblib",
+    "sha256": "5ea9e8197006c5b650d306c00eaa8ddc6b445a1072ec4da16f13ace7e12ad42d",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "room_LM703",
+    "path": "models/experiment_v10/room_LM703.joblib",
+    "sha256": "2700bcbf3630f295ad6b35a165c8d9e022c8f9f08d36a12ad7b0269d91a322a2",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "BM522",
+      "BM608",
+      "LM608"
+    ],
+    "held_rooms": [
+      "LM703"
+    ]
+  },
+  {
+    "job_id": "orientation_negY",
+    "path": "models/experiment_v10/orientation_negY.joblib",
+    "sha256": "fe304b1a8cd01a80bdb3753d249b335a8335acc412a0b439f624df54aa60fe2e",
+    "fit_rooms": [
+      "BM223",
+      "BM522",
+      "BM608",
+      "LM703"
+    ],
+    "held_rooms": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ]
+  },
+  {
+    "job_id": "orientation_posY",
+    "path": "models/experiment_v10/orientation_posY.joblib",
+    "sha256": "a96248247a8ea198d2035d5a1ba0e40edb1ab4eca627ea7007d935f975c8b089",
+    "fit_rooms": [
+      "BM223",
+      "BM432",
+      "BM441",
+      "LM608"
+    ],
+    "held_rooms": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  }
+]
