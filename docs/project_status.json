@@ -4,7 +4,7 @@
   "latest_completed_experiment": "target_specific_worst_room_v7",
   "latest_analysis": "reports/experiment_v7/report.html",
   "pending_proposal": null,
-  "pending_proposal_status": "Authorized full-seven-room trial build completed and verified.",
+  "pending_proposal_status": "Trial build complete. User redirected subsequent work to model performance only; no new experiment started in this priority update.",
   "latest_approval": "docs/approvals/trial_v0_1_approval.json",
   "report": "reports/experiment_v7/report.html",
   "configuration": "configs/experiment_v7.json",
@@ -29,7 +29,7 @@
   "latest_completed_analysis": "target_specific_worst_room_v7_evaluation",
   "source_handoff": "exports/geometry_source_handoff_v1.zip",
   "stopped_branch": "Finer blend weights or room-specific routing without new independent input information",
-  "next_priority": "Use trial for supervised demonstrations/interface checks; resolve geometry/weather provenance and agree a final evaluation protocol before unsealing TEST.",
+  "next_priority": "Resolve existing geometry/weather provenance and obtain verifiable predictive features, then conduct bounded target-specific comparisons using development rooms only. Retain current references and stopping rules; TEST sealed.",
   "experiment_index": "docs/experiment_index.md",
   "evidence_registry": "docs/model_evidence_registry.json",
   "v7_development_candidates": [],
@@ -40,5 +40,7 @@
     "usage": "docs/trial_v0_1_usage.md",
     "report": "reports/trial_v0_1/summary.md",
     "verification": "reports/trial_v0_1/verification.json"
-  }
+  },
+  "work_focus": "Model performance only: data/features, per-target training, grouped cross-room validation and worst-room error reduction. No new visualization, UI, demonstration or integration work.",
+  "user_priority_source": "docs/modeling_priorities.md"
 }

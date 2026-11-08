@@ -1,5 +1,7 @@
 # Tower A PVSD 项目
 
+当前工作重点：**模型训练与跨房间预测性能**，暂停新增可视化、界面和演示开发。具体评价目标与约束见[建模工作重点](docs/modeling_priorities.md)。
+
 最新可用版本：**试用版0.1**，已用全部7个开发房间拟合固定模型，支持四角度×五指标CSV/JSON/Python预测。开始使用：[中文操作说明](docs/trial_v0_1_usage.md)；[试用版检查结果](reports/trial_v0_1/summary.md)。三个测试房间继续封存；此版本用于研究联调，尚未独立测试。
 
 各轮开发结果：[实验索引](docs/experiment_index.md)。v7没有候选通过全部替换条件，试用版沿用保留方法。
