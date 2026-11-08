@@ -1,4 +1,0 @@
-method,rooms_nonworse_than_T1,rooms_nonworse_than_S1,reaches_primary_targets,passes_all,macro_below_50,BM432_at_most_120,worst_nonworse_than_S1,five_rooms_nonworse_than_T1,orientation_macro_nonworse_than_T1,orientation_worst_nonworse_than_T1
-A,1,0,False,False,False,False,False,False,False,False
-B,2,0,False,False,False,False,False,False,True,False
-C,3,3,False,False,False,False,True,False,True,False

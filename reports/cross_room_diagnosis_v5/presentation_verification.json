@@ -1,8 +1,0 @@
-{
-  "HTML_relative_links_checked": 18,
-  "duplicate_ids": 0,
-  "inline_script_syntax": "passed",
-  "browser_interaction": "not performed; local browser use previously disabled",
-  "native_canvas_compilation": false,
-  "figures": "passed: all three scientific plots visually inspected"
-}

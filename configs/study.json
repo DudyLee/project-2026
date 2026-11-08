@@ -1,0 +1,57 @@
+{
+  "source_sha256": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8",
+  "development_rooms": [
+    "BM223",
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "excluded_test_rooms": [
+    "BM532",
+    "BM702",
+    "BMG26"
+  ],
+  "orientation_groups": {
+    "posX": [
+      "BM223"
+    ],
+    "negY": [
+      "BM432",
+      "BM441",
+      "LM608"
+    ],
+    "posY": [
+      "BM522",
+      "BM608",
+      "LM703"
+    ]
+  },
+  "q_reference_kWh_m2": 100.0,
+  "spline": {
+    "columns": [
+      "Hour",
+      "EPW_GHI_Wh_m2",
+      "EPW_DNI_Wh_m2",
+      "EPW_DHI_Wh_m2",
+      "Solar_Altitude_mid_deg",
+      "PVSD_Angle_deg"
+    ],
+    "n_knots": 4,
+    "degree": 3,
+    "knots": "uniform",
+    "extrapolation": "linear",
+    "include_bias": false
+  },
+  "rows_per_room": 17520,
+  "angles": [
+    0,
+    30,
+    60,
+    90
+  ],
+  "thread_limit": 4,
+  "hard_timeout_seconds": 3600
+}
