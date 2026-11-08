@@ -102,3 +102,9 @@ P10照度：平均MAE 9.748 → 15.453 lux；最差MAE 29.275 → 48.956 lux（B
 达到平均MAE<50且BM432≤120的候选：无；通过全部稳定性条件：无。
 
 [两种验证及逐房间变化](../reports/experiment_v9/summary.md) · [输入来源核对](../reports/experiment_v9/input_source_audit.json) · [核验](../reports/experiment_v9/verification.json)。仅7开发房间，其他输出与0.1模型不变。
+
+
+<!-- pair-diagnosis-v9 -->
+## v9后BM432/LM608诊断（无训练）
+
+C相对B同时降低两房间MAE，LM608退步在A/B已经出现，不能归因于归一化单一因素。q没有消除归一化亮度或角度响应差异。复核保存模型，0次拟合、0次TEST操作。[诊断报告](../reports/diagnosis_BM432_LM608_v9/summary.md) · [下一轮提议，尚未训练](next_experiment_pair_balance_v10.md)。

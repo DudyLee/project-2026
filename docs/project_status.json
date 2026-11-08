@@ -2,9 +2,9 @@
   "updated_local_date": "2026-11-08",
   "timezone": "Asia/Hong_Kong",
   "latest_completed_experiment": "mean_illumination_exposure_v9",
-  "latest_analysis": "reports/diagnosis_BM702_v1/summary.md",
-  "pending_proposal": null,
-  "pending_proposal_status": "Approved A/B/C experiment completed and verified; no further expansion authorized by this record.",
+  "latest_analysis": "reports/diagnosis_BM432_LM608_v9/summary.md",
+  "pending_proposal": "docs/next_experiment_pair_balance_v10.md",
+  "pending_proposal_status": "Proposed only; latest user authorized analysis and planning, explicitly no training.",
   "latest_approval": "docs/approvals/mean_exposure_v9_approval.json",
   "report": "reports/experiment_v9/summary.md",
   "configuration": "configs/experiment_v9.json",
@@ -26,10 +26,10 @@
     "PVSD angle definition and physical incidence convention",
     "Original sensor-grid and target-export provenance"
   ],
-  "latest_completed_analysis": "BM702_existing_data_diagnosis_v1",
+  "latest_completed_analysis": "BM432_LM608_existing_model_diagnosis_v9",
   "source_handoff": "exports/geometry_source_handoff_v1.zip",
   "stopped_branch": "Finer blend weights or room-specific routing without new independent input information",
-  "next_priority": "Review v9 mean-illumination evidence and remaining room-specific errors; no automatic search expansion.",
+  "next_priority": "Review matched F2 input four-cell log-target and normalization proposal; jointly protect BM432 and LM608; no new training authorized.",
   "experiment_index": "docs/experiment_index.md",
   "evidence_registry": "docs/model_evidence_registry.json",
   "v7_development_candidates": [],
@@ -105,5 +105,12 @@
     "TEST_predictions": 0,
     "TEST_scores": 0,
     "deployed_trial_unchanged": true
+  },
+  "BM432_LM608_diagnosis": {
+    "report": "reports/diagnosis_BM432_LM608_v9/summary.md",
+    "verification": "reports/diagnosis_BM432_LM608_v9/analysis.json",
+    "estimator_fits": 0,
+    "TEST_use": false,
+    "proposal_executed": false
   }
 }

@@ -1068,5 +1068,12 @@
     },
     "TEST_use": false,
     "independent_final_test": false
+  },
+  "BM432_LM608_post_v9_diagnosis": {
+    "report": "reports/diagnosis_BM432_LM608_v9/summary.md",
+    "verification": "reports/diagnosis_BM432_LM608_v9/analysis.json",
+    "estimator_fits": 0,
+    "TEST_use": false,
+    "proposal_executed": false
   }
 }
