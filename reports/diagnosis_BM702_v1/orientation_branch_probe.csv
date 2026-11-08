@@ -1,0 +1,4 @@
+target,probe,rows,maximum_absolute_prediction_change,mean_absolute_prediction_change,exact_equal_fraction
+E_mean_lux,X=-1_to_0_with_Y=0_NONPHYSICAL_not_a_candidate,17520,0.0,0.0,1.0
+E_P10_lux,X=-1_to_0_with_Y=0_NONPHYSICAL_not_a_candidate,17520,1.4210854715202004e-13,3.3128244257859544e-15,0.681906392694064
+F_UDI_fraction,X=-1_to_0_with_Y=0_NONPHYSICAL_not_a_candidate,17520,0.0,0.0,1.0

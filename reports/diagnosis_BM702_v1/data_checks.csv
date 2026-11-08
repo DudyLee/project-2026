@@ -1,0 +1,25 @@
+check,violations,detail
+missing,0,Retained eight rooms only
+nonfinite_numeric,0,All numeric fields
+duplicate_case_hour,0,Room/angle/HOY
+case_count_4380,0,"32 cases, each 4380 retained hours"
+calendar_DOY,0,Generic non-leap calendar; not confirmation of simulation year
+HOY_offset_consistency,0,Observed indexing consistency only; hour interval remains unconfirmed
+within_room_static_features,0,Must be fixed across all four angles and hours
+unique_room_profiles,0,One profile per room
+BIM_join__Sample_Role,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Level,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Room_Area_m2,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Window_Count,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Window_Area_Nominal_m2,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__WFR_window_to_floor,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Orientation_X_model,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Orientation_Y_model,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Glass_Area_m2,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Annual_Incident_Shaded_kWh_m2,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Annual_Incident_Unshaded_kWh_m2,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Solar_Obstruction_Ratio,0,Cross-file consistency; not independent original-geometry verification
+BIM_join__Revit_Window_Element_IDs,0,Cross-file consistency; not independent original-geometry verification
+WFR_identity,0,Nominal window area / room area
+obstruction_identity,0,1 - annual shaded / unshaded
+weather_equal_at_HOY,0,Weather/solar values identical across retained rooms and angles at each timestamp

@@ -1,0 +1,26 @@
+{
+  "analysis_id": "BM702_existing_data_diagnosis_v1",
+  "status": "completed",
+  "started_utc": "2026-11-08T07:15:35.235772+00:00",
+  "input_hashes": {
+    "configs/diagnosis_BM702_v1.json": "56b961826fcfd9414a6540c66293f8502d6a4195b2cc13f86a118fce0ddb5273",
+    "data/raw/SEND_ML_BIM_EPW_07-18.csv": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8",
+    "data/raw/SEND_BIM_476Rooms.csv": "9c7fb713a6282bc219a76598e77f578545da4e69b5107f7a43064f3ebd55bfc2",
+    "models/trial_v0_1/model.joblib": "f090341652ecc1844a112dc3231bd8a62e34ecf2d0f2f7a6643047bc0d0b0332",
+    "models/trial_v0_1/metadata.json": "8db464d6cb6aedf15457907a84500831507cc06f46ebff88a6a65e283f975b03",
+    "models/trial_v0_1/manifest.json": "e39d2595ae373504ac0f95c7daea5e57a4a84a87e383ad4a21184f048966da3f",
+    "pvsd_trial.py": "99d671c1958f0f239c7c9edb721cce9e6f993d752fcd141ae062a25636e50763",
+    "scripts/diagnose_BM702_v1.py": "d3264a7552e31c949df5066e371374d20be2bd1f1d40fbbeedc5099a2e5d0faa",
+    "reports/holdout_trial_v0_1/scored_predictions.parquet": "2063eb6742d30d46b6e846340b65705a6d711cbdc002d0d5892096c836c418b1"
+  },
+  "numeric_rows": 140160,
+  "other_TEST_rows_skipped": 35040,
+  "new_estimator_fits": 0,
+  "new_simulations": 0,
+  "new_visualizations": 0,
+  "scope": "Post-holdout explanatory analysis. Test labels may diagnose error, never become deployable inputs. No model promotion, calibration, tuning or training this turn. New training plan will be proposed separately.",
+  "completed_utc": "2026-11-08T07:15:37.900329+00:00",
+  "elapsed_seconds": 5.712953100010054,
+  "internal_check_violations": 0,
+  "daylight_necessary_inequality_violations": 0
+}

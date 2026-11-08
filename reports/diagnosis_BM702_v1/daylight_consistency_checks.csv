@@ -1,0 +1,9 @@
+room,Sensor_Count,negative_targets,fraction_outside_unit,fraction_sensor_count_noninteger,mean_below_300_times_F300,mean_below_100_times_FUDI,mean_below_P10_min_mass,FUDI_below_F300_minus_mean_over3000
+BM223,74,0,0,0,0,0,0,0
+BM432,40,0,0,0,0,0,0,0
+BM441,46,0,0,0,0,0,0,0
+BM522,66,0,0,0,0,0,0,0
+BM608,116,0,0,0,0,0,0,0
+BM702,51,0,0,0,0,0,0,0
+LM608,138,0,0,0,0,0,0,0
+LM703,149,0,0,0,0,0,0,0

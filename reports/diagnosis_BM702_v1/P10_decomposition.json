@@ -1,0 +1,35 @@
+{
+  "identity_max_abs_error": 1.8474111129762605e-13,
+  "true_ratio_mean": 0.26949432779425164,
+  "pred_ratio_mean": 0.09591586654984766,
+  "true_mean_mean": 253.5120623648629,
+  "paired_mean_mean": 200.99381871389565,
+  "paired_mean_metrics": {
+    "n": 17520,
+    "mae": 208.34867430332915,
+    "rmse": 359.33212505621344,
+    "r2": -0.3074626945007397,
+    "bias": -52.51824365096727,
+    "true_mean": 253.5120623648629,
+    "pred_mean": 200.99381871389565,
+    "true_p90": 674.5791616380002,
+    "over_fraction": 0.3969178082191781,
+    "under_fraction": 0.5622146118721462,
+    "sum_absolute_error": 3650268.7737943265
+  },
+  "terms": {
+    "mean_term": {
+      "mean": -0.15211492783998715,
+      "mean_absolute": 51.438981301652014
+    },
+    "ratio_term": {
+      "mean": -32.827232845235095,
+      "mean_absolute": 33.99147463550206
+    },
+    "interaction_term": {
+      "mean": -10.20734285953124,
+      "mean_absolute": 32.79167803826091
+    }
+  },
+  "warning": "Terms interact/cancel; absolute magnitudes do not add to MAE. Oracle inputs unavailable at deployment."
+}

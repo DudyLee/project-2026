@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "native_reload_max_differences": {
+    "E_mean_lux": 0.0,
+    "E_P10_lux": 1.5631940186722204e-13,
+    "F_UDI_fraction": 0.0
+  },
+  "P10_decomposition_max_error": 1.8474111129762605e-13,
+  "RF_ratio_leaf_reconstruction_max_error": 1.3877787807814457e-16,
+  "model_hash_unchanged": true,
+  "scope": "Numerical consistency and exact model mechanism reproduction; no causal identification"
+}

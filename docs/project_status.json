@@ -2,10 +2,10 @@
   "updated_local_date": "2026-11-08",
   "timezone": "Asia/Hong_Kong",
   "latest_completed_experiment": "holdout_trial_v0_1",
-  "latest_analysis": "reports/holdout_trial_v0_1/summary.md",
-  "pending_proposal": null,
-  "pending_proposal_status": "User-requested frozen-model holdout evaluation complete; no further training started.",
-  "latest_approval": "docs/approvals/holdout_trial_v0_1_approval.json",
+  "latest_analysis": "reports/diagnosis_BM702_v1/summary.md",
+  "pending_proposal": "docs/next_experiment_after_BM702.md",
+  "pending_proposal_status": "Proposed only, not approved or executed as a training round; current user requested diagnosis and a plan.",
+  "latest_approval": "docs/approvals/diagnosis_BM702_v1_approval.json",
   "report": "reports/holdout_trial_v0_1/summary.md",
   "configuration": "configs/holdout_trial_v0_1.json",
   "verification": "reports/holdout_trial_v0_1/verification.json",
@@ -26,10 +26,10 @@
     "PVSD angle definition and physical incidence convention",
     "Original sensor-grid and target-export provenance"
   ],
-  "latest_completed_analysis": "frozen_model_holdout_evaluation",
+  "latest_completed_analysis": "BM702_existing_data_diagnosis_v1",
   "source_handoff": "exports/geometry_source_handoff_v1.zip",
   "stopped_branch": "Finer blend weights or room-specific routing without new independent input information",
-  "next_priority": "Interpret frozen holdout evidence; resolve existing geometry/weather provenance. Any result-informed model changes must disclose reuse of now-observed test rooms.",
+  "next_priority": "Review bounded directional-interaction and model-representation proposal; preserve fixed model and acknowledge observed holdout feedback.",
   "experiment_index": "docs/experiment_index.md",
   "evidence_registry": "docs/model_evidence_registry.json",
   "v7_development_candidates": [],
@@ -63,5 +63,11 @@
     "report": "reports/holdout_trial_v0_1/summary.md",
     "verification": "reports/holdout_trial_v0_1/verification.json",
     "conclusion": "Uneven cross-room performance; BM702 worst for all outputs. No broad new-room reliability or engineering acceptance claim."
+  },
+  "BM702_diagnosis": {
+    "report": "reports/diagnosis_BM702_v1/summary.md",
+    "verification": "reports/diagnosis_BM702_v1/verification.json",
+    "new_estimator_fits": 0,
+    "finding": "Negative-X coverage gap with model branch saturation, wrong diurnal response and coupled P10 errors; internal data checks pass but source geometry/time remains unverified."
   }
 }

@@ -1,0 +1,146 @@
+{
+  "analysis_id": "BM702_existing_data_diagnosis_v1",
+  "files": [
+    {
+      "path": "configs/diagnosis_BM702_v1.json",
+      "bytes": 1723,
+      "sha256": "56b961826fcfd9414a6540c66293f8502d6a4195b2cc13f86a118fce0ddb5273"
+    },
+    {
+      "path": "docs/approvals/diagnosis_BM702_v1_approval.json",
+      "bytes": 633,
+      "sha256": "2daf858485f99d57f392f0fb64a90d572ee065380740f45258b839b0faa43c77"
+    },
+    {
+      "path": "docs/experiment_index.md",
+      "bytes": 6487,
+      "sha256": "1441e154e2efbf35a7b1d99e9ee740a3825045b1598779fe5abac8de2eeb6721"
+    },
+    {
+      "path": "docs/model_evidence_registry.json",
+      "bytes": 18388,
+      "sha256": "f04219f82b7b939436d17e5cde1e4f8c125d995b70297b46685a3d90a9c2a90d"
+    },
+    {
+      "path": "docs/next_experiment_after_BM702.md",
+      "bytes": 7645,
+      "sha256": "13e936dc3e74fbfe994881adbaa42fa9a8d0088a1e476dd9200a545afe001883"
+    },
+    {
+      "path": "docs/project_status.json",
+      "bytes": 3725,
+      "sha256": "f62395cc978561cd29feed6a7ded388fe52b8d9fb4f332c7f6cd5aea3f40d438"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/BM702_stratified_errors.csv",
+      "bytes": 30329,
+      "sha256": "bc93469ac9abe9123542e9543ce41f7f0add24a82c79b1ae5d30855eaa9fe5f5"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/data_checks.csv",
+      "bytes": 2045,
+      "sha256": "5d29883fe3686978aa89d904d50cbab5ac91b4881b50d3e91511a26cbc394c26"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/daylight_consistency_checks.csv",
+      "bytes": 398,
+      "sha256": "4337f14102315e7d1b20feb35dd1124ff2cfcaa8b1bb1a3b8d08609a4f615fca"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/geometry_neighbours.csv",
+      "bytes": 320,
+      "sha256": "35cd0da9cbf9827fa9653691fe49e189f5dc33f22e56d52af9160022dbeb949a"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/interpretation_checks.json",
+      "bytes": 2165,
+      "sha256": "aa03cad7f61a5c814fe0cbf849e1580101e4171a335b40eb631ae390aea1174d"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/mechanical_verification.json",
+      "bytes": 425,
+      "sha256": "7a48d3084bd2f9d413a4f077d721fa51fd0230b8f720565cb70ff42d76fdb36f"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/native_room_metrics.csv",
+      "bytes": 5974,
+      "sha256": "71981680adf52f9bd0b34059f11ba30b341bb8316071b5f5857b1cf61a1767cb"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/orientation_branch_probe.csv",
+      "bytes": 393,
+      "sha256": "a9e6d5b44286a0ac4900b663eb2e8c0465a63a2548c41024f44b1a67e963d432"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/orientation_coverage.csv",
+      "bytes": 154,
+      "sha256": "d8052a89e6c4634ec023be2166ab329135d9b9c87af667e4190a6b023ebfa8df"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/P10_components.parquet",
+      "bytes": 1432373,
+      "sha256": "47c814e744a73e8d3a1c58b1185804bc7bb348613135a53fd6938cdd51dd5583"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/P10_decomposition.json",
+      "bytes": 1114,
+      "sha256": "b2fb6d695164fde955c8bcabef2020dac983e682b6aa7513a3ef21ccff48d4ba"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/P10_oracle_diagnostics.csv",
+      "bytes": 942,
+      "sha256": "5e2c6081cf2b88c1af65e56cba76c72d689821cccf1895714686aab963bba2bb"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/RF_ratio_room_attribution.csv",
+      "bytes": 614,
+      "sha256": "9927508925336aa7f1494ab3905764bf518649a6e66abf8cb9ce3e96d82db2c7"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/room_profiles.csv",
+      "bytes": 1400,
+      "sha256": "00f1d8ab3e93075b9a8ca439c9dd84b682d7c28cf62b303d0dc71c0e5620fa6e"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/run.log",
+      "bytes": 6325,
+      "sha256": "e2f25ca0fb97ddc70cfe24d2129bf483dc92cf8b7fa3c159795220e2ae20a96a"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/run_manifest.json",
+      "bytes": 1688,
+      "sha256": "7be4345817edfa54121f945e66cbb2f7b16295e791fbcb6e4722ce64eac3524b"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/summary.md",
+      "bytes": 8965,
+      "sha256": "41de9cf512178aa7e6ab57fb6522dcfcc7972d1b7322b814a57de180524db45f"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/target_profiles.csv",
+      "bytes": 1288,
+      "sha256": "14c8a9fbf5fa797567c301de776ac2ef8b2d079b9d3d9aac20518065bcce9856"
+    },
+    {
+      "path": "reports/diagnosis_BM702_v1/verification.json",
+      "bytes": 455,
+      "sha256": "45de8de0fcda7c5fb264907b556623b78dae4954829e8da440b270ba865e279a"
+    },
+    {
+      "path": "scripts/diagnose_BM702_v1.py",
+      "bytes": 17409,
+      "sha256": "d3264a7552e31c949df5066e371374d20be2bd1f1d40fbbeedc5099a2e5d0faa"
+    },
+    {
+      "path": "scripts/report_BM702_diagnosis_v1.py",
+      "bytes": 17228,
+      "sha256": "0330f21e37279f88f47c6f26f53b5dfda06b5de051b97382ad1e4fba78f7dcfb"
+    },
+    {
+      "path": "scripts/verify_BM702_diagnosis_v1.py",
+      "bytes": 3611,
+      "sha256": "51ebd40e0745d9830e0dc308df18c4cb1b7f3bd7b1920670d14bfbb6919dc93a"
+    }
+  ],
+  "note": "Shared project status docs may evolve; immutable model/source/diagnostic hashes preserved."
+}

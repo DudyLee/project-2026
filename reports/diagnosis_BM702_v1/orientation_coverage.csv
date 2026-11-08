@@ -1,0 +1,5 @@
+Orientation_X_model,Orientation_Y_model,rooms,room_count
+-1.0,-0.0,BM702,1
+0.0,-1.0,BM432;BM441;LM608,3
+0.0,1.0,BM522;BM608;LM703,3
+1.0,-0.0,BM223,1

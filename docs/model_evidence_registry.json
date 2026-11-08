@@ -470,5 +470,13 @@
       }
     ],
     "prior_feature_only_audit_disclosed": true
+  },
+  "BM702_post_holdout_diagnosis": {
+    "report": "reports/diagnosis_BM702_v1/summary.md",
+    "verification": "reports/diagnosis_BM702_v1/verification.json",
+    "new_estimator_fits": 0,
+    "finding": "Negative-X coverage gap with model branch saturation, wrong diurnal response and coupled P10 errors; internal data checks pass but source geometry/time remains unverified.",
+    "proposal": "docs/next_experiment_after_BM702.md",
+    "proposal_executed": false
   }
 }
