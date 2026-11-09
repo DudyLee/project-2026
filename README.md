@@ -5,7 +5,7 @@
 ## 从这里开始
 
 - [方法说明](METHODS.md)：输入输出、特征、模型和验证方式。
-- [结果说明](RESULTS.md)：主要发现、三类验证的区别和使用限制。
+- [可点击性能对比表](RESULTS.md)：三种验证的平均/最差MAE、综合候选建议；点击方法名直达代码。
 - [历史MAE总表](results/history_mae.csv)：v1–v11原版及本次补充实验。
 - [最新方案汇总](results/summary_metrics.csv)：258项指标，包括平均误差和最差房间。
 - [逐房间结果](results/room_metrics.csv)：1,462条房间级指标，用于核对汇总结果。
