@@ -21,6 +21,9 @@
 !/results/summary_metrics.csv
 !/results/room_metrics.csv
 !/results/history_mae.csv
+!/results/figures/
+/results/figures/*
+!/results/figures/test_mean_mae_sd_bar.png
 /tests/*
 !/tests/test_methods.py
 __pycache__/
