@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.0",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.7.2",
+    "xgboost": "3.1.3",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0",
+    "pyarrow": "25.0.0"
+  },
+  "files": {
+    "model.joblib": "cf59f3e09c506a7ecebe704fb06864b55db8cb3a2773f3b5d0b4a8e57627219d",
+    "metadata.json": "fd738ca2803626c389572062e0becac137ec14bc21453c8d8517961b54428420"
+  },
+  "training_rooms": [
+    "BM223",
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "training_rows": 122640,
+  "source_model_hashes": {
+    "models/supplement_v8_v11/v8_all_seven.joblib": "7ee559a56be2c381847a8c76c2abfad30ed4f137dff0e9c1078a19fab9c7d0c4",
+    "models/supplement_v8_v11/v10_all_seven.joblib": "1039c86e4c538c6c64421ac7f821316c335a35b85aebe7d76f0b824073f894c2"
+  },
+  "training_source_sha256": "0616e372054ef663ffd6c7de1dfbfcea1c9df91afd702257555270e9fc0c93c8",
+  "selected_methods": {
+    "E_mean_lux": "v8 T1",
+    "E_P10_lux": "v10 X0",
+    "F_300_fraction": "v8 T1",
+    "F_UDI_fraction": "v10 X0",
+    "PV_AC_kWh": "v8 T1"
+  },
+  "new_fit_calls": 0,
+  "test_used_for_method_selection": true,
+  "test_used_for_fit": false
+}

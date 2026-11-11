@@ -1,0 +1,8 @@
+Room_ID,DOY_1based,Hour,EPW_GHI_Wh_m2,EPW_DNI_Wh_m2,EPW_DHI_Wh_m2,Solar_Altitude_mid_deg,Solar_Azimuth_mid_deg,Request_ID
+BM223,1,7,6,0,6,4.89069,117.40739,example_1
+BM432,1,7,6,0,6,4.89069,117.40739,example_2
+BM441,1,7,6,0,6,4.89069,117.40739,example_3
+BM522,1,7,6,0,6,4.89069,117.40739,example_4
+BM608,1,7,6,0,6,4.89069,117.40739,example_5
+LM608,1,7,6,0,6,4.89069,117.40739,example_6
+LM703,1,7,6,0,6,4.89069,117.40739,example_7

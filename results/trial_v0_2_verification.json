@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "new_fit_calls": 0,
+  "default_version": "0.2.0",
+  "comparison_tolerance": {
+    "rtol": 1e-10,
+    "atol": 1e-08
+  },
+  "checks": {
+    "legacy_module_and_model_files_unchanged": true,
+    "full_10_room_output_rows": 175200,
+    "feature_F1_max_abs_diff": 0.0,
+    "feature_F2_max_abs_diff": 0.0,
+    "all_rows_original_estimator_max_abs_diff": {
+      "E_mean_lux": 0.0,
+      "E_P10_lux": 0.0,
+      "F_300_fraction": 0.0,
+      "F_UDI_fraction": 0.0,
+      "PV_AC_kWh": 0.0
+    },
+    "five_estimator_state_hashes_match_sources": true,
+    "saved_52560_test_rows_max_abs_diff": {
+      "E_mean_lux": 0.0,
+      "E_P10_lux": 0.0,
+      "F_300_fraction": 0.0,
+      "F_UDI_fraction": 0.0,
+      "PV_AC_kWh": 0.0
+    },
+    "batch_size_1_vs_default": 0.0,
+    "json_vs_csv": 0.0,
+    "bim_lookup_vs_explicit": 0.0,
+    "all_10_room_bim_lookup": 0.0,
+    "missing_annual": true,
+    "target_leakage_input": true,
+    "explicit_angle_input": true,
+    "nan": true,
+    "bool": true,
+    "hour_bounds": true,
+    "zero_q": true,
+    "zero_glass": true,
+    "bad_orientation": true,
+    "duplicate_columns": true,
+    "unknown_BIM_id": true,
+    "BIM_conflict": true,
+    "bad_batch": true,
+    "version_mismatch": true,
+    "rollback_0_1_max_abs_diff": 1.7053025658242404e-13,
+    "legacy_protected_room_unchanged": true,
+    "duplicate_json_keys": true,
+    "tampered_model_package": true,
+    "cli_json_vs_python": 0.0,
+    "cli_overwrite_guard": true,
+    "powershell_predictions.csv": true,
+    "powershell_lookup.csv": true,
+    "powershell_0_1_rollback": true
+  },
+  "model_sha256": "cf59f3e09c506a7ecebe704fb06864b55db8cb3a2773f3b5d0b4a8e57627219d",
+  "training_room_count": 7,
+  "test_rooms_used_for_fit": 0,
+  "existing_test_predictions_compared": true,
+  "test_used_for_method_selection": true
+}

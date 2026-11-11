@@ -1,4 +1,4 @@
-# Public repository allowlist. Keep datasets, weights and run artifacts local.
+# Public repository allowlist. Keep datasets and experiment artifacts local; allow the two released model packages.
 /*
 !/.gitignore
 !/.gitattributes
@@ -28,3 +28,41 @@
 !/tests/test_methods.py
 __pycache__/
 *.py[cod]
+
+# Versioned prediction release
+!/docs/
+/docs/*
+!/models/
+/models/*
+!/examples/
+/examples/*
+!/models/trial_v0_1/
+/models/trial_v0_1/*
+!/examples/trial_v0_1/
+/examples/trial_v0_1/*
+!/models/trial_v0_2/
+/models/trial_v0_2/*
+!/examples/trial_v0_2/
+/examples/trial_v0_2/*
+!/pvsd_trial.py
+!/pvsd_trial_v0_1.py
+!/pvsd_trial_v0_2.py
+!/scripts/predict_trial.ps1
+!/docs/trial_v0_2_usage.md
+!/models/trial_v0_1/model.joblib
+!/models/trial_v0_1/metadata.json
+!/models/trial_v0_1/manifest.json
+!/examples/trial_v0_1/input.csv
+!/examples/trial_v0_1/input.json
+!/examples/trial_v0_1/input_template.csv
+!/examples/trial_v0_1/expected_output.csv
+!/models/trial_v0_2/model.joblib
+!/models/trial_v0_2/metadata.json
+!/models/trial_v0_2/manifest.json
+!/examples/trial_v0_2/input.csv
+!/examples/trial_v0_2/input.json
+!/examples/trial_v0_2/input_template.csv
+!/examples/trial_v0_2/expected_output.csv
+!/examples/trial_v0_2/input_lookup.csv
+!/results/trial_v0_2_verification.json
+!/tests/test_trial.py

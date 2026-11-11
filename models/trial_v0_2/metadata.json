@@ -1,0 +1,243 @@
+{
+  "version": "0.2.0",
+  "angles": [
+    0,
+    30,
+    60,
+    90
+  ],
+  "input_features": [
+    "Room_Area_m2",
+    "Glass_Area_m2",
+    "Orientation_X_model",
+    "Orientation_Y_model",
+    "Solar_Obstruction_Ratio",
+    "DOY_1based",
+    "Hour",
+    "EPW_GHI_Wh_m2",
+    "EPW_DNI_Wh_m2",
+    "EPW_DHI_Wh_m2",
+    "Solar_Altitude_mid_deg",
+    "Solar_Azimuth_mid_deg",
+    "Annual_Incident_Shaded_kWh_m2"
+  ],
+  "raw_features": [
+    "Room_Area_m2",
+    "Glass_Area_m2",
+    "Orientation_X_model",
+    "Orientation_Y_model",
+    "Solar_Obstruction_Ratio",
+    "DOY_1based",
+    "Hour",
+    "PVSD_Angle_deg",
+    "EPW_GHI_Wh_m2",
+    "EPW_DNI_Wh_m2",
+    "EPW_DHI_Wh_m2",
+    "Solar_Altitude_mid_deg",
+    "Solar_Azimuth_mid_deg",
+    "Annual_Incident_Shaded_kWh_m2"
+  ],
+  "encoded_features": {
+    "F1": [
+      "Room_Area_m2",
+      "Glass_Area_m2",
+      "Orientation_X_model",
+      "Orientation_Y_model",
+      "Solar_Obstruction_Ratio",
+      "DOY_sin",
+      "DOY_cos",
+      "Hour",
+      "PVSD_Angle_deg",
+      "EPW_GHI_Wh_m2",
+      "EPW_DNI_Wh_m2",
+      "EPW_DHI_Wh_m2",
+      "Solar_Altitude_mid_deg",
+      "Solar_Azimuth_sin",
+      "Solar_Azimuth_cos",
+      "DNI_u",
+      "DNI_v",
+      "X_DNI_u",
+      "X_DNI_v",
+      "Y_DNI_u",
+      "Y_DNI_v"
+    ],
+    "F2": [
+      "Room_Area_m2",
+      "Glass_Area_m2",
+      "Orientation_X_model",
+      "Orientation_Y_model",
+      "Solar_Obstruction_Ratio",
+      "DOY_sin",
+      "DOY_cos",
+      "Hour",
+      "PVSD_Angle_deg",
+      "EPW_GHI_Wh_m2",
+      "EPW_DNI_Wh_m2",
+      "EPW_DHI_Wh_m2",
+      "Solar_Altitude_mid_deg",
+      "Solar_Azimuth_sin",
+      "Solar_Azimuth_cos",
+      "DNI_u",
+      "DNI_v",
+      "X_DNI_u",
+      "X_DNI_v",
+      "Y_DNI_u",
+      "Y_DNI_v",
+      "q",
+      "q_DHI",
+      "q_horizontal_DNI"
+    ]
+  },
+  "targets": [
+    "E_mean_lux",
+    "E_P10_lux",
+    "F_300_fraction",
+    "F_UDI_fraction",
+    "PV_AC_kWh"
+  ],
+  "selected_methods": {
+    "E_mean_lux": "v8 T1",
+    "E_P10_lux": "v10 X0",
+    "F_300_fraction": "v8 T1",
+    "F_UDI_fraction": "v10 X0",
+    "PV_AC_kWh": "v8 T1"
+  },
+  "training_room_features": [
+    {
+      "Room_ID": "BM223",
+      "Room_Area_m2": 6.658693,
+      "Glass_Area_m2": 1.2296580000000001,
+      "Orientation_X_model": 1.0,
+      "Orientation_Y_model": -0.0,
+      "Solar_Obstruction_Ratio": 0.6942065833661302,
+      "Annual_Incident_Shaded_kWh_m2": 199.32162052356017
+    },
+    {
+      "Room_ID": "BM432",
+      "Room_Area_m2": 6.59515,
+      "Glass_Area_m2": 1.2296580000000001,
+      "Orientation_X_model": 0.0,
+      "Orientation_Y_model": -1.0,
+      "Solar_Obstruction_Ratio": 0.2659920446222529,
+      "Annual_Incident_Shaded_kWh_m2": 570.3935016457242
+    },
+    {
+      "Room_ID": "BM441",
+      "Room_Area_m2": 7.783,
+      "Glass_Area_m2": 0.722129,
+      "Orientation_X_model": 0.0,
+      "Orientation_Y_model": -1.0,
+      "Solar_Obstruction_Ratio": 0.7757921304178359,
+      "Annual_Incident_Shaded_kWh_m2": 151.743846
+    },
+    {
+      "Room_ID": "BM522",
+      "Room_Area_m2": 6.442881,
+      "Glass_Area_m2": 1.2296580000000001,
+      "Orientation_X_model": 0.0,
+      "Orientation_Y_model": 1.0,
+      "Solar_Obstruction_Ratio": 0.3075095142166173,
+      "Annual_Incident_Shaded_kWh_m2": 285.3025801937173
+    },
+    {
+      "Room_ID": "BM608",
+      "Room_Area_m2": 7.763312,
+      "Glass_Area_m2": 0.722129,
+      "Orientation_X_model": -0.0,
+      "Orientation_Y_model": 1.0,
+      "Solar_Obstruction_Ratio": 0.7957203505089836,
+      "Annual_Incident_Shaded_kWh_m2": 77.296156
+    },
+    {
+      "Room_ID": "LM608",
+      "Room_Area_m2": 18.056981,
+      "Glass_Area_m2": 2.477129,
+      "Orientation_X_model": 0.0,
+      "Orientation_Y_model": -1.0,
+      "Solar_Obstruction_Ratio": 0.38693580407005446,
+      "Annual_Incident_Shaded_kWh_m2": 466.0535731051326
+    },
+    {
+      "Room_ID": "LM703",
+      "Room_Area_m2": 18.05385,
+      "Glass_Area_m2": 2.477129,
+      "Orientation_X_model": 0.0,
+      "Orientation_Y_model": 1.0,
+      "Solar_Obstruction_Ratio": 0.43298664036602463,
+      "Annual_Incident_Shaded_kWh_m2": 233.08694649702701
+    }
+  ],
+  "training_feature_ranges": {
+    "Room_Area_m2": {
+      "min": 6.442881,
+      "max": 18.056981
+    },
+    "Glass_Area_m2": {
+      "min": 0.722129,
+      "max": 2.477129
+    },
+    "Orientation_X_model": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "Orientation_Y_model": {
+      "min": -1.0,
+      "max": 1.0
+    },
+    "Solar_Obstruction_Ratio": {
+      "min": 0.2659920446222529,
+      "max": 0.7957203505089836
+    },
+    "DOY_1based": {
+      "min": 1.0,
+      "max": 365.0
+    },
+    "Hour": {
+      "min": 7.0,
+      "max": 18.0
+    },
+    "EPW_GHI_Wh_m2": {
+      "min": 0.0,
+      "max": 972.0
+    },
+    "EPW_DNI_Wh_m2": {
+      "min": 0.0,
+      "max": 803.0
+    },
+    "EPW_DHI_Wh_m2": {
+      "min": 0.0,
+      "max": 414.0
+    },
+    "Solar_Altitude_mid_deg": {
+      "min": -11.93689,
+      "max": 89.65431
+    },
+    "Solar_Azimuth_mid_deg": {
+      "min": 72.90739,
+      "max": 319.4264
+    },
+    "Annual_Incident_Shaded_kWh_m2": {
+      "min": 77.296156,
+      "max": 570.3935016457242
+    }
+  },
+  "training_rooms": [
+    "BM223",
+    "BM432",
+    "BM441",
+    "BM522",
+    "BM608",
+    "LM608",
+    "LM703"
+  ],
+  "training_rows": 122640,
+  "selection": "Lowest observed test room-macro MAE per output",
+  "test_used_for_method_selection": true,
+  "test_used_for_fit": false,
+  "new_fit_calls": 0,
+  "feature_q_reference_kWh_m2": 100,
+  "source_model_hashes": {
+    "models/supplement_v8_v11/v8_all_seven.joblib": "7ee559a56be2c381847a8c76c2abfad30ed4f137dff0e9c1078a19fab9c7d0c4",
+    "models/supplement_v8_v11/v10_all_seven.joblib": "1039c86e4c538c6c64421ac7f821316c335a35b85aebe7d76f0b824073f894c2"
+  }
+}
