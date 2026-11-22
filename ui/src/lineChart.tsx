@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { useI18n } from './i18n';
 import { tooltipPosition, type Point } from './tooltipPlacement';
 import type { Angle } from './types';
@@ -9,7 +9,10 @@ export interface ChartSeries {
   color: string;
   values: (number | null)[];
   details: string[];
+  dashed?: boolean;
 }
+
+type LegendItem = Pick<ChartSeries, 'id' | 'label' | 'color' | 'dashed'>;
 
 export interface ChartAnchor {
   button: HTMLButtonElement;
@@ -25,7 +28,10 @@ export interface ChartInspection {
 
 interface LineChartProps {
   title: string;
-  note: string;
+  note: ReactNode;
+  controls?: ReactNode;
+  legend?: LegendItem[];
+  renderTooltip?: (index: number) => ReactNode;
   angles: Angle[];
   series: ChartSeries[];
   hidden: ReadonlySet<string>;
@@ -87,6 +93,7 @@ function Plot({ series, angles, active, hovered, pinned }: {
         context.globalAlpha = selected && !emphasized ? 0.48 : 1;
         context.lineJoin = 'round';
         context.lineCap = 'round';
+        context.setLineDash(line.dashed ? [5, 4] : []);
         context.beginPath();
         line.values.forEach((value, index) => {
           if (value === null) return;
@@ -102,8 +109,9 @@ function Plot({ series, angles, active, hovered, pinned }: {
         context.strokeStyle = line.color;
         context.stroke();
 
-        context.fillStyle = line.color;
-        context.strokeStyle = '#ffffff';
+        context.setLineDash([]);
+        context.fillStyle = line.dashed ? '#f9fcfa' : line.color;
+        context.strokeStyle = line.dashed ? line.color : '#ffffff';
         context.lineWidth = 1;
         line.values.forEach((value, index) => {
           if (value === null) return;
@@ -126,15 +134,16 @@ function Plot({ series, angles, active, hovered, pinned }: {
   return <canvas ref={ref} className="line-canvas" aria-hidden="true" />;
 }
 
-function SeriesSwatch({ color }: { color: string }) {
-  return <span aria-hidden="true" className="series-swatch" style={{ color }} />;
+export function SeriesSwatch({ color, dashed }: { color: string; dashed?: boolean }) {
+  return <span aria-hidden="true" className="series-swatch" data-dashed={dashed} style={{ color }} />;
 }
 
-function ChartTooltip({ id, inspection, series, index }: {
+function ChartTooltip({ id, inspection, series, index, renderTooltip }: {
   id: string;
   inspection: ChartInspection;
   series: ChartSeries[];
   index: number;
+  renderTooltip?: LineChartProps['renderTooltip'];
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<Point | null>(null);
@@ -192,17 +201,17 @@ function ChartTooltip({ id, inspection, series, index }: {
     };
   }, [button, offset, followPointer]);
 
-  return <div ref={ref} className="line-tooltip" id={id} role="tooltip"
+  return <div ref={ref} className={'line-tooltip' + (renderTooltip ? ' comparison-tooltip' : '')} id={id} role="tooltip"
     style={position ? { left: position.x, top: position.y } : { left: 0, top: 0, visibility: 'hidden' }}>
     <strong>{inspection.angle}°</strong>
-    <dl>{series.map(line => <div key={line.id}>
-      <dt><SeriesSwatch color={line.color} />{line.label}</dt><dd>{line.details[index]}</dd>
-    </div>)}</dl>
+    {renderTooltip ? renderTooltip(index) : <dl>{series.map(line => <div key={line.id}>
+      <dt><SeriesSwatch color={line.color} dashed={line.dashed} />{line.label}</dt><dd>{line.details[index]}</dd>
+    </div>)}</dl>}
   </div>;
 }
 
 export function LineChart({
-  title, note, angles, series, hidden, active, recommended, hovered, pinned, inspection,
+  title, note, controls, angles, series, legend = series, renderTooltip, hidden, active, recommended, hovered, pinned, inspection,
   onLegendClick, onHover, onPin, onClear,
 }: LineChartProps) {
   const { t } = useI18n();
@@ -210,9 +219,9 @@ export function LineChart({
   const visible = series.filter(line => !hidden.has(line.id));
   const tooltipIndex = inspection ? angles.indexOf(inspection.angle) : -1;
 
-  return <section className="chart-panel" aria-labelledby={id}>
-    <h3 className="line-chart-title" id={id}>{title}</h3>
-    <p className="chart-scale-note">{note}</p>
+  return <section className={'chart-panel' + (renderTooltip ? ' comparison-chart' : '')} aria-labelledby={id}>
+    <div className="chart-heading"><h3 className="line-chart-title" id={id}>{title}</h3>{controls}</div>
+    <div className="chart-scale-note">{note}</div>
     <div className="line-chart">
       <div className="line-ticks" aria-hidden="true">{TICKS.map(tick => <span key={tick}>{tick}</span>)}</div>
       <div className="line-view">
@@ -251,13 +260,13 @@ export function LineChart({
       </div>
     </div>
     {inspection && tooltipIndex >= 0 && visible.length > 0
-      && <ChartTooltip id={id + '-tooltip'} inspection={inspection} series={visible} index={tooltipIndex} />}
+      && <ChartTooltip id={id + '-tooltip'} inspection={inspection} series={visible} index={tooltipIndex} renderTooltip={renderTooltip} />}
     <div className="chart-legend" role="group" aria-label={t('chartLegend')}>
-      {series.map(line => <button type="button" key={line.id} className={'legend-button' + (line.id === active ? ' active-series' : '')}
-        style={{ '--series-color': line.color } as CSSProperties} aria-current={line.id === active || undefined}
-        aria-pressed={!hidden.has(line.id)} onClick={() => onLegendClick(line.id)}>
-        <SeriesSwatch color={line.color} />{line.label}
-      </button>)}
+      {legend.map(line => <button type="button" key={line.id} className={'legend-button' + (line.id === active ? ' active-series' : '')}
+          style={{ '--series-color': line.color } as CSSProperties} aria-current={line.id === active || undefined}
+          aria-pressed={!hidden.has(line.id)} onClick={() => onLegendClick(line.id)}>
+          <SeriesSwatch color={line.color} dashed={line.dashed} />{line.label}
+        </button>)}
     </div>
   </section>;
 }

@@ -243,6 +243,19 @@ class WorkspaceTests(IsolatedAsyncioTestCase):
                         # Native float32 XGBoost inverse transforms vary by platform.
                         self.assertAlmostEqual(value, float(original[field]), delta=3e-7)
 
+    async def test_prediction_includes_matching_simulation_rows(self):
+        async with app.router.lifespan_context(app):
+            result = predict(Conditions(room_id="BM532", day=166, hour=14))
+            reference = result["simulation_rows"]
+            self.assertEqual([row["PVSD_Angle_deg"] for row in reference], [0, 30, 60, 90])
+            self.assertAlmostEqual(reference[1]["E_mean_lux"], 278.81952896)
+            self.assertAlmostEqual(reference[1]["F_UDI_fraction"], 0.65)
+            self.assertAlmostEqual(reference[1]["PV_AC_kWh"], 0.0760896523484)
+            self.assertNotAlmostEqual(result["rows"][1]["E_mean_lux"], reference[1]["E_mean_lux"])
+            unsimulated = predict(Conditions(room_id="LMG07", day=166, hour=14))
+            self.assertEqual(unsimulated["simulation_rows"], [])
+            self.assertEqual(len(unsimulated["rows"]), 4)
+
     def test_catalog_covers_the_simulation_clock(self):
         self.assertEqual(set(self.catalog.weather), SUPPORTED_TIMES)
         self.assertEqual(len(self.catalog.rooms), 476)

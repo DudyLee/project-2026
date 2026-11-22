@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable, reaction, runInAction } from 'mobx';
 import { chooseRule, editRule, validRule } from './scoring';
 import { builtInLocale, DEFAULT_LOCALE, displayedDate, isLocale, text, type CopyKey, type Locale } from './i18n';
 import {
@@ -18,6 +18,8 @@ interface Health {
 
 const EMPTY: Draft = { room_id: null, day: null, hour: null, preference: null };
 const LANGUAGE_STORAGE = 'pvsd-interface-language';
+const CHAT_STORAGE = 'pvsd-chat-v1:';
+const ACTIVE_CHAT_STORAGE = 'pvsd-active-chat-v1';
 const API_ERRORS = ['modelError', 'roomError', 'weatherError', 'scoreError'] as const;
 
 function storedLocale(): Locale {
@@ -49,12 +51,24 @@ function conditionsOf(result: Prediction): Conditions {
 }
 
 type ResultChoice = { ids: string[]; command: ChatResponse; question: string; role: 'base' | 'against' };
+type AngleChoice = { resultId: string; angles: Angle[]; metrics?: MetricId[] };
+type ChatSnapshot = {
+  messages: Message[];
+  title: string;
+  composer: string;
+  draft: Draft;
+  issues: Issue[];
+  interpretation: 'agent' | 'local' | null;
+  replyLanguage: string | null;
+  focusedResultId: string | null;
+  pendingPrediction: ChatResponse | null;
+  resultChoice: ResultChoice | null;
+  angleChoice: AngleChoice | null;
+  ruleDrafts: [string, Rule][];
+};
+type SavedChat = { updatedAt: number; snapshot: string };
 
-export class Workspace {
-  rooms: Room[] = [];
-  health: Health | null = null;
-  connected = true;
-  uiLocale = storedLocale();
+export class ChatSession {
   replyLanguage: string | null = null;
   interpretation: 'agent' | 'local' | null = null;
   messages: Message[] = [];
@@ -71,43 +85,55 @@ export class Workspace {
   exportFilter: 'bookmarked' | 'all' = 'bookmarked';
   selectedResultIds = new Set<string>();
   resultChoice: ResultChoice | null = null;
-  angleChoice: { resultId: string; angles: Angle[]; metrics?: MetricId[] } | null = null;
+  angleChoice: AngleChoice | null = null;
   reveal: { resultId: string; target: 'charts' | 'editor' | 'header' } | null = null;
   focusedResultId: string | null = null;
+  updatedAt: number;
   private pendingPrediction: ChatResponse | null = null;
-  private session = 0;
   private messageId = 0;
 
-  constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
+  constructor(private workspace: Workspace, readonly id: string, updatedAt = Date.now(), saved?: ChatSnapshot) {
+    this.updatedAt = updatedAt;
+    if (saved) {
+      this.messages = saved.messages;
+      this.messageId = saved.messages.length;
+      this.customChatTitle = saved.title;
+      this.composer = saved.composer;
+      this.draft = saved.draft;
+      this.issues = saved.issues;
+      this.interpretation = saved.interpretation;
+      this.replyLanguage = saved.replyLanguage;
+      this.focusedResultId = saved.focusedResultId;
+      this.pendingPrediction = saved.pendingPrediction;
+      this.resultChoice = saved.resultChoice;
+      this.angleChoice = saved.angleChoice;
+      this.ruleDrafts = new Map(saved.ruleDrafts);
+    }
+    makeAutoObservable<this, 'workspace'>(this, { workspace: false, id: false }, { autoBind: true });
   }
 
-  async bootstrap() {
-    try {
-      const [health, data] = await Promise.all([api<Health>('health'), api<{ rooms: Room[] }>('rooms')]);
-      runInAction(() => {
-        this.health = health;
-        this.rooms = data.rooms;
-        this.connected = true;
-      });
-    } catch {
-      runInAction(() => { this.connected = false; });
-    }
+  get snapshot(): ChatSnapshot {
+    return {
+      messages: this.messages, title: this.customChatTitle, composer: this.composer,
+      draft: this.draft, issues: this.issues, interpretation: this.interpretation, replyLanguage: this.replyLanguage,
+      focusedResultId: this.focusedResultId, pendingPrediction: this.pendingPrediction, resultChoice: this.resultChoice,
+      angleChoice: this.angleChoice, ruleDrafts: [...this.ruleDrafts],
+    };
   }
 
   get results(): ResultMessage[] {
     return this.messages.filter((message): message is ResultMessage => message.kind === 'result');
   }
 
-  get chatId() {
-    return this.session;
+  get hasContent() {
+    return Boolean(this.messages.length || this.customChatTitle || this.composer.trim());
   }
 
   get chatTitle() {
     if (this.customChatTitle) return this.customChatTitle;
     const first = this.results[0];
-    return first ? first.data.room.id + ' · ' + displayedDate(first.data.day, this.uiLocale)
-      : text(this.uiLocale, 'untitledChat');
+    return first ? first.data.room.id + ' · ' + displayedDate(first.data.day, this.workspace.uiLocale)
+      : text(this.workspace.uiLocale, 'untitledChat');
   }
 
   renameChat(title: string) {
@@ -132,21 +158,11 @@ export class Workspace {
   }
 
   get conversationLanguage() {
-    return this.replyLanguage ?? this.uiLocale;
+    return this.replyLanguage ?? this.workspace.uiLocale;
   }
 
   get conversationLocale() {
-    return builtInLocale(this.replyLanguage, this.uiLocale);
-  }
-
-  setLocale(locale: Locale) {
-    this.uiLocale = locale;
-    this.replyLanguage = null;
-    try {
-      window.localStorage.setItem(LANGUAGE_STORAGE, locale);
-    } catch {
-      // The selection still applies for this page when storage is unavailable.
-    }
+    return builtInLocale(this.replyLanguage, this.workspace.uiLocale);
   }
 
   private push(message: Omit<ResultMessage, 'id'> | Omit<ComparisonMessage, 'id'> | Omit<RankingMessage, 'id'>
@@ -162,27 +178,9 @@ export class Workspace {
     this.push({ kind, text: text(this.conversationLocale, key, values), language: this.conversationLocale });
   }
 
-  newChat() {
-    this.session += 1;
-    this.messages = [];
-    this.customChatTitle = '';
-    this.focusedResultId = null;
-    this.composer = '';
-    this.issues = [];
-    this.interpretation = null;
-    this.replyLanguage = null;
-    this.draft = { ...EMPTY };
-    this.busy = false;
-    this.conditionDraft = null;
-    this.ruleEditorId = null;
-    this.ruleDrafts.clear();
-    this.exportTarget = null;
-    this.exportLanguage = null;
-    this.exportFilter = 'bookmarked';
-    this.selectedResultIds.clear();
-    this.resultChoice = null;
-    this.angleChoice = null;
-    this.pendingPrediction = null;
+  closeEditors() {
+    this.dismissRule();
+    this.closeExport();
     this.reveal = null;
   }
 
@@ -197,18 +195,15 @@ export class Workspace {
     }
   }
 
-  private async task(work: (session: number) => Promise<void>, fallback: CopyKey) {
+  private async task(work: () => Promise<void>, fallback: CopyKey) {
     if (this.busy) return;
-    const session = this.session;
     this.busy = true;
     try {
-      await work(session);
+      await work();
     } catch (error) {
-      runInAction(() => {
-        if (session === this.session) this.say(requestError(error, fallback), undefined, 'error');
-      });
+      runInAction(() => this.say(requestError(error, fallback), undefined, 'error'));
     } finally {
-      runInAction(() => { if (session === this.session) this.busy = false; });
+      runInAction(() => { this.busy = false; });
     }
   }
 
@@ -219,7 +214,7 @@ export class Workspace {
     this.resultChoice = null;
     this.angleChoice = null;
     this.push({ kind: 'user', text: query });
-    await this.task(async session => {
+    await this.task(async () => {
       const all = this.results;
       const active = this.focusedResult;
       const recent = all.length <= 20 ? all
@@ -230,16 +225,15 @@ export class Workspace {
         active_result_id: active?.id,
         results: recent.map(result => ({ id: result.id, ...conditionsOf(result.data) })),
       });
-      if (session !== this.session) return;
       runInAction(() => {
         if (data.requested_language) this.replyLanguage = data.requested_language;
         this.interpretation = data.interpretation;
       });
-      await this.execute(data, query, session);
+      await this.execute(data, query);
     }, 'requestError');
   }
 
-  private async execute(command: ChatResponse, question: string, session: number) {
+  private async execute(command: ChatResponse, question: string) {
     const { action, localized_reply: reply } = command;
     if (action === 'language' || action === 'help') {
       if (reply) this.push({ kind: 'assistant', text: reply, language: command.language });
@@ -270,7 +264,7 @@ export class Workspace {
           else this.say('clarify', undefined, 'clarify');
         }
       });
-      if (action === 'predict') await this.predictDraft(session, this.draft, comparison, reply);
+      if (action === 'predict') await this.predictDraft(this.draft, comparison, reply);
       return;
     }
 
@@ -304,7 +298,7 @@ export class Workspace {
           && !/recommend|推荐/i.test(question);
         const angles = command.angles?.length ? command.angles
           : mentionsInspection && result.inspectedAngle != null ? [result.inspectedAngle] : [];
-        await this.explain(question, session, result, angles, command.metrics);
+        await this.explain(question, result, angles, command.metrics);
         break;
       }
       case 'rule': {
@@ -360,7 +354,7 @@ export class Workspace {
     const command = choice.role === 'base'
       ? { ...choice.command, result_choices: [], result_id: id }
       : { ...choice.command, against_choices: [], against_result_id: id };
-    await this.task(session => this.execute(command, choice.question, session), 'requestError');
+    await this.task(() => this.execute(command, choice.question), 'requestError');
   }
 
   toggleCompareAngle(angle: Angle) {
@@ -397,10 +391,10 @@ export class Workspace {
     if (!getConditions(this.draft) || this.issues.length) return;
     const pending = this.pendingPrediction;
     this.pendingPrediction = null;
-    await this.task(session => this.predictDraft(session, this.draft, pending), 'predictError');
+    await this.task(() => this.predictDraft(this.draft, pending), 'predictError');
   }
 
-  private async predictDraft(session: number, draft: Draft, comparison?: ChatResponse | null,
+  private async predictDraft(draft: Draft, comparison?: ChatResponse | null,
                              introduction?: string | null, source?: ResultMessage) {
     const conditions = getConditions(draft);
     if (!conditions) return;
@@ -409,7 +403,6 @@ export class Workspace {
     const selection = this.selectionFor(draft.preference, inherited);
     const data = await api<Prediction>('predict', conditions);
     runInAction(() => {
-      if (session !== this.session) return;
       if (introduction) this.push({ kind: 'assistant', text: introduction, language: this.conversationLanguage });
       const id = this.push({ kind: 'result', data, selection, customRule: inherited?.customRule,
         language: this.replyLanguage ?? undefined });
@@ -427,16 +420,14 @@ export class Workspace {
     return chooseRule(preference, source?.customRule ?? source?.selection.rule);
   }
 
-  private async explain(question: string, session: number, result: ResultMessage, angles?: Angle[], metrics?: MetricId[]) {
+  private async explain(question: string, result: ResultMessage, angles?: Angle[], metrics?: MetricId[]) {
     const { selection } = result;
     const detail = await api<{ text: string; language: string }>('explain', {
       conditions: conditionsOf(result.data),
       rule: selection.preference && validRule(selection.rule) ? selection.rule : null,
       question, language: this.conversationLanguage, angles: angles ?? [], metrics: metrics ?? [],
     });
-    runInAction(() => {
-      if (session === this.session) this.push({ kind: 'assistant', text: detail.text, language: detail.language });
-    });
+    runInAction(() => this.push({ kind: 'assistant', text: detail.text, language: detail.language }));
   }
 
   askAbout(result: ResultMessage) {
@@ -444,7 +435,7 @@ export class Workspace {
     this.focusResult(result);
     const question = text(this.conversationLocale, result.selection.preference ? 'explainRecommended' : 'explainCompare');
     this.push({ kind: 'user', text: question });
-    void this.task(session => this.explain(question, session, result), 'explainError');
+    void this.task(() => this.explain(question, result), 'explainError');
   }
 
   choosePreference(result: ResultMessage, preference: Preference | null) {
@@ -472,9 +463,8 @@ export class Workspace {
     this.conditionDraft = null;
   }
 
-  changeConditions(result: ResultMessage, change: Partial<Conditions>) {
+  changeConditions(result: ResultMessage, next: Conditions) {
     const original = conditionsOf(result.data);
-    const next = { ...original, ...change };
     if (next.room_id === original.room_id && next.day === original.day && next.hour === original.hour) return;
     this.startScenario({ ...next, preference: result.selection.preference }, result);
   }
@@ -489,7 +479,7 @@ export class Workspace {
     this.pendingPrediction = null;
     this.resultChoice = null;
     this.angleChoice = null;
-    void this.task(session => this.predictDraft(session, draft, null, null, source), 'predictError');
+    void this.task(() => this.predictDraft(draft, null, null, source), 'predictError');
   }
 
   openRule(result: ResultMessage, patch?: RuleEdit) {
@@ -522,7 +512,7 @@ export class Workspace {
     this.dismissRule();
   }
 
-  private showResult(result: ResultMessage, target: NonNullable<Workspace['reveal']>['target'] = 'charts') {
+  private showResult(result: ResultMessage, target: NonNullable<ChatSession['reveal']>['target'] = 'charts') {
     this.reveal = { resultId: result.id, target };
   }
 
@@ -564,7 +554,7 @@ export class Workspace {
     result.bookmarked = !result.bookmarked;
   }
 
-  setExportFilter(filter: Workspace['exportFilter']) {
+  setExportFilter(filter: ChatSession['exportFilter']) {
     this.exportFilter = filter;
   }
 
@@ -590,5 +580,113 @@ export class Workspace {
   closeExport() {
     this.exportTarget = null;
     this.exportLanguage = null;
+  }
+}
+
+export class Workspace {
+  rooms: Room[] = [];
+  health: Health | null = null;
+  connected = true;
+  uiLocale = storedLocale();
+  storageUnavailable = false;
+  private chats = new Map<string, ChatSession>();
+  private activeId = '';
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+    this.restoreChats();
+  }
+
+  get activeChat() {
+    return this.chats.get(this.activeId)!;
+  }
+
+  get recentChats() {
+    return [...this.chats.values()].filter(chat => chat.id === this.activeId || chat.hasContent)
+      .sort((left, right) => right.updatedAt - left.updatedAt);
+  }
+
+  async bootstrap() {
+    try {
+      const [health, data] = await Promise.all([api<Health>('health'), api<{ rooms: Room[] }>('rooms')]);
+      runInAction(() => {
+        this.health = health;
+        this.rooms = data.rooms;
+        this.connected = true;
+      });
+    } catch {
+      runInAction(() => { this.connected = false; });
+    }
+  }
+
+  newChat() {
+    if (!this.activeChat.hasContent && !this.activeChat.conditionDraft) return;
+    const chat = new ChatSession(this, this.newChatId());
+    this.track(chat);
+    this.openChat(chat.id);
+  }
+
+  openChat(id: string) {
+    if (id === this.activeId || !this.chats.has(id)) return;
+    this.chats.get(this.activeId)?.closeEditors();
+    this.activeId = id;
+    this.writeStorage(ACTIVE_CHAT_STORAGE, id);
+  }
+
+  setLocale(locale: Locale) {
+    this.uiLocale = locale;
+    this.activeChat.replyLanguage = null;
+    this.writeStorage(LANGUAGE_STORAGE, locale);
+  }
+
+  private newChatId() {
+    return globalThis.crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  }
+
+  private restoreChats() {
+    let active: string | null = null;
+    try {
+      const storage = window.localStorage;
+      active = storage.getItem(ACTIVE_CHAT_STORAGE);
+      for (let i = 0; i < storage.length; i++) {
+        const key = storage.key(i);
+        if (!key?.startsWith(CHAT_STORAGE)) continue;
+        const id = key.slice(CHAT_STORAGE.length);
+        try {
+          const saved: SavedChat = JSON.parse(storage.getItem(key) ?? 'null');
+          const snapshot: ChatSnapshot = JSON.parse(saved.snapshot);
+          if (!Array.isArray(snapshot.messages) || !Number.isFinite(saved.updatedAt)) continue;
+          this.track(new ChatSession(this, id, saved.updatedAt, snapshot));
+        } catch {
+          // A damaged record should not prevent the other chats from opening.
+        }
+      }
+    } catch {
+      this.storageUnavailable = true;
+    }
+    const id = active || this.recentChats[0]?.id || this.newChatId();
+    if (!this.chats.has(id)) this.track(new ChatSession(this, id));
+    this.openChat(id);
+  }
+
+  private track(chat: ChatSession) {
+    this.chats.set(chat.id, chat);
+    reaction(() => JSON.stringify(chat.snapshot), snapshot => {
+      if (chat.hasContent) {
+        chat.updatedAt = Date.now();
+        this.writeStorage(CHAT_STORAGE + chat.id, JSON.stringify({ updatedAt: chat.updatedAt, snapshot }));
+      } else {
+        this.writeStorage(CHAT_STORAGE + chat.id, null);
+      }
+    });
+  }
+
+  private writeStorage(key: string, value: string | null) {
+    try {
+      if (value === null) window.localStorage.removeItem(key);
+      else window.localStorage.setItem(key, value);
+    } catch {
+      this.storageUnavailable = true;
+    }
   }
 }

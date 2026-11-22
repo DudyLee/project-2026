@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { chooseRule, daylightWeightTotal, DEFAULT_RULE, editRule, percentagesOfPeak, preferenceScores, rank, rankAngles, rebalanceDaylight, validRule } from './scoring.ts';
+import { chooseRule, daylightWeightTotal, DEFAULT_RULE, editRule, percentagesOfPeak, preferenceScores, rank, rankAngles, setDaylightWeight, validRule } from './scoring.ts';
 import type { Angle, Row } from './types.ts';
 
 function fixture(angle: Angle, power: number, daylight: number): Row {
@@ -52,6 +52,13 @@ test('each prediction metric uses its own peak and handles a zero series', () =>
   assert.deepEqual(percentagesOfPeak([.004, .002, 0, .001]), [100, 50, 0, 25]);
 });
 
+test('prediction and simulation share a metric peak and keep missing references as gaps', () => {
+  const predicted = [80, 40, 30, 20];
+  const simulated = [100, 60, null, 20];
+  assert.deepEqual(percentagesOfPeak([...predicted, ...simulated]), [80, 40, 30, 20, 100, 60, null, 20]);
+  assert.deepEqual(percentagesOfPeak([0, 0, null]), [0, 0, null]);
+});
+
 test('ranking filters before sorting and reports the closest miss for a strict limit', () => {
   const order = { metric: 'PV_AC_kWh', direction: 'desc' } as const;
   const limits = [{ metric: 'F_UDI_fraction', operator: 'gte', value: .6 }] as const;
@@ -71,21 +78,25 @@ test('the default daylight formula gives 68 for 80% useful daylight and 50% cove
   assert.equal(rank([example], chooseRule('daylight'))[0].daylightScore, 68);
 });
 
-test('daylight sliders preserve inactive weights and distribute whole percentage points proportionally', () => {
-  const next = rebalanceDaylight(DEFAULT_RULE, 'f300', 30);
-  assert.deepEqual([next.udi, next.f300, next.p10, next.mean], [70, 30, 0, 0]);
-
-  const base = { ...DEFAULT_RULE, udi: 48, f300: 28, p10: 24 };
-  const withMean = rebalanceDaylight(base, 'mean', 33);
-  assert.deepEqual([withMean.udi, withMean.f300, withMean.p10, withMean.mean], [32, 19, 16, 33]);
-  assert.equal(daylightWeightTotal(withMean), 100);
+test('daylight edits preserve the other weights while the user allocates 100 percent', () => {
+  const base = { ...DEFAULT_RULE, udi: 65, f300: 5, p10: 30, p10_target: 150 };
+  const over = setDaylightWeight(base, 'f300', 10);
+  assert.deepEqual(over, { ...base, f300: 10 });
+  assert.equal(daylightWeightTotal(over), 105);
+  assert.equal(validRule(over), false);
+  const balanced = setDaylightWeight(over, 'p10', 25);
+  assert.deepEqual(balanced, { ...base, f300: 10, p10: 25 });
+  assert.equal(validRule(balanced), true);
 });
 
-test('a drag can return from 100 percent using the original mix, and a second metric can take a share', () => {
-  const onlyUdi = rebalanceDaylight(DEFAULT_RULE, 'udi', 100);
-  assert.equal(rebalanceDaylight(onlyUdi, 'udi', 80).udi, 100);
-  assert.equal(rebalanceDaylight(onlyUdi, 'f300', 20).udi, 80);
-  assert.deepEqual(rebalanceDaylight(onlyUdi, 'udi', 60, DEFAULT_RULE), DEFAULT_RULE);
+test('a sole 100 percent weight can be reduced before adding another metric', () => {
+  const onlyUdi = { ...DEFAULT_RULE, udi: 100, f300: 0 };
+  const under = setDaylightWeight(onlyUdi, 'udi', 80);
+  assert.equal(daylightWeightTotal(under), 80);
+  assert.equal(validRule(under), false);
+  assert.deepEqual(setDaylightWeight(under, 'f300', 20), { ...onlyUdi, udi: 80, f300: 20 });
+  const withInvalidTarget = { ...DEFAULT_RULE, p10: 20, p10_target: 0 };
+  assert.deepEqual(setDaylightWeight(withInvalidTarget, 'p10', 0), DEFAULT_RULE);
 });
 
 test('custom rules cap weighted lux terms and rank only eligible angles', () => {

@@ -1,10 +1,10 @@
 import { useId, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
-import { Plus, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useI18n } from './i18n';
 import { FILTER_SIGNS, METRICS } from './metrics';
-import { daylightWeightTotal, rank, rankAngles, rebalanceDaylight, validRule, type DaylightWeight, type RankedRow } from './scoring';
-import { DAYLIGHT_METRIC_IDS, type MetricFilter, type ResultMessage, type Rule } from './types';
+import { daylightWeightTotal, rank, rankAngles, setDaylightWeight, validRule, type RankedRow } from './scoring';
+import type { MetricFilter, ResultMessage, Rule } from './types';
 
 const TERMS = [
   { weight: 'udi', metric: 'F_UDI_fraction' },
@@ -12,8 +12,6 @@ const TERMS = [
   { weight: 'p10', metric: 'E_P10_lux', target: 'p10_target' },
   { weight: 'mean', metric: 'E_mean_lux', target: 'mean_target' },
 ] as const;
-
-const cutoffMetrics = DAYLIGHT_METRIC_IDS.map(id => METRICS.find(metric => metric.key === id)!);
 
 export function DaylightFormula({ rule, custom = false }: { rule: Rule; custom?: boolean }) {
   const { t, number } = useI18n();
@@ -28,14 +26,20 @@ export function DaylightFormula({ rule, custom = false }: { rule: Rule; custom?:
   return <p className="daylight-formula">{t(custom ? 'customDaylightScore' : 'absoluteDaylightScore')} = {terms.join(' + ')}</p>;
 }
 
-export function CutoffTags({ filters, extra }: { filters: MetricFilter[]; extra?: string }) {
+export function CutoffTags({ filters, extra, onRemove }: {
+  filters: MetricFilter[]; extra?: string; onRemove?: (index: number) => void;
+}) {
   const { t, number } = useI18n();
   if (!filters.length && !extra) return null;
   return <ul className="ranking-criteria">
     {filters.map((filter, index) => {
       const metric = METRICS.find(item => item.key === filter.metric)!;
       const units = metric.unit === '%' ? '%' : ' ' + metric.unit;
-      return <li key={index}>{t(metric.label)} {FILTER_SIGNS[filter.operator]} {number(filter.value * metric.scale, 4)}{units}</li>;
+      const label = `${t(metric.label)} ${FILTER_SIGNS[filter.operator]} ${number(filter.value * metric.scale, 4)}${units}`;
+      return <li className={onRemove ? 'editable-cutoff' : undefined} key={index}>{label}
+        {onRemove && <button type="button" className="icon-button cutoff-remove" aria-label={t('removeCutoff', { label })}
+          onClick={() => onRemove(index)}><X size={14} aria-hidden="true" /></button>}
+      </li>;
     })}
     {extra && <li>{extra}</li>}
   </ul>;
@@ -54,55 +58,51 @@ export function CutoffMisses({ closest }: { closest: NonNullable<ReturnType<type
   })}</ul>;
 }
 
-function RuleDetails({ rule, rows }: { rule: Rule; rows: RankedRow[] }) {
+function RuleDetails({ rule, rows, hidden }: { rule: Rule; rows: RankedRow[]; hidden: boolean }) {
   const { t, number } = useI18n();
-  return <details className="rule-preview">
+  const hasCutoffs = Boolean(rule.cutoffs?.length);
+  return <details className="rule-preview" hidden={hidden}>
     <summary>{t('rulePreviewDetails')}</summary>
     <DaylightFormula rule={rule} />
     <p className="muted small">{t('ruleFractions')}</p>
     <table className="result-table">
-      <thead><tr><th scope="col">{t('angle')}</th><th scope="col">{t('absoluteDaylightScore')}</th><th scope="col">{t('eligibility')}</th></tr></thead>
+      <thead><tr><th scope="col">{t('angle')}</th><th scope="col">{t('absoluteDaylightScore')}</th>
+        {hasCutoffs && <th scope="col">{t('eligibility')}</th>}</tr></thead>
       <tbody>{rows.map(row => <tr key={row.PVSD_Angle_deg}>
         <th scope="row">{row.PVSD_Angle_deg}°</th>
         <td>{number(row.daylightScore, 2)}</td>
-        <td>{t(row.eligible ? 'qualifies' : 'doesNotQualify')}</td>
+        {hasCutoffs && <td>{t(row.eligible ? 'qualifies' : 'doesNotQualify')}</td>}
       </tr>)}</tbody>
     </table>
   </details>;
 }
 
-function PercentInput({ label, value, onChange, min = 0, exact = false, complement, onStart, onEnd }: {
+function PercentInput({ label, value, onChange, complement }: {
   label: string;
   value: number;
   onChange: (value: number) => void;
-  min?: number;
-  exact?: boolean;
   complement?: string;
-  onStart?: () => void;
-  onEnd?: () => void;
 }) {
   const id = useId();
   const [typed, setTyped] = useState<string>();
-  const locked = min === 100;
   return <div className="percent-control">
     <div className="percent-heading">
       {complement && <span>{complement} <strong>{100 - value}%</strong></span>}
       <label htmlFor={id}>{label}</label>
       <span className="weight-input percent-number">
-        <input id={id} className="field" type="number" min={min} max={100} step={exact ? 'any' : 1}
-          value={typed ?? (Number.isFinite(value) ? value : '')} disabled={locked}
-          onFocus={onStart} onBlur={() => { setTyped(undefined); onEnd?.(); }}
+        <input id={id} className="field" type="number" min={0} max={100} step={1}
+          value={typed ?? value} onBlur={() => setTyped(undefined)}
           onKeyDown={event => { if (event.key === 'Enter') event.currentTarget.blur(); }}
           onChange={event => {
             const input = event.currentTarget;
             setTyped(input.value);
-            if ((exact && !input.value) || (input.value && input.validity.valid)) onChange(input.valueAsNumber);
+            if (input.value && input.validity.valid) onChange(input.valueAsNumber);
           }} />
         <small aria-hidden="true">%</small>
       </span>
     </div>
-    <input type="range" min={min} max={100} step={1} value={Number.isFinite(value) ? value : min}
-      aria-label={label} disabled={locked} onPointerDown={onStart} onFocus={onStart} onBlur={onEnd}
+    <input type="range" min={0} max={100} step={1} value={value}
+      aria-label={label}
       onChange={event => onChange(event.currentTarget.valueAsNumber)} />
   </div>;
 }
@@ -112,12 +112,11 @@ function RuleControls({ rule, onChange }: {
 }) {
   const { t } = useI18n();
   const cutoffs = rule.cutoffs ?? [];
-  const [editing, setEditing] = useState<{ key: DaylightWeight; basis: Rule }>();
   const total = daylightWeightTotal(rule);
-
-  function updateCutoff(index: number, change: Partial<MetricFilter>) {
-    onChange({ ...rule, cutoffs: cutoffs.map((cutoff, i) => i === index ? { ...cutoff, ...change } : cutoff) });
-  }
+  const amount = Math.abs(100 - total);
+  const balance = t(amount === 1 ? 'ruleWeightPoint' : 'ruleWeightPoints', { amount });
+  const weightStatus = total === 100 ? t('ruleWeightAllocated')
+    : t(total < 100 ? 'ruleWeightRemaining' : 'ruleWeightExcess', { percent: total, balance });
 
   return <>
     <div className="rule-mix">
@@ -126,21 +125,14 @@ function RuleControls({ rule, onChange }: {
     </div>
     <fieldset className="rule-weights">
       <legend>{t('daylightWeights')}</legend>
-      <p className={'small ' + (total === 100 ? 'muted' : 'warning-text')}>
-        {t(total === 100 ? 'ruleWeightHint' : 'ruleWeightTotal', { percent: total })}
-      </p>
+      <p className={'small ' + (total > 100 ? 'warning-text' : 'muted')} aria-live="polite">{weightStatus}</p>
       <div className="weight-grid">
         {TERMS.map(term => {
           const label = t(METRICS.find(metric => metric.key === term.metric)!.label);
           const weight = rule[term.weight] ?? 0;
           const target = 'target' in term ? term.target : undefined;
-          const basis = editing?.key === term.weight ? editing.basis : rule;
-          const onlyActive = weight === 100 && daylightWeightTotal(basis) === (basis[term.weight] ?? 0);
           return <div className="weight-term" key={term.weight}>
-            <PercentInput label={label} value={weight} min={onlyActive ? 100 : 0}
-              onStart={() => setEditing(current => current?.key === term.weight ? current : { key: term.weight, basis: rule })}
-              onEnd={() => setEditing(current => current?.key === term.weight ? undefined : current)}
-              onChange={value => onChange(rebalanceDaylight(rule, term.weight, value, basis))} />
+            <PercentInput label={label} value={weight} onChange={value => onChange(setDaylightWeight(rule, term.weight, value))} />
             {target && weight > 0 && <label className="lux-target">
               <span>{t('fullCreditTarget', { metric: label })}</span>
               <span className="weight-input">
@@ -153,43 +145,10 @@ function RuleControls({ rule, onChange }: {
         })}
       </div>
     </fieldset>
-    <fieldset className="rule-cutoffs">
-      <legend>{t('ruleCutoffs')}</legend>
-      {cutoffs.map((cutoff, index) => {
-        const metric = cutoffMetrics.find(item => item.key === cutoff.metric)!;
-        return <div className="cutoff-fields" key={index}>
-          <select className="field" aria-label={t('cutoffMetric')} value={cutoff.metric}
-            onChange={event => updateCutoff(index, { metric: event.target.value as MetricFilter['metric'], value: NaN })}>
-            {cutoffMetrics.map(item => <option key={item.key} value={item.key}>{t(item.label)}</option>)}
-          </select>
-          <select className="field" aria-label={t('cutoffCondition')} value={cutoff.operator}
-            onChange={event => updateCutoff(index, { operator: event.target.value as MetricFilter['operator'] })}>
-            <option value="gte">{t('atLeast')}</option><option value="gt">{t('above')}</option>
-            <option value="lte">{t('atMost')}</option><option value="lt">{t('below')}</option>
-          </select>
-          <button type="button" className="icon-button" aria-label={t('removeCutoff')}
-            onClick={() => onChange({ ...rule, cutoffs: cutoffs.filter((_, i) => i !== index) })}><X size={16} /></button>
-          <div className="cutoff-threshold">
-            {metric.unit === '%' ? <PercentInput label={t('cutoffValue', { unit: '%' })} exact
-              value={Number((cutoff.value * metric.scale).toFixed(8))}
-              onChange={value => updateCutoff(index, { value: value / metric.scale })} /> :
-              <label className="cutoff-lux">
-                <span>{t('cutoffValue', { unit: metric.unit })}</span>
-                <span className="weight-input">
-                  <input className="field" type="number" min={0} step="any"
-                    value={Number.isFinite(cutoff.value) ? cutoff.value : ''}
-                    onChange={event => updateCutoff(index, { value: event.target.valueAsNumber })} />
-                  <small aria-hidden="true">{metric.unit}</small>
-                </span>
-              </label>}
-          </div>
-        </div>;
-      })}
-      {cutoffs.length < 5 && <button className="text-button" type="button"
-        onClick={() => onChange({ ...rule, cutoffs: [...cutoffs, { metric: 'E_P10_lux', operator: 'gte', value: NaN }] })}>
-        <Plus size={15} />{t('addCutoff')}
-      </button>}
-    </fieldset>
+    {cutoffs.length > 0 && <fieldset className="rule-chat-cutoffs">
+      <legend>{t('ruleChatCutoffs')}</legend>
+      <CutoffTags filters={cutoffs} onRemove={index => onChange({ ...rule, cutoffs: cutoffs.filter((_, i) => i !== index) })} />
+    </fieldset>}
   </>;
 }
 
@@ -211,9 +170,10 @@ export function RulePopover({ id, anchor, trigger, result, rule, busy, onChange,
   const closing = useRef(false);
   const title = useId();
   const valid = validRule(rule);
+  const cutoffs = rule.cutoffs ?? [];
   const rows = valid ? rank(result.data.rows, { preference: 'custom', rule }) : [];
   const qualified = rows.filter(row => row.eligible).length;
-  const closest = valid && !qualified ? rankAngles(result.data.rows, rule.cutoffs ?? []).closest : null;
+  const closest = valid && cutoffs.length && !qualified ? rankAngles(result.data.rows, cutoffs).closest : null;
   const angles = (ranked: RankedRow[]) => ranked.filter(row => row.recommended)
     .map(row => row.PVSD_Angle_deg + '°').join(locale === 'zh' ? '、' : ', ') || t('none');
   const previous = valid ? angles(rank(result.data.rows, result.selection)) : '';
@@ -339,15 +299,15 @@ export function RulePopover({ id, anchor, trigger, result, rule, busy, onChange,
     </header>
     <div className="rule-popover-body">
       <RuleControls rule={rule} onChange={onChange} />
-      {valid && <RuleDetails rule={rule} rows={rows} />}
+      <RuleDetails rule={rule} rows={rows} hidden={!valid} />
     </div>
     <footer className="rule-popover-footer">
       <div className="rule-preview-summary" role="status" aria-label={t('rulePreview')}>
         {valid ? <>
           <p><strong>{t('rulePreviewRecommendation', { angles: previous === next ? next : previous + ' → ' + next })}</strong>
-            <span className="muted"> · {t('ruleQualifiedCount', { qualified, total: rows.length })}</span></p>
+            {cutoffs.length > 0 && <span className="muted"> · {t('ruleQualifiedCount', { qualified, total: rows.length })}</span>}</p>
           {closest && <><p>{t('rankingNone', { angle: closest.row.PVSD_Angle_deg })}</p><CutoffMisses closest={closest} /></>}
-        </> : <p className="warning-text">{t('ruleIncomplete')}</p>}
+        </> : <p className="warning-text">{t(daylightWeightTotal(rule) === 100 ? 'ruleIncomplete' : 'rulePreviewNeedsWeights')}</p>}
       </div>
       <div className="rule-popover-actions">
         <button type="button" className="button secondary" onClick={() => finish(onCancel)}>{t('cancel')}</button>

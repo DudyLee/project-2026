@@ -46,6 +46,7 @@ export interface Prediction {
   model_sha256: string;
   coverage: string[];
   rows: Row[];
+  simulation_rows?: Row[];
 }
 
 export interface Rule {
@@ -153,7 +154,6 @@ export type Message =
 export const HOURS = Array.from({ length: 12 }, (_, index) => index + 7);
 export const ANGLES: Angle[] = [0, 30, 60, 90];
 export const METRIC_IDS: MetricId[] = ['E_mean_lux', 'E_P10_lux', 'F_300_fraction', 'F_UDI_fraction', 'PV_AC_kWh'];
-export const DAYLIGHT_METRIC_IDS: DaylightMetricId[] = ['F_UDI_fraction', 'F_300_fraction', 'E_P10_lux', 'E_mean_lux'];
 export const REFERENCE_YEAR = 2001;
 
 export function displayedHour(hour: number) {

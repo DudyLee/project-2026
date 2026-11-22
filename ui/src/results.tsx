@@ -1,10 +1,10 @@
-import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ComponentProps, type CSSProperties, type ReactNode } from 'react';
 import { ChartNoAxesColumnIncreasing, ChevronDown, Download, MessageSquareText, Zap } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { ConditionPickers } from './conditionPickers';
 import { BookmarkButton } from './predictionNavigation';
 import { downloadPrediction } from './predictionExport';
-import { LineChart, type ChartAnchor, type ChartSeries } from './lineChart';
+import { LineChart, SeriesSwatch, type ChartAnchor, type ChartSeries } from './lineChart';
 import { PREFERENCES, percentagesOfPeak, preferenceScores, rank, rankAngles, type RankedRow } from './scoring';
 import { useI18n } from './i18n';
 import { DAYLIGHT, SOLAR_ENERGY, POWER, METRICS, type Metric } from './metrics';
@@ -20,6 +20,11 @@ const PREFERENCE_COLOR: Record<Preference, string> = {
 
 function metricValue(row: Row, metric: Metric, format: (value: number, digits?: number) => string) {
   return format(row[metric.key] * metric.scale, metric.digits);
+}
+
+function signedDifference(delta: number, digits: number, number: ReturnType<typeof useI18n>['number']) {
+  if (Math.abs(delta) < 0.5 * 10 ** -digits) return number(0, digits);
+  return (delta > 0 ? '+' : '') + number(delta, digits);
 }
 
 function ResultTable({ rows, scores, focused, daylightWeights, customRule, customSelected, open, onOpen }: {
@@ -116,6 +121,79 @@ function ScoreSummary({ prediction, selection }: {
   </div>;
 }
 
+type ChartInteraction = Pick<ComponentProps<typeof LineChart>,
+  'angles' | 'recommended' | 'hovered' | 'pinned' | 'inspection' | 'onHover' | 'onPin' | 'onClear'>;
+
+function MetricsChart({ data, hidden, onLegend, interaction }: {
+  data: Prediction;
+  hidden: ReadonlySet<MetricId>;
+  onLegend: (id: MetricId) => void;
+  interaction: ChartInteraction;
+}) {
+  const { t, number } = useI18n();
+  const [compare, setCompare] = useState(false);
+  const [comparisonHidden, setComparisonHidden] = useState<Set<string>>(() => new Set(
+    METRICS.filter(metric => metric.key !== 'E_mean_lux').map(metric => metric.key),
+  ));
+  const references = new Map(data.simulation_rows?.map(row => [row.PVSD_Angle_deg, row]));
+  const aligned = data.rows.map(row => references.get(row.PVSD_Angle_deg));
+  const canCompare = aligned.some(Boolean);
+  const comparing = canCompare && compare;
+  const toggle = canCompare && <button type="button" className="button secondary chart-mode" aria-pressed={comparing}
+    onClick={() => setCompare(!compare)}>{t('compareSimulation')}</button>;
+  const title = t('predictionMetricsChart');
+
+  if (!comparing) {
+    const series = METRICS.map(metric => ({
+      id: metric.key, label: t(metric.label), color: metric.color,
+      values: percentagesOfPeak(data.rows.map(row => row[metric.key])),
+      details: data.rows.map(row => metricValue(row, metric, number) + (metric.unit === '%' ? '%' : ' ' + metric.unit)),
+    }));
+    return <LineChart {...interaction} title={title} note={t('metricScale')} controls={toggle}
+      series={series} hidden={hidden} onLegendClick={id => onLegend(id as MetricId)} />;
+  }
+
+  const compared = METRICS.filter(metric => !comparisonHidden.has(metric.key)).map(metric => {
+    const predicted = data.rows.map(row => row[metric.key] * metric.scale);
+    const simulated = aligned.map(row => row ? row[metric.key] * metric.scale : null);
+    const values = percentagesOfPeak([...predicted, ...simulated]);
+    const units = metric.unit === '%' ? '%' : ' ' + metric.unit;
+    const deltaUnit = metric.unit === '%' ? t('percentagePoints') : metric.unit;
+    const detail = (value: number | null) => value === null ? '—' : number(value, metric.digits) + units;
+    const prediction: ChartSeries = {
+      id: metric.key + '-prediction', color: metric.color, label: t('predictionSeries'),
+      values: values.slice(0, predicted.length), details: predicted.map(detail),
+    };
+    const simulation: ChartSeries = {
+      id: metric.key + '-simulation', color: metric.color, label: t('simulationSeries'), dashed: true,
+      values: values.slice(predicted.length), details: simulated.map(detail),
+    };
+    const differences = simulated.map((value, index) => value === null ? '—'
+      : signedDifference(predicted[index] - value, metric.digits, number) + ' ' + deltaUnit);
+    return { metric, prediction, simulation, differences };
+  });
+  const legend = METRICS.map(metric => ({ id: metric.key, color: metric.color, label: t(metric.label) }));
+
+  return <LineChart {...interaction} title={title} controls={toggle}
+    series={compared.flatMap(({ prediction, simulation }) => [prediction, simulation])} legend={legend} hidden={comparisonHidden}
+    onLegendClick={id => setComparisonHidden(previous => toggleSeries(previous, id))}
+    note={<div className="chart-comparison-note">
+      <span>{t('comparisonScale')}</span>
+      <span className="chart-source-legend" role="group" aria-label={t('comparisonLegend')}>
+        <span><SeriesSwatch color="#52665e" />{t('predictionSeries')}</span>
+        <span><SeriesSwatch color="#52665e" dashed />{t('simulationSeries')}</span>
+      </span>
+    </div>}
+    renderTooltip={index => <table className="comparison-tooltip-values">
+      <thead><tr><th scope="col">{t('predictedValue')}</th><th scope="col">{t('predictionSeries')}</th>
+        <th scope="col">{t('simulationSeries')}</th><th scope="col" aria-label={t('simulationDifference')}>{t('comparisonDifference')}</th></tr></thead>
+      <tbody>{compared.map(({ metric, prediction, simulation, differences }) => <tr key={metric.key}>
+        <th scope="row"><span className="comparison-tooltip-metric"><SeriesSwatch color={metric.color} />{t(metric.label)}</span></th>
+        <td>{prediction.details[index]}</td><td>{simulation.details[index]}</td><td>{differences[index]}</td>
+      </tr>)}</tbody>
+    </table>} />;
+}
+
 export const ResultCard = observer(function ResultCard({
   result, rooms, onPreference, onChangeConditions, onEditPreference, onBookmark, onExport, onExplain,
   onInspect, onLegend, onValuesOpen, ruleDraft, onRuleChange, onDismissRule, onCancelRule, onApplyRule, busy,
@@ -123,7 +201,7 @@ export const ResultCard = observer(function ResultCard({
   result: ResultMessage;
   rooms: Room[];
   onPreference: (preference: Preference | null) => void;
-  onChangeConditions: (change: Partial<Conditions>) => void;
+  onChangeConditions: (conditions: Conditions) => void;
   onEditPreference: () => void;
   onInspect: (angle: Angle | null) => void;
   onLegend: (id: MetricId) => void;
@@ -156,11 +234,6 @@ export const ResultCard = observer(function ResultCard({
     id: preference, label: t(preference), color: PREFERENCE_COLOR[preference],
     values: rows.map(row => row.score),
     details: rows.map(row => row.score === null ? t('doesNotQualify') : number(row.score, 2) + ' / 100'),
-  }));
-  const metricSeries: ChartSeries[] = METRICS.map(metric => ({
-    id: metric.key, label: t(metric.label), color: metric.color,
-    values: percentagesOfPeak(data.rows.map(row => row[metric.key])),
-    details: data.rows.map(row => metricValue(row, metric, number) + (metric.unit === '%' ? '%' : ' ' + metric.unit)),
   }));
   const pinnedAngle = result.inspectedAngle ?? null;
   const tooltip = hovered ?? (touchTooltip?.angle === pinnedAngle ? touchTooltip : null);
@@ -201,7 +274,7 @@ export const ResultCard = observer(function ResultCard({
     <div className="card-top">
       <div><div className="card-kicker"><ChartNoAxesColumnIncreasing size={17} /> {t('prediction')}</div>
         <ConditionPickers value={{ room_id: data.room.id, day: data.day, hour: data.hour }} rooms={rooms}
-          disabled={busy} unsimulated={!data.room.simulated} onChange={onChangeConditions} />
+          disabled={busy} unsimulated={!data.room.simulated} onRun={onChangeConditions} />
       </div>
       <div className="result-actions">
         <button type="button" className="button secondary explain-action" onClick={onExplain} disabled={busy} aria-label={t('explain')}>
@@ -241,9 +314,7 @@ export const ResultCard = observer(function ResultCard({
       <LineChart {...chartInteraction('scores')} title={t('preferenceScoresChart')} note={t('preferenceScale')}
         series={scoreSeries} hidden={hiddenScores} active={selection.preference}
         onLegendClick={id => setHiddenScores(current => toggleSeries(current, id))} />
-      <LineChart {...chartInteraction('metrics')} title={t('predictionMetricsChart')} note={t('metricScale')}
-        series={metricSeries} hidden={hiddenMetrics}
-        onLegendClick={id => onLegend(id as MetricId)} />
+      <MetricsChart interaction={chartInteraction('metrics')} data={data} hidden={hiddenMetrics} onLegend={onLegend} />
     </div>
     <ResultTable rows={rows} scores={comparison} focused={hovered?.angle ?? pinnedAngle}
       open={result.valuesOpen ?? false} onOpen={onValuesOpen}
@@ -296,8 +367,7 @@ export function ComparisonCard({ message }: { message: ComparisonMessage }) {
             <th scope="col">{t('difference')}</th></tr></thead>
           <tbody>{shownMetrics.map(metric => {
             const delta = (second[metric.key] - first[metric.key]) * metric.scale;
-            const signed = Math.abs(delta) < 0.5 * 10 ** -metric.digits ? number(0, metric.digits)
-              : (delta > 0 ? '+' : '') + number(delta, metric.digits);
+            const signed = signedDifference(delta, metric.digits, number);
             const unit = metric.unit === '%' ? t('percentagePoints') : metric.unit;
             return <tr key={metric.key}><th scope="row">{t(metric.label)}<small>{metric.unit}</small></th>
               <td>{metricValue(first, metric, number)}</td><td>{metricValue(second, metric, number)}</td>

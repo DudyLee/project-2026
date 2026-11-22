@@ -4,6 +4,8 @@ from __future__ import annotations
 import csv
 from dataclasses import dataclass
 from datetime import date
+from functools import cached_property
+import logging
 import math
 from pathlib import Path
 import sys
@@ -15,6 +17,9 @@ BIM_FILE = "SEND_BIM_476Rooms.csv"
 SOURCE_FILE = "SEND_ML_BIM_EPW_07-18.csv"
 WEATHER_FILE = "weather_hourly.csv"
 TIME_FIELDS = ("DOY_1based", "Hour")
+ANGLE_FIELD = "PVSD_Angle_deg"
+METRIC_FIELDS = ("E_mean_lux", "E_P10_lux", "F_300_fraction", "F_UDI_fraction", "PV_AC_kWh")
+RESULT_FIELDS = (ANGLE_FIELD, *METRIC_FIELDS)
 WEATHER_FIELDS = (
     "EPW_GHI_Wh_m2", "EPW_DNI_Wh_m2", "EPW_DHI_Wh_m2",
     "Solar_Altitude_mid_deg", "Solar_Azimuth_mid_deg",
@@ -24,6 +29,7 @@ ROOM_FIELDS = (
     "Solar_Obstruction_Ratio", "Annual_Incident_Shaded_kWh_m2",
 )
 SUPPORTED_TIMES = {(day, hour) for day in range(1, 366) for hour in range(7, 19)}
+logger = logging.getLogger(__name__)
 
 
 def records(path: Path, fields: tuple[str, ...]):
@@ -103,6 +109,7 @@ def floor_of(level: str) -> int | None:
 
 class Catalog:
     def __init__(self, directory: Path = DATASET):
+        self.directory = directory
         self.rooms: dict[str, Room] = {}
         self.weather: dict[tuple[int, int], dict[str, float]] = {}
         for row in records(directory / BIM_FILE, ("Room_ID", "Level", "Sample_Role") + ROOM_FIELDS):
@@ -124,6 +131,40 @@ class Catalog:
                 raise ValueError(f"Duplicate weather key: {key}")
             self.weather[key] = dict(zip(WEATHER_FIELDS, weather_values(row)))
         validate_times(set(self.weather))
+
+    @cached_property
+    def _simulations(self) -> dict[tuple[str, int, int], dict[int, tuple[float, ...]]]:
+        source = self.directory / SOURCE_FILE
+        simulated = {room.id for room in self.rooms.values() if room.simulated}
+        index: dict[tuple[str, int, int], dict[int, tuple[float, ...]]] = {}
+        try:
+            for row in records(source, ("Room_ID", *TIME_FIELDS, *RESULT_FIELDS)):
+                room_id = row["Room_ID"].strip().upper()
+                if room_id not in simulated:
+                    continue
+                day, hour = (int(row[name]) for name in TIME_FIELDS)
+                angle = int(row[ANGLE_FIELD])
+                if (day, hour) not in self.weather or angle not in (0, 30, 60, 90):
+                    continue
+                values = tuple(float(row[name]) for name in METRIC_FIELDS)
+                if not all(map(math.isfinite, values)):
+                    continue
+                by_angle = index.setdefault((room_id, day, hour), {})
+                if angle in by_angle:
+                    raise ValueError(f"duplicate simulation at {room_id}, day {day}, hour {hour}, angle {angle}")
+                by_angle[angle] = values
+        except FileNotFoundError:
+            return {}
+        except (OSError, ValueError, TypeError, csv.Error) as exc:
+            logger.warning("Could not load simulation references: %s", exc)
+            return {}
+        return index
+
+    def simulation_rows(self, room_id: str, day: int, hour: int) -> list[dict[str, int | float]]:
+        if not self.rooms[room_id].simulated:
+            return []
+        simulation = self._simulations.get((room_id, day, hour), {})
+        return [{ANGLE_FIELD: angle, **dict(zip(METRIC_FIELDS, values))} for angle, values in sorted(simulation.items())]
 
     def search(self, query: str = "", floor: int | None = None) -> list[Room]:
         query = query.strip().upper()

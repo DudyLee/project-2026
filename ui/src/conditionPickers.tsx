@@ -1,14 +1,13 @@
-import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { ChevronDown } from 'lucide-react';
 import { MonthSelect, RoomOptions } from './controls';
 import { useI18n } from './i18n';
 import { displayedHour, HOURS, REFERENCE_YEAR, type Conditions, type Room } from './types';
 
 type Field = keyof Conditions;
-type Picker = { field: Field; mode: 'hover' | 'explicit' };
+type Edit = { origin: Field; field: Field | null; draft: Conditions };
 
-const ENTER_DELAY = 150;
-const LEAVE_DELAY = 200;
 const GAP = 5;
 const EDGE = 8;
 
@@ -40,47 +39,45 @@ function DateOptions({ current, choose }: { current: number; choose: (day: numbe
   </>;
 }
 
-export function ConditionPickers({ value, rooms, disabled, unsimulated, onChange }: {
+export function ConditionPickers({ value, rooms, disabled, unsimulated, onRun }: {
   value: Conditions;
   rooms: Room[];
   disabled: boolean;
   unsimulated: boolean;
-  onChange: (change: Partial<Conditions>) => void;
+  onRun: (conditions: Conditions) => void;
 }) {
   const { date, locale, t } = useI18n();
   const id = useId();
-  const [open, setOpen] = useState<Picker | null>(null);
+  const [edit, setEdit] = useState<Edit | null>(null);
+  const heading = useRef<HTMLHeadingElement>(null);
   const popup = useRef<HTMLDivElement>(null);
   const triggers = useRef<Partial<Record<Field, HTMLButtonElement | null>>>({});
-  const timer = useRef<number | undefined>(undefined);
-  const field = open?.field;
-  const mode = open?.mode;
-
-  const cancelDelay = useCallback(() => window.clearTimeout(timer.current), []);
+  const fieldButtons = useRef<Partial<Record<Field, HTMLButtonElement | null>>>({});
+  const origin = edit?.origin;
+  const field = edit?.field;
+  const open = edit !== null;
 
   const close = useCallback((restoreFocus = false) => {
-    cancelDelay();
-    if (restoreFocus && field) triggers.current[field]?.focus({ preventScroll: true });
-    setOpen(null);
-  }, [cancelDelay, field]);
+    if (restoreFocus && origin) triggers.current[origin]?.focus({ preventScroll: true });
+    setEdit(null);
+  }, [origin]);
 
-  useEffect(() => cancelDelay, [cancelDelay]);
   useEffect(() => {
     if (disabled) close();
   }, [disabled, close]);
 
   useLayoutEffect(() => {
     const panel = popup.current;
-    const trigger = field && triggers.current[field];
-    if (!panel || !trigger) return;
-    const scroller = trigger.closest('.conversation-scroll');
+    const anchor = heading.current;
+    if (!panel || !anchor) return;
+    const scroller = anchor.closest('.conversation-scroll');
     const viewport = window.visualViewport;
 
     function position() {
-      if (!panel || !trigger) return;
-      const anchor = trigger.getBoundingClientRect();
+      if (!panel || !anchor) return;
+      const rect = anchor.getBoundingClientRect();
       const bounds = scroller?.getBoundingClientRect();
-      if (bounds && (anchor.bottom < bounds.top || anchor.top > bounds.bottom)) {
+      if (bounds && (rect.bottom <= bounds.top || rect.top >= bounds.bottom)) {
         close();
         return;
       }
@@ -90,22 +87,26 @@ export function ConditionPickers({ value, rooms, disabled, unsimulated, onChange
       const bottom = Math.min(viewportTop + (viewport?.height ?? window.innerHeight), bounds?.bottom ?? window.innerHeight) - EDGE;
       const left = viewportLeft + EDGE;
       const right = viewportLeft + (viewport?.width ?? window.innerWidth) - EDGE;
-      const belowStart = Math.max(top, anchor.bottom + GAP);
-      const aboveEnd = Math.min(bottom, anchor.top - GAP);
+      const belowStart = Math.max(top, rect.bottom + GAP);
+      const aboveEnd = Math.min(bottom, rect.top - GAP);
       const below = bottom - belowStart;
       const above = aboveEnd - top;
-      const useBelow = below >= panel.scrollHeight + 2 || below >= above;
+      const useBelow = below >= 360 || below >= above;
+      const space = useBelow ? below : above;
+      const useFullHeight = space < 230 && bottom - top > space;
       panel.style.maxWidth = Math.max(0, right - left) + 'px';
-      panel.style.maxHeight = Math.max(0, useBelow ? below : above) + 'px';
-      panel.style.left = Math.max(left, Math.min(anchor.left, right - panel.offsetWidth)) + 'px';
-      panel.style.top = (useBelow ? belowStart : aboveEnd - panel.offsetHeight) + 'px';
+      panel.style.maxHeight = Math.max(0, useFullHeight ? bottom - top : space) + 'px';
+      panel.style.left = Math.max(left, Math.min(rect.left, right - panel.offsetWidth)) + 'px';
+      panel.style.top = (useFullHeight ? Math.max(top, Math.min(belowStart, bottom - panel.offsetHeight))
+        : useBelow ? belowStart : aboveEnd - panel.offsetHeight) + 'px';
       panel.style.visibility = 'visible';
     }
 
     position();
     const observer = new ResizeObserver(position);
     observer.observe(panel);
-    observer.observe(trigger);
+    observer.observe(anchor);
+    if (scroller) observer.observe(scroller);
     scroller?.addEventListener('scroll', position, { passive: true });
     window.addEventListener('resize', position);
     viewport?.addEventListener('resize', position);
@@ -117,16 +118,14 @@ export function ConditionPickers({ value, rooms, disabled, unsimulated, onChange
       viewport?.removeEventListener('resize', position);
       viewport?.removeEventListener('scroll', position);
     };
-  }, [field, close]);
+  }, [open, close]);
 
   useLayoutEffect(() => {
-    if (mode === 'explicit' && !popup.current?.contains(document.activeElement)) {
-      popup.current?.querySelector<HTMLElement>('[data-picker-focus]')?.focus({ preventScroll: true });
-    }
-  }, [field, mode]);
+    if (field) popup.current?.querySelector<HTMLElement>('[data-picker-focus]')?.focus({ preventScroll: true });
+  }, [field, origin]);
 
   useEffect(() => {
-    if (!field) return;
+    if (!open) return;
     function dismiss(event: Event) {
       const target = event.target;
       if (!(target instanceof Node) || popup.current?.contains(target)
@@ -134,7 +133,9 @@ export function ConditionPickers({ value, rooms, disabled, unsimulated, onChange
       close();
     }
     function escape(event: KeyboardEvent) {
-      if (event.key === 'Escape') close(Boolean(popup.current?.contains(document.activeElement)));
+      if (event.key !== 'Escape' || event.defaultPrevented || event.isComposing) return;
+      event.preventDefault();
+      close(Boolean(popup.current?.contains(document.activeElement)));
     }
     document.addEventListener('pointerdown', dismiss);
     document.addEventListener('focusin', dismiss);
@@ -144,67 +145,69 @@ export function ConditionPickers({ value, rooms, disabled, unsimulated, onChange
       document.removeEventListener('focusin', dismiss);
       document.removeEventListener('keydown', escape);
     };
-  }, [field, close]);
+  }, [open, close]);
 
-  function leave() {
-    cancelDelay();
-    if (open?.mode === 'hover') timer.current = window.setTimeout(() => setOpen(null), LEAVE_DELAY);
+  function openFrom(key: Field) {
+    if (field === key && origin === key) {
+      popup.current?.querySelector<HTMLElement>('[data-picker-focus]')?.focus({ preventScroll: true });
+      return;
+    }
+    setEdit(current => ({ origin: key, field: key, draft: current?.draft ?? value }));
   }
 
   function choose(change: Partial<Conditions>) {
-    close(true);
-    onChange(change);
+    if (!edit || !field) return;
+    fieldButtons.current[field]?.focus({ preventScroll: true });
+    setEdit({ ...edit, field: null, draft: { ...edit.draft, ...change } });
   }
 
   const fields = [
-    { field: 'room_id', label: value.room_id, name: 'changeRoom', prompt: 'chooseRoom' },
-    { field: 'day', label: date(value.day), name: 'changeDate', prompt: 'chooseDate' },
-    { field: 'hour', label: displayedHour(value.hour), name: 'changeHour', prompt: 'chooseHour' },
+    { key: 'room_id', label: 'room', name: 'changeRoom', display: (conditions: Conditions) => conditions.room_id },
+    { key: 'day', label: 'date', name: 'changeDate', display: (conditions: Conditions) => date(conditions.day) },
+    { key: 'hour', label: 'hour', name: 'changeHour', display: (conditions: Conditions) => displayedHour(conditions.hour) },
   ] as const;
+  const changed = edit && fields.some(({ key }) => edit.draft[key] !== value[key]);
 
   return <>
-    <h2 className="card-conditions">
-      {fields.map(({ field: key, label, name }, index) => (
+    <h2 className="card-conditions" ref={heading}>
+      {fields.map(({ key, name, display }, index) => (
         <span key={key} className={key === 'room_id' ? 'condition-room' : 'condition-time'}>
           {index === 2 && <span className="condition-divider" aria-hidden="true">·</span>}
           <button ref={node => { triggers.current[key] = node; }} type="button" className="condition-trigger" disabled={disabled}
-            aria-label={t(name, { value: label })} aria-haspopup="dialog" aria-expanded={field === key}
-            aria-controls={field === key ? id : undefined}
-            onPointerEnter={event => {
-              if (event.pointerType !== 'mouse') return;
-              cancelDelay();
-              if (open?.mode !== 'explicit' && field !== key) {
-                timer.current = window.setTimeout(() => setOpen({ field: key, mode: 'hover' }), ENTER_DELAY);
-              }
-            }}
-            onPointerLeave={leave}
-            onClick={() => {
-              cancelDelay();
-              if (field === key && mode === 'explicit') close();
-              else setOpen({ field: key, mode: 'explicit' });
-            }}>{label}</button>
+            aria-label={t(name, { value: display(value) })} aria-haspopup="dialog" aria-expanded={origin === key}
+            aria-controls={open ? id : undefined} onClick={() => openFrom(key)}>{display(value)}</button>
         </span>
       ))}
       {unsimulated && <span className="condition-coverage">{t('noSimulation')}</span>}
     </h2>
-    {field && createPortal(
+    {edit && createPortal(
       <div ref={popup} id={id} role="dialog" lang={locale === 'zh' ? 'zh-CN' : 'en'}
-        aria-label={t(fields.find(item => item.field === field)!.prompt)}
-        className={'condition-popup ' + (field === 'room_id' ? 'room-popup' : '')}
-        style={{ '--picker-width': field === 'room_id' ? '320px' : field === 'day' ? '282px' : '250px' } as CSSProperties}
-        onPointerEnter={cancelDelay} onPointerLeave={leave}
-        onFocusCapture={() => {
-          cancelDelay();
-          if (mode === 'hover') setOpen({ field, mode: 'explicit' });
-        }}>
-        {field === 'room_id' && <RoomOptions rooms={rooms} current={value.room_id} showCurrent
-          onChange={room_id => choose({ room_id })} />}
-        {field === 'day' && <DateOptions current={value.day} choose={day => choose({ day })} />}
-        {field === 'hour' && <div className="condition-grid hour-options">
-          {HOURS.map(hour => <button type="button" key={hour} aria-pressed={hour === value.hour}
-            data-picker-focus={hour === value.hour ? '' : undefined}
-            onClick={() => choose({ hour })}>{displayedHour(hour)}</button>)}
+        aria-label={t('conditions')} className="condition-popup">
+        <div className="condition-fields">
+          {fields.map(({ key, label, display }) => <button key={key} type="button" className="field condition-field"
+            ref={node => { fieldButtons.current[key] = node; }} aria-expanded={field === key}
+            aria-controls={field === key ? id + '-options' : undefined}
+            onClick={() => setEdit({ ...edit, field: field === key ? null : key })}>
+            <small>{t(label)}</small><span>{display(edit.draft)}<ChevronDown size={13} aria-hidden="true" /></span>
+          </button>)}
+        </div>
+        {field && <div className="condition-options" id={id + '-options'}>
+          {field === 'room_id' && <RoomOptions rooms={rooms} current={edit.draft.room_id} showCurrent
+            onChange={room_id => choose({ room_id })} />}
+          {field === 'day' && <DateOptions current={edit.draft.day} choose={day => choose({ day })} />}
+          {field === 'hour' && <div className="condition-grid hour-options" role="group" aria-label={t('hour')}>
+            {HOURS.map(hour => <button type="button" key={hour} aria-pressed={hour === edit.draft.hour}
+              data-picker-focus={hour === edit.draft.hour ? '' : undefined}
+              onClick={() => choose({ hour })}>{displayedHour(hour)}</button>)}
+          </div>}
         </div>}
+        <div className="condition-actions">
+          <button type="button" className="button secondary" onClick={() => close(true)}>{t('cancel')}</button>
+          <button type="button" className="button primary" disabled={disabled || !changed} onClick={() => {
+            close(true);
+            onRun(edit.draft);
+          }}>{t('run')}</button>
+        </div>
       </div>, document.body)}
   </>;
 }

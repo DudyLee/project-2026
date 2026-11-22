@@ -3,8 +3,7 @@ import type { MetricFilter, MetricSort, Preference, Row, Rule, RuleEdit, RuleSel
 export const PREFERENCES = ['power', 'daylight', 'balanced', 'custom'] as const;
 
 export const DEFAULT_RULE: Rule = { power: 50, udi: 60, f300: 40, p10: 0, p10_target: null, mean: 0, mean_target: null };
-export const DAYLIGHT_WEIGHTS = ['udi', 'f300', 'p10', 'mean'] as const;
-export type DaylightWeight = typeof DAYLIGHT_WEIGHTS[number];
+type DaylightWeight = 'udi' | 'f300' | 'p10' | 'mean';
 
 export function chooseRule(preference: Preference | null, rule = DEFAULT_RULE): RuleSelection {
   if (preference === 'custom') return { preference, rule: { ...rule, cutoffs: [...(rule.cutoffs ?? [])] } };
@@ -20,21 +19,10 @@ function validTarget(target: number | null | undefined) {
   return target != null && Number.isFinite(target) && target > 0 && target <= 10000;
 }
 
-export function rebalanceDaylight(rule: Rule, key: DaylightWeight, weight: number, basis = rule): Rule {
-  const otherKeys = DAYLIGHT_WEIGHTS.filter(other => other !== key);
-  const total = otherKeys.reduce((sum, other) => sum + (basis[other] ?? 0), 0);
-  const chosen = total ? weight : 100;
-  const shares = otherKeys.map(other => {
-    const portion = (basis[other] ?? 0) * (100 - chosen);
-    return { key: other, whole: total ? Math.floor(portion / total) : 0, remainder: total ? portion % total : 0 };
-  });
-  const unassigned = 100 - chosen - shares.reduce((sum, share) => sum + share.whole, 0);
-  // Award leftover points to the largest remainders so the rounded weights sum to 100.
-  shares.sort((left, right) => right.remainder - left.remainder);
-  const next = { ...rule, [key]: chosen };
-  shares.forEach((share, index) => { next[share.key] = share.whole + Number(index < unassigned); });
-  if (next.p10 === 0 && !validTarget(next.p10_target)) next.p10_target = null;
-  if (next.mean === 0 && !validTarget(next.mean_target)) next.mean_target = null;
+export function setDaylightWeight(rule: Rule, key: DaylightWeight, weight: number): Rule {
+  const next = { ...rule, [key]: weight };
+  const target = key === 'p10' ? 'p10_target' : key === 'mean' ? 'mean_target' : undefined;
+  if (weight === 0 && target && !validTarget(next[target])) next[target] = null;
   return next;
 }
 
@@ -104,9 +92,9 @@ export function preferenceScores(rows: Row[], customRule?: Rule) {
     .map(preference => ({ preference, rows: rank(rows, chooseRule(preference, customRule)) }));
 }
 
-export function percentagesOfPeak(values: number[]) {
-  const peak = Math.max(0, ...values);
-  return values.map(value => peak ? value / peak * 100 : 0);
+export function percentagesOfPeak(values: (number | null)[]) {
+  const peak = Math.max(0, ...values.map(value => value ?? 0));
+  return values.map(value => value === null ? null : peak ? value / peak * 100 : 0);
 }
 
 function failedCutoffs(row: Row, filters: MetricFilter[]) {

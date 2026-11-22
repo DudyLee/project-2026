@@ -1,25 +1,31 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { observer } from 'mobx-react-lite';
 import {
   Send, Building2, CalendarDays, ChartNoAxesColumnIncreasing, Check, CheckCircle2, Clock3,
-  Layers3, Pencil, Plus, SlidersHorizontal, Sun, X,
+  Layers3, MessagesSquare, Pencil, Plus, SlidersHorizontal, Sun, X,
 } from 'lucide-react';
 import { CandidateTimes, DateFields, HourSelect, RoomPicker } from './controls';
 import { ComparisonCard, ExportDialog, RankingCard, ResultCard } from './results';
-import { PredictionRail } from './predictionNavigation';
+import { ChatExportButton, PredictionRail } from './predictionNavigation';
 import { builtInLocale, isLocale, LocaleProvider, text, useI18n } from './i18n';
 import { Workspace } from './store';
 import { ANGLES, displayedHour, getConditions, HOURS, type Issue } from './types';
 import './style.css';
 
-const store = new Workspace();
+const workspace = new Workspace();
+const ChatContext = createContext(workspace.activeChat);
+
+function useChat() {
+  return useContext(ChatContext);
+}
 
 function Mark({ small = false }: { small?: boolean }) {
   return <span className={'mark' + (small ? ' small-mark' : '')}><Layers3 size={small ? 16 : 22} strokeWidth={2.1} aria-hidden="true" /></span>;
 }
 
 const ChatTitle = observer(function ChatTitle() {
+  const store = useChat();
   const { t } = useI18n();
   const [draft, setDraft] = useState<string | null>(null);
   const editing = draft !== null;
@@ -60,8 +66,62 @@ const ChatTitle = observer(function ChatTitle() {
     </form> : <button type="button" className="chat-title" ref={trigger}
       aria-label={t('editChatName', { name: store.chatTitle })} title={store.chatTitle}
       onClick={() => setDraft(store.chatTitle)}>
-      <span>{store.chatTitle}</span><Pencil size={13} aria-hidden="true" />
+      <span>{store.chatTitle}</span>
+      {/* <Pencil size={13} aria-hidden="true" /> */}
     </button>}
+    <ChatExportButton store={store} />
+  </div>;
+});
+
+const ChatMenu = observer(function ChatMenu() {
+  const { locale, t } = useI18n();
+  const [open, setOpen] = useState(false);
+  const anchor = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const id = useId();
+  const active = workspace.activeChat.id;
+  const timestamp = new Intl.DateTimeFormat(locale === 'zh' ? 'zh-CN' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' });
+
+  useEffect(() => {
+    if (!open) return;
+    function dismiss(event: PointerEvent) {
+      if (event.target instanceof Node && !anchor.current?.contains(event.target)) setOpen(false);
+    }
+    function escape(event: KeyboardEvent) {
+      if (event.key !== 'Escape' || event.defaultPrevented) return;
+      event.preventDefault();
+      setOpen(false);
+      trigger.current?.focus({ preventScroll: true });
+    }
+    document.addEventListener('pointerdown', dismiss);
+    document.addEventListener('keydown', escape);
+    return () => {
+      document.removeEventListener('pointerdown', dismiss);
+      document.removeEventListener('keydown', escape);
+    };
+  }, [open]);
+
+  return <div className="chat-history" ref={anchor} onBlur={event => {
+    if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+  }}>
+    <button ref={trigger} type="button" className="button secondary chat-history-toggle" aria-label={t('chats')}
+      title={t('chats')} aria-expanded={open} aria-controls={open ? id : undefined} onClick={() => setOpen(!open)}>
+      <MessagesSquare size={16} aria-hidden="true" /><span>{t('chats')}</span>
+    </button>
+    {open && <nav id={id} className="chat-history-menu" aria-label={t('recentChats')}>
+      {workspace.storageUnavailable && <p className="small warning-text chat-storage-notice">{t('chatStorageUnavailable')}</p>}
+      <ul>{workspace.recentChats.map(chat => <li key={chat.id}>
+        <button type="button" className="chat-history-item" aria-current={chat.id === active ? 'true' : undefined}
+          onClick={() => {
+            workspace.openChat(chat.id);
+            setOpen(false);
+            trigger.current?.focus({ preventScroll: true });
+          }}>
+          <span><strong>{chat.chatTitle}</strong>{chat.hasContent && <small>{timestamp.format(chat.updatedAt)}</small>}</span>
+          {chat.id === active && <Check size={16} aria-hidden="true" />}
+        </button>
+      </li>)}</ul>
+    </nav>}
   </div>;
 });
 
@@ -70,7 +130,7 @@ const ModelStatus = observer(function ModelStatus() {
   const id = useId();
   const status = useRef<HTMLDivElement>(null);
   const [mode, setMode] = useState<'hover' | 'focus' | 'tap' | null>(null);
-  const health = store.health;
+  const health = workspace.health;
 
   useEffect(() => {
     if (!mode) return;
@@ -88,7 +148,7 @@ const ModelStatus = observer(function ModelStatus() {
     };
   }, [mode]);
 
-  if (!health?.prediction_ready) return !store.connected || health
+  if (!health?.prediction_ready) return !workspace.connected || health
     ? <span className="service-status warning-text">{t('notReady')}</span> : null;
 
   return <div className="model-status" ref={status} onPointerLeave={() => {
@@ -110,6 +170,7 @@ const ModelStatus = observer(function ModelStatus() {
 });
 
 const Welcome = observer(function Welcome() {
+  const store = useChat();
   const { t } = useI18n();
   return <section className="welcome">
     <div className="welcome-icon"><Sun size={31} strokeWidth={1.6} aria-hidden="true" /></div>
@@ -131,6 +192,7 @@ const Welcome = observer(function Welcome() {
 });
 
 const Clarification = observer(function Clarification() {
+  const store = useChat();
   const { t, number } = useI18n();
   function title(issue: Issue): string {
     if (issue.field === 'room') return issue.reason === 'not_found' ? t('roomInvalid') : t('chooseRoom');
@@ -151,7 +213,7 @@ const Clarification = observer(function Clarification() {
             <strong>{room.id}</strong><small>{room.level} · {number(room.area)} m²</small>
           </button>)}
         </div>}
-        <RoomPicker rooms={store.rooms} current={store.draft.room_id} suggested={issue.rooms} floor={issue.floor}
+        <RoomPicker rooms={workspace.rooms} current={store.draft.room_id} suggested={issue.rooms} floor={issue.floor}
           onChange={room => void store.setClarification('room_id', room)} />
       </>}
       {issue.field === 'day' && <>
@@ -165,6 +227,7 @@ const Clarification = observer(function Clarification() {
 });
 
 const Composer = observer(function Composer() {
+  const store = useChat();
   const { t } = useI18n();
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -183,11 +246,12 @@ const Composer = observer(function Composer() {
         }} />
       <button type="submit" className="send" aria-label={t('send')} title={t('send')} disabled={!store.composer.trim() || store.busy}><Send size={19} /></button>
     </form>
-    <p>{(store.health?.agents_available === false || store.interpretation === 'local') && t('localParsing') + ' · '}{t('hoursNote')}</p>
+    <p>{(workspace.health?.agents_available === false || store.interpretation === 'local') && t('localParsing') + ' · '}{t('hoursNote')}</p>
   </div>;
 });
 
 const ConditionsEditor = observer(function ConditionsEditor() {
+  const store = useChat();
   const { t } = useI18n();
   const draft = store.conditionDraft;
   if (!draft) return null;
@@ -195,7 +259,7 @@ const ConditionsEditor = observer(function ConditionsEditor() {
     <h3>{t('conditions')}</h3>
     <div className="editor-fields">
       <div className="input-group"><span>{t('room')}</span>
-        <RoomPicker rooms={store.rooms} current={draft.room_id}
+        <RoomPicker rooms={workspace.rooms} current={draft.room_id}
           onChange={value => store.setCondition('room_id', value)} />
       </div>
       <div className="input-group"><span>{t('date')}</span>
@@ -207,13 +271,14 @@ const ConditionsEditor = observer(function ConditionsEditor() {
     </div>
     <div className="editor-actions">
       <button type="button" className="button secondary" onClick={store.closeConditions}>{t('cancel')}</button>
-      <button type="button" className="button primary" disabled={store.busy || !getConditions(draft) || !store.health?.prediction_ready}
+      <button type="button" className="button primary" disabled={store.busy || !getConditions(draft) || !workspace.health?.prediction_ready}
         onClick={store.runConditions}>{t(store.busy ? 'running' : 'run')}</button>
     </div>
   </section>;
 });
 
 const ContextChoices = observer(function ContextChoices({ kind }: { kind: 'choose-result' | 'choose-angles' }) {
+  const store = useChat();
   const { t, date } = useI18n();
   const angles = store.angleChoice;
   if (kind === 'choose-angles' && angles) return <div className="context-choices">
@@ -236,6 +301,7 @@ const ContextChoices = observer(function ContextChoices({ kind }: { kind: 'choos
 });
 
 const AppShell = observer(function AppShell() {
+  const store = useChat();
   const { locale, t } = useI18n();
   const tail = useRef<HTMLDivElement>(null);
   const conversation = useRef<HTMLDivElement>(null);
@@ -244,26 +310,26 @@ const AppShell = observer(function AppShell() {
   const messageCount = store.messages.length;
   const lastChoices = store.messages.filter(message => message.kind === 'choose-result' || message.kind === 'choose-angles').at(-1)?.id;
   const reveal = store.reveal;
-  const scrollState = useRef({ messageCount: 0, reveal });
+  const scrollState = useRef({ chatId: store.id, messageCount: 0, reveal });
 
-  useEffect(() => { void store.bootstrap(); }, []);
   useEffect(() => {
     document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en';
     document.title = t('title');
   }, [locale, t]);
   useEffect(() => {
     const previous = scrollState.current;
-    scrollState.current = { messageCount, reveal };
+    const switched = previous.chatId !== store.id;
+    scrollState.current = { chatId: store.id, messageCount, reveal };
     if (reveal && reveal !== previous.reveal) {
       const card = document.getElementById(reveal.resultId);
       const selector = { editor: '.custom-preference', charts: '.charts', header: '.card-top' }[reveal.target];
       const anchor = card?.querySelector(selector) ?? card;
       anchor?.scrollIntoView({ block: reveal.target === 'header' ? 'start' : 'nearest',
         behavior: reveal.target === 'editor' ? 'instant' : 'smooth' });
-    } else if (messageCount && messageCount !== previous.messageCount) {
-      tail.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    } else if (messageCount && (switched || messageCount !== previous.messageCount)) {
+      tail.current?.scrollIntoView({ block: 'nearest', behavior: switched ? 'instant' : 'smooth' });
     }
-  }, [messageCount, reveal]);
+  }, [store.id, messageCount, reveal]);
 
   function botMessage(id: string, children: ReactNode, error = false, language?: string) {
     return <div className={'bot-message' + (error ? ' error-message' : '')} key={id} lang={language}>
@@ -276,28 +342,29 @@ const AppShell = observer(function AppShell() {
       <header className="topbar">
         <div className="topbar-left">
           <div className="brand"><Mark /><span><strong>Tower A</strong><small>{t('brand')}</small></span></div>
-          <button type="button" className="button secondary new-chat" title={t('newChat')} aria-label={t('newChat')} onClick={store.newChat}>
+          <ChatMenu />
+          <button type="button" className="button secondary new-chat" title={t('newChat')} aria-label={t('newChat')} onClick={workspace.newChat}>
             <Plus size={17} aria-hidden="true" /><span>{t('newChat')}</span>
           </button>
         </div>
-        <ChatTitle key={store.chatId} />
+        <ChatTitle key={store.id} />
         <div className="topbar-right">
           <ModelStatus />
-          <select className="field language-select" aria-label={t('language')} value={store.uiLocale}
-            onChange={event => { if (isLocale(event.target.value)) store.setLocale(event.target.value); }}>
+          <select className="field language-select" aria-label={t('language')} value={workspace.uiLocale}
+            onChange={event => { if (isLocale(event.target.value)) workspace.setLocale(event.target.value); }}>
             <option value="en" lang="en">English</option>
             <option value="zh" lang="zh-CN">简体中文</option>
           </select>
         </div>
       </header>
-      <div className="conversation-pane">
+      <div className="conversation-pane" key={store.id}>
         <div className="conversation-scroll" ref={conversation}>
           <div className="conversation">
             {!messageCount && <Welcome />}
             {store.messages.map(message => {
               if (message.kind === 'user') return <div key={message.id} className="user-message"><p>{message.text}</p></div>;
               if (message.kind === 'result') return <LocaleProvider key={message.id} locale={builtInLocale(message.language, locale)}>
-                <ResultCard result={message} busy={store.busy} rooms={store.rooms}
+                <ResultCard result={message} busy={store.busy} rooms={workspace.rooms}
                   ruleDraft={store.ruleEditorId === message.id ? store.ruleDrafts.get(message.id) : undefined}
                   onPreference={preference => store.choosePreference(message, preference)}
                   onChangeConditions={change => store.changeConditions(message, change)}
@@ -338,7 +405,7 @@ const AppShell = observer(function AppShell() {
                   <SlidersHorizontal size={16} />{t('manualConditions')}
                 </button>)}
             {store.busy && botMessage('waiting', <LocaleProvider locale={store.conversationLocale}><Waiting /></LocaleProvider>)}
-            {!store.connected && <div className="service-notice" role="status">{t('noConnection')}<button type="button" className="text-button" onClick={() => void store.bootstrap()}>{t('reconnect')}</button></div>}
+            {!workspace.connected && <div className="service-notice" role="status">{t('noConnection')}<button type="button" className="text-button" onClick={() => void workspace.bootstrap()}>{t('reconnect')}</button></div>}
             <div ref={tail} />
           </div>
         </div>
@@ -346,7 +413,7 @@ const AppShell = observer(function AppShell() {
       </div>
       <Composer />
     </main>
-    {store.exportTarget && <LocaleProvider locale={builtInLocale(store.exportLanguage, locale)}>
+    {store.exportTarget && <LocaleProvider key={store.id} locale={builtInLocale(store.exportLanguage, locale)}>
       <ExportDialog target={store.exportTarget} onClose={store.closeExport} />
     </LocaleProvider>}
   </div>;
@@ -358,7 +425,10 @@ function Waiting() {
 }
 
 const App = observer(function App() {
-  return <LocaleProvider locale={store.uiLocale}><AppShell /></LocaleProvider>;
+  useEffect(() => { void workspace.bootstrap(); }, []);
+  return <LocaleProvider locale={workspace.uiLocale}><ChatContext.Provider value={workspace.activeChat}>
+    <AppShell />
+  </ChatContext.Provider></LocaleProvider>;
 });
 
 createRoot(document.getElementById('root')!).render(<App />);

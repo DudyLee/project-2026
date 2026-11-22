@@ -16,7 +16,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from .agents import Agents
-from .catalog import Catalog, DATASET, UI_ROOT
+from .catalog import Catalog, DATASET, RESULT_FIELDS, UI_ROOT
 from .conversation import clarify
 from .language import language_code
 from .metric_requests import LABELS
@@ -97,8 +97,8 @@ def prediction(room_id: str, day: int, hour: int) -> dict:
         "version": frame["Model_Version"].iat[0],
         "model_sha256": frame["Model_SHA256"].iat[0],
         "coverage": frame["Coverage_Flags"].iat[0].split(";"),
-        "rows": frame[["PVSD_Angle_deg", "E_mean_lux", "E_P10_lux",
-                       "F_300_fraction", "F_UDI_fraction", "PV_AC_kWh"]].to_dict("records"),
+        "rows": frame[list(RESULT_FIELDS)].to_dict("records"),
+        "simulation_rows": catalog.simulation_rows(room_id, day, hour),
     }
 
 

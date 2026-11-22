@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { useI18n } from './i18n';
 import { downloadPredictions } from './predictionExport';
 import { rank } from './scoring';
-import type { Workspace } from './store';
+import type { ChatSession } from './store';
 import { displayedHour, type ResultMessage } from './types';
 
 export function BookmarkButton({ bookmarked, onClick }: { bookmarked: boolean; onClick: () => void }) {
@@ -45,17 +45,14 @@ const RailPreview = observer(function RailPreview({ result, id, panel, onNavigat
 });
 
 export const PredictionRail = observer(function PredictionRail({ store, conversation }: {
-  store: Workspace;
+  store: ChatSession;
   conversation: RefObject<HTMLDivElement | null>;
 }) {
   const { date, t } = useI18n();
   const id = useId();
-  const exportId = useId();
   const results = store.results;
   const [visibleId, setVisibleId] = useState<string | null>(null);
   const [previewId, setPreviewId] = useState<string | null>(null);
-  const [exportOpen, setExportOpen] = useState(false);
-  const exportButton = useRef<HTMLButtonElement>(null);
   const rail = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
@@ -66,7 +63,6 @@ export const PredictionRail = observer(function PredictionRail({ store, conversa
   const active = visibleId ?? store.focusedResultId;
 
   const cancelClose = useCallback(() => window.clearTimeout(closeTimer.current), []);
-  const closeExport = useCallback(() => setExportOpen(false), []);
 
   useEffect(() => cancelClose, [cancelClose]);
 
@@ -164,7 +160,6 @@ export const PredictionRail = observer(function PredictionRail({ store, conversa
   }, [previewed]);
 
   function open(id: string) {
-    if (exportOpen) return;
     cancelClose();
     setPreviewId(id);
   }
@@ -179,7 +174,6 @@ export const PredictionRail = observer(function PredictionRail({ store, conversa
   function navigate(result: ResultMessage, keyboard: boolean) {
     cancelClose();
     setPreviewId(null);
-    closeExport();
     store.focusResult(result);
     const card = document.getElementById(result.id);
     card?.scrollIntoView({ block: 'start' });
@@ -188,7 +182,6 @@ export const PredictionRail = observer(function PredictionRail({ store, conversa
 
   if (!results.length) return null;
   return <nav className="prediction-rail" ref={rail} aria-label={t('predictionOverview')}>
-    <div className="rail-stack">
       <div className="rail-track" ref={track}>
         {results.map(result => <Fragment key={result.id}>
           <button type="button" className="rail-marker" ref={node => {
@@ -207,7 +200,7 @@ export const PredictionRail = observer(function PredictionRail({ store, conversa
             onClick={event => {
               if (tap.current && event.detail > 0) {
                 cancelClose();
-                if (!exportOpen) setPreviewId(current => current === result.id ? null : result.id);
+                setPreviewId(current => current === result.id ? null : result.id);
               } else navigate(result, event.detail === 0);
               tap.current = false;
             }}><span aria-hidden="true" /></button>
@@ -216,20 +209,29 @@ export const PredictionRail = observer(function PredictionRail({ store, conversa
             onEnter={cancelClose} onLeave={leave} />}
         </Fragment>)}
       </div>
-      <button ref={exportButton} type="button" className="icon-button rail-export" title={t('exportPredictions')}
-        aria-label={t('exportPredictions')} aria-haspopup="dialog" aria-expanded={exportOpen}
-        aria-controls={exportOpen ? exportId : undefined} onClick={() => {
-          cancelClose();
-          setPreviewId(null);
-          setExportOpen(!exportOpen);
-        }}><Download size={16} aria-hidden="true" /></button>
-    </div>
-    {exportOpen && <PredictionExportPanel store={store} id={exportId} anchor={exportButton} onClose={closeExport} />}
   </nav>;
 });
 
+export const ChatExportButton = observer(function ChatExportButton({ store }: { store: ChatSession }) {
+  const { t } = useI18n();
+  const id = useId();
+  const button = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
+
+  if (!store.results.length) return null;
+  return <>
+    <button ref={button} type="button" className="icon-button chat-export" title={t('exportChatPredictions')}
+      aria-label={t('exportChatPredictions')} aria-haspopup="dialog" aria-expanded={open}
+      aria-controls={open ? id : undefined} onClick={() => setOpen(!open)}>
+      <Download size={17} aria-hidden="true" />
+    </button>
+    {open && <PredictionExportPanel store={store} id={id} anchor={button} onClose={close} />}
+  </>;
+});
+
 const PredictionExportPanel = observer(function PredictionExportPanel({ store, id, anchor, onClose }: {
-  store: Workspace;
+  store: ChatSession;
   id: string;
   anchor: RefObject<HTMLButtonElement | null>;
   onClose: () => void;
@@ -246,18 +248,16 @@ const PredictionExportPanel = observer(function PredictionExportPanel({ store, i
     const button = anchor.current;
     if (!panel || !button) return;
     const narrow = window.matchMedia('(max-width: 700px)');
-    const pane = button.closest('.conversation-pane');
     const close = () => panel.close();
 
     function position() {
       if (!panel || !button || narrow.matches) return;
-      const bounds = pane?.getBoundingClientRect();
       const frame = button.getBoundingClientRect();
-      const top = (bounds?.top ?? 0) + 8;
-      const bottom = (bounds?.bottom ?? window.innerHeight) - 8;
-      panel.style.maxHeight = Math.max(0, bottom - top) + 'px';
-      panel.style.left = Math.max(8, Math.min(frame.right + 7, window.innerWidth - panel.offsetWidth - 8)) + 'px';
-      panel.style.top = Math.max(top, Math.min(frame.top, bottom - panel.offsetHeight)) + 'px';
+      const top = frame.bottom + 8;
+      const left = frame.left + (frame.width - panel.offsetWidth) / 2;
+      panel.style.maxHeight = Math.max(0, window.innerHeight - top - 8) + 'px';
+      panel.style.left = Math.max(8, Math.min(left, window.innerWidth - panel.offsetWidth - 8)) + 'px';
+      panel.style.top = top + 'px';
     }
     function dismiss(event: PointerEvent) {
       if (event.target instanceof Node && !panel?.contains(event.target) && !button?.contains(event.target)) close();
@@ -278,7 +278,6 @@ const PredictionExportPanel = observer(function PredictionExportPanel({ store, i
     }
     const observer = new ResizeObserver(position);
     observer.observe(panel);
-    if (pane) observer.observe(pane);
     if (button.parentElement) observer.observe(button.parentElement);
     window.addEventListener('resize', position);
     narrow.addEventListener('change', close);
