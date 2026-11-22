@@ -1,0 +1,11 @@
+# /dataset/
+/key.md
+/.env*
+!/.env.example
+/.venv/
+/node_modules/
+/dist/
+/output/
+__pycache__/
+.DS_Store
+/.npm-cache/

@@ -1,0 +1,4 @@
+# Install inside the repository's pinned trial environment.
+fastapi==0.165.0
+uvicorn==0.54.0
+pydantic-ai-slim[openrouter]==2.71.0

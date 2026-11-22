@@ -66,3 +66,6 @@ __pycache__/
 !/examples/trial_v0_2/input_lookup.csv
 !/results/trial_v0_2_verification.json
 !/tests/test_trial.py
+
+# Local prediction UI; its own ignore file excludes data and credentials.
+!/ui/
