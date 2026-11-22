@@ -1,63 +1,100 @@
-import { useEffect, useRef, useState } from 'react';
-import { ChartNoAxesColumnIncreasing, Download, Info, MessageSquareText, PanelRightOpen, Sun, Zap } from 'lucide-react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { ChartNoAxesColumnIncreasing, Download, Info, MessageSquareText, PanelRightOpen, Zap } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { PreferenceButtons } from './controls';
-import { rank, type RankedRow } from './scoring';
+import { LineChart, type ChartAnchor, type ChartSeries } from './lineChart';
+import { percentagesOfPeak, preferenceScores, rank, type RankedRow } from './scoring';
 import { useI18n, type CopyKey } from './i18n';
-import { displayedHour, type Angle, type Prediction, type Preference, type ResultMessage, type Row, type RuleSelection } from './types';
+import { displayedHour, type Angle, type Prediction, type Preference, type ResultMessage, type Row, type Rule, type RuleSelection } from './types';
 
-type Metric = { key: keyof Omit<Row, 'PVSD_Angle_deg'>; label: CopyKey; short: CopyKey; unit: string; scale: number; digits: number };
+type Metric = {
+  key: keyof Omit<Row, 'PVSD_Angle_deg'>;
+  label: CopyKey;
+  unit: string;
+  scale: number;
+  digits: number;
+  color: string;
+};
 
-const DAYLIGHT: Metric[] = [
-  { key: 'F_UDI_fraction', label: 'udiFull', short: 'udi', unit: '%', scale: 100, digits: 1 },
-  { key: 'F_300_fraction', label: 'f300Full', short: 'f300', unit: '%', scale: 100, digits: 1 },
-  { key: 'E_mean_lux', label: 'mean', short: 'mean', unit: 'lux', scale: 1, digits: 1 },
-  { key: 'E_P10_lux', label: 'p10', short: 'p10', unit: 'lux', scale: 1, digits: 1 },
+const DAYLIGHT = '#087665';
+const SOLAR_ENERGY = '#AC5D15';
+
+const POWER: Metric = {
+  key: 'PV_AC_kWh', label: 'solarEnergy', unit: 'Wh', scale: 1000, digits: 2, color: SOLAR_ENERGY,
+};
+const METRICS: Metric[] = [
+  { key: 'E_mean_lux', label: 'mean', unit: 'lux', scale: 1, digits: 1, color: '#286F9E' },
+  { key: 'E_P10_lux', label: 'p10', unit: 'lux', scale: 1, digits: 1, color: '#164A60' },
+  { key: 'F_300_fraction', label: 'f300', unit: '%', scale: 100, digits: 1, color: '#44877D' },
+  { key: 'F_UDI_fraction', label: 'udi', unit: '%', scale: 100, digits: 1, color: DAYLIGHT },
+  POWER,
 ];
-const POWER: Metric = { key: 'PV_AC_kWh', label: 'solarEnergy', short: 'solarEnergy', unit: 'Wh', scale: 1000, digits: 2 };
-const COLUMNS = [DAYLIGHT[2], DAYLIGHT[3], DAYLIGHT[1], DAYLIGHT[0], POWER];
+
+const PREFERENCE_COLOR: Record<Preference, string> = {
+  power: SOLAR_ENERGY,
+  daylight: DAYLIGHT,
+  balanced: '#7548B5',
+  custom: '#414A57',
+};
 
 function metricValue(row: Row, metric: Metric, format: (value: number, digits?: number) => string) {
   return format(row[metric.key] * metric.scale, metric.digits);
 }
 
-function BarChart({ rows, metric, power = false }: { rows: RankedRow[]; metric: Metric; power?: boolean }) {
+function ResultTable({ rows, scores, focused, daylightWeights, customRule }: {
+  rows: RankedRow[];
+  scores: ReturnType<typeof preferenceScores>;
+  focused: Angle | null;
+  daylightWeights: Rule;
+  customRule?: Rule;
+}) {
   const { t, number } = useI18n();
-  const max = Math.max(0, ...rows.map(row => row[metric.key] * metric.scale));
-  const reference = max || 1;
-  return <div className={'bar-chart' + (power ? ' power-chart' : '')} aria-label={t(metric.label)} role="group">
-    <div className="chart-grid" aria-hidden="true" />
-    {rows.map(row => {
-      const value = row[metric.key] * metric.scale;
-      return <div className={'bar-column' + (row.recommended ? ' recommended' : '')} key={row.PVSD_Angle_deg}
-        aria-label={row.PVSD_Angle_deg + '°, ' + metricValue(row, metric, number) + ' ' + metric.unit + (row.recommended ? ', ' + t('recommended') : '')}>
-        <div className="bar-plot">
-          <div className="bar" style={{ height: value > 0 ? Math.max(2, (value / reference) * 76) + '%' : '0' }}>
-            <span className="bar-value">{metricValue(row, metric, number)}</span>
-          </div>
-        </div>
-        <div className="bar-label">{row.PVSD_Angle_deg}° {row.recommended && <span className="bar-mark" aria-label={t('recommended')}>●</span>}</div>
-      </div>;
-    })}
-  </div>;
+  return <details className="all-values">
+    <summary>{t('viewValues')}</summary>
+    <div className="table-scroll all-values-scroll" role="region" aria-label={t('viewValues')} tabIndex={0}>
+      <table className="result-table">
+        <colgroup span={1} />
+        <colgroup span={METRICS.length} />
+        <colgroup span={scores.length + 1} />
+        <thead>
+          <tr className="table-groups">
+            <th scope="col" rowSpan={2}>{t('angle')}</th>
+            <th scope="colgroup" colSpan={METRICS.length}>{t('rawPredictions')}</th>
+            <th scope="colgroup" colSpan={scores.length + 1}>{t('derivedScores')}</th>
+          </tr>
+          <tr>
+            {METRICS.map(metric => <th scope="col" key={metric.key}>{t(metric.label)}<small>{metric.unit}</small></th>)}
+            <th scope="col">{t('absoluteDaylightScore')}<small>0–100</small></th>
+            {scores.map(({ preference }) => <th scope="col" key={preference}>{t(preference)}<small>0–100</small></th>)}
+          </tr>
+        </thead>
+        <tbody>{rows.map((row, index) => <tr key={row.PVSD_Angle_deg}
+          className={row.recommended ? 'chosen-row' : ''} data-highlighted={row.PVSD_Angle_deg === focused}>
+          <th scope="row">{row.PVSD_Angle_deg}° {row.recommended && <span className="recommended-label">{t('recommended')}</span>}</th>
+          {METRICS.map(metric => <td key={metric.key}>{metricValue(row, metric, number)}</td>)}
+          <td>{number(row.daylightScore, 2)}</td>
+          {scores.map(({ preference, rows }) => <td key={preference}>{number(rows[index].score, 2)}</td>)}
+        </tr>)}</tbody>
+      </table>
+    </div>
+    <p className="table-weights small">{t('daylightWeights', {
+      udi: daylightWeights.udi, f300: daylightWeights.f300, p10: daylightWeights.p10, target: daylightWeights.p10_target,
+    })}</p>
+    {customRule && <p className="table-weights small">{t('customWeights', {
+      daylight: 100 - customRule.power, power: customRule.power, udi: customRule.udi, f300: customRule.f300,
+      p10: customRule.p10, target: customRule.p10_target,
+    })}</p>}
+  </details>;
 }
 
-function ResultTable({ rows, hasRule }: { rows: RankedRow[]; hasRule: boolean }) {
-  const { t, number } = useI18n();
-  return <div className="table-scroll">
-    <table className="result-table">
-      <thead><tr>
-        <th scope="col">{t('angle')}</th>
-        {COLUMNS.map(metric => <th scope="col" key={metric.key}>{t(metric.short)}<small>{metric.unit}</small></th>)}
-        {hasRule && <th scope="col">{t('recommendationScore')}<small>0–100</small></th>}
-      </tr></thead>
-      <tbody>{rows.map(row => <tr key={row.PVSD_Angle_deg} className={row.recommended ? 'chosen-row' : ''}>
-        <th scope="row">{row.PVSD_Angle_deg}° {row.recommended && <span className="recommended-label">{t('recommended')}</span>}</th>
-        {COLUMNS.map(metric => <td key={metric.key}>{metricValue(row, metric, number)}</td>)}
-        {hasRule && <td>{number(row.score, 2)}</td>}
-      </tr>)}</tbody>
-    </table>
-  </div>;
+type ChartKey = 'scores' | 'metrics';
+type AngleCursor = { chart: ChartKey; angle: Angle; anchor: ChartAnchor };
+
+function toggleSeries(previous: Set<string>, seriesId: string) {
+  const next = new Set(previous);
+  if (next.has(seriesId)) next.delete(seriesId);
+  else next.add(seriesId);
+  return next;
 }
 
 export function ScoreSummary({ prediction, selection, compact = false }: {
@@ -72,29 +109,12 @@ export function ScoreSummary({ prediction, selection, compact = false }: {
   const values = { score: number(top.daylightScore, 2), energy: metricValue(top, POWER, number) };
   const reason = t(chosen.length > 1 ? 'tieReason' : selection.preference === 'power' ? 'powerReason'
     : selection.preference === 'daylight' ? 'daylightReason' : 'tradeoff', values);
-  return <div className={'score-summary' + (compact ? ' compact' : '')}>
+  return <div className={'score-summary' + (compact ? ' compact' : '')}
+    style={{ '--recommendation-color': selection.preference && PREFERENCE_COLOR[selection.preference] } as CSSProperties}>
     <div className="score-icon"><Zap size={17} aria-hidden="true" /></div>
     <div><strong>{label} · {chosen.map(row => row.PVSD_Angle_deg + '°').join(locale === 'zh' ? '、' : ', ')} {t(chosen.length > 1 ? 'tie' : 'recommended')}</strong>
       <p>{reason}</p></div>
   </div>;
-}
-
-export function ScoreDetails({ prediction, selection }: { prediction: Prediction; selection: RuleSelection }) {
-  const { t, number } = useI18n();
-  if (!selection.preference) return null;
-  const rule = selection.rule;
-  const rows = rank(prediction.rows, selection);
-  return <details className="score-details">
-    <summary>{t('viewCalculation')}</summary>
-    <p className="small">{t('calculation', { udi: rule.udi, f300: rule.f300, p10: rule.p10, target: rule.p10_target, daylight: 100 - rule.power, power: rule.power })}</p>
-    <div className="table-scroll"><table className="result-table detail-table">
-      <thead><tr><th>{t('shortAngle')}</th><th>{t('udiContribution')}</th><th>{t('f300Contribution')}</th><th>{t('p10Contribution')}</th><th>{t('daylightScore')}</th><th>{t('powerRelative')}</th><th>{t('recommendationScore')}</th></tr></thead>
-      <tbody>{rows.map(row => <tr key={row.PVSD_Angle_deg}><th>{row.PVSD_Angle_deg}°</th>
-        <td>{number(row.udiContribution, 2)}</td><td>{number(row.thresholdContribution, 2)}</td>
-        <td>{number(row.p10Contribution, 2)}</td><td>{number(row.daylightScore, 2)}</td>
-        <td>{number(row.powerRelative * 100)}%</td><td>{number(row.score, 2)}</td></tr>)}</tbody>
-    </table></div>
-  </details>;
 }
 
 export const ResultCard = observer(function ResultCard({ result, onPreference, onOpenSide, onExport, onExplain, busy }: {
@@ -105,12 +125,58 @@ export const ResultCard = observer(function ResultCard({ result, onPreference, o
   onExplain: () => void;
   busy: boolean;
 }) {
-  const { t, date, locale } = useI18n();
-  const [metric, setMetric] = useState(DAYLIGHT[0]);
-  const { data, selection } = result;
+  const { t, date, number, locale } = useI18n();
+  const [hiddenScores, setHiddenScores] = useState<Set<string>>(() => new Set());
+  const [hiddenMetrics, setHiddenMetrics] = useState<Set<string>>(() => new Set());
+  const [hovered, setHovered] = useState<AngleCursor | null>(null);
+  const [pinned, setPinned] = useState<AngleCursor | null>(null);
+  const { data, selection, customRule } = result;
   const rows = rank(data.rows, selection);
-  const reported = selection.preference !== null;
-  return <article className="result-card" lang={locale === "zh" ? "zh-CN" : "en"} id={result.id} aria-label={data.room.id + ' · ' + t('prediction')}>
+  const angles = rows.map(row => row.PVSD_Angle_deg);
+  const recommended = new Set(rows.filter(row => row.recommended).map(row => row.PVSD_Angle_deg));
+  const appliedCustom = customRule ?? (selection.preference === 'custom' ? selection.rule : undefined);
+  const comparison = preferenceScores(data.rows, appliedCustom);
+  const scoreSeries: ChartSeries[] = comparison.map(({ preference, rows }) => ({
+    id: preference, label: t(preference), color: PREFERENCE_COLOR[preference],
+    values: rows.map(row => row.score),
+    details: rows.map(row => number(row.score, 2) + ' / 100'),
+  }));
+  const metricSeries: ChartSeries[] = METRICS.map(metric => ({
+    id: metric.key, label: t(metric.label), color: metric.color,
+    values: percentagesOfPeak(data.rows.map(row => row[metric.key])),
+    details: data.rows.map(row => metricValue(row, metric, number) + (metric.unit === '%' ? '%' : ' ' + metric.unit)),
+  }));
+  const tooltip = hovered ?? pinned;
+
+  function choosePreference(preference: Preference | null) {
+    if (preference && hiddenScores.has(preference)) {
+      setHiddenScores(current => toggleSeries(current, preference));
+    }
+    onPreference(preference);
+  }
+
+  function clearAngle() {
+    setHovered(null);
+    setPinned(null);
+  }
+
+  function chartInteraction(chart: ChartKey) {
+    return {
+      angles, recommended, hovered: hovered?.angle ?? null, pinned: pinned?.angle ?? null,
+      inspection: tooltip?.chart === chart ? { ...tooltip, followPointer: Boolean(hovered) } : null,
+      onHover: (angle: Angle, anchor: ChartAnchor | null) => setHovered(current => {
+        if (anchor) return { chart, angle, anchor };
+        return current?.chart === chart && current.angle === angle ? null : current;
+      }),
+      onPin: (angle: Angle, anchor: ChartAnchor) => {
+        if (anchor.touch) setHovered(null);
+        setPinned(current => current?.angle === angle ? null : { chart, angle, anchor });
+      },
+      onClear: clearAngle,
+    };
+  }
+  return <article className="result-card" lang={locale === "zh" ? "zh-CN" : "en"} id={result.id} aria-label={data.room.id + ' · ' + t('prediction')}
+    style={{ '--recommendation-color': selection.preference && PREFERENCE_COLOR[selection.preference] } as CSSProperties}>
     <div className="card-top">
       <div><div className="card-kicker"><ChartNoAxesColumnIncreasing size={17} /> {t('prediction')}</div>
         <h2>{data.room.id}<span>{date(data.day)} · {displayedHour(data.hour)}</span></h2></div>
@@ -121,26 +187,19 @@ export const ResultCard = observer(function ResultCard({ result, onPreference, o
     </div>
     <div className="preference-strip">
       <span>{t('recommendationPreference')}</span>
-      <PreferenceButtons value={selection.preference} onChange={onPreference} allowNone />
+      <PreferenceButtons value={selection.preference} onChange={choosePreference} allowNone />
     </div>
     <ScoreSummary prediction={data} selection={selection} />
     <div className="charts">
-      <section className="chart-panel">
-        <div className="chart-heading"><Sun size={17} className="daylight-icon" /><h3>{t('daylightMetric')}</h3>
-          <select className="metric-select" aria-label={t('metricChooser')} value={metric.key}
-            onChange={event => setMetric(DAYLIGHT.find(metric => metric.key === event.target.value) ?? DAYLIGHT[0])}>
-            {DAYLIGHT.map(metric => <option key={metric.key} value={metric.key}>{t(metric.label)} ({metric.unit})</option>)}
-          </select>
-        </div>
-        <BarChart rows={rows} metric={metric} />
-      </section>
-      <section className="chart-panel">
-        <div className="chart-heading"><Zap size={17} className="power-icon" /><h3>{t('solar')}</h3><span>Wh</span></div>
-        <BarChart rows={rows} metric={POWER} power />
-      </section>
+      <LineChart {...chartInteraction('scores')} title={t('preferenceScoresChart')} note={t('preferenceScale')}
+        series={scoreSeries} hidden={hiddenScores} active={selection.preference}
+        onLegendClick={id => setHiddenScores(current => toggleSeries(current, id))} />
+      <LineChart {...chartInteraction('metrics')} title={t('predictionMetricsChart')} note={t('metricScale')}
+        series={metricSeries} hidden={hiddenMetrics}
+        onLegendClick={id => setHiddenMetrics(current => toggleSeries(current, id))} />
     </div>
-    <ResultTable rows={rows} hasRule={reported} />
-    <ScoreDetails prediction={data} selection={selection} />
+    <ResultTable rows={rows} scores={comparison} focused={pinned?.angle ?? hovered?.angle ?? null}
+      daylightWeights={selection.rule} customRule={comparison.some(score => score.preference === 'custom') ? appliedCustom : undefined} />
     <footer className="card-footer">
       <span><Info size={15} />{t('simulationWeather')} · {t('modelVersion', { version: data.version })}{!data.room.simulated && ' · ' + t('noSimulation')}</span>
       <button type="button" className="text-button" onClick={onExplain} disabled={busy}><MessageSquareText size={15} />{t('explain')}</button>
@@ -223,6 +282,5 @@ export function SideResults({ prediction, selection }: { prediction: Prediction;
         <td>{number(row.daylightScore, 2)}</td><td>{metricValue(row, POWER, number)}</td>
       </tr>)}</tbody>
     </table></div>
-    <ScoreDetails prediction={prediction} selection={selection} />
   </div>;
 }

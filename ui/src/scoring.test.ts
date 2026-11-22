@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { chooseRule, rank, validRule } from './scoring.ts';
+import { chooseRule, percentagesOfPeak, preferenceScores, rank, validRule } from './scoring.ts';
 import type { Angle, Row } from './types.ts';
 
 function fixture(angle: Angle, power: number, daylight: number): Row {
@@ -32,4 +32,22 @@ test('ties and zero denominators remain finite', () => {
   const scores = rank([fixture(0, 0, 0), fixture(90, 0, 0)], chooseRule('balanced'));
   assert.deepEqual(scores.map(row => row.score), [0, 0]);
   assert.deepEqual(recommended(scores), [0, 90]);
+});
+
+test('comparison scores include all presets and an applied valid custom rule', () => {
+  const standard = preferenceScores(rows);
+  assert.deepEqual(standard.map(({ preference }) => preference), ['power', 'daylight', 'balanced']);
+  for (const set of standard) assert.deepEqual(set.rows, rank(rows, chooseRule(set.preference)));
+
+  const customRule = { power: 10, udi: 100, f300: 0, p10: 0, p10_target: 100 };
+  const custom = preferenceScores(rows, customRule).at(-1);
+  assert.equal(custom?.preference, 'custom');
+  assert.deepEqual(custom?.rows, rank(rows, chooseRule('custom', customRule)));
+  assert.equal(preferenceScores(rows, { ...customRule, udi: 99 }).length, standard.length);
+});
+
+test('each prediction metric uses its own peak and handles a zero series', () => {
+  assert.deepEqual(percentagesOfPeak([20, 10, 0, 5]), [100, 50, 0, 25]);
+  assert.deepEqual(percentagesOfPeak([0, 0, 0, 0]), [0, 0, 0, 0]);
+  assert.deepEqual(percentagesOfPeak([.004, .002, 0, .001]), [100, 50, 0, 25]);
 });

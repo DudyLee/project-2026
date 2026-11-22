@@ -74,6 +74,7 @@ export type ResultMessage = {
   language?: string;
   data: Prediction;
   selection: RuleSelection;
+  customRule?: Rule;
 };
 
 export type Message =

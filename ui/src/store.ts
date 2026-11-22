@@ -117,10 +117,15 @@ export class Workspace {
   }
 
   push(message: { kind: 'user' | 'assistant' | 'clarify' | 'error'; text: string; language?: string }
-    | { kind: 'result'; data: Prediction; selection: RuleSelection; language?: string }) {
+    | Omit<ResultMessage, 'id'>) {
     const id = 'message-' + ++this.messageId;
-    this.messages.push({ ...message, id });
-    if (message.kind === 'result') this.focusedResultId = id;
+    if (message.kind === 'result') {
+      const customRule = message.selection.preference === 'custom' ? message.selection.rule : message.customRule;
+      this.messages.push({ ...message, id, customRule });
+      this.focusedResultId = id;
+    } else {
+      this.messages.push({ ...message, id });
+    }
   }
 
   newChat() {
@@ -270,8 +275,8 @@ export class Workspace {
   }
 
   choosePreference(result: ResultMessage, preference: Preference | null) {
-    const selection = chooseRule(preference, result.selection.rule);
-    if (preference === 'custom') {
+    const selection = chooseRule(preference, result.customRule ?? result.selection.rule);
+    if (preference === 'custom' && !result.customRule) {
       this.setSideFrom(result.data, selection);
       this.panel = true;
       return;

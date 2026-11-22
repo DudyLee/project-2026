@@ -40,3 +40,13 @@ export function rank(rows: Row[], { preference, rule }: RuleSelection) {
 }
 
 export type RankedRow = ReturnType<typeof rank>[number];
+
+export function preferenceScores(rows: Row[], customRule?: Rule) {
+  return PREFERENCES.filter(preference => preference !== 'custom' || (customRule && validRule(customRule)))
+    .map(preference => ({ preference, rows: rank(rows, chooseRule(preference, customRule)) }));
+}
+
+export function percentagesOfPeak(values: number[]) {
+  const peak = Math.max(0, ...values);
+  return values.map(value => peak ? value / peak * 100 : 0);
+}

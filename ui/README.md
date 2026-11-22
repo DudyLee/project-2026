@@ -1,15 +1,17 @@
-# Tower A 百叶预测工作台
+# Tower A Louver Prediction Workspace
 
-面向课程项目的对话式界面。输入一个房间和一个小时，应用调用仓库已有的 **PVSD trial v0.2** 模型，比较 **0°、30°、60°、90°** 百叶角度下的采光与光伏发电。推荐偏好可选，预测结果可以在侧栏试算并导出。
+This course project lets you compare daylight and solar energy predictions for one room and hour. It uses the repository’s **PVSD trial v0.2** model to evaluate four louver angles, **0°, 30°, 60°, and 90°**. You can add a recommendation preference, explore a scenario in the sidebar, or export selected results.
 
-## 本地启动
+## Run locally
 
-需要仓库 [environment.yml](../environment.yml) 指定的 Python 3.11 模型环境、Node.js 22.17 或更高版本，以及以下两份项目本地数据。
+You need the Python 3.11 model environment defined in [environment.yml](../environment.yml), Node.js 22.17 or later, and these two local data files.
 
 - `ui/dataset/SEND_BIM_476Rooms.csv`
 - `ui/dataset/SEND_ML_BIM_EPW_07-18.csv`
 
-在仓库根目录执行一次环境准备：
+### First-time setup
+
+Run the following from the repository root.
 
 ```bash
 conda env create --prefix ./.conda/envs/pvsd-ml-v1 -f environment.yml
@@ -20,25 +22,34 @@ python -m server.catalog
 npm ci
 ```
 
-已有项目模型环境可以直接激活，并从 `cd ui` 开始执行。在 `ui/` 启动后端：
+If you already have the project’s model environment, activate it and start with `cd ui`.
+
+### Start a preview
+
+From `ui/`, build the frontend and start the server. This serves the webpage and prediction API from the same process.
 
 ```bash
+npm run build
 python -m uvicorn server.app:app --host 127.0.0.1 --port 8000
 ```
 
-另一个终端进入 `ui/` 并启动前端。浏览器打开 Vite 打印的本地地址，默认是 `http://127.0.0.1:5173`。
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000) and click **Try an example** to run your first prediction.
+
+### Develop with Vite
+
+Run the Uvicorn command above in one terminal. In another terminal, start Vite from `ui/`.
 
 ```bash
 npm run dev
 ```
 
-需要单进程预览时，可先运行 `npm run build`，再启动 Uvicorn，访问 `http://127.0.0.1:8000`。构建后的前端和预测 API 由同一个本地服务提供。
+Open the address printed by Vite. The default is [http://127.0.0.1:5173](http://127.0.0.1:5173).
 
-### 配置对话 Agent
+### Configure the conversation agents
 
-后端优先读取 `OPENROUTER_API_KEY`。如果环境变量未设置，后端可以从 `ui/key.md` 读取唯一一个符合 OpenRouter 格式的凭据。两种设置任选其一。真实凭据留在后端，Git 忽略 `key.md` 和实际环境文件。
+The backend reads `OPENROUTER_API_KEY` first. If the variable is unset, it can read a single OpenRouter key from `ui/key.md`. Git ignores `key.md` and local environment files. The credential stays on the backend.
 
-也可以复制 [`.env.example`](.env.example) 为 `.env`，用编辑器填写 key，然后在启动后端的终端执行：
+To use an environment file, copy [`.env.example`](.env.example) to `.env`, fill in the key in your editor, and load the file in the terminal that will run the backend.
 
 ```bash
 set -a
@@ -46,77 +57,96 @@ source ./.env
 set +a
 ```
 
-三个 Agent 默认共用 `OPENROUTER_MODEL`，缺省为 `qwen/qwen3.5-flash-02-23`。也可以为三个角色分别设置 `OPENROUTER_INTENT_MODEL`、`OPENROUTER_ROOM_MODEL`、`OPENROUTER_EXPLAIN_MODEL`。模型应支持结构化工具输出，并对当前账户和区域可用。如果凭据查询接口接受 key，但模型请求返回 403 及地区限制说明，请选择当前地区可用的模型。设置 `PVSD_LOCAL_ONLY=1` 可明确使用本地模式。未配置 key 或调用失败时，也会保留本地解析和手动控件。
+The agents share the model selected by `OPENROUTER_MODEL`, which defaults to `qwen/qwen3.5-flash-02-23`. Set `OPENROUTER_INTENT_MODEL`, `OPENROUTER_ROOM_MODEL`, or `OPENROUTER_EXPLAIN_MODEL` to choose a model for a specific role. Use a model that supports structured tool outputs and is available to your account and region. If OpenRouter accepts your key but the model returns HTTP 403 with a regional restriction, select a model available in your region.
 
-### 界面语言与回复语言
+Set `PVSD_LOCAL_ONLY=1` to use local mode. Local parsing and manual controls also remain available when the key is missing or an agent request fails. [ff: what does this mean?]
 
-首次打开采用 **English**。右上角可切换 **简体中文**，浏览器会记住界面选择。一次会话默认使用界面语言。输入 “Please reply in Chinese” 或“请用英文回复”可以单独改变本次聊天的回复语言，也可以和预测要求写在一句话里。单独的语言请求会保留已选条件，不发起预测。英语和简体中文的对话提示、澄清控件和结果卡均可在本地运行。其它语言的自然语言回复由连通的 Agent 提供，界面控件仍采用英文或简体中文。
+### Interface and conversation language
 
-## 交互设计
+The app opens in **English** by default. Use the top-right menu to switch to **Simplified Chinese**. The browser remembers your selection.
 
-- **对话入口。** 用户可以输入“BM223，6 月 15 日下午 2 点，发电优先”，也可以先说“帮我找一下 5 楼的房间”。结果卡提供采光图、发电图和五项指标明细。采光图可切换指标。图表中用点标记推荐角度，表格中显示「推荐」文字。
-- **边看边试算。** 右侧面板可直接选条件，也可从一张结果卡开始。改房间、日期或小时后重新预测，改偏好和评分权重后即时重排。试算结果有独立的条件和评分，点「带回对话」会生成新的结果卡，并让后续问题承接该场景。
-- **结果可复核。** 可为 CSV 或 JSON 勾选要导出的角度。导出保留原始五项预测值、日序和小时、模型版本与包哈希、天气来源、输入覆盖标记、评分与推荐标记。选了偏好时同时保存权重和 P10 目标。图表用 Wh 便于阅读，导出用模型原始单位 kWh。
+The conversation uses the interface language by default. Say **“Please reply in Chinese”** or **“Please reply in English”** to change the reply language for the current chat. You can include this instruction in the same message as a prediction request. A language-only request updates the reply setting so you can continue with the same prediction conditions.
 
-## 歧义感知模块
+English and Simplified Chinese chat prompts, clarification controls, and result cards work in local mode. A connected agent handles replies in other languages. Interface controls are available in English and Simplified Chinese.
 
-模块先提取用户本轮明确提出的条件，再结合已确认的对话上下文、BIM 目录和取值范围校验。**一个字段可以是已确定、缺失、有多个候选、表达模糊或越界**。字段状态和候选值由后端返回，前端用固定组件呈现。点击控件会直接更新相应字段。
+## Use the workspace
 
-| 状态与例子 | UI 行为 |
-|---|---|
-| 房间缺失或只知道楼层，如“5 楼” | 用 BIM 匹配候选，显示房号、楼层和面积，提供搜索框 |
-| 房号不存在或多个房号并列 | 保留其它已确认字段，提示用户选择有效房间 |
-| 日期缺失或为“下周末”等模糊日期 | 用内嵌月日选择器补齐。月日按 365 天的模拟年转换为日序 |
-| “下午”或“下午 2 点半” | 提供 07:00–18:00 的整点按钮 |
-| 同时给出两个时间或日期 | 显示有效候选供确认 |
-| 日期或小时越界 | 显示允许范围及相应控件 |
-| 只有偏好缺失 | 直接预测，在结果卡上提供偏好按钮 |
+- **Start with a room and time.** Try “BM223, June 15 at 2 pm, power first” or “Help me find a room on floor 5.” Each result card shows **Preference scores** on the left and **Predicted metrics** on the right. All five metrics are visible initially. The charts stack on narrow screens. Toggle individual lines in either legend, or hover over an angle to see its scores or original values. The tooltip follows the cursor and can cross into the other chart. Its position is clamped at the browser edges. Click or tap to pin that angle across both charts. Select it again or press Escape to clear it. Choose a preference to emphasize its score line and mark the recommended angle. Teal and blue show daylight metrics, amber shows PV energy, and violet identifies the balanced score.
+- **View all values.** Open this disclosure to see the five raw predictions, the absolute daylight score, each preference score, and the weights used. The predictions chart scales each metric to its own maximum across the four angles. Its tooltips and the table show the original values in lux, %, or Wh. The score chart compares angles within each preference.
+- **Explore a scenario.** Open the **Explore** sidebar or start from a result card. Click **Recalculate** after changing the room, date, or hour. Preferences and scoring weights update the ranking immediately. The sidebar keeps its own scenario. Click **Add to chat** to create a new result card and continue the conversation from that scenario.
+- **Export selected angles.** Choose which angles to include and download a CSV or JSON file. The export includes all five predicted values, day of year and hour, model version and package hash, weather source, input coverage flags, scores, and recommendation markers. If you used a preference, it also includes the weights and P10 target. The charts show energy in Wh, and exports use the model’s original unit of kWh.
 
-后端用确切的文字匹配优先处理房号、日期和整点等显式值。输入合法且所需数据可查时才调用预测服务。房间选择器使用 BIM 提供的楼层和面积。房间朝向采用模型坐标，因此地理朝向筛选需要另有经核实的坐标映射。
+## How the app handles unclear requests
 
-## 多 Agent 架构
+The app extracts the conditions stated in the latest message. It checks them against conditions already confirmed in the conversation, the room catalog, and the valid input ranges. Each field can be confirmed, missing, ambiguous, one of several candidates, or out of range. The backend returns the field status and candidate values, and the interface displays the appropriate control. Selecting a value updates that field directly.
 
-React + TypeScript 管理界面组件，MobX 保存对话、当前条件、预测记录和侧栏状态。FastAPI 暴露房间目录、对话、预测和解释接口。Pydantic AI 通过 OpenRouter 运行三个 Agent，Python 后端根据字段状态决定调用顺序。
 
-| Agent | 输入与输出 | 运行时机 |
-|---|---|---|
-| 意图 Agent | 当前消息和已确认条件 → 时间、偏好、房间描述等结构化候选 | 用户发送自然语言时 |
-| 房间匹配 Agent | 房间描述和目录里检索出的少量候选 → 允许选择的房号 | 描述含糊且有候选时 |
-| 结果解释 Agent | 实际预测和已计算的推荐分 → 简短解释 | 用户点「解释结果」或在对话中追问时 |
+| Situation                                                                            | What the app shows                                                                               |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| The room is missing or the user only knows the floor, such as “floor 5”            | Matching rooms with room ID, floor, and area, plus a search field                                |
+| The room ID is unknown or the user gives several room IDs                            | A room selector. Any other confirmed fields carry over                                           |
+| The date is missing or vague, such as “next weekend”                               | A month and day picker. The app converts the date to day of year using a 365-day simulation year |
+| The time is vague or falls between whole hours, such as “afternoon” or “2:30 pm” | Buttons for the supported whole hours from 07:00 to 18:00                                        |
+| The user gives two dates or times                                                    | Valid candidates to choose from                                                                  |
+| The date or hour is out of range                                                     | The allowed range and a control for selecting a valid value                                      |
+| Only the preference is missing                                                       | A prediction with preference buttons on the result card                                          |
 
-Agent 输出经过 Pydantic 结构校验，房号、小时和日期再由应用规则校验。每个 Agent 有时限和有限重试。房间与天气查找、模型加载、回归计算和排序均由确定性代码执行。侧栏调整权重时只在前端重新计算分数，解释请求的后端按同一规则重算后再提供事实给 Agent。
+The backend uses exact text matches for explicit room IDs, dates, and whole hours first. It calls the prediction service once the inputs are valid and the required data is available. The room picker uses floor and area from the building information model (BIM). Room orientation uses the model’s coordinate system. Filtering by geographic direction requires a verified coordinate mapping.
 
-## 推荐角度与评分
+## Agent architecture
 
-原始预测为平均照度、P10 照度、300 lux 达标比例、有效照度比例（100–3000 lux）及每小时 AC 光伏发电量。所有照度比例都以该房间当前小时的**空间采样点**为分母。
+React and TypeScript build the interface. MobX stores the conversation, current conditions, predictions, and sidebar state. FastAPI provides the room catalog, chat, prediction, and explanation endpoints. Pydantic AI connects the agents to OpenRouter. The Python backend uses the state of the input fields to decide which agent to call.
+
+[ff: I think we may need to have an orchestrator agent to support freeform natural language request, as not every request is about prediction, user may request for explaining a prediction result, asking to customize the preference calculation, currently, the chat interface is too limited to just predict. what kind of requests do you think we should cover? I am considering removing the side panel, as it's kind of conflicting with the conversational based ui design.]
+
+
+| Agent              | Input and output                                                                                                            | When it runs                                                          |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Intent             | Reads the latest message and confirmed conditions. Returns structured candidates for time, preference, and room description | When the user sends a natural-language message                        |
+| Room matching      | Reads a room description and a short list of catalog matches. Returns eligible room IDs                                     | When the description is ambiguous and the catalog has candidates      |
+| Result explanation | Reads prediction values and computed scores. Returns a short explanation                                                    | When the user clicks **Explain results** or asks a follow-up question |
+
+Pydantic validates each agent’s output structure. Application rules then validate the room ID, date, and hour. Agent calls have time and retry limits. Room and weather lookups, model loading, regression, and ranking all run in deterministic code. The frontend recalculates scores immediately when sidebar weights change. For an explanation request, the backend applies the same scoring rules before passing results to the agent.
+
+## Recommended angles and scoring
+
+The model predicts mean illuminance, P10 illuminance (the 10th percentile), the fraction of points at or above 300 lux, the useful daylight fraction (100–3,000 lux), and hourly AC solar energy. Both illuminance fractions use the room’s **spatial sample points** for that hour as the denominator.
+
+The default daylight score is calculated as follows.
 
 ```text
-采光分 = 50 × 有效照度比例
-       + 30 × 300 lux 达标比例
-       + 20 × min(P10 / 目标照度, 1)
+Daylight score = 50 × useful daylight fraction
+               + 30 × fraction of points at or above 300 lux
+               + 20 × min(P10 / target illuminance, 1)
 ```
 
-目标照度默认 100 lux。综合分将采光分和 PV 发电量分别除以本次四角度的各自最大值，再按当前采光与发电权重加总，换算为 0–100 分。某项四角度均为零时，该项贡献记为零。
+The default P10 target is 100 lux. For the preference score, the app divides the daylight score and solar energy by their respective maximum values across the four angles. It then applies the current daylight and energy weights to give a score from 0 to 100. If a metric is zero for all four angles, its contribution is zero.
 
-- 发电优先用发电 100%。
-- 采光优先用采光 100%。
-- 综合平衡默认各 50%。
-- 自定义允许修改两者权重，以及三项采光指标权重和 P10 目标。采光子权重之和需为 100%。
-- 最高分在浮点容差内相同的角度并列。综合分只在同一次室内场景中比较，界面同时列出绝对采光分和发电量。
 
-这些默认权重与目标值属于界面设计参数。报告中可以说明它们如何表达用户的偏好，以及如何在相同预测值上重复计算推荐。
+| Preference         | Weights                                                                                                                                              |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Power first**    | 100% solar energy                                                                                                                                    |
+| **Daylight first** | 100% daylight                                                                                                                                        |
+| **Balanced**       | 50% daylight and 50% solar energy by default                                                                                                         |
+| **Custom**         | Adjust the daylight and energy weights, the three daylight metric weights, and the P10 target. The three daylight metric weights must add up to 100% |
 
-## 数据准备与模型适用范围
+Angles share the recommendation when their highest scores agree within the floating-point tolerance. Use the preference score to compare angles within the same room and hour. The interface also shows the absolute daylight score and solar energy values.
 
-`python -m server.catalog` 按 `(DOY_1based, Hour)` 从 175,200 行原始合并数据中提取 **4,380** 行逐小时数据，写入 `ui/dataset/weather_hourly.csv`。脚本检查同一时段五项气象和太阳位置值一致，验证日序与原小时索引，并要求完整覆盖 365 天每天 07:00–18:00。后端启动时将小表和 BIM 表分别索引到内存，一个时段占一行。运行所需的天气值来自这张小表，来源在界面标为「原模拟天气」。数据交接说明未指定实际天气年份。
+The weights and target are interface design settings. A course report can explain how they represent user priorities and how to reproduce a recommendation from the same prediction values.
 
-BIM 表的 476 个房号都通过输入范围校验。原模拟覆盖其中 10 个房间，其余 466 个房间结果会显示「未模拟房间」。这些预测缺少该房间自身的模拟对照。模型拟合使用 7 个房间，另有 3 个模拟房间的结果参与方法选择。覆盖标记随导出保存。详见 [模型使用说明](../docs/trial_v0_2_usage.md) 和 [方法说明](../METHODS.md)。
+## Data preparation and model coverage
 
-如需将数据放在其它本地目录，可运行 `python -m server.catalog <目录>`，并给后端设置 `PVSD_DATASET` 指向同一目录。
+`python -m server.catalog` extracts **4,380 hourly records** from the 175,200-row combined source and writes `ui/dataset/weather_hourly.csv`. It uses `(DOY_1based, Hour)` as the key, checks that the five weather and solar-position values agree for all records at the same time, and validates day of year against the source hour index. It requires complete coverage from 07:00 to 18:00 each day of the 365-day simulation year.
 
-## 验证
+At startup, the backend indexes the hourly weather table and the BIM catalog in memory. The interface labels the weather source **Original simulation weather**. No actual weather year was recorded in the data handoff.
 
-在 `ui/` 中运行：
+All 476 room IDs in the BIM catalog passed input validation. The original simulation covers 10 rooms. Results for the other 466 rooms are labeled **Unsimulated room**, so they have no room-specific simulation benchmark. Seven rooms were used for model fitting, and three other simulated rooms contributed to model selection. Exports include coverage flags. See the [model usage guide](../docs/trial_v0_2_usage.md) and [methods](../METHODS.md).
+
+To keep the data in a different local directory, run `python -m server.catalog <directory>` and point the backend’s `PVSD_DATASET` variable at the same directory.
+
+## Verification
+
+Run these commands from `ui/`.
 
 ```bash
 python -m unittest server.test_workspace
@@ -124,9 +154,8 @@ npm test
 npm run build
 ```
 
-测试覆盖英中语言切换、本地双语解释、三类 Agent 的离线响应、可选偏好、日期与时间歧义、超范围输入、多轮条件继承、天气查找覆盖、Python 与 TypeScript 的排序规则，以及发布模型示例的预测一致性。撰写课程报告时，可用固定的中文用例进一步记录首轮解析正确率、控件匹配率和澄清轮数，并用限流或模拟超时检查手动模式。Agent 的线上效果应随实际模型 ID 记录。
+The checks cover bilingual behavior, local explanations, offline responses from the three agent roles, optional preferences, unclear dates and times, out-of-range inputs, conditions carried across messages, weather lookup coverage, and ranking in Python and TypeScript. They also compare 28 predictions against the released v0.2 examples. Floating-point differences on macOS were within the test tolerance.
 
+Chrome checks used real prediction results to verify clarification controls, results without a selected preference, chart highlighting, weight changes, adding a sidebar scenario to the chat, and exporting selected rows to CSV and JSON. They also checked the mobile sidebar, the English default, saved language preferences, and Chinese replies and controls inside the English interface.
 
-本地验证覆盖 28 条 v0.2 示例预测。macOS 上的浮点差异在测试容差内。Chrome 验证使用真实预测数据走完内嵌澄清、默认无偏好、图表高亮、权重调整、侧栏带回对话和选定行的 CSV、JSON 导出，同时检查了手机试算面板。
-
-双语界面已在 Chrome 验证，包括默认英文、语言选择持久化、英文界面中的中文回复和澄清控件。默认 OpenRouter 模型经过在线短用例检查，覆盖英文意图、房间匹配、中英文解释，以及法语确认、预测引导和解释。
+Live checks of the default OpenRouter model covered English intent parsing, room matching, explanations in English and Chinese, and French confirmations, prediction introductions, and explanations. For course report evaluation, use a fixed set of Chinese prompts to measure first-turn parsing accuracy, control selection accuracy, and the number of clarification turns. Test manual mode with rate limits or a simulated timeout. Record the actual model ID with any live agent results.
