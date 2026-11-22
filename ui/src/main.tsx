@@ -11,7 +11,7 @@ import { ChatExportButton, PredictionRail } from './predictionNavigation';
 import { builtInLocale, isLocale, LocaleProvider, text, useI18n } from './i18n';
 import { Workspace } from './store';
 import { ANGLES, displayedHour, getConditions, HOURS, type Issue } from './types';
-import './style.css';
+// import './style.css';
 
 const workspace = new Workspace();
 const ChatContext = createContext(workspace.activeChat);
