@@ -69,3 +69,6 @@ __pycache__/
 
 # Local prediction UI; its own ignore file excludes data and credentials.
 !/ui/
+
+# Local link to the separate project report repository.
+!/BIM26-Project-Report

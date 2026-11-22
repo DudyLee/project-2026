@@ -1,13 +1,16 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { chooseRule, validRule } from './scoring';
+import { chooseRule, editRule, validRule } from './scoring';
 import { builtInLocale, DEFAULT_LOCALE, displayedDate, isLocale, text, type CopyKey, type Locale } from './i18n';
 import {
-  displayedHour, getConditions, type ChatResponse, type Conditions, type Draft, type Issue, type Message,
-  type Prediction, type Preference, type ResultMessage, type Room, type Rule, type RuleSelection,
+  ANGLES, displayedHour, getConditions, METRIC_IDS, type Angle, type ChatResponse, type ComparisonMessage, type Conditions,
+  type Draft, type ExportTarget, type Issue, type Message, type MetricId, type Prediction, type Preference, type RankingMessage,
+  type ResultMessage, type Room, type Rule, type RuleEdit, type RuleSelection,
 } from './types';
 
 interface Health {
   prediction_ready: boolean;
+  model_version: string | null;
+  weather_source: string;
   agents_available: boolean;
   weather_hours: number;
   room_count: number;
@@ -45,6 +48,8 @@ function conditionsOf(result: Prediction): Conditions {
   return { room_id: result.room.id, day: result.day, hour: result.hour };
 }
 
+type ResultChoice = { ids: string[]; command: ChatResponse; question: string; role: 'base' | 'against' };
+
 export class Workspace {
   rooms: Room[] = [];
   health: Health | null = null;
@@ -57,16 +62,21 @@ export class Workspace {
   issues: Issue[] = [];
   busy = false;
   composer = '';
-  session = 0;
-  panel = typeof window !== 'undefined' && window.innerWidth >= 1100;
-  sideDraft = { ...EMPTY };
-  sidePrediction: Prediction | null = null;
-  sideSelection = chooseRule(null);
-  sideBusy = false;
-  sideError: CopyKey | null = null;
-  private sideEpoch = 0;
+  private customChatTitle = '';
+  conditionDraft: Draft | null = null;
+  ruleEditorId: string | null = null;
+  ruleDrafts = new Map<string, Rule>();
+  exportTarget: ExportTarget | null = null;
+  exportLanguage: string | null = null;
+  exportFilter: 'bookmarked' | 'all' = 'bookmarked';
+  selectedResultIds = new Set<string>();
+  resultChoice: ResultChoice | null = null;
+  angleChoice: { resultId: string; angles: Angle[]; metrics?: MetricId[] } | null = null;
+  reveal: { resultId: string; target: 'charts' | 'editor' | 'header' } | null = null;
+  focusedResultId: string | null = null;
+  private pendingPrediction: ChatResponse | null = null;
+  private session = 0;
   private messageId = 0;
-  private focusedResultId: string | null = null;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -85,17 +95,40 @@ export class Workspace {
     }
   }
 
-  get results() {
+  get results(): ResultMessage[] {
     return this.messages.filter((message): message is ResultMessage => message.kind === 'result');
   }
 
-  get lastResult() {
-    return this.results.at(-1);
+  get chatId() {
+    return this.session;
   }
 
-  get sideDirty() {
-    return !this.sidePrediction || this.sideDraft.room_id !== this.sidePrediction.room.id
-      || this.sideDraft.day !== this.sidePrediction.day || this.sideDraft.hour !== this.sidePrediction.hour;
+  get chatTitle() {
+    if (this.customChatTitle) return this.customChatTitle;
+    const first = this.results[0];
+    return first ? first.data.room.id + ' · ' + displayedDate(first.data.day, this.uiLocale)
+      : text(this.uiLocale, 'untitledChat');
+  }
+
+  renameChat(title: string) {
+    const name = title.trim();
+    if (name) this.customChatTitle = name;
+  }
+
+  get exportCandidates() {
+    return this.exportFilter === 'all' ? this.results : this.results.filter(result => result.bookmarked);
+  }
+
+  get selectedResults() {
+    return this.results.filter(result => this.selectedResultIds.has(result.id));
+  }
+
+  get focusedResult(): ResultMessage | undefined {
+    return this.findResult(this.focusedResultId) ?? this.results.at(-1);
+  }
+
+  findResult(id?: string | null): ResultMessage | undefined {
+    return this.results.find(result => result.id === id);
   }
 
   get conversationLanguage() {
@@ -116,21 +149,23 @@ export class Workspace {
     }
   }
 
-  push(message: { kind: 'user' | 'assistant' | 'clarify' | 'error'; text: string; language?: string }
-    | Omit<ResultMessage, 'id'>) {
+  private push(message: Omit<ResultMessage, 'id'> | Omit<ComparisonMessage, 'id'> | Omit<RankingMessage, 'id'>
+    | Omit<Exclude<Message, ResultMessage | ComparisonMessage | RankingMessage>, 'id'>) {
     const id = 'message-' + ++this.messageId;
-    if (message.kind === 'result') {
-      const customRule = message.selection.preference === 'custom' ? message.selection.rule : message.customRule;
-      this.messages.push({ ...message, id, customRule });
-      this.focusedResultId = id;
-    } else {
-      this.messages.push({ ...message, id });
-    }
+    this.messages.push({ ...message, id });
+    if (message.kind === 'result') this.focusedResultId = id;
+    return id;
+  }
+
+  private say(key: CopyKey, values?: Record<string, string | number>, kind: 'user' | 'assistant' | 'error' | 'clarify'
+    | 'choose-result' | 'choose-angles' = 'assistant') {
+    this.push({ kind, text: text(this.conversationLocale, key, values), language: this.conversationLocale });
   }
 
   newChat() {
     this.session += 1;
     this.messages = [];
+    this.customChatTitle = '';
     this.focusedResultId = null;
     this.composer = '';
     this.issues = [];
@@ -138,63 +173,218 @@ export class Workspace {
     this.replyLanguage = null;
     this.draft = { ...EMPTY };
     this.busy = false;
-    this.sideEpoch += 1;
-    this.sideBusy = false;
-    this.sideError = null;
-    this.sideDraft = { ...EMPTY };
-    this.sidePrediction = null;
-    this.sideSelection = chooseRule(null);
+    this.conditionDraft = null;
+    this.ruleEditorId = null;
+    this.ruleDrafts.clear();
+    this.exportTarget = null;
+    this.exportLanguage = null;
+    this.exportFilter = 'bookmarked';
+    this.selectedResultIds.clear();
+    this.resultChoice = null;
+    this.angleChoice = null;
+    this.pendingPrediction = null;
+    this.reveal = null;
   }
 
   setComposer(value: string) {
     this.composer = value;
   }
 
-  togglePanel() {
-    this.panel = !this.panel;
+  focusResult(result: ResultMessage) {
+    this.focusedResultId = result.id;
+    if (this.issues.length === 0) {
+      this.draft = { ...conditionsOf(result.data), preference: result.selection.preference };
+    }
+  }
+
+  private async task(work: (session: number) => Promise<void>, fallback: CopyKey) {
+    if (this.busy) return;
+    const session = this.session;
+    this.busy = true;
+    try {
+      await work(session);
+    } catch (error) {
+      runInAction(() => {
+        if (session === this.session) this.say(requestError(error, fallback), undefined, 'error');
+      });
+    } finally {
+      runInAction(() => { if (session === this.session) this.busy = false; });
+    }
   }
 
   async send(message = this.composer) {
     const query = message.trim();
     if (!query || this.busy) return;
-    const session = this.session;
     this.composer = '';
+    this.resultChoice = null;
+    this.angleChoice = null;
     this.push({ kind: 'user', text: query });
-    this.busy = true;
-    try {
+    await this.task(async session => {
+      const all = this.results;
+      const active = this.focusedResult;
+      const recent = all.length <= 20 ? all
+        : all.filter((result, index) => index < 1 || index >= all.length - 17
+          || result.id === active?.id || all[index + 1]?.id === active?.id);
       const data = await api<ChatResponse>('chat', {
         message: query, draft: this.draft, language: this.conversationLanguage,
+        active_result_id: active?.id,
+        results: recent.map(result => ({ id: result.id, ...conditionsOf(result.data) })),
       });
       if (session !== this.session) return;
       runInAction(() => {
         if (data.requested_language) this.replyLanguage = data.requested_language;
         this.interpretation = data.interpretation;
-        const locale = this.conversationLocale;
-        if (data.action === 'language') {
-          this.push({
-            kind: 'assistant', language: data.localized_reply ? data.language : locale,
-            text: data.localized_reply ?? text(locale, isLocale(data.language) ? 'languageAck' : 'languageService'),
-          });
-          return;
-        }
-        this.draft = data.draft;
-        this.issues = data.issues;
-        if (data.action === 'clarify') this.push({
-          kind: 'clarify', language: data.localized_reply ? data.language : locale,
-          text: data.localized_reply ?? text(locale, 'clarify'),
-        });
       });
-      if (data.action === 'predict') await this.predictDraft(session, data.localized_reply);
-      if (data.action === 'explain') await this.explain(query, session);
-    } catch (error) {
-      runInAction(() => {
-        if (session !== this.session) return;
-        this.push({ kind: 'error', language: this.conversationLocale, text: text(this.conversationLocale, requestError(error, 'requestError')) });
-        this.panel = true;
-      });
-    } finally {
-      runInAction(() => { if (session === this.session) this.busy = false; });
+      await this.execute(data, query, session);
+    }, 'requestError');
+  }
+
+  private async execute(command: ChatResponse, question: string, session: number) {
+    const { action, localized_reply: reply } = command;
+    if (action === 'language' || action === 'help') {
+      if (reply) this.push({ kind: 'assistant', text: reply, language: command.language });
+      else this.say(isLocale(command.language) ? 'languageAck' : 'languageService');
+      return;
     }
+    if (command.unsupported_angles?.length) {
+      this.say('supportedAngles');
+      return;
+    }
+    if (action === 'rule' && command.rule_issue) {
+      this.say('ruleCutoffHint');
+      return;
+    }
+    if (action === 'rank' && command.ranking_issue) {
+      this.say(command.ranking_issue === 'filter' ? 'rankingFilterHint' : 'rankingSortHint');
+      return;
+    }
+    if (action === 'predict' || action === 'clarify') {
+      const comparison = command.compare_scenario ? command
+        : command.starts_new_prediction ? null : this.pendingPrediction;
+      runInAction(() => {
+        this.draft = command.draft;
+        this.issues = command.issues;
+        this.pendingPrediction = action === 'clarify' ? comparison : null;
+        if (action === 'clarify') {
+          if (reply) this.push({ kind: 'clarify', text: reply, language: command.language });
+          else this.say('clarify', undefined, 'clarify');
+        }
+      });
+      if (action === 'predict') await this.predictDraft(session, this.draft, comparison, reply);
+      return;
+    }
+
+    const ids = command.result_choices?.length ? command.result_choices : command.against_choices;
+    if (ids?.length) {
+      runInAction(() => {
+        this.resultChoice = { ids, command, question, role: command.result_choices?.length ? 'base' : 'against' };
+        this.say('chooseResult', undefined, 'choose-result');
+      });
+      return;
+    }
+    if (command.reference_missed) {
+      this.say('noMatchingResult');
+      return;
+    }
+    const result = command.result_id ? this.findResult(command.result_id) : this.focusedResult;
+    if (!result) {
+      if (action === 'rule' && command.preference) {
+        this.draft.preference = command.preference;
+        this.say('nextPreference', { preference: text(this.conversationLocale, command.preference) });
+      } else {
+        this.say('needResult');
+      }
+      return;
+    }
+    this.focusResult(result);
+
+    switch (action) {
+      case 'explain': {
+        const mentionsInspection = /this angle|(?:selected|highlighted|pinned) angle|这个角度|选中的角度|高亮角度/i.test(question)
+          && !/recommend|推荐/i.test(question);
+        const angles = command.angles?.length ? command.angles
+          : mentionsInspection && result.inspectedAngle != null ? [result.inspectedAngle] : [];
+        await this.explain(question, session, result, angles, command.metrics);
+        break;
+      }
+      case 'rule': {
+        const preference = command.preference;
+        const hasCustom = result.customRule || result.selection.preference === 'custom';
+        if (!preference || (preference === 'custom' && !hasCustom)) {
+          this.openRule(result, command.rule);
+          this.say('rulePreviewReady');
+          this.showResult(result, 'editor');
+        } else {
+          this.choosePreference(result, preference);
+          this.say('ruleUpdated');
+          this.showResult(result);
+        }
+        break;
+      }
+      case 'compare': {
+        const other = this.findResult(command.against_result_id);
+        const angles = command.angles ?? [];
+        if (other) this.compareScenarios(result, other, angles, command.metrics);
+        else if (command.compare_cards) this.say('needTwoResults');
+        else if (angles.length >= 2) this.compareAngles(result, angles, command.metrics);
+        else if (command.compare_all && command.metrics?.length) this.compareAngles(result, ANGLES, command.metrics);
+        else if (command.compare_all) {
+          this.setValuesOpen(result, true);
+          this.say('chartUpdated');
+          this.showResult(result);
+        } else {
+          runInAction(() => {
+            this.angleChoice = { resultId: result.id, angles, metrics: command.metrics };
+            this.say('chooseCompareAngles', undefined, 'choose-angles');
+          });
+        }
+        break;
+      }
+      case 'rank':
+        this.push({ kind: 'ranking', data: result.data, angles: command.angles ?? [],
+          filters: command.filters ?? [], sort: command.sort, language: this.replyLanguage ?? undefined });
+        break;
+      case 'chart':
+        this.changeChart(result, command);
+        break;
+      case 'export':
+        this.openExport(result, command.angles, command.format);
+        break;
+    }
+  }
+
+  async chooseResult(id: string) {
+    const choice = this.resultChoice;
+    if (!choice?.ids.includes(id) || this.busy) return;
+    this.resultChoice = null;
+    const command = choice.role === 'base'
+      ? { ...choice.command, result_choices: [], result_id: id }
+      : { ...choice.command, against_choices: [], against_result_id: id };
+    await this.task(session => this.execute(command, choice.question, session), 'requestError');
+  }
+
+  toggleCompareAngle(angle: Angle) {
+    if (!this.angleChoice) return;
+    const { angles } = this.angleChoice;
+    this.angleChoice.angles = angles.includes(angle) ? angles.filter(item => item !== angle) : [...angles, angle];
+  }
+
+  finishAngleChoice() {
+    if (!this.angleChoice || this.angleChoice.angles.length < 2) return;
+    const result = this.findResult(this.angleChoice.resultId);
+    if (result) this.compareAngles(result, this.angleChoice.angles, this.angleChoice.metrics);
+    this.angleChoice = null;
+  }
+
+  private compareAngles(result: ResultMessage, angles: Angle[], metrics?: MetricId[]) {
+    const [first, ...others] = angles;
+    this.push({ kind: 'comparison', left: result.data, right: result.data, metrics,
+      pairs: others.map(angle => [first, angle]), language: this.replyLanguage ?? undefined });
+  }
+
+  private compareScenarios(base: ResultMessage, other: ResultMessage, angles: Angle[], metrics?: MetricId[]) {
+    this.push({ kind: 'comparison', left: base.data, right: other.data, metrics,
+      pairs: (angles.length ? angles : ANGLES).map(angle => [angle, angle]), language: this.replyLanguage ?? undefined });
   }
 
   async setClarification<K extends 'room_id' | 'day' | 'hour'>(field: K, value: Draft[K]) {
@@ -205,51 +395,44 @@ export class Workspace {
       this.issues = this.issues.filter(issue => issue.field !== issueField);
     }
     if (!getConditions(this.draft) || this.issues.length) return;
-    const session = this.session;
-    this.busy = true;
-    try {
-      await this.predictDraft(session);
-      if (session === this.session && !isLocale(this.conversationLanguage) && this.health?.agents_available) {
-        await this.explain('Summarize the prediction in one sentence.', session);
-      }
-    } catch (error) {
-      runInAction(() => {
-        if (session === this.session) this.push({ kind: 'error', language: this.conversationLocale, text: text(this.conversationLocale, requestError(error, 'predictError')) });
-      });
-    } finally {
-      runInAction(() => { if (session === this.session) this.busy = false; });
-    }
+    const pending = this.pendingPrediction;
+    this.pendingPrediction = null;
+    await this.task(session => this.predictDraft(session, this.draft, pending), 'predictError');
   }
 
-  private async predictDraft(session: number, introduction: string | null = null) {
-    const conditions = getConditions(this.draft);
+  private async predictDraft(session: number, draft: Draft, comparison?: ChatResponse | null,
+                             introduction?: string | null, source?: ResultMessage) {
+    const conditions = getConditions(draft);
     if (!conditions) return;
-    const last = this.focusedResult;
-    const preference = this.draft.preference;
-    const selection = preference === 'custom' && last?.selection.preference === 'custom'
-      ? last.selection : chooseRule(preference);
+    const base = comparison ? this.findResult(comparison.result_id) : undefined;
+    const inherited = source ?? base ?? this.focusedResult;
+    const selection = this.selectionFor(draft.preference, inherited);
     const data = await api<Prediction>('predict', conditions);
     runInAction(() => {
       if (session !== this.session) return;
       if (introduction) this.push({ kind: 'assistant', text: introduction, language: this.conversationLanguage });
-      this.push({ kind: 'result', data, selection, language: this.replyLanguage ?? undefined });
-      if (!this.sidePrediction && !this.sideBusy && !getConditions(this.sideDraft)) {
-        this.setSideFrom(data, selection);
-      }
+      const id = this.push({ kind: 'result', data, selection, customRule: inherited?.customRule,
+        language: this.replyLanguage ?? undefined });
+      this.draft = { ...conditionsOf(data), preference: selection.preference };
+      this.issues = [];
+      this.conditionDraft = null;
+      this.ruleEditorId = null;
+      const result = this.findResult(id);
+      if (base && result) this.compareScenarios(base, result, comparison?.angles ?? [], comparison?.metrics);
+      if (source && result) this.showResult(result, 'header');
     });
   }
 
-  get focusedResult() {
-    return this.results.find(result => result.id === this.focusedResultId) ?? this.lastResult;
+  private selectionFor(preference: Preference | null, source?: ResultMessage): RuleSelection {
+    return chooseRule(preference, source?.customRule ?? source?.selection.rule);
   }
 
-  async explain(question: string, session = this.session, result = this.focusedResult) {
-    if (!result) return;
+  private async explain(question: string, session: number, result: ResultMessage, angles?: Angle[], metrics?: MetricId[]) {
     const { selection } = result;
     const detail = await api<{ text: string; language: string }>('explain', {
       conditions: conditionsOf(result.data),
       rule: selection.preference && validRule(selection.rule) ? selection.rule : null,
-      question, language: this.conversationLanguage,
+      question, language: this.conversationLanguage, angles: angles ?? [], metrics: metrics ?? [],
     });
     runInAction(() => {
       if (session === this.session) this.push({ kind: 'assistant', text: detail.text, language: detail.language });
@@ -258,93 +441,154 @@ export class Workspace {
 
   askAbout(result: ResultMessage) {
     if (this.busy) return;
-    this.focusedResultId = result.id;
-    this.draft = { ...conditionsOf(result.data), preference: result.selection.preference };
-    this.issues = [];
+    this.focusResult(result);
     const question = text(this.conversationLocale, result.selection.preference ? 'explainRecommended' : 'explainCompare');
     this.push({ kind: 'user', text: question });
-    this.busy = true;
-    const session = this.session;
-    void this.explain(question, session, result).catch(() => {
-      runInAction(() => {
-        if (session === this.session) this.push({ kind: 'error', text: text(this.conversationLocale, 'explainError'), language: this.conversationLocale });
-      });
-    }).finally(() => {
-      runInAction(() => { if (session === this.session) this.busy = false; });
-    });
+    void this.task(session => this.explain(question, session, result), 'explainError');
   }
 
   choosePreference(result: ResultMessage, preference: Preference | null) {
-    const selection = chooseRule(preference, result.customRule ?? result.selection.rule);
-    if (preference === 'custom' && !result.customRule) {
-      this.setSideFrom(result.data, selection);
-      this.panel = true;
+    if (preference === 'custom' && !result.customRule && result.selection.preference !== 'custom') {
+      this.openRule(result);
       return;
     }
-    if (this.focusedResult?.id === result.id && !this.issues.length) this.draft.preference = preference;
-    result.selection = selection;
+    result.selection = this.selectionFor(preference, result);
+    this.focusResult(result);
   }
 
-  private setSideFrom(data: Prediction, selection: RuleSelection) {
-    this.sideEpoch += 1;
-    this.sideBusy = false;
-    this.sideError = null;
-    this.sidePrediction = data;
-    this.sideSelection = { preference: selection.preference, rule: { ...selection.rule } };
-    this.sideDraft = { ...conditionsOf(data), preference: selection.preference };
+  openConditions() {
+    this.conditionDraft = { ...this.draft };
   }
 
-  openSide(result: ResultMessage) {
-    this.setSideFrom(result.data, result.selection);
-    this.panel = true;
+  setCondition<K extends keyof Draft>(field: K, value: Draft[K]) {
+    if (this.conditionDraft) this.conditionDraft[field] = value;
   }
 
-  setSideField<K extends 'room_id' | 'day' | 'hour'>(field: K, value: Draft[K]) {
-    this.sideDraft = { ...this.sideDraft, [field]: value };
-    this.sideError = null;
-    this.sideEpoch += 1;
-    this.sideBusy = false;
+  runConditions() {
+    if (this.conditionDraft) this.startScenario(this.conditionDraft);
   }
 
-  setSidePreference(preference: Preference | null) {
-    this.sideSelection = chooseRule(preference, this.sideSelection.rule);
-    this.sideDraft.preference = preference;
+  closeConditions() {
+    this.conditionDraft = null;
   }
 
-  editSideRule(rule: Rule) {
-    this.sideSelection = { preference: 'custom', rule };
-    this.sideDraft.preference = 'custom';
+  changeConditions(result: ResultMessage, change: Partial<Conditions>) {
+    const original = conditionsOf(result.data);
+    const next = { ...original, ...change };
+    if (next.room_id === original.room_id && next.day === original.day && next.hour === original.hour) return;
+    this.startScenario({ ...next, preference: result.selection.preference }, result);
   }
 
-  async predictSide() {
-    const conditions = getConditions(this.sideDraft);
-    if (!conditions || this.sideBusy) return;
-    const epoch = ++this.sideEpoch;
-    this.sideBusy = true;
-    this.sideError = null;
-    try {
-      const data = await api<Prediction>('predict', conditions);
-      runInAction(() => { if (epoch === this.sideEpoch) this.sidePrediction = data; });
-    } catch (error) {
-      runInAction(() => {
-        if (epoch === this.sideEpoch) this.sideError = requestError(error, 'sideError');
-      });
-    } finally {
-      runInAction(() => { if (epoch === this.sideEpoch) this.sideBusy = false; });
+  private startScenario(draft: Draft, source?: ResultMessage) {
+    const conditions = getConditions(draft);
+    if (!conditions || this.busy) return;
+    this.say('manualPrediction', {
+      room: conditions.room_id, date: displayedDate(conditions.day, this.conversationLocale),
+      hour: displayedHour(conditions.hour),
+    }, 'user');
+    this.pendingPrediction = null;
+    this.resultChoice = null;
+    this.angleChoice = null;
+    void this.task(session => this.predictDraft(session, draft, null, null, source), 'predictError');
+  }
+
+  openRule(result: ResultMessage, patch?: RuleEdit) {
+    this.focusResult(result);
+    const draft = this.ruleDrafts.get(result.id);
+    if (!draft || patch) this.ruleDrafts.set(result.id, editRule(draft ?? result.customRule ?? result.selection.rule, patch ?? {}));
+    this.ruleEditorId = result.id;
+  }
+
+  setRule(rule: Rule) {
+    if (this.ruleEditorId) this.ruleDrafts.set(this.ruleEditorId, rule);
+  }
+
+  applyRule() {
+    if (this.busy || !this.ruleEditorId) return;
+    const rule = this.ruleDrafts.get(this.ruleEditorId);
+    const result = this.findResult(this.ruleEditorId);
+    if (!rule || !result || !validRule(rule)) return;
+    result.customRule = { ...rule };
+    this.choosePreference(result, 'custom');
+    this.cancelRule();
+  }
+
+  dismissRule() {
+    this.ruleEditorId = null;
+  }
+
+  cancelRule() {
+    if (this.ruleEditorId) this.ruleDrafts.delete(this.ruleEditorId);
+    this.dismissRule();
+  }
+
+  private showResult(result: ResultMessage, target: NonNullable<Workspace['reveal']>['target'] = 'charts') {
+    this.reveal = { resultId: result.id, target };
+  }
+
+  inspect(result: ResultMessage, angle: Angle | null) {
+    result.inspectedAngle = angle;
+    this.focusResult(result);
+  }
+
+  toggleMetric(result: ResultMessage, metric: MetricId) {
+    const hidden = result.hiddenMetrics ?? [];
+    result.hiddenMetrics = hidden.includes(metric) ? hidden.filter(id => id !== metric) : [...hidden, metric];
+    this.focusResult(result);
+  }
+
+  setValuesOpen(result: ResultMessage, open: boolean) {
+    result.valuesOpen = open;
+  }
+
+  private changeChart(result: ResultMessage, command: ChatResponse) {
+    const metrics = command.metrics ?? [];
+    const angle = command.angles?.[0];
+    if (!metrics.length && angle === undefined && command.table_open == null) {
+      this.say('chartOptions');
+      return;
     }
+    if (metrics.length) {
+      const hidden = result.hiddenMetrics ?? [];
+      result.hiddenMetrics = command.visibility === 'only' ? METRIC_IDS.filter(id => !metrics.includes(id))
+        : command.visibility === 'hide' ? [...new Set([...hidden, ...metrics])]
+          : hidden.filter(id => !metrics.includes(id));
+    }
+    if (angle !== undefined) this.inspect(result, angle);
+    if (command.table_open != null) this.setValuesOpen(result, command.table_open);
+    this.say('chartUpdated');
+    this.showResult(result);
   }
 
-  moveSideToChat() {
-    const data = this.sidePrediction;
-    if (!data || this.sideDirty || this.sideBusy || this.busy || !validRule(this.sideSelection.rule)) return;
-    const selection = { preference: this.sideSelection.preference, rule: { ...this.sideSelection.rule } };
-    this.draft = { ...conditionsOf(data), preference: selection.preference };
-    this.issues = [];
-    this.push({
-      kind: 'user', text: text(this.uiLocale, 'moved', {
-        room: data.room.id, date: displayedDate(data.day, this.uiLocale), hour: displayedHour(data.hour),
-      }),
-    });
-    this.push({ kind: 'result', data, selection, language: this.replyLanguage ?? undefined });
+  toggleBookmark(result: ResultMessage) {
+    result.bookmarked = !result.bookmarked;
+  }
+
+  setExportFilter(filter: Workspace['exportFilter']) {
+    this.exportFilter = filter;
+  }
+
+  selectResult(result: ResultMessage, selected: boolean) {
+    if (selected) this.selectedResultIds.add(result.id);
+    else this.selectedResultIds.delete(result.id);
+  }
+
+  selectVisibleResults(selected: boolean) {
+    for (const result of this.exportCandidates) this.selectResult(result, selected);
+  }
+
+  clearSelection() {
+    this.selectedResultIds.clear();
+  }
+
+  openExport(result: ResultMessage, angles?: Angle[], format?: ExportTarget['format']) {
+    this.focusResult(result);
+    this.exportTarget = { prediction: result.data, selection: result.selection, angles, format };
+    this.exportLanguage = this.conversationLanguage;
+  }
+
+  closeExport() {
+    this.exportTarget = null;
+    this.exportLanguage = null;
   }
 }

@@ -1,34 +1,15 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { ChartNoAxesColumnIncreasing, Download, Info, MessageSquareText, PanelRightOpen, Zap } from 'lucide-react';
+import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { ChartNoAxesColumnIncreasing, ChevronDown, Download, MessageSquareText, Zap } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { PreferenceButtons } from './controls';
+import { ConditionPickers } from './conditionPickers';
+import { BookmarkButton } from './predictionNavigation';
+import { downloadPrediction } from './predictionExport';
 import { LineChart, type ChartAnchor, type ChartSeries } from './lineChart';
-import { percentagesOfPeak, preferenceScores, rank, type RankedRow } from './scoring';
-import { useI18n, type CopyKey } from './i18n';
-import { displayedHour, type Angle, type Prediction, type Preference, type ResultMessage, type Row, type Rule, type RuleSelection } from './types';
-
-type Metric = {
-  key: keyof Omit<Row, 'PVSD_Angle_deg'>;
-  label: CopyKey;
-  unit: string;
-  scale: number;
-  digits: number;
-  color: string;
-};
-
-const DAYLIGHT = '#087665';
-const SOLAR_ENERGY = '#AC5D15';
-
-const POWER: Metric = {
-  key: 'PV_AC_kWh', label: 'solarEnergy', unit: 'Wh', scale: 1000, digits: 2, color: SOLAR_ENERGY,
-};
-const METRICS: Metric[] = [
-  { key: 'E_mean_lux', label: 'mean', unit: 'lux', scale: 1, digits: 1, color: '#286F9E' },
-  { key: 'E_P10_lux', label: 'p10', unit: 'lux', scale: 1, digits: 1, color: '#164A60' },
-  { key: 'F_300_fraction', label: 'f300', unit: '%', scale: 100, digits: 1, color: '#44877D' },
-  { key: 'F_UDI_fraction', label: 'udi', unit: '%', scale: 100, digits: 1, color: DAYLIGHT },
-  POWER,
-];
+import { PREFERENCES, percentagesOfPeak, preferenceScores, rank, rankAngles, type RankedRow } from './scoring';
+import { useI18n } from './i18n';
+import { DAYLIGHT, SOLAR_ENERGY, POWER, METRICS, type Metric } from './metrics';
+import { CutoffMisses, CutoffTags, DaylightFormula, RulePopover } from './preferenceEditor';
+import { displayedHour, type Angle, type ComparisonMessage, type Conditions, type ExportTarget, type MetricId, type Prediction, type Preference, type RankingMessage, type ResultMessage, type Room, type Row, type Rule, type RuleSelection } from './types';
 
 const PREFERENCE_COLOR: Record<Preference, string> = {
   power: SOLAR_ENERGY,
@@ -41,15 +22,20 @@ function metricValue(row: Row, metric: Metric, format: (value: number, digits?: 
   return format(row[metric.key] * metric.scale, metric.digits);
 }
 
-function ResultTable({ rows, scores, focused, daylightWeights, customRule }: {
+function ResultTable({ rows, scores, focused, daylightWeights, customRule, customSelected, open, onOpen }: {
   rows: RankedRow[];
   scores: ReturnType<typeof preferenceScores>;
   focused: Angle | null;
   daylightWeights: Rule;
   customRule?: Rule;
+  customSelected: boolean;
+  open: boolean;
+  onOpen: (open: boolean) => void;
 }) {
   const { t, number } = useI18n();
-  return <details className="all-values">
+  return <details className="all-values" open={open} onToggle={event => {
+    if (event.currentTarget.open !== open) onOpen(event.currentTarget.open);
+  }}>
     <summary>{t('viewValues')}</summary>
     <div className="table-scroll all-values-scroll" role="region" aria-label={t('viewValues')} tabIndex={0}>
       <table className="result-table">
@@ -70,20 +56,23 @@ function ResultTable({ rows, scores, focused, daylightWeights, customRule }: {
         </thead>
         <tbody>{rows.map((row, index) => <tr key={row.PVSD_Angle_deg}
           className={row.recommended ? 'chosen-row' : ''} data-highlighted={row.PVSD_Angle_deg === focused}>
-          <th scope="row">{row.PVSD_Angle_deg}° {row.recommended && <span className="recommended-label">{t('recommended')}</span>}</th>
+          <th scope="row">{row.PVSD_Angle_deg}° {row.recommended && <span className="recommended-label">{t('recommended')}</span>}
+            {!row.eligible && <small className="muted">{t('doesNotQualify')}</small>}</th>
           {METRICS.map(metric => <td key={metric.key}>{metricValue(row, metric, number)}</td>)}
           <td>{number(row.daylightScore, 2)}</td>
-          {scores.map(({ preference, rows }) => <td key={preference}>{number(rows[index].score, 2)}</td>)}
+          {scores.map(({ preference, rows }) => {
+            const score = rows[index].score;
+            return <td key={preference}>{score === null ? '—' : number(score, 2)}</td>;
+          })}
         </tr>)}</tbody>
       </table>
     </div>
-    <p className="table-weights small">{t('daylightWeights', {
-      udi: daylightWeights.udi, f300: daylightWeights.f300, p10: daylightWeights.p10, target: daylightWeights.p10_target,
-    })}</p>
-    {customRule && <p className="table-weights small">{t('customWeights', {
-      daylight: 100 - customRule.power, power: customRule.power, udi: customRule.udi, f300: customRule.f300,
-      p10: customRule.p10, target: customRule.p10_target,
-    })}</p>}
+    <div className="table-weights small"><DaylightFormula rule={daylightWeights} /></div>
+    {customRule && <div className="table-weights small">
+      {!customSelected && <DaylightFormula rule={customRule} custom />}
+      <p>{t('customMix', { daylight: 100 - customRule.power, power: customRule.power })}</p>
+      {!customSelected && <CutoffTags filters={customRule.cutoffs ?? []} />}
+    </div>}
   </details>;
 }
 
@@ -97,19 +86,29 @@ function toggleSeries(previous: Set<string>, seriesId: string) {
   return next;
 }
 
-export function ScoreSummary({ prediction, selection, compact = false }: {
-  prediction: Prediction; selection: RuleSelection; compact?: boolean;
+function ScoreSummary({ prediction, selection }: {
+  prediction: Prediction; selection: RuleSelection;
 }) {
   const { t, number, locale } = useI18n();
   const rows = rank(prediction.rows, selection);
   const chosen = rows.filter(row => row.recommended);
+  const cutoffs = selection.rule.cutoffs ?? [];
+  if (!chosen.length && cutoffs.length) {
+    const { closest } = rankAngles(prediction.rows, cutoffs);
+    if (closest) return <div className="score-summary cutoff-summary">
+      <div><strong>{t('noRecommendation')}</strong>
+        <p>{t('rankingNone', { angle: closest.row.PVSD_Angle_deg })}</p>
+        <CutoffMisses closest={closest} />
+      </div>
+    </div>;
+  }
   if (!chosen.length) return null;
   const top = chosen[0];
   const label = selection.preference ? t(selection.preference) : '';
   const values = { score: number(top.daylightScore, 2), energy: metricValue(top, POWER, number) };
   const reason = t(chosen.length > 1 ? 'tieReason' : selection.preference === 'power' ? 'powerReason'
     : selection.preference === 'daylight' ? 'daylightReason' : 'tradeoff', values);
-  return <div className={'score-summary' + (compact ? ' compact' : '')}
+  return <div className="score-summary"
     style={{ '--recommendation-color': selection.preference && PREFERENCE_COLOR[selection.preference] } as CSSProperties}>
     <div className="score-icon"><Zap size={17} aria-hidden="true" /></div>
     <div><strong>{label} · {chosen.map(row => row.PVSD_Angle_deg + '°').join(locale === 'zh' ? '、' : ', ')} {t(chosen.length > 1 ? 'tie' : 'recommended')}</strong>
@@ -117,19 +116,36 @@ export function ScoreSummary({ prediction, selection, compact = false }: {
   </div>;
 }
 
-export const ResultCard = observer(function ResultCard({ result, onPreference, onOpenSide, onExport, onExplain, busy }: {
+export const ResultCard = observer(function ResultCard({
+  result, rooms, onPreference, onChangeConditions, onEditPreference, onBookmark, onExport, onExplain,
+  onInspect, onLegend, onValuesOpen, ruleDraft, onRuleChange, onDismissRule, onCancelRule, onApplyRule, busy,
+}: {
   result: ResultMessage;
+  rooms: Room[];
   onPreference: (preference: Preference | null) => void;
-  onOpenSide: () => void;
+  onChangeConditions: (change: Partial<Conditions>) => void;
+  onEditPreference: () => void;
+  onInspect: (angle: Angle | null) => void;
+  onLegend: (id: MetricId) => void;
+  onValuesOpen: (open: boolean) => void;
+  ruleDraft?: Rule;
+  onRuleChange: (rule: Rule) => void;
+  onDismissRule: () => void;
+  onCancelRule: () => void;
+  onApplyRule: () => void;
+  onBookmark: () => void;
   onExport: () => void;
   onExplain: () => void;
   busy: boolean;
 }) {
-  const { t, date, number, locale } = useI18n();
+  const { t, number, locale } = useI18n();
+  const ruleId = useId();
+  const customControl = useRef<HTMLSpanElement>(null);
+  const editButton = useRef<HTMLButtonElement>(null);
   const [hiddenScores, setHiddenScores] = useState<Set<string>>(() => new Set());
-  const [hiddenMetrics, setHiddenMetrics] = useState<Set<string>>(() => new Set());
+  const hiddenMetrics = new Set(result.hiddenMetrics);
   const [hovered, setHovered] = useState<AngleCursor | null>(null);
-  const [pinned, setPinned] = useState<AngleCursor | null>(null);
+  const [touchTooltip, setTouchTooltip] = useState<AngleCursor | null>(null);
   const { data, selection, customRule } = result;
   const rows = rank(data.rows, selection);
   const angles = rows.map(row => row.PVSD_Angle_deg);
@@ -139,116 +155,105 @@ export const ResultCard = observer(function ResultCard({ result, onPreference, o
   const scoreSeries: ChartSeries[] = comparison.map(({ preference, rows }) => ({
     id: preference, label: t(preference), color: PREFERENCE_COLOR[preference],
     values: rows.map(row => row.score),
-    details: rows.map(row => number(row.score, 2) + ' / 100'),
+    details: rows.map(row => row.score === null ? t('doesNotQualify') : number(row.score, 2) + ' / 100'),
   }));
   const metricSeries: ChartSeries[] = METRICS.map(metric => ({
     id: metric.key, label: t(metric.label), color: metric.color,
     values: percentagesOfPeak(data.rows.map(row => row[metric.key])),
     details: data.rows.map(row => metricValue(row, metric, number) + (metric.unit === '%' ? '%' : ' ' + metric.unit)),
   }));
-  const tooltip = hovered ?? pinned;
-
-  function choosePreference(preference: Preference | null) {
-    if (preference && hiddenScores.has(preference)) {
-      setHiddenScores(current => toggleSeries(current, preference));
-    }
-    onPreference(preference);
-  }
+  const pinnedAngle = result.inspectedAngle ?? null;
+  const tooltip = hovered ?? (touchTooltip?.angle === pinnedAngle ? touchTooltip : null);
+  useEffect(() => {
+    const { preference } = selection;
+    if (preference) setHiddenScores(current => current.has(preference) ? toggleSeries(current, preference) : current);
+  }, [selection.preference]);
 
   function clearAngle() {
     setHovered(null);
-    setPinned(null);
+    setTouchTooltip(null);
+    onInspect(null);
   }
 
   function chartInteraction(chart: ChartKey) {
     return {
-      angles, recommended, hovered: hovered?.angle ?? null, pinned: pinned?.angle ?? null,
+      angles, recommended, hovered: hovered?.angle ?? null, pinned: pinnedAngle,
       inspection: tooltip?.chart === chart ? { ...tooltip, followPointer: Boolean(hovered) } : null,
-      onHover: (angle: Angle, anchor: ChartAnchor | null) => setHovered(current => {
-        if (anchor) return { chart, angle, anchor };
-        return current?.chart === chart && current.angle === angle ? null : current;
-      }),
+      onHover: (angle: Angle, anchor: ChartAnchor | null) => {
+        if (anchor) {
+          setTouchTooltip(null);
+          setHovered({ chart, angle, anchor });
+        } else {
+          setHovered(current => current?.chart === chart && current.angle === angle ? null : current);
+        }
+      },
       onPin: (angle: Angle, anchor: ChartAnchor) => {
         if (anchor.touch) setHovered(null);
-        setPinned(current => current?.angle === angle ? null : { chart, angle, anchor });
+        const next = pinnedAngle === angle ? null : angle;
+        setTouchTooltip(anchor.touch && next !== null ? { chart, angle: next, anchor } : null);
+        onInspect(next);
       },
       onClear: clearAngle,
     };
   }
   return <article className="result-card" lang={locale === "zh" ? "zh-CN" : "en"} id={result.id} aria-label={data.room.id + ' · ' + t('prediction')}
-    style={{ '--recommendation-color': selection.preference && PREFERENCE_COLOR[selection.preference] } as CSSProperties}>
+    tabIndex={-1} style={{ '--recommendation-color': selection.preference && PREFERENCE_COLOR[selection.preference] } as CSSProperties}>
     <div className="card-top">
       <div><div className="card-kicker"><ChartNoAxesColumnIncreasing size={17} /> {t('prediction')}</div>
-        <h2>{data.room.id}<span>{date(data.day)} · {displayedHour(data.hour)}</span></h2></div>
+        <ConditionPickers value={{ room_id: data.room.id, day: data.day, hour: data.hour }} rooms={rooms}
+          disabled={busy} unsimulated={!data.room.simulated} onChange={onChangeConditions} />
+      </div>
       <div className="result-actions">
-        <button type="button" className="button secondary" onClick={onOpenSide}><PanelRightOpen size={16} />{t('explore')}</button>
+        <button type="button" className="button secondary explain-action" onClick={onExplain} disabled={busy} aria-label={t('explain')}>
+          <MessageSquareText size={16} aria-hidden="true" /><span>{t('explainShort')}</span>
+        </button>
+        <BookmarkButton bookmarked={Boolean(result.bookmarked)} onClick={onBookmark} />
         <button type="button" className="button secondary" onClick={onExport}><Download size={16} />{t('export')}</button>
       </div>
     </div>
     <div className="preference-strip">
       <span>{t('recommendationPreference')}</span>
-      <PreferenceButtons value={selection.preference} onChange={choosePreference} allowNone />
+      <div className="pills" role="group" aria-label={t('recommendationPreference')}>
+        {PREFERENCES.filter(preference => preference !== 'custom').map(preference => <button type="button" className="pill"
+          key={preference} aria-pressed={selection.preference === preference}
+          onClick={() => onPreference(selection.preference === preference ? null : preference)}>{t(preference)}</button>)}
+        <span ref={customControl} className="custom-preference" data-selected={selection.preference === 'custom'}>
+          <button type="button" className="pill" aria-pressed={selection.preference === 'custom'} disabled={busy}
+            aria-haspopup={appliedCustom ? undefined : 'dialog'} aria-expanded={appliedCustom ? undefined : Boolean(ruleDraft)}
+            aria-controls={!appliedCustom && ruleDraft ? ruleId : undefined}
+            onClick={() => {
+              if (appliedCustom && ruleDraft) onDismissRule();
+              onPreference('custom');
+            }}>{t('custom')}</button>
+          <button ref={editButton} type="button" className="pill custom-preference-edit" aria-label={t('editPreference')}
+            aria-haspopup="dialog" aria-expanded={Boolean(ruleDraft)} aria-controls={ruleDraft ? ruleId : undefined}
+            title={t('editPreference')} disabled={busy} onClick={ruleDraft ? onDismissRule : onEditPreference}>
+            <ChevronDown size={15} aria-hidden="true" />
+          </button>
+        </span>
+      </div>
     </div>
+    {ruleDraft && <RulePopover id={ruleId} anchor={customControl} trigger={editButton} result={result} rule={ruleDraft}
+      busy={busy} onChange={onRuleChange} onDismiss={onDismissRule} onCancel={onCancelRule} onApply={onApplyRule} />}
     <ScoreSummary prediction={data} selection={selection} />
+    <CutoffTags filters={selection.rule.cutoffs ?? []} />
     <div className="charts">
       <LineChart {...chartInteraction('scores')} title={t('preferenceScoresChart')} note={t('preferenceScale')}
         series={scoreSeries} hidden={hiddenScores} active={selection.preference}
         onLegendClick={id => setHiddenScores(current => toggleSeries(current, id))} />
       <LineChart {...chartInteraction('metrics')} title={t('predictionMetricsChart')} note={t('metricScale')}
         series={metricSeries} hidden={hiddenMetrics}
-        onLegendClick={id => setHiddenMetrics(current => toggleSeries(current, id))} />
+        onLegendClick={id => onLegend(id as MetricId)} />
     </div>
-    <ResultTable rows={rows} scores={comparison} focused={pinned?.angle ?? hovered?.angle ?? null}
-      daylightWeights={selection.rule} customRule={comparison.some(score => score.preference === 'custom') ? appliedCustom : undefined} />
-    <footer className="card-footer">
-      <span><Info size={15} />{t('simulationWeather')} · {t('modelVersion', { version: data.version })}{!data.room.simulated && ' · ' + t('noSimulation')}</span>
-      <button type="button" className="text-button" onClick={onExplain} disabled={busy}><MessageSquareText size={15} />{t('explain')}</button>
-    </footer>
+    <ResultTable rows={rows} scores={comparison} focused={hovered?.angle ?? pinnedAngle}
+      open={result.valuesOpen ?? false} onOpen={onValuesOpen}
+      daylightWeights={selection.rule} customSelected={selection.preference === 'custom'} customRule={comparison.some(score => score.preference === 'custom') ? appliedCustom : undefined} />
   </article>;
 });
 
-export type ExportTarget = { prediction: Prediction; selection: RuleSelection };
-
-function download(format: 'csv' | 'json', target: ExportTarget, angles: Angle[]) {
-  const { prediction, selection } = target;
-  const scoreRows = rank(prediction.rows, selection).filter(row => angles.includes(row.PVSD_Angle_deg));
-  const metadata = {
-    Room_ID: prediction.room.id, DOY_1based: prediction.day, Hour: prediction.hour,
-    Preference: selection.preference, Model_Version: prediction.version,
-    Model_SHA256: prediction.model_sha256, Weather_Source: prediction.weather_source,
-  };
-  const rows = scoreRows.map(row => ({
-    PVSD_Angle_deg: row.PVSD_Angle_deg, E_mean_lux: row.E_mean_lux, E_P10_lux: row.E_P10_lux,
-    F_300_fraction: row.F_300_fraction, F_UDI_fraction: row.F_UDI_fraction, PV_AC_kWh: row.PV_AC_kWh,
-    Daylight_Score: selection.preference ? row.daylightScore : null,
-    Preference_Score: selection.preference ? row.score : null,
-    Recommended: row.recommended,
-  }));
-  const rule = selection.preference ? selection.rule : null;
-  const flat = rows.map(row => ({
-    ...metadata, ...row, Coverage_Flags: prediction.coverage.join(';'),
-    Power_Weight_pct: rule?.power, UDI_Weight_pct: rule?.udi, F300_Weight_pct: rule?.f300,
-    P10_Weight_pct: rule?.p10, P10_Target_lux: rule?.p10_target,
-  }));
-  const csvLine = (values: unknown[]) => values.map(value => '"' + String(value ?? '').replaceAll('"', '""') + '"').join(',');
-  const text = format === 'json'
-    ? JSON.stringify({ ...metadata, rule, coverage: prediction.coverage, rows }, null, 2)
-    : '\uFEFF' + [csvLine(Object.keys(flat[0])), ...flat.map(row => csvLine(Object.values(row)))].join('\r\n');
-  const href = URL.createObjectURL(new Blob([text], {
-    type: format === 'json' ? 'application/json;charset=utf-8' : 'text/csv;charset=utf-8',
-  }));
-  const link = document.createElement('a');
-  link.href = href;
-  link.download = ['pvsd', prediction.room.id, prediction.day, prediction.hour].join('-') + '.' + format;
-  document.body.append(link);
-  link.click();
-  link.remove();
-  setTimeout(() => URL.revokeObjectURL(href), 1000);
-}
-
 export function ExportDialog({ target, onClose }: { target: ExportTarget; onClose: () => void }) {
   const { t, date } = useI18n();
-  const [angles, setAngles] = useState<Angle[]>(() => target.prediction.rows.map(row => row.PVSD_Angle_deg));
+  const [angles, setAngles] = useState<Angle[]>(() => target.angles?.length ? target.angles : target.prediction.rows.map(row => row.PVSD_Angle_deg));
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => { dialog.current?.showModal(); }, []);
   const rows = rank(target.prediction.rows, target.selection);
@@ -264,23 +269,76 @@ export function ExportDialog({ target, onClose }: { target: ExportTarget; onClos
     </fieldset>
     <div className="dialog-actions">
       <button type="button" className="button secondary" onClick={() => dialog.current?.close()}>{t('close')}</button>
-      <button type="button" className="button secondary" disabled={!angles.length} onClick={() => download('json', target, angles)}>{t('json')}</button>
-      <button type="button" className="button primary" disabled={!angles.length} onClick={() => download('csv', target, angles)}>{t('csv')}</button>
+      <button type="button" className={'button ' + (target.format === 'json' ? 'primary' : 'secondary')} disabled={!angles.length} onClick={() => downloadPrediction('json', target, angles)}>{t('json')}</button>
+      <button type="button" className={'button ' + (target.format === 'json' ? 'secondary' : 'primary')} disabled={!angles.length} onClick={() => downloadPrediction('csv', target, angles)}>{t('csv')}</button>
     </div>
   </dialog>;
 }
 
-export function SideResults({ prediction, selection }: { prediction: Prediction; selection: RuleSelection }) {
-  const { t, number } = useI18n();
-  const rows = rank(prediction.rows, selection);
-  return <div className="side-results">
-    <ScoreSummary prediction={prediction} selection={selection} compact />
-    <div className="table-scroll"><table className="result-table side-table">
-      <thead><tr><th>{t('shortAngle')}</th><th>{t('daylightScore')}<small>0–100</small></th><th>{t('solarEnergy')}<small>Wh</small></th></tr></thead>
-      <tbody>{rows.map(row => <tr key={row.PVSD_Angle_deg} className={row.recommended ? 'chosen-row' : ''}>
-        <th scope="row">{row.PVSD_Angle_deg}°{row.recommended && <span className="recommended-label">{t('recommended')}</span>}</th>
-        <td>{number(row.daylightScore, 2)}</td><td>{metricValue(row, POWER, number)}</td>
-      </tr>)}</tbody>
-    </table></div>
-  </div>;
+export function ComparisonCard({ message }: { message: ComparisonMessage }) {
+  const { date, t, number, locale } = useI18n();
+  const { left, right, pairs, metrics } = message;
+  const shownMetrics = metrics?.length ? METRICS.filter(metric => metrics.includes(metric.key)) : METRICS;
+  const condition = (data: Prediction) => data.room.id + ' · ' + date(data.day) + ' · ' + displayedHour(data.hour);
+  const sameScenario = condition(left) === condition(right);
+  return <article className="result-card comparison-card" aria-label={t('comparison')} lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+    <h2>{t('comparison')}</h2>
+    <p>{sameScenario ? condition(left) : t('comparisonConditions', { left: condition(left), right: condition(right) })}</p>
+    {pairs.map(([from, to]) => {
+      const first = left.rows.find(row => row.PVSD_Angle_deg === from);
+      const second = right.rows.find(row => row.PVSD_Angle_deg === to);
+      if (!first || !second) return null;
+      return <div className="table-scroll" role="region" aria-label={from + '° → ' + to + '°'} tabIndex={0} key={from + '-' + to}>
+        <table className="result-table comparison-table">
+          <thead><tr><th scope="col">{t('predictedValue')}</th>
+            <th scope="col">{sameScenario ? from + '°' : t('referenceAngle', { angle: from })}</th>
+            <th scope="col">{sameScenario ? to + '°' : t('comparisonAngle', { angle: to })}</th>
+            <th scope="col">{t('difference')}</th></tr></thead>
+          <tbody>{shownMetrics.map(metric => {
+            const delta = (second[metric.key] - first[metric.key]) * metric.scale;
+            const signed = Math.abs(delta) < 0.5 * 10 ** -metric.digits ? number(0, metric.digits)
+              : (delta > 0 ? '+' : '') + number(delta, metric.digits);
+            const unit = metric.unit === '%' ? t('percentagePoints') : metric.unit;
+            return <tr key={metric.key}><th scope="row">{t(metric.label)}<small>{metric.unit}</small></th>
+              <td>{metricValue(first, metric, number)}</td><td>{metricValue(second, metric, number)}</td>
+              <td>{signed} {unit}</td></tr>;
+          })}</tbody>
+        </table>
+      </div>;
+    })}
+  </article>;
+}
+
+export function RankingCard({ message }: { message: RankingMessage }) {
+  const { t, date, number, locale } = useI18n();
+  const { data, angles, filters, sort } = message;
+  const candidates = angles.length ? data.rows.filter(row => angles.includes(row.PVSD_Angle_deg)) : data.rows;
+  const { eligible, closest } = rankAngles(candidates, filters, sort);
+  const objective = METRICS.find(metric => metric.key === sort?.metric);
+  const columns = METRICS.filter(metric => metric === objective || filters.some(filter => filter.metric === metric.key));
+  const rows = eligible.length ? eligible : closest ? [closest.row] : [];
+  const best = eligible[0];
+  return <article className="result-card comparison-card ranking-card" aria-label={t('angleRanking')} lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+    <h2>{t('angleRanking')}</h2>
+    <p>{data.room.id} · {date(data.day)} · {displayedHour(data.hour)}</p>
+    <CutoffTags filters={filters} extra={objective
+      ? t(sort?.direction === 'asc' ? 'rankingLowest' : 'rankingHighest', { metric: t(objective.label) }) : undefined} />
+    {best && objective && <p className="ranking-summary">{t('rankingBest', {
+      angles: eligible.filter(row => row[objective.key] === best[objective.key]).map(row => row.PVSD_Angle_deg + '°').join(', '),
+      metric: t(objective.label),
+      value: metricValue(best, objective, number) + (objective.unit === '%' ? '%' : ' ' + objective.unit),
+    })}</p>}
+    {!best && closest && <p className="ranking-summary">{t('rankingNone', { angle: closest.row.PVSD_Angle_deg })}</p>}
+    <div className="table-scroll" tabIndex={0} role="region" aria-label={t('angleRanking')}>
+      <table className="result-table comparison-table">
+        <thead><tr><th scope="col">{t('angle')}</th>{columns.map(column =>
+          <th key={column.key} scope="col">{t(column.label)}<small>{column.unit}</small></th>)}</tr></thead>
+        <tbody>{rows.map(row => <tr key={row.PVSD_Angle_deg}>
+          <th scope="row">{row.PVSD_Angle_deg}°</th>
+          {columns.map(column => <td key={column.key}>{metricValue(row, column, number)}</td>)}
+        </tr>)}</tbody>
+      </table>
+    </div>
+    {closest && <CutoffMisses closest={closest} />}
+  </article>;
 }

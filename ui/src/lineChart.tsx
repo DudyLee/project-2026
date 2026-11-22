@@ -7,7 +7,7 @@ export interface ChartSeries {
   id: string;
   label: string;
   color: string;
-  values: number[];
+  values: (number | null)[];
   details: string[];
 }
 
@@ -89,7 +89,8 @@ function Plot({ series, angles, active, hovered, pinned }: {
         context.lineCap = 'round';
         context.beginPath();
         line.values.forEach((value, index) => {
-          if (index === 0) context.moveTo(xAt(index), yAt(value));
+          if (value === null) return;
+          if (index === 0 || line.values[index - 1] === null) context.moveTo(xAt(index), yAt(value));
           else context.lineTo(xAt(index), yAt(value));
         });
         if (emphasized) {
@@ -105,6 +106,7 @@ function Plot({ series, angles, active, hovered, pinned }: {
         context.strokeStyle = '#ffffff';
         context.lineWidth = 1;
         line.values.forEach((value, index) => {
+          if (value === null) return;
           const inspected = angles[index] === hovered || angles[index] === pinned;
           const radius = inspected ? 5 : emphasized ? 4 : 3;
           context.beginPath();

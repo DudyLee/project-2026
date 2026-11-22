@@ -1,16 +1,16 @@
-import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { observer } from 'mobx-react-lite';
 import {
-  Send, Building2, CalendarDays, ChartNoAxesColumnIncreasing, CheckCircle2, Clock3, Download, FlaskConical,
-  Layers3, MessageCircle, PanelRightClose, PanelRightOpen, Plus, SlidersHorizontal, Sun, X, Zap,
+  Send, Building2, CalendarDays, ChartNoAxesColumnIncreasing, Check, CheckCircle2, Clock3,
+  Layers3, Pencil, Plus, SlidersHorizontal, Sun, X,
 } from 'lucide-react';
-import { CandidateTimes, DateFields, HourSelect, PreferenceButtons, RoomPicker, RuleEditor } from './controls';
-import { ExportDialog, ResultCard, SideResults, type ExportTarget } from './results';
-import { validRule } from './scoring';
+import { CandidateTimes, DateFields, HourSelect, RoomPicker } from './controls';
+import { ComparisonCard, ExportDialog, RankingCard, ResultCard } from './results';
+import { PredictionRail } from './predictionNavigation';
 import { builtInLocale, isLocale, LocaleProvider, text, useI18n } from './i18n';
 import { Workspace } from './store';
-import { displayedHour, getConditions, HOURS, type Issue } from './types';
+import { ANGLES, displayedHour, getConditions, HOURS, type Issue } from './types';
 import './style.css';
 
 const store = new Workspace();
@@ -19,23 +19,97 @@ function Mark({ small = false }: { small?: boolean }) {
   return <span className={'mark' + (small ? ' small-mark' : '')}><Layers3 size={small ? 16 : 22} strokeWidth={2.1} aria-hidden="true" /></span>;
 }
 
-const Navigation = observer(function Navigation() {
-  const { date, t } = useI18n();
-  return <nav className="navigation" aria-label={t('workspace')}>
-    <div className="brand"><Mark /><span><strong>Tower A</strong><small>{t('brand')}</small></span></div>
-    <button type="button" className="new-chat" onClick={store.newChat}><Plus size={18} />{t('newChat')}</button>
-    <div className="nav-history">
-      <h2>{t('history')}</h2>
-      {store.results.length ? store.results.map(result => <a href={'#' + result.id} key={result.id}>
-        <ChartNoAxesColumnIncreasing size={16} /><span><strong>{result.data.room.id}</strong>
-          <small>{date(result.data.day)} · {displayedHour(result.data.hour)}</small></span>
-      </a>) : <p>{t('emptyHistory')}</p>}
-    </div>
-    <div className="nav-bottom"><span>{t('trial')}</span><small>{t('modelShort')}</small></div>
-  </nav>;
+const ChatTitle = observer(function ChatTitle() {
+  const { t } = useI18n();
+  const [draft, setDraft] = useState<string | null>(null);
+  const editing = draft !== null;
+  const input = useRef<HTMLInputElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const restoreFocus = useRef(false);
+
+  useLayoutEffect(() => {
+    if (editing) {
+      input.current?.focus();
+      input.current?.select();
+    } else if (restoreFocus.current) {
+      trigger.current?.focus();
+      restoreFocus.current = false;
+    }
+  }, [editing]);
+
+  function finish(save: boolean) {
+    if (save && draft !== null) store.renameChat(draft);
+    restoreFocus.current = true;
+    setDraft(null);
+  }
+
+  return <div className="topbar-title">
+    {editing ? <form className="chat-title-editor" onSubmit={event => { event.preventDefault(); finish(true); }}>
+      <input ref={input} className="field" type="text" maxLength={100} aria-label={t('chatName')}
+        value={draft} onChange={event => setDraft(event.target.value)}
+        onKeyDown={event => {
+          if (event.nativeEvent.isComposing) return;
+          if (event.key === 'Escape') { event.preventDefault(); finish(false); }
+        }} />
+      <button type="submit" className="icon-button" aria-label={t('saveChatName')} disabled={!draft.trim()}>
+        <Check size={16} aria-hidden="true" />
+      </button>
+      <button type="button" className="icon-button" aria-label={t('cancel')} onClick={() => finish(false)}>
+        <X size={16} aria-hidden="true" />
+      </button>
+    </form> : <button type="button" className="chat-title" ref={trigger}
+      aria-label={t('editChatName', { name: store.chatTitle })} title={store.chatTitle}
+      onClick={() => setDraft(store.chatTitle)}>
+      <span>{store.chatTitle}</span><Pencil size={13} aria-hidden="true" />
+    </button>}
+  </div>;
 });
 
-function Welcome() {
+const ModelStatus = observer(function ModelStatus() {
+  const { t } = useI18n();
+  const id = useId();
+  const status = useRef<HTMLDivElement>(null);
+  const [mode, setMode] = useState<'hover' | 'focus' | 'tap' | null>(null);
+  const health = store.health;
+
+  useEffect(() => {
+    if (!mode) return;
+    function dismiss(event: PointerEvent) {
+      if (event.target instanceof Node && !status.current?.contains(event.target)) setMode(null);
+    }
+    function escape(event: KeyboardEvent) {
+      if (event.key === 'Escape') setMode(null);
+    }
+    document.addEventListener('pointerdown', dismiss);
+    document.addEventListener('keydown', escape);
+    return () => {
+      document.removeEventListener('pointerdown', dismiss);
+      document.removeEventListener('keydown', escape);
+    };
+  }, [mode]);
+
+  if (!health?.prediction_ready) return !store.connected || health
+    ? <span className="service-status warning-text">{t('notReady')}</span> : null;
+
+  return <div className="model-status" ref={status} onPointerLeave={() => {
+    if (mode === 'hover') setMode(null);
+  }}>
+    <button type="button" className="service-status model-status-trigger" aria-label={t('ready')}
+      aria-expanded={Boolean(mode)} aria-describedby={mode ? id : undefined}
+      onPointerEnter={event => { if (event.pointerType === 'mouse' && !mode) setMode('hover'); }}
+      onFocus={event => { if (event.currentTarget.matches(':focus-visible')) setMode('focus'); }}
+      onBlur={() => setMode(null)} onClick={() => setMode(mode === 'tap' ? null : 'tap')}>
+      <CheckCircle2 size={15} aria-hidden="true" /><span>{t('ready')}</span>
+    </button>
+    {mode && <div className="model-tooltip" id={id} role="tooltip">
+      {health.model_version && <strong>{t('modelVersion', { version: health.model_version })}</strong>}
+      {health.weather_source === 'original_simulation_weather' && <p>{t('simulationWeather')}</p>}
+      <p>{t('hoursNote')}</p>
+    </div>}
+  </div>;
+});
+
+const Welcome = observer(function Welcome() {
   const { t } = useI18n();
   return <section className="welcome">
     <div className="welcome-icon"><Sun size={31} strokeWidth={1.6} aria-hidden="true" /></div>
@@ -51,8 +125,10 @@ function Welcome() {
         <span><strong>{t('floorSample')}</strong><small>{t('floorDetail')}</small></span>
       </button>
     </div>
+    {store.conditionDraft ? <ConditionsEditor /> :
+      <button type="button" className="text-button manual-start" onClick={() => store.openConditions()}><SlidersHorizontal size={16} />{t('manualConditions')}</button>}
   </section>;
-}
+});
 
 const Clarification = observer(function Clarification() {
   const { t, number } = useI18n();
@@ -107,66 +183,68 @@ const Composer = observer(function Composer() {
         }} />
       <button type="submit" className="send" aria-label={t('send')} title={t('send')} disabled={!store.composer.trim() || store.busy}><Send size={19} /></button>
     </form>
-    <p>{(store.health?.agents_available === false || store.interpretation === 'local') && t('localParsing') + ' · '}{t('hoursNote')} · {t('simulationWeather')}</p>
+    <p>{(store.health?.agents_available === false || store.interpretation === 'local') && t('localParsing') + ' · '}{t('hoursNote')}</p>
   </div>;
 });
 
-const Workbench = observer(function Workbench({ openExport }: { openExport: (target: ExportTarget) => void }) {
-  const { t, date } = useI18n();
-  const prediction = store.sidePrediction;
-  const selection = store.sideSelection;
-  const isValid = validRule(selection.rule);
-  const ready = !!getConditions(store.sideDraft) && store.health?.prediction_ready;
-  return <aside className="workbench" aria-label={t('panel')}>
-    <header className="panel-head">
-      <span className="panel-icon"><FlaskConical size={19} /></span>
-      <h2>{t('panel')}</h2>
-      <button type="button" className="icon-button" title={t('closePanel')} aria-label={t('closePanel')} onClick={store.togglePanel}><X size={19} /></button>
-    </header>
-    <div className="panel-content">
-      <section className="panel-section">
-        <h3>{t('conditions')}</h3>
-        <div className="input-group"><span>{t('room')}</span>
-          <RoomPicker key={'r' + store.session} rooms={store.rooms} current={store.sideDraft.room_id}
-            onChange={value => store.setSideField('room_id', value)} />
-        </div>
-        <div className="input-group"><span>{t('date')}</span>
-          <DateFields key={'d' + store.session} value={store.sideDraft.day} onChange={value => store.setSideField('day', value)} />
-        </div>
-        <div className="input-group"><span>{t('hour')}</span>
-          <HourSelect value={store.sideDraft.hour} onChange={value => store.setSideField('hour', value)} />
-        </div>
-        <button type="button" className="button primary run-button" disabled={!ready || store.sideBusy}
-          onClick={() => void store.predictSide()}><ChartNoAxesColumnIncreasing size={17} />
-          {t(store.sideBusy ? 'running' : prediction ? 'rerun' : 'run')}</button>
-        {store.sideError && <p className="warning-text small" role="alert">{t(store.sideError)}</p>}
-      </section>
-      <section className="panel-section">
-        <h3><SlidersHorizontal size={16} />{t('recommendationRules')} <small>{t('optional')}</small></h3>
-        <PreferenceButtons value={selection.preference} onChange={store.setSidePreference} allowNone />
-        {selection.preference === 'custom' && <RuleEditor rule={selection.rule} onChange={store.editSideRule} />}
-      </section>
-      {prediction && <section className="panel-section panel-result">
-        <h3>{t('sideResults')}</h3>
-        <p className="small muted result-reference">{prediction.room.id} · {date(prediction.day)} {displayedHour(prediction.hour)}
-          {store.sideDirty && ' · ' + t('previous')}</p>
-        <SideResults prediction={prediction} selection={selection} />
-        <div className="panel-actions">
-          <button type="button" className="button secondary" onClick={() => openExport({ prediction, selection })} disabled={!isValid}><Download size={15} />{t('export')}</button>
-          <button type="button" className="button primary" onClick={store.moveSideToChat}
-            disabled={store.sideDirty || store.sideBusy || store.busy || !isValid}><MessageCircle size={15} />{t('move')}</button>
-        </div>
-      </section>}
+const ConditionsEditor = observer(function ConditionsEditor() {
+  const { t } = useI18n();
+  const draft = store.conditionDraft;
+  if (!draft) return null;
+  return <section className="inline-editor" aria-label={t('conditions')}>
+    <h3>{t('conditions')}</h3>
+    <div className="editor-fields">
+      <div className="input-group"><span>{t('room')}</span>
+        <RoomPicker rooms={store.rooms} current={draft.room_id}
+          onChange={value => store.setCondition('room_id', value)} />
+      </div>
+      <div className="input-group"><span>{t('date')}</span>
+        <DateFields value={draft.day} onChange={value => store.setCondition('day', value)} />
+      </div>
+      <div className="input-group"><span>{t('hour')}</span>
+        <HourSelect value={draft.hour} onChange={value => store.setCondition('hour', value)} />
+      </div>
     </div>
-  </aside>;
+    <div className="editor-actions">
+      <button type="button" className="button secondary" onClick={store.closeConditions}>{t('cancel')}</button>
+      <button type="button" className="button primary" disabled={store.busy || !getConditions(draft) || !store.health?.prediction_ready}
+        onClick={store.runConditions}>{t(store.busy ? 'running' : 'run')}</button>
+    </div>
+  </section>;
+});
+
+const ContextChoices = observer(function ContextChoices({ kind }: { kind: 'choose-result' | 'choose-angles' }) {
+  const { t, date } = useI18n();
+  const angles = store.angleChoice;
+  if (kind === 'choose-angles' && angles) return <div className="context-choices">
+    {ANGLES.map(angle => <button type="button" className="button secondary" key={angle}
+      aria-pressed={angles.angles.includes(angle)} onClick={() => store.toggleCompareAngle(angle)}>{angle}°</button>)}
+    <button type="button" className="button primary" disabled={angles.angles.length < 2}
+      onClick={store.finishAngleChoice}>{t('compare')}</button>
+  </div>;
+  if (kind !== 'choose-result' || !store.resultChoice) return null;
+  return <div className="context-choices">
+    {store.resultChoice.ids.map(id => {
+      const result = store.findResult(id);
+      if (!result) return null;
+      return <button type="button" className="room-option" key={id} disabled={store.busy}
+        onClick={() => void store.chooseResult(id)}><strong>{result.data.room.id}</strong>
+        <small>{date(result.data.day)} · {displayedHour(result.data.hour)} · {t(result.selection.preference ?? 'noPreference')}</small>
+      </button>;
+    })}
+  </div>;
 });
 
 const AppShell = observer(function AppShell() {
   const { locale, t } = useI18n();
-  const [exportTarget, openExport] = useState<ExportTarget | null>(null);
   const tail = useRef<HTMLDivElement>(null);
+  const conversation = useRef<HTMLDivElement>(null);
+  const hasResults = store.results.length > 0;
   const lastClarification = store.messages.filter(message => message.kind === 'clarify').at(-1)?.id;
   const messageCount = store.messages.length;
+  const lastChoices = store.messages.filter(message => message.kind === 'choose-result' || message.kind === 'choose-angles').at(-1)?.id;
+  const reveal = store.reveal;
+  const scrollState = useRef({ messageCount: 0, reveal });
 
   useEffect(() => { void store.bootstrap(); }, []);
   useEffect(() => {
@@ -174,8 +252,18 @@ const AppShell = observer(function AppShell() {
     document.title = t('title');
   }, [locale, t]);
   useEffect(() => {
-    if (messageCount) tail.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-  }, [messageCount]);
+    const previous = scrollState.current;
+    scrollState.current = { messageCount, reveal };
+    if (reveal && reveal !== previous.reveal) {
+      const card = document.getElementById(reveal.resultId);
+      const selector = { editor: '.custom-preference', charts: '.charts', header: '.card-top' }[reveal.target];
+      const anchor = card?.querySelector(selector) ?? card;
+      anchor?.scrollIntoView({ block: reveal.target === 'header' ? 'start' : 'nearest',
+        behavior: reveal.target === 'editor' ? 'instant' : 'smooth' });
+    } else if (messageCount && messageCount !== previous.messageCount) {
+      tail.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }, [messageCount, reveal]);
 
   function botMessage(id: string, children: ReactNode, error = false, language?: string) {
     return <div className={'bot-message' + (error ? ' error-message' : '')} key={id} lang={language}>
@@ -184,18 +272,17 @@ const AppShell = observer(function AppShell() {
   }
 
   return <div className="app-shell">
-    <Navigation />
-    <main className="main-area">
+    <main className={'main-area' + (hasResults ? ' has-predictions' : '')}>
       <header className="topbar">
-        <div className="topbar-left"><MessageCircle size={18} /><span>{t('chat')}</span></div>
-        <div className="topbar-right">
-          <button type="button" className="icon-button mobile-new" title={t('newChat')} aria-label={t('newChat')} onClick={store.newChat}><Plus size={19} /></button>
-          {store.health?.prediction_ready ? <span className="service-status"><CheckCircle2 size={15} />{t('ready')}</span>
-            : !store.connected || store.health ? <span className="service-status warning-text">{t('notReady')}</span> : null}
-          <button type="button" className="button panel-toggle" onClick={store.togglePanel} aria-expanded={store.panel} aria-label={t('panel')}>
-            {store.panel ? <PanelRightClose size={17} /> : <PanelRightOpen size={17} />}
-            <span>{t('panel')}</span>
+        <div className="topbar-left">
+          <div className="brand"><Mark /><span><strong>Tower A</strong><small>{t('brand')}</small></span></div>
+          <button type="button" className="button secondary new-chat" title={t('newChat')} aria-label={t('newChat')} onClick={store.newChat}>
+            <Plus size={17} aria-hidden="true" /><span>{t('newChat')}</span>
           </button>
+        </div>
+        <ChatTitle key={store.chatId} />
+        <div className="topbar-right">
+          <ModelStatus />
           <select className="field language-select" aria-label={t('language')} value={store.uiLocale}
             onChange={event => { if (isLocale(event.target.value)) store.setLocale(event.target.value); }}>
             <option value="en" lang="en">English</option>
@@ -203,37 +290,65 @@ const AppShell = observer(function AppShell() {
           </select>
         </div>
       </header>
-      <div className="conversation-scroll">
-        <div className="conversation">
-          {!messageCount && <Welcome />}
-          {store.messages.map(message => {
-            if (message.kind === 'user') return <div key={message.id} className="user-message"><p>{message.text}</p></div>;
-            if (message.kind === 'result') return <LocaleProvider key={message.id} locale={builtInLocale(message.language, locale)}>
-              <ResultCard result={message} busy={store.busy}
-                onPreference={preference => store.choosePreference(message, preference)}
-                onOpenSide={() => store.openSide(message)} onExplain={() => store.askAbout(message)}
-                onExport={() => openExport({ prediction: message.data, selection: message.selection })} />
-            </LocaleProvider>;
-            if (message.kind === 'clarify') {
-              const active = lastClarification === message.id && store.issues.length > 0;
-              const activeLocale = store.conversationLocale;
-              const translated = message.language === store.replyLanguage && !isLocale(message.language);
-              return botMessage(message.id, <>
-                <p>{active ? (translated ? message.text : text(activeLocale, 'clarify')) : t('clarified')}</p>
-                {active && <LocaleProvider locale={activeLocale}><Clarification /></LocaleProvider>}
-              </>, false, active ? (translated ? message.language : activeLocale) : locale);
-            }
-            return botMessage(message.id, <p>{message.text}</p>, message.kind === 'error', message.language);
-          })}
-          {store.busy && botMessage('waiting', <LocaleProvider locale={store.conversationLocale}><Waiting /></LocaleProvider>)}
-          {!store.connected && <div className="service-notice" role="status">{t('noConnection')}<button type="button" className="text-button" onClick={() => void store.bootstrap()}>{t('reconnect')}</button></div>}
-          <div ref={tail} />
+      <div className="conversation-pane">
+        <div className="conversation-scroll" ref={conversation}>
+          <div className="conversation">
+            {!messageCount && <Welcome />}
+            {store.messages.map(message => {
+              if (message.kind === 'user') return <div key={message.id} className="user-message"><p>{message.text}</p></div>;
+              if (message.kind === 'result') return <LocaleProvider key={message.id} locale={builtInLocale(message.language, locale)}>
+                <ResultCard result={message} busy={store.busy} rooms={store.rooms}
+                  ruleDraft={store.ruleEditorId === message.id ? store.ruleDrafts.get(message.id) : undefined}
+                  onPreference={preference => store.choosePreference(message, preference)}
+                  onChangeConditions={change => store.changeConditions(message, change)}
+                  onEditPreference={() => store.openRule(message)}
+                  onRuleChange={store.setRule} onDismissRule={store.dismissRule}
+                  onCancelRule={store.cancelRule} onApplyRule={store.applyRule}
+                  onInspect={angle => store.inspect(message, angle)} onLegend={metric => store.toggleMetric(message, metric)}
+                  onValuesOpen={open => store.setValuesOpen(message, open)}
+                  onExplain={() => store.askAbout(message)} onBookmark={() => store.toggleBookmark(message)}
+                  onExport={() => store.openExport(message)} />
+              </LocaleProvider>;
+              if (message.kind === 'comparison') return <LocaleProvider key={message.id} locale={builtInLocale(message.language, locale)}>
+                <ComparisonCard message={message} />
+              </LocaleProvider>;
+              if (message.kind === 'ranking') return <LocaleProvider key={message.id} locale={builtInLocale(message.language, locale)}>
+                <RankingCard message={message} />
+              </LocaleProvider>;
+              if (message.kind === 'choose-result' || message.kind === 'choose-angles') {
+                return botMessage(message.id, <><p>{message.text}</p>{message.id === lastChoices &&
+                  <LocaleProvider locale={store.conversationLocale}><ContextChoices kind={message.kind} /></LocaleProvider>}</>,
+                  false, message.language);
+              }
+              if (message.kind === 'clarify') {
+                const active = lastClarification === message.id && store.issues.length > 0;
+                const activeLocale = store.conversationLocale;
+                const translated = message.language === store.replyLanguage && !isLocale(message.language);
+                const originalLocale = builtInLocale(message.language, locale);
+                return botMessage(message.id, <>
+                  <p>{active ? (translated ? message.text : text(activeLocale, 'clarify')) : text(originalLocale, 'clarified')}</p>
+                  {active && <LocaleProvider locale={activeLocale}><Clarification /></LocaleProvider>}
+                </>, false, active ? (translated ? message.language : activeLocale) : originalLocale);
+              }
+              return botMessage(message.id, <p>{message.text}</p>, message.kind === 'error', message.language);
+            })}
+            {messageCount > 0 && !store.results.length && !store.issues.length && !store.busy &&
+              (store.conditionDraft ? <ConditionsEditor /> :
+                <button type="button" className="text-button manual-start manual-followup" onClick={() => store.openConditions()}>
+                  <SlidersHorizontal size={16} />{t('manualConditions')}
+                </button>)}
+            {store.busy && botMessage('waiting', <LocaleProvider locale={store.conversationLocale}><Waiting /></LocaleProvider>)}
+            {!store.connected && <div className="service-notice" role="status">{t('noConnection')}<button type="button" className="text-button" onClick={() => void store.bootstrap()}>{t('reconnect')}</button></div>}
+            <div ref={tail} />
+          </div>
         </div>
+        {hasResults && <PredictionRail store={store} conversation={conversation} />}
       </div>
       <Composer />
     </main>
-    {store.panel && <Workbench openExport={openExport} />}
-    {exportTarget && <ExportDialog target={exportTarget} onClose={() => openExport(null)} />}
+    {store.exportTarget && <LocaleProvider locale={builtInLocale(store.exportLanguage, locale)}>
+      <ExportDialog target={store.exportTarget} onClose={store.closeExport} />
+    </LocaleProvider>}
   </div>;
 });
 

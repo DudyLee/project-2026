@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { chooseRule, percentagesOfPeak, preferenceScores, rank, validRule } from './scoring.ts';
+import { chooseRule, daylightWeightTotal, DEFAULT_RULE, editRule, percentagesOfPeak, preferenceScores, rank, rankAngles, rebalanceDaylight, validRule } from './scoring.ts';
 import type { Angle, Row } from './types.ts';
 
 function fixture(angle: Angle, power: number, daylight: number): Row {
@@ -50,4 +50,73 @@ test('each prediction metric uses its own peak and handles a zero series', () =>
   assert.deepEqual(percentagesOfPeak([20, 10, 0, 5]), [100, 50, 0, 25]);
   assert.deepEqual(percentagesOfPeak([0, 0, 0, 0]), [0, 0, 0, 0]);
   assert.deepEqual(percentagesOfPeak([.004, .002, 0, .001]), [100, 50, 0, 25]);
+});
+
+test('ranking filters before sorting and reports the closest miss for a strict limit', () => {
+  const order = { metric: 'PV_AC_kWh', direction: 'desc' } as const;
+  const limits = [{ metric: 'F_UDI_fraction', operator: 'gte', value: .6 }] as const;
+  const matches = rankAngles(rows, [...limits], order);
+  assert.deepEqual(matches.eligible.map(row => row.PVSD_Angle_deg), [30, 60, 90]);
+  assert.equal(matches.closest, null);
+
+  const strict = { metric: 'F_UDI_fraction', operator: 'gt', value: .8 } as const;
+  const impossible = rankAngles(rows, [strict], order);
+  assert.deepEqual(impossible.eligible, []);
+  assert.equal(impossible.closest?.row.PVSD_Angle_deg, 60);
+  assert.deepEqual(impossible.closest?.misses, [strict]);
+});
+
+test('the default daylight formula gives 68 for 80% useful daylight and 50% coverage', () => {
+  const example = { ...fixture(0, .02, .8), F_300_fraction: .5 };
+  assert.equal(rank([example], chooseRule('daylight'))[0].daylightScore, 68);
+});
+
+test('daylight sliders preserve inactive weights and distribute whole percentage points proportionally', () => {
+  const next = rebalanceDaylight(DEFAULT_RULE, 'f300', 30);
+  assert.deepEqual([next.udi, next.f300, next.p10, next.mean], [70, 30, 0, 0]);
+
+  const base = { ...DEFAULT_RULE, udi: 48, f300: 28, p10: 24 };
+  const withMean = rebalanceDaylight(base, 'mean', 33);
+  assert.deepEqual([withMean.udi, withMean.f300, withMean.p10, withMean.mean], [32, 19, 16, 33]);
+  assert.equal(daylightWeightTotal(withMean), 100);
+});
+
+test('a drag can return from 100 percent using the original mix, and a second metric can take a share', () => {
+  const onlyUdi = rebalanceDaylight(DEFAULT_RULE, 'udi', 100);
+  assert.equal(rebalanceDaylight(onlyUdi, 'udi', 80).udi, 100);
+  assert.equal(rebalanceDaylight(onlyUdi, 'f300', 20).udi, 80);
+  assert.deepEqual(rebalanceDaylight(onlyUdi, 'udi', 60, DEFAULT_RULE), DEFAULT_RULE);
+});
+
+test('custom rules cap weighted lux terms and rank only eligible angles', () => {
+  const candidates = [
+    { ...fixture(0, .008, .8), F_300_fraction: .9, E_P10_lux: 60, E_mean_lux: 550 },
+    { ...fixture(30, .006, .7), F_300_fraction: .5, E_P10_lux: 160, E_mean_lux: 250 },
+  ];
+  const cutoff = { metric: 'E_P10_lux', operator: 'gte', value: 80 } as const;
+  const rule = {
+    power: 50, udi: 40, f300: 30, p10: 20, p10_target: 100, mean: 10, mean_target: 500, cutoffs: [cutoff],
+  };
+  assert.equal(validRule(rule), true);
+  assert.equal(validRule({ ...rule, mean_target: null }), false);
+  const scores = rank(candidates, chooseRule('custom', rule));
+  assert.deepEqual(scores.map(row => row.daylightScore), [81, 68]);
+  assert.deepEqual(scores.map(row => row.score), [null, 100]);
+  assert.deepEqual(recommended(scores), [30]);
+
+  const noMatch = editRule(rule, { cutoffs: [{ ...cutoff, value: 200 }] });
+  assert.deepEqual(noMatch.cutoffs, [{ ...cutoff, value: 200 }]);
+  assert.deepEqual(recommended(rank(candidates, chooseRule('custom', noMatch))), []);
+  assert.equal(rankAngles(candidates, noMatch.cutoffs!).closest?.row.PVSD_Angle_deg, 30);
+});
+
+test('a complete set of daylight weights replaces prior terms and cutoff edits preserve weights', () => {
+  const cutoff = { metric: 'E_P10_lux', operator: 'gte', value: 80 } as const;
+  const base = {
+    power: 50, udi: 40, f300: 30, p10: 20, p10_target: 100, mean: 10, mean_target: 500, cutoffs: [cutoff],
+  };
+  const next = editRule(base, { udi: 70, f300: 30 });
+  assert.deepEqual([next.udi, next.f300, next.p10, next.mean], [70, 30, 0, 0]);
+  assert.deepEqual(next.cutoffs, [cutoff]);
+  assert.deepEqual(editRule(base, { remove_cutoffs: ['E_P10_lux'] }), { ...base, cutoffs: [] });
 });

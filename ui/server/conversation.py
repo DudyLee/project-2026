@@ -8,7 +8,8 @@ import unicodedata
 from .agents import Agents
 from .catalog import Catalog
 from .language import language_code, split_language_request
-from .schema import Draft, Intent
+from .routing import PROJECT_HELP, local_command, matches, referenced_results
+from .schema import Draft, Intent, ResultRef
 
 DIGITS = "零一二三四五六七八九"
 NUMERAL = r"[0-9]{1,2}|[零一二两三四五六七八九十]{1,3}"
@@ -45,7 +46,7 @@ def doy(month: int, day: int) -> int:
 
 def local_intent(message: str, today: date) -> tuple[Intent, list[str]]:
     text = unicodedata.normalize("NFKC", message).strip()
-    room_codes = list(dict.fromkeys(code.upper() for code in re.findall(ROOM_CODE, text)))
+    room_codes = list(dict.fromkeys(code.upper() for code in re.findall(ROOM_CODE, text) if code.upper() not in {"P10", "F300"}))
     floor_pattern = rf"({NUMERAL})\s*(?:楼|层|[Ff](?![A-Za-z0-9]))"
     floor_match = re.search(floor_pattern, text)
     if not floor_match:
@@ -100,7 +101,7 @@ def local_intent(message: str, today: date) -> tuple[Intent, list[str]]:
             hour = 0 if hour == 12 else hour
         hours.append(hour)
     bare_hour = re.fullmatch(rf"\s*({NUMERAL})\s*", text)
-    before_hour = re.search(r"(?i)(?:\bat\s+|小时\s*)(\d{1,2})(?!\d)", text)
+    before_hour = re.search(r"(?i)(?:\bat\s+|小时\s*)(\d{1,2})(?![\d.]|\s*(?:°|deg(?:rees?)?\b|度|lux\b|lx\b|wh\b|kwh\b|%|勒克斯|瓦时))", text)
     if not hours and before_hour and not fractional:
         hours.append(int(before_hour[1]))
     if bare_hour and not fractional:
@@ -141,7 +142,7 @@ def value_issue(field: str, values: list[int], was_vague: bool = False) -> dict 
 
 
 async def clarify(message: str, draft: Draft, catalog: Catalog, agents: Agents, today: date,
-                  language: str = "en") -> dict:
+                  language: str = "en", results: list[ResultRef] | None = None, active: str | None = None) -> dict:
     requested, message = split_language_request(message)
     reply_language = requested or language_code(language) or "en"
     if not message:
@@ -150,7 +151,11 @@ async def clarify(message: str, draft: Draft, catalog: Catalog, agents: Agents, 
     # An isolated number is a day only when replying to a missing date and an already set hour.
     if re.fullmatch(NUMERAL, message.strip()) and local.hours and draft.day is None and draft.hour is not None:
         local.days, local.hours = local.hours, []
-    remote = await agents.interpret(message, draft, today.isoformat())
+    results = results or []
+    has_local_scenario = bool(codes or local.floor is not None or local.days or local.hours
+                              or local.needs_day or local.needs_hour)
+    command = local_command(message, local, has_local_scenario)
+    remote = await agents.interpret(message, draft, today.isoformat(), results, active)
     if requested is None and remote:
         requested = language_code(remote.reply_language)
         if requested:
@@ -163,24 +168,119 @@ async def clarify(message: str, draft: Draft, catalog: Catalog, agents: Agents, 
     preference = local.preference or (remote.preference if remote else None)
     vague_day = local.needs_day or (not days and bool(remote and remote.needs_day))
     vague_hour = local.needs_hour or (not hours and bool(remote and remote.needs_hour))
-    explanation = local.explain or bool(remote and remote.explain)
     room_query = (remote.room_query if remote and remote.room_query
                   and remote.room_query.casefold() in message.casefold() else None)
     area_words = r"(?:最大|较大|大一点|largest|biggest)|(?:最小|较小|小一点|smallest)"
     if not room_query and not codes and re.search(r"会议室|办公室|朝[东西南北]|" + area_words, message, re.IGNORECASE):
         room_query = message
     requests_room = bool(codes or room_query or floor is not None)
+    has_scenario = requests_room or bool(days or hours or vague_day or vague_hour)
+    action = command.get("action")
+    if action is None or (action == "predict" and remote and remote.action in {"explain", "compare", "rank"}):
+        action = (remote.action or ("explain" if remote.explain else None)) if remote else action
+    action = action or ("predict" if requests_room else "help")
+    source = "agent" if remote is not None else "local"
+    remote_matches = remote is not None and remote.action == action
+    angles = command.get("angles") or (remote.angles if remote_matches else [])
+    if action == "help":
+        topic = command.get("topic") or (remote.topic if remote_matches else None) or "general"
+        sentence = PROJECT_HELP[topic][int(reply_language == "zh")]
+        return await response(draft, [], action, source, reply_language, requested, agents, sentence=sentence)
+
+    plan = {"angles": [angle for angle in dict.fromkeys(angles) if angle in {0, 30, 60, 90}],
+            "unsupported_angles": [angle for angle in angles if angle not in {0, 30, 60, 90}]}
+    if action in {"chart", "compare", "explain"}:
+        plan["metrics"] = command.get("metrics") or (remote.metrics if remote_matches else [])
+    if action not in {"predict", "compare"}:
+        refs = referenced_results(message, results, active, remote.result_id if remote_matches else None,
+                                  codes, days, hours)
+        plan.update(result_id=refs[0].id if len(refs) == 1 else None,
+                    result_choices=[ref.id for ref in refs] if len(refs) > 1 else [],
+                    reference_missed=bool(results and not refs))
+        if action == "rule":
+            remote_rule = remote.rule.model_dump(exclude_none=True) if remote_matches and remote.rule else {}
+            patch = {**remote_rule, **command.get("rule", {})}
+            issue = command.get("rule_issue") or (remote.rule_issue if remote_matches and command.get("action") != "rule" else None)
+            explicit_editor = command.get("action") == "rule" and "rule" in command
+            plan.update(rule=patch, preference=None if patch or explicit_editor else preference, rule_issue=issue)
+        if action == "chart":
+            plan.update(visibility=command.get("visibility") or (remote.visibility if remote_matches else None),
+                        table_open=command.get("table_open") if command.get("table_open") is not None
+                        else (remote.table_open if remote_matches else None))
+        if action == "rank":
+            if command.get("action") == "rank":
+                plan.update(filters=command.get("filters", []), sort=command.get("sort"),
+                            ranking_issue=command.get("ranking_issue"))
+            elif remote_matches:
+                plan.update(filters=[item.model_dump() for item in remote.filters],
+                            sort=remote.sort.model_dump() if remote.sort else None, ranking_issue=remote.ranking_issue)
+            if not any(plan.get(key) for key in ("filters", "sort", "ranking_issue")):
+                plan["ranking_issue"] = "sort"
+        if action == "export":
+            plan["format"] = command.get("format") or (remote.format if remote_matches else None)
+        return await response(draft, [], action, source, reply_language, requested, agents, **plan)
+
+    if action == "compare":
+        by_id = {ref.id: ref for ref in results}
+        base = by_id.get(remote.result_id) if remote_matches else None
+        base = base or by_id.get(active) or (results[-1] if results else None)
+        second = by_id.get(remote.against_result_id) if remote_matches else None
+        latest_pair = matches(r"(?:last|latest|most recent) two|最近两(?:次|条|张|个)", message)
+        if latest_pair and results:
+            base = results[-1]
+        previous = latest_pair or matches(r"previous|earlier|prior|上一个|上一张|之前的", message)
+        first = matches(r"first (?:result|one|prediction|card)|第一个|第一张", message)
+        if previous and base:
+            index = results.index(base)
+            second = results[index - 1] if index else None
+        elif first and results:
+            second = results[0]
+        if second == base:
+            second = None
+        # Use the active room if it was named, or require a unique first-room match.
+        if len(codes) == 2 and not (previous or first) and not (base and base.room_id in codes):
+            room_refs = referenced_results(message, results, active, None, [codes[0]], days, hours)
+            if len(room_refs) == 1:
+                base = room_refs[0]
+        if len(codes) == 2 and base and base.room_id in codes:
+            other = [ref for ref in results if ref.room_id in codes and ref.room_id != base.room_id
+                     and (not days or ref.day in days) and (not hours or ref.hour in hours)]
+            if len(other) > 1:
+                return await response(draft, [], action, source, reply_language, requested, agents,
+                                      result_id=base.id, against_choices=[ref.id for ref in other], **plan)
+            if other:
+                second = other[0]
+        plan.update(result_id=base.id if base else None, against_result_id=second.id if second else None)
+        if base and has_scenario and not second and not (previous or first):
+            alternatives = [ref for ref in referenced_results(message, results, active, None, codes, days, hours)
+                            if ref != base] if (codes or days or hours) and not (vague_day or vague_hour) else []
+            if len(alternatives) > 1:
+                return await response(draft, [], action, source, reply_language, requested, agents,
+                                      against_choices=[ref.id for ref in alternatives], **plan)
+            if len(alternatives) == 1 and len(codes) <= 1 and len(days) <= 1 and len(hours) <= 1:
+                plan["against_result_id"] = alternatives[0].id
+                return await response(draft, [], action, source, reply_language, requested, agents, **plan)
+            plan["compare_scenario"] = True
+            draft = Draft(room_id=base.room_id, day=base.day, hour=base.hour,
+                          preference=draft.preference if base.id == active else None)
+        else:
+            plan.update(compare_cards=bool(second or previous or first),
+                        compare_all=matches(r"all (?:four )?angles|these four|four angles|四个角度|所有角度", message))
+            return await response(draft, [], action, source, reply_language, requested, agents, **plan)
+
+    if action == "predict":
+        plan["starts_new_prediction"] = matches(r"\bpredict\b|\bforecast\b|new prediction|预测|试算", message)
     result = draft.model_copy()
     issues = []
 
     if codes:
-        matches = [catalog.rooms[code] for code in codes if code in catalog.rooms]
-        if len(codes) == 1 and matches:
-            result.room_id = matches[0].id
+        matching_rooms = [catalog.rooms[code] for code in codes if code in catalog.rooms]
+        if len(codes) == 1 and matching_rooms:
+            result.room_id = matching_rooms[0].id
         else:
             result.room_id = None
             issues.append({"field": "room", "reason": "multiple" if len(codes) > 1 else "not_found",
-                           "rooms": [room.card() for room in matches], "floor": floor})
+                           "rooms": [room.card() for room in matching_rooms], "floor": floor})
     elif requests_room:
         pool = catalog.search(floor=floor)
         matched_query = catalog.search(room_query, floor) if room_query else []
@@ -215,24 +315,24 @@ async def clarify(message: str, draft: Draft, catalog: Catalog, agents: Agents, 
         if issue:
             issues.append(issue)
 
-    has_new_conditions = requests_room or bool(days or hours or vague_day or vague_hour or preference)
-    action = "clarify" if issues else ("explain" if explanation and not has_new_conditions else "predict")
-    return await response(result, issues, action, "agent" if remote is not None else "local",
-                          reply_language, requested, agents)
+    return await response(result, issues, "clarify" if issues else "predict", source,
+                          reply_language, requested, agents, **plan)
 
 
 async def response(draft: Draft, issues: list[dict], action: str, interpretation: str,
-                   language: str, requested: str | None, agents: Agents) -> dict:
-    text = None
-    if language not in {"en", "zh"} and action != "explain":
-        sentence = {
+                   language: str, requested: str | None, agents: Agents, sentence: str | None = None,
+                   **plan) -> dict:
+    reply = sentence
+    if language not in {"en", "zh"}:
+        source = sentence or {
             "language": "I’ll reply in your requested language.",
             "clarify": "Please confirm the details below.",
             "predict": "Here are the predictions for the four louver angles.",
-        }[action]
-        text = await agents.localize(sentence, language)
+        }.get(action)
+        if source:
+            reply = await agents.localize(source, language) or sentence
     return {
         "draft": draft.model_dump(), "issues": issues, "action": action,
         "interpretation": interpretation, "language": language,
-        "requested_language": requested, "localized_reply": text,
+        "requested_language": requested, "localized_reply": reply, **plan,
     }
