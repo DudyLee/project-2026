@@ -213,7 +213,7 @@ const Clarification = observer(function Clarification() {
             <strong>{room.id}</strong><small>{room.level} · {number(room.area)} m²</small>
           </button>)}
         </div>}
-        <RoomPicker rooms={workspace.rooms} current={store.draft.room_id} suggested={issue.rooms} floor={issue.floor}
+        <RoomPicker rooms={workspace.rooms} current={store.draft.room_id} floor={issue.floor}
           onChange={room => void store.setClarification('room_id', room)} />
       </>}
       {issue.field === 'day' && <>
@@ -246,7 +246,7 @@ const Composer = observer(function Composer() {
         }} />
       <button type="submit" className="send" aria-label={t('send')} title={t('send')} disabled={!store.composer.trim() || store.busy}><Send size={19} /></button>
     </form>
-    <p>{(workspace.health?.agents_available === false || store.interpretation === 'local') && t('localParsing') + ' · '}{t('hoursNote')}</p>
+    {(workspace.health?.agents_available === false || store.interpretation === 'local') && <p>{t('localParsing')}</p>}
   </div>;
 });
 

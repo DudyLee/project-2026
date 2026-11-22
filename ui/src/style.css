@@ -268,6 +268,7 @@ select.field {
   text-align: left; border: 0; background: #fff; padding: 7px; border-radius: 5px; font-size: .88rem;
 }
 .room-options button:hover { background: #ecf5f0; }
+.room-options button:focus-visible { outline-offset: -2px; }
 .room-options small, .room-option small { color: var(--muted); font-size: .75rem; margin-left: 5px; }
 .room-hint, .room-options > p { padding: 4px; margin-top: 4px; }
 .pills { display: flex; flex-wrap: wrap; gap: 5px; }

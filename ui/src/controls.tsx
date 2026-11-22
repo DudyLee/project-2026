@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { Building2, Check, ChevronDown, Search } from 'lucide-react';
 import { useI18n } from './i18n';
 import { displayedHour, HOURS, REFERENCE_YEAR, type Room } from './types';
@@ -7,11 +7,12 @@ interface RoomOptionsProps {
   rooms: Room[];
   current: string | null;
   onChange: (value: string) => void;
-  suggested?: Room[];
   floor?: number | null;
 }
 
-export function RoomPicker({ rooms, current, onChange, suggested, floor }: RoomOptionsProps) {
+const roomIdOrder = new Intl.Collator('en', { numeric: true });
+
+export function RoomPicker({ rooms, current, onChange, floor }: RoomOptionsProps) {
   const { t } = useI18n();
   const id = useId();
   const [open, setOpen] = useState(false);
@@ -24,43 +25,64 @@ export function RoomPicker({ rooms, current, onChange, suggested, floor }: RoomO
       <ChevronDown size={16} aria-hidden="true" />
     </button>
     {open && <div className="room-menu" id={id}>
-      <RoomOptions rooms={rooms} current={current} suggested={suggested} floor={floor} autoFocus
+      <RoomOptions rooms={rooms} current={current} floor={floor} autoFocus
         onChange={value => { onChange(value); setOpen(false); }} />
     </div>}
   </div>;
 }
 
-export function RoomOptions({ rooms, current, onChange, suggested = [], floor = null, autoFocus = false,
+export function RoomOptions({ rooms, current, onChange, floor = null, autoFocus = false,
   showCurrent = false }: RoomOptionsProps & { autoFocus?: boolean; showCurrent?: boolean }) {
   const { t, number } = useI18n();
   const [query, setQuery] = useState('');
+  const [focusedRoom, setFocusedRoom] = useState<string | null>(null);
+  const list = useRef<HTMLDivElement>(null);
   const normalized = query.trim().toUpperCase();
+  const preferred = normalized || (showCurrent ? current : null);
   const matches = rooms.filter(room => {
     const value = room.id + ' ' + room.level.toUpperCase();
     if (normalized) return value.includes(normalized);
     if (floor === null) return true;
     const level = room.level.toUpperCase().split(' ')[0];
     return floor === 0 ? level === 'GF' || level === 'G' : level === floor + 'F';
-  });
-  const selected = showCurrent && !normalized ? matches.find(room => room.id === current) : undefined;
-  const candidates = suggested.length && !normalized ? suggested
-    : selected ? [selected, ...matches.filter(room => room.id !== current).slice(0, 7)] : matches.slice(0, 8);
+  }).sort((left, right) => Number(right.id === preferred) - Number(left.id === preferred)
+    || roomIdOrder.compare(left.id, right.id));
+  const tabRoom = matches.find(room => room.id === focusedRoom)?.id ?? matches[0]?.id;
 
   return <>
     <label className="search-field">
       <Search size={16} aria-hidden="true" />
-      <input autoFocus={autoFocus} data-picker-focus value={query} onChange={event => setQuery(event.target.value)}
+      <input autoFocus={autoFocus} data-picker-focus value={query} onChange={event => {
+        setQuery(event.target.value);
+        setFocusedRoom(null);
+        if (list.current) list.current.scrollTop = 0;
+      }} onKeyDown={event => {
+        if (event.key !== 'ArrowDown' || !matches.length) return;
+        event.preventDefault();
+        list.current?.querySelector('button')?.focus();
+      }}
         placeholder={t('searchHint')} aria-label={t('searchRoom')} />
     </label>
-    <div className="room-options">
-      {candidates.map(option => <button key={option.id} type="button" aria-current={current === option.id || undefined}
+    <div className="room-options" ref={list} onKeyDown={event => {
+      if (!['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key) || !(event.target instanceof HTMLButtonElement)) return;
+      const buttons = Array.from(event.currentTarget.querySelectorAll('button'));
+      const next = buttons.indexOf(event.target) + (event.key === 'ArrowUp' ? -1 : 1);
+      const index = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1
+        : Math.max(0, Math.min(buttons.length - 1, next));
+      event.preventDefault();
+      buttons[index]?.focus();
+    }}>
+      {matches.map(option => <button key={option.id} type="button" aria-current={current === option.id || undefined}
+        onFocus={() => setFocusedRoom(option.id)} tabIndex={option.id === tabRoom ? 0 : -1}
         onClick={() => onChange(option.id)}>
         <span><strong>{option.id}</strong><small>{option.level} · {number(option.area)} m²</small></span>
         {current === option.id ? <Check size={17} aria-hidden="true" /> : option.simulated && <small>{t('hasRun')}</small>}
       </button>)}
-      {!candidates.length && <p className="muted small">{t('noRoom')}</p>}
+      {!matches.length && <p className="muted small">{t('noRoom')}</p>}
     </div>
-    {matches.length > candidates.length && <p className="muted small room-hint">{t('moreRooms')}</p>}
+    {matches.length > 0 && <p className="muted small room-hint" aria-live="polite">
+      {t(matches.length === rooms.length ? 'roomCount' : 'roomMatchCount', { count: number(matches.length, 0), total: number(rooms.length, 0) })}
+    </p>}
   </>;
 }
 
